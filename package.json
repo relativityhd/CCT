@@ -1,0 +1,16 @@
+{
+  "name": "cct",
+  "version": "1.0.0",
+  "description": "Cupboard Configuration Tool",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/relativityhd/CCT.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/relativityhd/CCT/issues"
+  },
+  "homepage": "https://github.com/relativityhd/CCT#readme",
+  "workspaces": ["frontend"]
+}

@@ -12,5 +12,8 @@
     "url": "https://github.com/relativityhd/CCT/issues"
   },
   "homepage": "https://github.com/relativityhd/CCT#readme",
-  "workspaces": ["frontend", "api"]
+  "workspaces": [
+    "frontend",
+    "api"
+  ]
 }

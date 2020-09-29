@@ -15,7 +15,7 @@
 $carbon--theme: $carbon--theme--what
 @include carbon--theme()
 @import '~carbon-components/scss/globals/scss/styles.scss'
-#app 
+#app
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale

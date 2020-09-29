@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Set Region</router-link> |
       <router-link to="/about">About</router-link>
-      <cv-button @click="onClick">Hello {{yourName}}</cv-button>
     </div>
     <router-view />
   </div>
@@ -31,5 +30,4 @@ $carbon--theme: $carbon--theme--what
 
     &.router-link-exact-active
       color: #42b983
-
 </style>

@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/relativityhd/CCT#readme",
   "workspaces": [
-    "frontend"
+    "frontend",
+    "api"
   ]
 }

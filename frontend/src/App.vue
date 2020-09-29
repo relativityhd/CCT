@@ -19,15 +19,15 @@ $carbon--theme: $carbon--theme--what
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   text-align: center
-  color: #2c3e50
+  color: $text-01
 
 #nav
   padding: 30px
 
   a
     font-weight: bold
-    color: #2c3e50
+    color: $link-01
 
     &.router-link-exact-active
-      color: #42b983
+      color: $active-primary
 </style>

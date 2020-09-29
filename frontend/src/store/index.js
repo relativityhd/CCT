@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import i18n from "../i18n";
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   mutations: {
     setLang(state, lang) {
       state.lang = lang;
+      i18n.locale = lang;
     },
     setLocation(state, location) {
       state.location = location;

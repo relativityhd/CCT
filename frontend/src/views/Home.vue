@@ -2,7 +2,6 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <cv-button @click="onClick">Hello {{yourName}}</cv-button>
   </div>
 </template>
 
@@ -17,3 +16,9 @@ export default {
   }
 };
 </script>
+<style lang="sass" scoped>
+img
+  border: 12px
+  border-style: dotted
+  border-color: red
+</style>

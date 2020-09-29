@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <h1>{{$t("about")}}</h1>
-    <p>{{$t("message")}}</p>
+    <h1>{{ $t('about') }}</h1>
+    <p>{{ $t('message') }}</p>
   </div>
 </template>
 

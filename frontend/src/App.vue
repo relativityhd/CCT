@@ -13,7 +13,7 @@
 @import 'assets/sass/style'
 $carbon--theme: $carbon--theme--what
 @include carbon--theme()
-@import '~carbon-components/scss/globals/scss/styles.scss'
+// @import '~carbon-components/scss/globals/scss/styles.scss'
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased

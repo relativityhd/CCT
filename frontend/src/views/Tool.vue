@@ -8,6 +8,7 @@
             :label="dd.name"
             :value="dd.selected"
             v-model="dd.selected"
+            @change="calcOffer"
           >
             <cv-dropdown-item
               v-for="option in dd.options"
@@ -20,50 +21,99 @@
         </div>
       </div>
 
-      <div class="offer">{{ $t('offer') }}</div>
+      <div class="offer">{{ offermessage }}</div><!--vorher: {{ $t('offer') }}-->
+      
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'Tool',
   data() {
     return {
       // This is hardcoded sample data, needs to be replaced!
-      dropdowns: [
-        {
+      dropdowns: {
+        bodies: {
           name: this.$i18n.t('dropdowns.ola'),
-          options: [
-            { value: '0', text: 'Ola' },
-            { value: '1', text: 'Olala' },
-            { value: '2', text: 'Olalala' },
-            { value: '3', text: 'Olalalala' }
-          ],
+          options:[] ,
           selected: '0'
         },
-        {
+        doors: {
           name: this.$i18n.t('dropdowns.hi'),
-          options: [
-            { value: '0', text: 'Hi' },
-            { value: '1', text: 'Hihi' },
-            { value: '2', text: 'Hihihi' },
-            { value: '3', text: 'Hihihihi' }
-          ],
+          options: [],
           selected: '0'
         },
-        {
+        boards: {
           name: this.$i18n.t('dropdowns.ah'),
-          options: [
-            { value: '0', text: 'Ah' },
-            { value: '1', text: 'Ahah' },
-            { value: '2', text: 'Ahahaha' },
-            { value: '3', text: 'Ahahahaha' }
-          ],
+          options: [],
           selected: '0'
         }
-      ]
+      },
+
+      offermessage: 'offer'
     }
+  },
+  methods: {
+    calcOffer() {
+      const summedprice = this.dropdowns.bodies.options[this.dropdowns.bodies.selected].price + this.dropdowns.doors.options[this.dropdowns.doors.selected].price + this.dropdowns.boards.options[this.dropdowns.boards.selected].price
+      const offersummary = this.dropdowns.bodies.options[this.dropdowns.bodies.selected].text + ': ' + this.dropdowns.bodies.options[this.dropdowns.bodies.selected].price + ' |\n' + this.dropdowns.doors.options[this.dropdowns.doors.selected].text + ': ' + this.dropdowns.doors.options[this.dropdowns.doors.selected].price + ' |\n' + this.dropdowns.boards.options[this.dropdowns.boards.selected].text + ': ' + this.dropdowns.boards.options[this.dropdowns.boards.selected].price + ' |\n' + 'offer: ' + summedprice
+      console.log(offersummary)
+      this.offermessage = offersummary
+    }
+  },
+  mounted() {
+
+    const bodiesProm = new Promise((res) => {
+      Vue.axios
+      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/bodies')
+      .then(resp => {
+          console.log(resp.data)
+          this.dropdowns.bodies.options = resp.data.map((option,i) => ({
+              text: option.name, 
+              price: option.price,
+              value: i.toString()
+          }))
+          res()
+      })
+    })
+
+    const doorsProm = new Promise((res) => {
+      Vue.axios
+      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/doors')
+      .then(resp => {
+          console.log(resp.data)
+          this.dropdowns.doors.options = resp.data.map((option,i) => ({
+              text: option.name,
+              price: option.price,
+              value: i.toString()
+          }))
+          res()
+      })
+    })
+
+    const boardsProm = new Promise((res) => {
+      Vue.axios
+      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/boards')
+      .then(resp => {
+          console.log(resp.data)
+          this.dropdowns.boards.options = resp.data.map((option,i) => ({
+              text: option.name,
+              price: option.price,
+              value: i.toString()
+          }))
+          res()
+      })
+    })
+
+    Promise.allSettled([
+      bodiesProm,
+      doorsProm,
+      boardsProm
+    ]).then(this.calcOffer)
+
   }
 }
 </script>

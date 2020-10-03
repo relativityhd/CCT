@@ -16,7 +16,6 @@ router.get('/doors',(req,res)=>{
 })
 
 router.get('/boards',(res,req)=>{
-  //req.json(products.boards);
-  req.send("he")
+  req.json(products.boards);
 })
 module.exports = router

@@ -1,6 +1,6 @@
 <template>
   <div class="tool">
-    <h1>{{ $t('title') }}</h1>
+    <h1 class="p-title">{{ $t('title') }}</h1>
     <div class="tool-body">
       <div class="dropdowns">
         <div class="dropdown-container" v-for="dd in dropdowns" :key="dd.name">
@@ -21,8 +21,24 @@
         </div>
       </div>
 
-      <div class="offer">{{ offermessage }}</div><!--vorher: {{ $t('offer') }}-->
-      
+      <div class="offer">
+        <h3 class="offer-title">{{ $t('offer') }}</h3>
+        <hr />
+        <div class="pricing">
+          <p>{{ `${$t('body')}: $${prices.body}` }}</p>
+          <p>{{ `${$t('door')}: $${prices.door}` }}</p>
+          <p>{{ `${$t('board')}: $${prices.board}` }}</p>
+          <hr />
+          <p>{{ `${$t('nonVAT')}: $${prices.nonVat}` }}</p>
+          <p>
+            {{
+              `${$t('VAT')} (${$store.state.vatRate * 100}%): $${prices.vat}`
+            }}
+          </p>
+          <hr />
+          <p>{{ `${$t('offerSum')}: $${offerSum}` }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -37,92 +53,98 @@ export default {
       // This is hardcoded sample data, needs to be replaced!
       dropdowns: {
         bodies: {
-          name: this.$i18n.t('dropdowns.ola'),
-          options:[] ,
+          name: this.$i18n.t('dropdowns.body'),
+          options: [],
           selected: '0'
         },
         doors: {
-          name: this.$i18n.t('dropdowns.hi'),
+          name: this.$i18n.t('dropdowns.door'),
           options: [],
           selected: '0'
         },
         boards: {
-          name: this.$i18n.t('dropdowns.ah'),
+          name: this.$i18n.t('dropdowns.board'),
           options: [],
           selected: '0'
         }
       },
-
-      offermessage: 'offer'
+      prices: {
+        vat: 0,
+        nonVat: 0,
+        body: 0,
+        door: 0,
+        board: 0
+      },
+      offerSum: 0
     }
   },
   methods: {
     calcOffer() {
-      const summedprice = this.dropdowns.bodies.options[this.dropdowns.bodies.selected].price + this.dropdowns.doors.options[this.dropdowns.doors.selected].price + this.dropdowns.boards.options[this.dropdowns.boards.selected].price
-      const offersummary = this.dropdowns.bodies.options[this.dropdowns.bodies.selected].text + ': ' + this.dropdowns.bodies.options[this.dropdowns.bodies.selected].price + ' |\n' + this.dropdowns.doors.options[this.dropdowns.doors.selected].text + ': ' + this.dropdowns.doors.options[this.dropdowns.doors.selected].price + ' |\n' + this.dropdowns.boards.options[this.dropdowns.boards.selected].text + ': ' + this.dropdowns.boards.options[this.dropdowns.boards.selected].price + ' |\n' + 'offer: ' + summedprice
-      console.log(offersummary)
-      this.offermessage = offersummary
+      this.prices.body = this.dropdowns.bodies.options[
+        this.dropdowns.bodies.selected
+      ].price
+      this.prices.door = this.dropdowns.doors.options[
+        this.dropdowns.doors.selected
+      ].price
+      this.prices.board = this.dropdowns.boards.options[
+        this.dropdowns.boards.selected
+      ].price
+      this.offerSum = this.prices.body + this.prices.door + this.prices.board
+
+      this.prices.nonVat = (
+        this.offerSum /
+        (1 + this.$store.state.vatRate)
+      ).toFixed(2)
+      this.prices.vat = (
+        this.prices.nonVat * this.$store.state.vatRate
+      ).toFixed(2)
     }
   },
   mounted() {
-
-    const bodiesProm = new Promise((res) => {
-      Vue.axios
-      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/bodies')
-      .then(resp => {
-          console.log(resp.data)
-          this.dropdowns.bodies.options = resp.data.map((option,i) => ({
-              text: option.name, 
-              price: option.price,
-              value: i.toString()
-          }))
-          res()
+    const bodiesProm = new Promise(res => {
+      Vue.axios.get('/product-service/bodies').then(resp => {
+        console.log(resp.data)
+        this.dropdowns.bodies.options = resp.data.map((option, i) => ({
+          text: `${option.name} ($${option.price})`,
+          price: option.price,
+          value: i.toString()
+        }))
+        res()
       })
     })
 
-    const doorsProm = new Promise((res) => {
-      Vue.axios
-      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/doors')
-      .then(resp => {
-          console.log(resp.data)
-          this.dropdowns.doors.options = resp.data.map((option,i) => ({
-              text: option.name,
-              price: option.price,
-              value: i.toString()
-          }))
-          res()
+    const doorsProm = new Promise(res => {
+      Vue.axios.get('/product-service/doors').then(resp => {
+        console.log(resp.data)
+        this.dropdowns.doors.options = resp.data.map((option, i) => ({
+          text: `${option.name} ($${option.price})`,
+          price: option.price,
+          value: i.toString()
+        }))
+        res()
       })
     })
 
-    const boardsProm = new Promise((res) => {
-      Vue.axios
-      .get('https://5f75b9991cf3c900161ce5f4.mockapi.io/productservice/boards')
-      .then(resp => {
-          console.log(resp.data)
-          this.dropdowns.boards.options = resp.data.map((option,i) => ({
-              text: option.name,
-              price: option.price,
-              value: i.toString()
-          }))
-          res()
+    const boardsProm = new Promise(res => {
+      Vue.axios.get('/product-service/boards').then(resp => {
+        console.log(resp.data)
+        this.dropdowns.boards.options = resp.data.map((option, i) => ({
+          text: `${option.name} ($${option.price})`,
+          price: option.price,
+          value: i.toString()
+        }))
+        res()
       })
     })
 
-    Promise.allSettled([
-      bodiesProm,
-      doorsProm,
-      boardsProm
-    ]).then(this.calcOffer)
-
+    Promise.allSettled([bodiesProm, doorsProm, boardsProm]).then(this.calcOffer)
   }
 }
 </script>
 
 <style lang="sass" scoped>
-@import '~@carbon/themes/scss/themes'
-@import '../assets/sass/style'
-$carbon--theme: $carbon--theme--what
-@include carbon--theme()
+.p-title
+  font-size: calc(20px + 3vmin)
 
 .tool-body
   display: flex
@@ -139,19 +161,22 @@ $carbon--theme: $carbon--theme--what
 
 .dropdown-container
   width: 100%
-  max-width: 500px
+  max-width: 300px
   padding: 5px
 
 .offer
   width: 100%
-  background-color: $ui-04
-  height: 100px
-
+  max-width: 300px
 @media screen and (min-width: 1300px)
   .dropdowns
-    max-width: 1500px
-  .offer
-    max-width: 400px
+    max-width: 900px
+
+.pricing
+  text-align: left
+  padding: 0px 20px
+
+.offer-title
+  font-size: calc(15px + 1vmin)
 </style>
 
 <i18n>
@@ -159,18 +184,24 @@ $carbon--theme: $carbon--theme--what
   "en": {
     "title": "Tool",
     "dropdowns": {
-      "ola": "Select Ola",
-      "hi": "Select Hi",
-      "ah": "Select Ah"
+      "body": "Select a body",
+      "door": "Select some doors",
+      "board": "Select some boards"
     },
-    "offer": "Offer"
+    "offer": "Offer",
+    "body": "Body",
+    "door": "Doors",
+    "board": "Boards",
+    "offerSum": "Sum",
+    "nonVAT": "Net",
+    "VAT": "VAT"
   },
   "de": {
     "title": "Konfigurator",
     "dropdowns": {
-      "ola": "Wähle Ola",
-      "hi": "Wähle Hi",
-      "ah": "Wähle Ah"
+      "body": "Wähle einen Corpus",
+      "door": "Wähle Türen",
+      "board": "Wähle Schubladen"
     },
     "offer": "Angebot"
   }

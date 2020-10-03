@@ -22,9 +22,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-### (temp) added for API-calls:
-```
-npm i axios vue-axios
-```
-

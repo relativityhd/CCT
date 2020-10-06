@@ -1,6 +1,6 @@
 applications:
   - name: cablecard-cct
-    path: /frontend
+    path: ./frontend
     memory: 256M
     instances: 1
     domain: eu-de.mybluemix.net
@@ -10,9 +10,9 @@ applications:
       NODE_ENV: production
     command: npm run start
     health-check-type: http
-    health-check-http-endpoint: /health
+    health-check-http-endpoint: /
   - name: cablecard-cct-api
-    path: /api
+    path: ./api
     memory: 256M
     instances: 1
     domain: eu-de.mybluemix.net
@@ -22,4 +22,4 @@ applications:
       NODE_ENV: production
     command: npm run start
     health-check-type: http
-    health-check-http-endpoint: /health
+    health-check-http-endpoint: /

@@ -16,7 +16,7 @@ export default {
     return {
       locations: [
         { isoCode: 'de', lang: 'de', name: 'Deutschland' },
-        { isoCode: 'gb', lang: 'en', name: 'Great Britan' },
+        { isoCode: 'gb', lang: 'en', name: 'Great Britain' },
         { isoCode: 'fr', lang: 'fr', name: 'France' },
         { isoCode: 'it', lang: 'it', name: 'Italia' },
         { isoCode: 'ch', lang: 'de', name: 'Schweiz' },

@@ -8,7 +8,7 @@ app.use('/order-service', require('./src/OrderService'))
 app.use('/product-service', require('./src/ProductService'))
 
 app.get('*', (req, res) => {
-  res.send('This is a dummy API-Service!')
+  res.end('This is a dummy API-Service!')
 })
 
 app.listen(port, () => {

@@ -25,7 +25,7 @@
     "frontend:install": "cd frontend && npm install",
     "frontend:start": "cd frontend && npx serve -s dist",
     "install": "npm run frontend:install && npm run api:install",
-    "build": "npm run frontend:build && npm run api:build",
+    "build": "npm run frontend:build",
     "lint": "cd api && npm run lint; cd ../frontend && npm run lint --fix"
   }
 }

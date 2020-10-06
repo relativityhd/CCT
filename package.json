@@ -15,5 +15,17 @@
   "workspaces": [
     "frontend",
     "api"
-  ]
+  ],
+  "scripts": {
+    "api:start": "cd api && npm run start",
+    "api:serve": "cd api && npm run dev",
+    "api:install": "cd api && npm install",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:serve": "cd frontend && npm run serve",
+    "frontend:install": "cd frontend && npm install",
+    "frontend:start": "cd frontend && npx serve -s dist",
+    "install": "npm run frontend:install && npm run api:install",
+    "build": "npm run frontend:build && npm run api:build",
+    "lint": "cd api && npm run lint; cd ../frontend && npm run lint --fix"
+  }
 }

@@ -142,41 +142,45 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-.p-title
-  font-size: calc(20px + 3vmin)
+<style lang="scss" scoped>
+.p-title {
+  font-size: calc(20px + 3vmin);
+}
+.tool-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dropdowns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.dropdown-container {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+}
+.offer {
+  width: 100%;
+  max-width: 300px;
+}
+@media screen and (min-width: 1300px) {
+  .dropdowns {
+    max-width: 900px;
+  }
+}
+.pricing {
+  text-align: left;
+  padding: 0px 20px;
+}
 
-.tool-body
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
-
-.dropdowns
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
-  width: 100%
-
-.dropdown-container
-  width: 100%
-  max-width: 300px
-  padding: 5px
-
-.offer
-  width: 100%
-  max-width: 300px
-@media screen and (min-width: 1300px)
-  .dropdowns
-    max-width: 900px
-
-.pricing
-  text-align: left
-  padding: 0px 20px
-
-.offer-title
-  font-size: calc(15px + 1vmin)
+.offer-title {
+  font-size: calc(15px + 1vmin);
+}
 </style>
 
 <i18n>

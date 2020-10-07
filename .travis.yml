@@ -13,7 +13,7 @@ deploy:
     organization: $BLUEMIX_ORGANIZATION
     space: $BLUEMIX_SPACE
     on:
-      branch: feature-travis
+      branch: development
   - app_name: cablecard-cct-api
     provider: cloudfoundry
     username: apikey
@@ -22,4 +22,4 @@ deploy:
     organization: $BLUEMIX_ORGANIZATION
     space: $BLUEMIX_SPACE
     on:
-      branch: feature-travis
+      branch: development

@@ -1,7 +1,7 @@
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const port = 3001
+const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000
 
 app.use(cors())
 
@@ -11,7 +11,7 @@ app.use('/order-service', require('./src/OrderService'))
 app.use('/product-service', require('./src/ProductService'))
 
 app.get('*', (req, res) => {
-  res.send('This is a dummy API-Service!')
+  res.end('This is a dummy API-Service!')
 })
 
 app.listen(port, () => {

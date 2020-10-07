@@ -103,7 +103,6 @@ export default {
   mounted() {
     const bodiesProm = new Promise(res => {
       Vue.axios.get('/product-service/bodies').then(resp => {
-        console.log(resp.data)
         this.dropdowns.bodies.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,
@@ -115,7 +114,6 @@ export default {
 
     const doorsProm = new Promise(res => {
       Vue.axios.get('/product-service/doors').then(resp => {
-        console.log(resp.data)
         this.dropdowns.doors.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,
@@ -127,7 +125,6 @@ export default {
 
     const boardsProm = new Promise(res => {
       Vue.axios.get('/product-service/boards').then(resp => {
-        console.log(resp.data)
         this.dropdowns.boards.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,
@@ -142,41 +139,45 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-.p-title
-  font-size: calc(20px + 3vmin)
+<style lang="scss" scoped>
+.p-title {
+  font-size: calc(20px + 3vmin);
+}
+.tool-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dropdowns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.dropdown-container {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+}
+.offer {
+  width: 100%;
+  max-width: 300px;
+}
+@media screen and (min-width: 1300px) {
+  .dropdowns {
+    max-width: 900px;
+  }
+}
+.pricing {
+  text-align: left;
+  padding: 0px 20px;
+}
 
-.tool-body
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
-
-.dropdowns
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
-  width: 100%
-
-.dropdown-container
-  width: 100%
-  max-width: 300px
-  padding: 5px
-
-.offer
-  width: 100%
-  max-width: 300px
-@media screen and (min-width: 1300px)
-  .dropdowns
-    max-width: 900px
-
-.pricing
-  text-align: left
-  padding: 0px 20px
-
-.offer-title
-  font-size: calc(15px + 1vmin)
+.offer-title {
+  font-size: calc(15px + 1vmin);
+}
 </style>
 
 <i18n>

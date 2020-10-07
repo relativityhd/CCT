@@ -3,13 +3,16 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import 'carbon-components/css/carbon-components.css'
 import CarbonComponentsVue from '@carbon/vue/src/index'
 import i18n from './i18n'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-axios.defaults.baseURL = '//localhost:3001/'
+if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = '//cablecard-cct-api.eu-de.mybluemix.net'
+} else {
+  axios.defaults.baseURL = '//localhost:3000/'
+}
 Vue.use(VueAxios, axios)
 
 Vue.use(CarbonComponentsVue)

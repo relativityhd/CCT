@@ -103,7 +103,6 @@ export default {
   mounted() {
     const bodiesProm = new Promise(res => {
       Vue.axios.get('/product-service/bodies').then(resp => {
-        console.log(resp.data)
         this.dropdowns.bodies.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,
@@ -115,7 +114,6 @@ export default {
 
     const doorsProm = new Promise(res => {
       Vue.axios.get('/product-service/doors').then(resp => {
-        console.log(resp.data)
         this.dropdowns.doors.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,
@@ -127,7 +125,6 @@ export default {
 
     const boardsProm = new Promise(res => {
       Vue.axios.get('/product-service/boards').then(resp => {
-        console.log(resp.data)
         this.dropdowns.boards.options = resp.data.map((option, i) => ({
           text: `${option.name} ($${option.price})`,
           price: option.price,

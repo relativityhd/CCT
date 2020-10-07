@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/relativityhd/CCT/issues"
   },
-  "homepage": "https://github.com/relativityhd/CCT#readme",
+  "homepage": "https://cablecard-cct.eu-de.mybluemix.net",
   "workspaces": [
     "frontend",
     "api"

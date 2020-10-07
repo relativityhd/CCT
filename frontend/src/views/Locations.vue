@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     setLocation(loc, lang) {
-      console.log(loc, lang)
       this.$store.commit('setLocation', loc)
       this.$store.commit('setLang', lang)
       this.$router.push('about')

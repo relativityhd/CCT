@@ -1,6 +1,6 @@
 # Cupboard Configuration Tool (CCT)
 
-[![Build Status](https://travis-ci.org/relativityhd/CCT.svg?branch=master)](https://travis-ci.org/relativityhd/CCT)
+[![Build Status](https://travis-ci.org/relativityhd/CCT.svg?branch=development)](https://travis-ci.org/relativityhd/CCT)
 
 New online shop and configuration tool made for Cupboard Limited, a simulated software development project at the DHBW Stuttgart. Currently on MVP status.
 

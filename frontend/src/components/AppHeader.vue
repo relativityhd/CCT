@@ -20,18 +20,20 @@
       </cv-header-menu-item>
     </cv-header-nav>
 
-    <cv-header-global-action
-      aria-label="Locations"
-      aria-controls="location-panel"
-    >
-      <Earth20 />
-    </cv-header-global-action>
-    <cv-header-global-action
-      aria-label="Languages"
-      aria-controls="language-panel"
-    >
-      <Translate20 />
-    </cv-header-global-action>
+    <div class="actions">
+      <cv-header-global-action
+        aria-label="Locations"
+        aria-controls="location-panel"
+      >
+        <Earth20 />
+      </cv-header-global-action>
+      <cv-header-global-action
+        aria-label="Languages"
+        aria-controls="language-panel"
+      >
+        <Translate20 />
+      </cv-header-global-action>
+    </div>
 
     <template v-slot:left-panels>
       <cv-side-nav id="side-nav" fixed>
@@ -135,6 +137,13 @@ export default {
 
 #app-header {
   background-color: $interactive-01;
+}
+
+.actions {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+  height: 100%;
 }
 
 .bx--header__action:hover,

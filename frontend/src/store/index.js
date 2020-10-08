@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import i18n from '../i18n'
+import basket from './basket'
 
 Vue.use(Vuex)
 
@@ -38,7 +39,8 @@ export default new Vuex.Store({
       { isoCode: 'en', name: 'English', selected: true },
       { isoCode: 'it', name: 'Italiano', selected: false },
       { isoCode: 'fr', name: 'Français', selected: false }
-    ]
+    ],
+    basket: basket.state
   },
   mutations: {
     setLang(state, lang) {
@@ -54,7 +56,8 @@ export default new Vuex.Store({
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
-    }
+    },
+    ...basket.mutations
   },
   actions: {},
   modules: {}

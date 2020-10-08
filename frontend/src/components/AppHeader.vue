@@ -22,6 +22,12 @@
 
     <div class="actions">
       <cv-header-global-action
+        aria-label="Shopping Cart"
+        aria-controls="shopping-cart-panel"
+      >
+        <ShoppingCart20 />
+      </cv-header-global-action>
+      <cv-header-global-action
         aria-label="Locations"
         aria-controls="location-panel"
       >
@@ -78,6 +84,12 @@
           </cv-switcher-item>
         </cv-switcher>
       </cv-header-panel>
+
+      <cv-header-panel id="shopping-cart-panel">
+        <cv-switcher>
+          <BasketPanel />
+        </cv-switcher>
+      </cv-header-panel>
     </template>
   </cv-header>
 </template>
@@ -85,9 +97,12 @@
 <script>
 import Earth20 from '@carbon/icons-vue/es/earth/20'
 import Translate20 from '@carbon/icons-vue/es/translate/20'
+import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
+import BasketPanel from './BasketPanel'
+
 export default {
   name: 'AppHeader',
-  components: { Earth20, Translate20 },
+  components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
       { name: this.$i18n.t('region'), to: '/' },

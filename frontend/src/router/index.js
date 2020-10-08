@@ -32,6 +32,14 @@ const routes = [
     meta: {
       title: 'Tool'
     }
+  },
+  {
+    path: '/basket',
+    name: 'Basket',
+    component: () => import('../views/Basket.vue'),
+    meta: {
+      title: 'Basket'
+    }
   }
 ]
 

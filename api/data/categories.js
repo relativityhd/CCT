@@ -1,5 +1,5 @@
 let categories = []
-let categoryNames = ["Otto","Ole","Oskar"]
+let categoryNames = ['Otto', 'Ole', 'Oskar']
 for (let i = 0; i < 3; i++) {
   categories.push({
     id: i,

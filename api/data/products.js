@@ -1,5 +1,16 @@
-let selectableNames = ["Nathalie","Nike","Noah","Neo","Nils"]
-let productNames = ["Anton","Aneliese","Antonia","Alex","Aron","Anton","Anna","Adrian","Amy","Ariel"]
+let selectableNames = ['Nathalie', 'Nike', 'Noah', 'Neo', 'Nils']
+let productNames = [
+  'Anton',
+  'Aneliese',
+  'Antonia',
+  'Alex',
+  'Aron',
+  'Anton',
+  'Anna',
+  'Adrian',
+  'Amy',
+  'Ariel',
+]
 let products = []
 
 for (let i = 0; i < 10; i++) {
@@ -15,9 +26,10 @@ for (let i = 0; i < 10; i++) {
   }
   products.push({
     id: i,
-    categoryId: Math.floor(Math.random()*3),
+    categoryId: Math.floor(Math.random() * 3),
     name: productNames[i],
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
     price: Math.random() * 500 + 50,
     priceStarting: Math.random() >= 0.5,
     customizable: Math.random() >= 0.5,

@@ -162,7 +162,10 @@ a.bx--header__menu-item[aria-current='page']::after,
 .bx--header__menu-item--current::after {
   border-bottom-color: $active-primary;
 }
-
+.bx--switcher__item-link--selected,
+.bx--switcher__item-link:hover {
+  background-color: $interactive-03 !important;
+}
 .bx--header-panel {
   background-color: $interactive-02;
 }

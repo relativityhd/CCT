@@ -19,7 +19,7 @@ router.get('/:categoryId/products', (req, res) => {
         price: p.price,
         priceStarting: p.priceStarting,
         customizable: p.customizable,
-        imageUrl: p.customizable,
+        imageUrl: p.imageUrl,
       }))
   )
   res.end()

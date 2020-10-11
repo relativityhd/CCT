@@ -23,6 +23,21 @@ const routes = [
     path: '/tool',
     name: 'Tool',
     component: () => import('../views/Tool.vue')
+  },
+  {
+    path: '/categories',
+    name: 'CategoriesOverview',
+    component: () => import('../views/CategoriesOverview.vue')
+  },
+  {
+    path: '/category/:categoryId',
+    name: 'Category',
+    component: () => import('../views/Category.vue')
+  },
+  {
+    path: '/product/:productId',
+    name: 'Product',
+    component: () => import('../views/Product.vue')
   }
 ]
 

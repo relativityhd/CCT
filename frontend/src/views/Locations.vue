@@ -16,7 +16,7 @@ export default {
     return {
       locations: [
         { isoCode: 'de', lang: 'de', name: 'Deutschland' },
-        { isoCode: 'gb', lang: 'en', name: 'Great Britan' },
+        { isoCode: 'gb', lang: 'en', name: 'Great Britain' },
         { isoCode: 'fr', lang: 'fr', name: 'France' },
         { isoCode: 'it', lang: 'it', name: 'Italia' },
         { isoCode: 'ch', lang: 'de', name: 'Schweiz' },
@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     setLocation(loc, lang) {
-      console.log(loc, lang)
       this.$store.commit('setLocation', loc)
       this.$store.commit('setLang', lang)
       this.$router.push('about')

@@ -86,9 +86,7 @@
       </cv-header-panel>
 
       <cv-header-panel id="shopping-cart-panel">
-        <cv-switcher>
-          <BasketPanel />
-        </cv-switcher>
+        <BasketPanel />
       </cv-header-panel>
     </template>
   </cv-header>
@@ -118,16 +116,10 @@ export default {
       locations: this.$store.state.locations
     }
   },
-  created() {
-    window.addEventListener('resize', this.viewChange)
-  },
   mounted() {
     this.$router.afterEach(to => {
       this.switchPage(to)
     })
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.viewChange)
   },
   methods: {
     switchLanguage(lang) {
@@ -180,6 +172,14 @@ a.bx--header__menu-item[aria-current='page']::after,
 
 .bx--header-panel {
   background-color: $interactive-02;
+}
+
+.bx--switcher__item-link--selected {
+  background-color: $active-primary;
+}
+
+.bx--switcher__item-link:hover:not(.bx--switcher__item-link--selected) {
+  background-color: $hover-primary;
 }
 </style>
 

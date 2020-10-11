@@ -1,17 +1,29 @@
 <template>
   <div class="category-page-wrapper">
+    <cv-breadcrumb no-trailing-slash class="breadcrumb">
+      <cv-breadcrumb-item>      
+        <cv-link to="/categories" inline>Categories</cv-link>
+      </cv-breadcrumb-item>
+      <cv-breadcrumb-item>
+        <cv-link :to="`/category/${id}`" inline>{{name}}</cv-link>
+      </cv-breadcrumb-item>
+    </cv-breadcrumb>
     <h1>{{ `${$t('title')} ${name}` }}</h1>
-    <img :src="image" alt="Image of Category" />
     <div class="products-wrapper">
       <cv-tile
         v-for="product in products"
         :key="product.id"
         kind="clickable"
         :to="product.to"
+        class="product-tile"
       >
-        <h1>{{ `${$t('modell')} ${product.name}` }}</h1>
-        <p>{{ product.price }}</p>
-        <img :src="product.imageUrl" alt="Image of product" />
+        <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
+        <div class="tile-body">
+          <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
+          <p>{{ product.price }}</p>
+          <p>{{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}`}}</p>
+          <p>{{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}`}}</p>
+        </div>
       </cv-tile>
     </div>
   </div>
@@ -26,7 +38,7 @@ export default {
     return {
       products: [],
       name: '',
-      image: ''
+      id: 0
     }
   },
   mounted() {
@@ -37,19 +49,56 @@ export default {
     Vue.axios.get('/catalogue/categories').then(res => {
       const thisCategory = res.data.find(category => category.id === categoryId)
       this.name = thisCategory.name
-      this.image = thisCategory.imageUrl
+      this.id = thisCategory.id
     })
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.breadcrumb{
+  text-align: left;
+  widows: 100%;
+}
+
+.category-page-wrapper{
+  width: 98%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.products-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product-tile{
+  text-align: left;
+  margin: 20px;
+  min-width: 198px;
+  height: 438px;
+  width: calc(16.6% - 40px);
+}
+
+.tile-image{
+  width: 100%;
+  height: 256px;
+  object-fit: cover;
+}
+</style>
 
 <i18n>
 {
   "en": {
     "title": "Category:",
-    "modell": "Modell"
+    "modell": "Modell",
+    "priceStarting": "Fixed price?",
+    "customizable": "Customizable?",
+    "yes": "Yes",
+    "no": "No"
   }
 }
 </i18n>

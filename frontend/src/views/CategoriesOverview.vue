@@ -1,5 +1,10 @@
 <template>
   <div class="overview-wrapper">
+    <cv-breadcrumb no-trailing-slash class="breadcrumb">
+      <cv-breadcrumb-item>      
+        <cv-link to="/categories" inline>Categories</cv-link>
+      </cv-breadcrumb-item>
+    </cv-breadcrumb>
     <h1>{{ $t('title') }}</h1>
     <div class="categories-container">
       <cv-tile 
@@ -11,7 +16,7 @@
         >
         <img class="tile-image" :src="ct.imageUrl" alt="Image of Category">
         <div class="tile-body">
-          <h3>{{ct.name}}</h3>
+          <h2>{{ct.name}}</h2>
         </div>
       </cv-tile>
     </div>
@@ -37,6 +42,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.breadcrumb{
+  text-align: left;
+  widows: 100%;
+}
+
 .overview-wrapper{
   width: 98%;
   max-width: 1400px;
@@ -54,10 +64,15 @@ export default {
 .category-tile{
   text-align: left;
   margin: 20px;
+  min-width: 312px;
+  height: 440px;
+  width: calc(30% - 40px);
 }
 
 .tile-image{
-  width: 300px;
+  width: 100%;
+  height: 356px;
+  object-fit: cover;
 }
 </style>
 

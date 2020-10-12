@@ -37,25 +37,26 @@
               <div class="tile-body">
                 <h6>{{ selectable.name }}</h6>
                 <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
-                <cv-accordion class="custom-container" v-if="product.customizable">
+
+                <cv-accordion class="custom-container" v-if="selectable.customizable">
                   <cv-accordion-item>
                     <template slot="title">{{ $t('customize') }}</template>
                     <template slot="content">
                       <cv-number-input
-                        label="width"
-                        v-model="custom.width"
+                        :label="$t('width')"
+                        v-model="selectable.custom.width"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
                       <br />
                       <cv-number-input
-                        label="height"
-                        v-model="custom.height"
+                        :label="$t('height')"
+                        v-model="selectable.custom.height"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
                       <br />
                       <cv-number-input
-                        label="depth"
-                        v-model="custom.depth"
+                        :label="$t('depth')"
+                        v-model="selectable.custom.depth"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
                     </template>
@@ -64,24 +65,25 @@
               </div>
             </div>
           </cv-tile>
+
           <cv-accordion class="custom-container" v-if="product.customizable">
             <cv-accordion-item>
               <template slot="title">{{ $t('customize') }}</template>
               <template slot="content">
                 <cv-number-input
-                  label="width"
+                  :label="$t('width')"
                   v-model="custom.width"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
                 <br />
                 <cv-number-input
-                  label="height"
+                  :label="$t('height')"
                   v-model="custom.height"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
                 <br />
                 <cv-number-input
-                  label="depth"
+                  :label="$t('depth')"
                   v-model="custom.depth"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
@@ -200,7 +202,11 @@ export default {
         return
       }
       this.hasNoProduct = false
-      this.selectables = this.product.selectables
+      this.selectables = this.product.selectables.map(s => ({...s, custom: {
+        height: 0,
+        width: 0,
+        depth: 0
+      }}))
       this.calcSum()
     }
   },
@@ -252,7 +258,15 @@ export default {
     addToCart() {
       if (this.product === undefined) return
 
-      const selectables = this.selectables.filter(s => s.selected)
+      const selectables = this.selectables.filter(s => s.selected).map(s => {
+        const customized = (
+          s.custom.width !== 0 &&
+          s.custom.height !== 0 &&
+          s.custom.depth !== 0
+        )
+        console.log('--DEBUG : addToCart -> s.custom.width', s.custom.width)
+        return {...s, customized}
+      })
 
       const width = this.custom.width
       const height = this.custom.height
@@ -361,7 +375,6 @@ export default {
 
 .selectable-tile {
   text-align: left;
-  height: 128px;
 }
 
 .inner-tile {
@@ -372,7 +385,7 @@ export default {
 
 .tile-image {
   width: 108px;
-  height: 100%;
+  height: 108px;
   object-fit: contain;
   background-color: $ui-background;
   margin-right: 10px;
@@ -405,7 +418,7 @@ export default {
   "en": {
     "addToCart": "Add to cart",
     "emptyMessage": "Please select a Product",
-    "customize": "Cutomize",
+    "customize": "Customize",
     "sum": "Sum",
     "costCalculation": "Price Calculation",
     "priceList": {
@@ -413,7 +426,10 @@ export default {
       "net": "Net",
       "gross": "Gross",
       "tax": "Tax"
-    }
+    },
+    "width": "Width",
+    "height": "Height",
+    "depth": "Depth"
   }
 }
 </i18n>

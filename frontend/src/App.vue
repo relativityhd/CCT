@@ -9,6 +9,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  methods: {
+    onResize() {
+      this.$store.commit('viewChange')
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.onResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

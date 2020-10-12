@@ -21,9 +21,22 @@ export default new Vuex.Store({
    * languages: de, en, fr, it
    */
   state: {
+    mobile: window.innerWidth <= 800,
     lang: 'en',
     location: 'gb',
     vatRate: 0.2
+  },
+  getters: {
+    formatPrice: () => price => {
+      // TODO: number Format & currency
+      const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: 'EUR'
+      })
+      return formatter.format(price)
+    }
   },
   mutations: {
     setLang(state, lang) {
@@ -33,6 +46,9 @@ export default new Vuex.Store({
     setLocation(state, location) {
       state.location = location
       state.vatRate = vats[location]
+    },
+    viewChange(state) {
+      state.mobile = window.innerWidth <= 800
     }
   },
   actions: {},

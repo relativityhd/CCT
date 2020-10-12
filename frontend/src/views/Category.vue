@@ -1,13 +1,14 @@
 <template>
   <div class="category-page-wrapper">
     <cv-breadcrumb no-trailing-slash class="breadcrumb">
-      <cv-breadcrumb-item>      
+      <cv-breadcrumb-item>
         <cv-link to="/categories" inline>Categories</cv-link>
       </cv-breadcrumb-item>
       <cv-breadcrumb-item>
-        <cv-link :to="`/category/${id}`" inline>{{name}}</cv-link>
+        <cv-link :to="`/category/${id}`" inline>{{ name }}</cv-link>
       </cv-breadcrumb-item>
     </cv-breadcrumb>
+
     <h1>{{ `${$t('title')} ${name}` }}</h1>
     <div class="products-wrapper">
       <cv-tile
@@ -17,12 +18,28 @@
         :to="product.to"
         class="product-tile"
       >
-        <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
+        <img
+          class="tile-image"
+          :src="product.imageUrl"
+          alt="Image of product"
+        />
         <div class="tile-body">
           <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
-          <p>{{ product.price }}</p>
-          <p>{{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}`}}</p>
-          <p>{{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}`}}</p>
+          <p>{{ $store.getters.formatPrice(product.price) }}</p>
+          <p>
+            {{
+              `${$t('priceStarting')} - ${
+                product.priceStarting ? $t('yes') : $t('no')
+              }`
+            }}
+          </p>
+          <p>
+            {{
+              `${$t('customizable')} - ${
+                product.customizable ? $t('yes') : $t('no')
+              }`
+            }}
+          </p>
         </div>
       </cv-tile>
     </div>
@@ -56,18 +73,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.breadcrumb{
+.breadcrumb {
   text-align: left;
   widows: 100%;
 }
 
-.category-page-wrapper{
+.category-page-wrapper {
   width: 98%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.products-wrapper{
+.products-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +92,7 @@ export default {
   flex-wrap: wrap;
 }
 
-.product-tile{
+.product-tile {
   text-align: left;
   margin: 20px;
   min-width: 198px;
@@ -83,10 +100,11 @@ export default {
   width: calc(16.6% - 40px);
 }
 
-.tile-image{
+.tile-image {
   width: 100%;
   height: 256px;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: $ui-background;
 }
 </style>
 

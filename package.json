@@ -28,5 +28,7 @@
     "build": "npm run frontend:build",
     "lint": "cd api && npm run lint; cd ../frontend && npm run lint --fix"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@carbon/icons-vue": "^10.19.0"
+  }
 }

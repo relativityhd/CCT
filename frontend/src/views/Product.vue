@@ -170,6 +170,11 @@ export default {
       this.product = res.data
       this.calcSum()
     })
+
+    this.unsubscribe = this.$store.subscribe((mutation) => {
+      if (mutation.type !== 'setLocation') return
+      this.calcSum()
+    })
   },
   methods: {
     calcNet(gross) {
@@ -210,6 +215,9 @@ export default {
     addToCart() {
       console.log('added!')
     }
+  },
+  beforeDestroy() {
+    this.unsubscribe()
   }
 }
 </script>

@@ -54,7 +54,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `CCT - ${to.meta.title}` || 'Cupboard Limited'
+  document.title = `CCT - ${to.meta.title || 'Cupboard Limited'}`
   next()
 })
 

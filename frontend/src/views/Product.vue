@@ -1,16 +1,5 @@
 <template>
   <div class="category-page-wrapper">
-    <cv-breadcrumb no-trailing-slash class="breadcrumb">
-      <cv-breadcrumb-item>
-        <cv-link to="/categories" inline>Categories</cv-link>
-      </cv-breadcrumb-item>
-      <cv-breadcrumb-item>
-        <cv-link :to="`/product/${product.id}`" inline>{{
-          product.name
-        }}</cv-link>
-      </cv-breadcrumb-item>
-    </cv-breadcrumb>
-
     <div class="product-wrapper">
       <div class="info-container">
         <img

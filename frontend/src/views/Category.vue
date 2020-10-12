@@ -1,14 +1,5 @@
 <template>
   <div class="category-page-wrapper">
-    <cv-breadcrumb no-trailing-slash class="breadcrumb">
-      <cv-breadcrumb-item>
-        <cv-link to="/categories" inline>Categories</cv-link>
-      </cv-breadcrumb-item>
-      <cv-breadcrumb-item>
-        <cv-link :to="`/category/${id}`" inline>{{ name }}</cv-link>
-      </cv-breadcrumb-item>
-    </cv-breadcrumb>
-
     <h1>{{ `${$t('title')} ${name}` }}</h1>
     <div class="products-wrapper">
       <cv-tile
@@ -54,8 +45,7 @@ export default {
   data() {
     return {
       products: [],
-      name: '',
-      id: 0
+      name: ''
     }
   },
   mounted() {
@@ -66,7 +56,6 @@ export default {
     Vue.axios.get('/catalogue/categories').then(res => {
       const thisCategory = res.data.find(category => category.id === categoryId)
       this.name = thisCategory.name
-      this.id = thisCategory.id
     })
   }
 }

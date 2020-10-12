@@ -34,7 +34,7 @@ export default new Vuex.Store({
         lang: 'en',
         name: 'Great Britain',
         currency: '£',
-        currenyIso: 'EUR',
+        currenyIso: 'GBP',
         numberFormat: 'en-GB',
         vatRate: 0.2,
         selected: true

@@ -1,11 +1,5 @@
 <template>
   <div class="overview-wrapper">
-    <cv-breadcrumb no-trailing-slash class="breadcrumb">
-      <cv-breadcrumb-item>
-        <cv-link to="/categories" inline>Categories</cv-link>
-      </cv-breadcrumb-item>
-    </cv-breadcrumb>
-
     <h1>{{ $t('title') }}</h1>
     <div class="categories-container">
       <cv-tile

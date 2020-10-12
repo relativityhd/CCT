@@ -1,43 +1,43 @@
 <template>
-  <div class="tool">
+  <div class="tool-page-wrapper">
     <h1 class="p-title">{{ $t('title') }}</h1>
-    <div class="tool-body">
-      <div class="dropdowns">
-        <div class="dropdown-container" v-for="dd in dropdowns" :key="dd.name">
+    <div class="tool-wrapper">
+      <div class="new-item-wrapper">
+        <div class="product-selection-wrapper">
           <cv-dropdown
-            :label="dd.name"
-            :value="dd.selected"
-            v-model="dd.selected"
-            @change="calcOffer"
+            :label="$t('categorySelect')"
+            :value="dropdowns.selectedCategoryId"
+            v-model="dropdowns.selectedCategoryId"
+            @change="selectCategory"
           >
             <cv-dropdown-item
-              v-for="option in dd.options"
-              :key="option.value"
-              :value="option.value"
+              v-for="category in categories"
+              :key="category.id"
+              :value="`${category.id}`"
             >
-              {{ option.text }}
+              {{ category.name }}
+            </cv-dropdown-item>
+          </cv-dropdown>
+
+          <cv-dropdown
+            :label="$t('productSelect')"
+            :value="dropdowns.selectedProductId"
+            v-model="dropdowns.selectedProductId"
+            @change="selectProduct"
+          >
+            <cv-dropdown-item
+              v-for="product in products"
+              :key="product.id"
+              :value="`${product.id}`"
+            >
+              {{ product.name }}
             </cv-dropdown-item>
           </cv-dropdown>
         </div>
+        <Product :product="selectedProduct"/>
       </div>
-
-      <div class="offer">
-        <h3 class="offer-title">{{ $t('offer') }}</h3>
-        <hr />
-        <div class="pricing">
-          <p>{{ `${$t('body')}: $${prices.body}` }}</p>
-          <p>{{ `${$t('door')}: $${prices.door}` }}</p>
-          <p>{{ `${$t('board')}: $${prices.board}` }}</p>
-          <hr />
-          <p>{{ `${$t('nonVAT')}: $${prices.nonVat}` }}</p>
-          <p>
-            {{
-              `${$t('VAT')} (${$store.state.vatRate * 100}%): $${prices.vat}`
-            }}
-          </p>
-          <hr />
-          <p>{{ `${$t('offerSum')}: $${offerSum}` }}</p>
-        </div>
+      <div class="pricing-wrapper">
+        PP
       </div>
     </div>
   </div>
@@ -45,138 +45,105 @@
 
 <script>
 import Vue from 'vue'
+import Product from '../components/Product'
 
 export default {
   name: 'Tool',
+  components: {
+    Product
+  },
   data() {
     return {
-      // This is hardcoded sample data, needs to be replaced!
+      categories: [],
+      products: [],
       dropdowns: {
-        bodies: {
-          name: this.$i18n.t('dropdowns.body'),
-          options: [],
-          selected: '0'
-        },
-        doors: {
-          name: this.$i18n.t('dropdowns.door'),
-          options: [],
-          selected: '0'
-        },
-        boards: {
-          name: this.$i18n.t('dropdowns.board'),
-          options: [],
-          selected: '0'
-        }
+        selectedCategoryId: '',
+        selectedProductId: ''
       },
-      prices: {
-        vat: 0,
-        nonVat: 0,
-        body: 0,
-        door: 0,
-        board: 0
-      },
-      offerSum: 0
-    }
-  },
-  methods: {
-    calcOffer() {
-      this.prices.body = this.dropdowns.bodies.options[
-        this.dropdowns.bodies.selected
-      ].price
-      this.prices.door = this.dropdowns.doors.options[
-        this.dropdowns.doors.selected
-      ].price
-      this.prices.board = this.dropdowns.boards.options[
-        this.dropdowns.boards.selected
-      ].price
-      this.offerSum = this.prices.body + this.prices.door + this.prices.board
-
-      this.prices.nonVat = (
-        this.offerSum /
-        (1 + this.$store.state.vatRate)
-      ).toFixed(2)
-      this.prices.vat = (
-        this.prices.nonVat * this.$store.state.vatRate
-      ).toFixed(2)
+      selectedProduct: {}
     }
   },
   mounted() {
-    const bodiesProm = new Promise(res => {
-      Vue.axios.get('/product-service/bodies').then(resp => {
-        this.dropdowns.bodies.options = resp.data.map((option, i) => ({
-          text: `${option.name} ($${option.price})`,
-          price: option.price,
-          value: i.toString()
-        }))
-        res()
+    Vue.axios.get('/catalogue/categories').then(res => {
+      this.categories = res.data
+      this.categories.forEach(category => {
+        category.products = []
+        Vue.axios.get(`/catalogue/categories/${category.id}/products`).then(res => {
+          const productIds = res.data.map(p => p.id)
+          productIds.forEach(id => {
+            Vue.axios.get(`/catalogue/products/${id}`).then(res => {
+              const product = res.data
+              category.products.push(product)
+              Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
+                product.selectables = res.data.map(s => ({ ...s, selected: false }))
+                console.log(this.categories)
+              })
+            })
+          })
+        })
       })
     })
 
-    const doorsProm = new Promise(res => {
-      Vue.axios.get('/product-service/doors').then(resp => {
-        this.dropdowns.doors.options = resp.data.map((option, i) => ({
-          text: `${option.name} ($${option.price})`,
-          price: option.price,
-          value: i.toString()
-        }))
-        res()
-      })
-    })
-
-    const boardsProm = new Promise(res => {
-      Vue.axios.get('/product-service/boards').then(resp => {
-        this.dropdowns.boards.options = resp.data.map((option, i) => ({
-          text: `${option.name} ($${option.price})`,
-          price: option.price,
-          value: i.toString()
-        }))
-        res()
-      })
-    })
-
-    Promise.allSettled([bodiesProm, doorsProm, boardsProm]).then(this.calcOffer)
+    this.selectProduct()
+  },
+  methods: {
+    selectCategory() {
+      const selectedCategory = this.categories.find(c => c.id.toString() === this.dropdowns.selectedCategoryId)
+      this.products = selectedCategory.products
+      this.dropdowns.selectedProductId = ''
+    },
+    selectProduct() {
+      this.selectedProduct = this.products.find(p => p.id.toString() === this.dropdowns.selectedProductId)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.p-title {
-  font-size: calc(20px + 3vmin);
-}
-.tool-body {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.dropdowns {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-.dropdown-container {
-  width: 100%;
-  max-width: 300px;
-  padding: 5px;
-}
-.offer {
-  width: 100%;
-  max-width: 300px;
-}
-@media screen and (min-width: 1300px) {
-  .dropdowns {
-    max-width: 900px;
-  }
-}
-.pricing {
-  text-align: left;
-  padding: 0px 20px;
+.tool-page-wrapper {
+  width: 98%;
+  max-width: 1420px;
+  margin: 0 auto;
 }
 
-.offer-title {
-  font-size: calc(15px + 1vmin);
+.tool-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.new-item-wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 1040px;
+  max-width: 100%;
+}
+
+.product-selection-wrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.product-selection-wrapper .bx--form-item {
+  margin: 10px;
+}
+
+@media (max-width: 1060px) {
+  .product-selection-wrapper{
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 10px;
+  }
+  .product-selection-wrapper .bx--form-item {
+    margin: 10px 0;
+    width: calc(100% - 20px);
+  }
 }
 </style>
 
@@ -184,27 +151,8 @@ export default {
 {
   "en": {
     "title": "Tool",
-    "dropdowns": {
-      "body": "Select a body",
-      "door": "Select some doors",
-      "board": "Select some boards"
-    },
-    "offer": "Offer",
-    "body": "Body",
-    "door": "Doors",
-    "board": "Boards",
-    "offerSum": "Sum",
-    "nonVAT": "Net",
-    "VAT": "VAT"
-  },
-  "de": {
-    "title": "Konfigurator",
-    "dropdowns": {
-      "body": "Wähle einen Corpus",
-      "door": "Wähle Türen",
-      "board": "Wähle Schubladen"
-    },
-    "offer": "Angebot"
+    "categorySelect": "Select a category",
+    "productSelect": "Select a product"
   }
 }
 </i18n>

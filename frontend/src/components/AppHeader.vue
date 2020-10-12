@@ -5,7 +5,7 @@
       {{ $t('skipto') }}
     </cv-skip-to-content>
     <cv-header-name to="/" prefix="CL">
-      <img class="logo" src="@/assets/images/logo.png" alt="Logo" />
+      <img class="logo" src="@/assets/images/logo.svg" alt="Logo" />
       Shop
     </cv-header-name>
 
@@ -105,7 +105,8 @@ export default {
     let links = [
       { name: this.$i18n.t('region'), to: '/' },
       { name: this.$i18n.t('tool'), to: '/tool' },
-      { name: this.$i18n.t('about'), to: '/about' }
+      { name: this.$i18n.t('about'), to: '/about' },
+      { name: this.$i18n.t('catalogue'), to: '/categories' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath
@@ -139,7 +140,7 @@ export default {
 
 <style lang="scss">
 .logo {
-  height: 42px;
+  height: 24px;
 }
 
 #app-header {
@@ -169,7 +170,10 @@ a.bx--header__menu-item[aria-current='page']::after,
 .bx--header__menu-item--current::after {
   border-bottom-color: $active-primary;
 }
-
+.bx--switcher__item-link--selected,
+.bx--switcher__item-link:hover {
+  background-color: $interactive-03 !important;
+}
 .bx--header-panel {
   background-color: $interactive-02;
 }
@@ -189,7 +193,8 @@ a.bx--header__menu-item[aria-current='page']::after,
     "skipto": "Skip to main content.",
     "region": "Set Region",
     "tool": "Tool",
-    "about": "About"
+    "about": "About",
+    "catalogue": "Catalogue"
   }
 }
 </i18n>

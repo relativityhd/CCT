@@ -40,6 +40,21 @@ const routes = [
     meta: {
       title: 'Basket'
     }
+  },
+  {
+    path: '/categories',
+    name: 'CategoriesOverview',
+    component: () => import('../views/CategoriesOverview.vue')
+  },
+  {
+    path: '/category/:categoryId',
+    name: 'Category',
+    component: () => import('../views/Category.vue')
+  },
+  {
+    path: '/product/:productId',
+    name: 'Product',
+    component: () => import('../views/Product.vue')
   }
 ]
 
@@ -50,7 +65,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `CCT - ${to.meta.title}` || 'Cupboard Limited CCT'
+  document.title = `CCT - ${to.meta.title || 'Cupboard Limited'}`
   next()
 })
 

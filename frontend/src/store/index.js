@@ -5,16 +5,6 @@ import basket from './basket'
 
 Vue.use(Vuex)
 
-const vats = {
-  de: 0.19,
-  gb: 0.2,
-  fr: 0.2,
-  it: 0.22,
-  ch: 0.077,
-  at: 0.2,
-  rw: 0
-}
-
 export default new Vuex.Store({
   // location 'rw' === Other Country
   /**
@@ -22,17 +12,84 @@ export default new Vuex.Store({
    * languages: de, en, fr, it
    */
   state: {
+    mobile: window.innerWidth <= 800,
     lang: 'en',
     location: 'gb',
     vatRate: 0.2,
+    currency: '£',
+    currenyIso: 'GBP',
+    numberFormat: 'en-GB',
     locations: [
-      { isoCode: 'de', lang: 'de', name: 'Deutschland', selected: false },
-      { isoCode: 'gb', lang: 'en', name: 'Great Britain', selected: true },
-      { isoCode: 'fr', lang: 'fr', name: 'France', selected: false },
-      { isoCode: 'it', lang: 'it', name: 'Italia', selected: false },
-      { isoCode: 'ch', lang: 'de', name: 'Schweiz', selected: false },
-      { isoCode: 'at', lang: 'de', name: 'Österreich', selected: false },
-      { isoCode: 'rw', lang: 'en', name: 'Other Country', selected: false }
+      {
+        isoCode: 'de',
+        lang: 'de',
+        name: 'Deutschland',
+        currency: '€',
+        currenyIso: 'EUR',
+        numberFormat: 'de-DE',
+        vatRate: 0.19,
+        selected: false
+      },
+      {
+        isoCode: 'gb',
+        lang: 'en',
+        name: 'Great Britain',
+        currency: '£',
+        currenyIso: 'GBP',
+        numberFormat: 'en-GB',
+        vatRate: 0.2,
+        selected: true
+      },
+      {
+        isoCode: 'fr',
+        lang: 'fr',
+        name: 'France',
+        currency: '€',
+        currenyIso: 'EUR',
+        numberFormat: 'fr-FR',
+        vatRate: 0.2,
+        selected: false
+      },
+      {
+        isoCode: 'it',
+        lang: 'it',
+        name: 'Italia',
+        currency: '€',
+        currenyIso: 'EUR',
+        numberFormat: 'it-IT',
+        vatRate: 0.22,
+        selected: false
+      },
+      {
+        isoCode: 'ch',
+        lang: 'de',
+        name: 'Schweiz',
+        currency: 'Fr.',
+        currenyIso: 'CHF',
+        numberFormat: 'de-CH',
+        vatRate: 0.077,
+        selected: false
+      },
+      {
+        isoCode: 'at',
+        lang: 'de',
+        name: 'Österreich',
+        currency: '€',
+        currenyIso: 'EUR',
+        numberFormat: 'de-AT',
+        vatRate: 0.2,
+        selected: false
+      },
+      {
+        isoCode: 'rw',
+        lang: 'en',
+        name: 'Other Country',
+        currency: '$',
+        currenyIso: 'USD',
+        numberFormat: 'en-US',
+        vatRate: 0,
+        selected: false
+      }
     ],
     languages: [
       { isoCode: 'de', name: 'Deutsch', selected: false },
@@ -41,6 +98,17 @@ export default new Vuex.Store({
       { isoCode: 'fr', name: 'Français', selected: false }
     ],
     basket: basket.state
+  },
+  getters: {
+    formatPrice: state => price => {
+      const formatter = new Intl.NumberFormat(state.numberFormat, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: state.currenyIso
+      })
+      return formatter.format(price)
+    }
   },
   mutations: {
     setLang(state, lang) {
@@ -51,11 +119,18 @@ export default new Vuex.Store({
       })
     },
     setLocation(state, location) {
-      state.location = location
-      state.vatRate = vats[location]
+      const newLocation = state.locations.find(loc => loc.isoCode === location)
+      state.location = newLocation.isoCode
+      state.vatRate = newLocation.vatRate
+      state.currency = newLocation.currency
+      state.currenyIso = newLocation.currenyIso
+      state.numberFormat = newLocation.numberFormat
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
+    },
+    viewChange(state) {
+      state.mobile = window.innerWidth <= 800
     },
     ...basket.mutations
   },

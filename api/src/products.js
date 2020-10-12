@@ -8,7 +8,7 @@ exports.bodies = [
     price: 150,
   },
   {
-    name: 'body1',
+    name: 'body3',
     price: 200,
   },
 ]
@@ -19,11 +19,11 @@ exports.boards = [
     price: 10,
   },
   {
-    name: 'body2',
+    name: 'board2',
     price: 7,
   },
   {
-    name: 'body3',
+    name: 'board3',
     price: 10,
   },
 ]

@@ -6,15 +6,7 @@ router.get('/', function (req, res) {
   res.send('Products-Service!')
 })
 
-router.get('/bodies', (req, res) => {
-  res.json(products.bodies)
-})
+router.use('/products', require('./ProductsRouter'))
+router.use('/categories', require('./CategoriesRouter'))
 
-router.get('/doors', (req, res) => {
-  res.json(products.doors)
-})
-
-router.get('/boards', (res, req) => {
-  req.json(products.boards)
-})
 module.exports = router

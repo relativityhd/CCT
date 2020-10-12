@@ -11,6 +11,17 @@ export default {
   name: 'App',
   components: {
     AppHeader
+  },
+  methods: {
+    onResize() {
+      this.$store.commit('viewChange')
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.onResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
   }
 }
 </script>
@@ -25,7 +36,7 @@ export default {
 }
 
 #app-view {
-  margin-top: 48px;
-  min-height: calc(100vh - 48px);
+  margin-top: calc(48px + 24px);
+  min-height: calc(100vh - 48px - 24px);
 }
 </style>

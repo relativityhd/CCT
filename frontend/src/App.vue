@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Set Region</router-link> |
-      <router-link to="/tool">Tool</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <AppHeader />
+    <router-view id="app-view" />
   </div>
 </template>
 
 <script>
+import AppHeader from './components/AppHeader'
 export default {
   name: 'App',
+  components: {
+    AppHeader
+  },
   methods: {
     onResize() {
       this.$store.commit('viewChange')
@@ -34,16 +34,9 @@ export default {
   text-align: center;
   color: $text-01;
 }
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: $link-01;
-
-    &.router-link-exact-active {
-      color: $active-primary;
-    }
-  }
+#app-view {
+  margin-top: 48px;
+  min-height: calc(100vh - 48px);
 }
 </style>

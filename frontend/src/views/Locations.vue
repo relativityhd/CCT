@@ -14,15 +14,7 @@ export default {
   name: 'Locations',
   data() {
     return {
-      locations: [
-        { isoCode: 'de', lang: 'de', name: 'Deutschland' },
-        { isoCode: 'gb', lang: 'en', name: 'Great Britain' },
-        { isoCode: 'fr', lang: 'fr', name: 'France' },
-        { isoCode: 'it', lang: 'it', name: 'Italia' },
-        { isoCode: 'ch', lang: 'de', name: 'Schweiz' },
-        { isoCode: 'at', lang: 'de', name: 'Österreich' },
-        { isoCode: 'rw', lang: 'en', name: 'Other Country' }
-      ]
+      locations: this.$store.state.locations
     }
   },
   methods: {

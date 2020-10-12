@@ -113,8 +113,8 @@ export default {
     })
     return {
       links,
-      languages: this.$store.state.languages,
-      locations: this.$store.state.locations
+      languages: this.$store.state.locals.languages,
+      locations: this.$store.state.locals.locations
     }
   },
   mounted() {

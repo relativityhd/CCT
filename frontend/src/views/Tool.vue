@@ -76,7 +76,6 @@ export default {
               category.products.push(product)
               Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
                 product.selectables = res.data.map(s => ({ ...s, selected: false }))
-                console.log(this.categories)
               })
             })
           })

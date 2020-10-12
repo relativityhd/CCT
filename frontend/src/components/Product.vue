@@ -37,6 +37,30 @@
               <div class="tile-body">
                 <h6>{{ selectable.name }}</h6>
                 <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
+                <cv-accordion class="custom-container" v-if="product.customizable">
+                  <cv-accordion-item>
+                    <template slot="title">{{ $t('customize') }}</template>
+                    <template slot="content">
+                      <cv-number-input
+                        label="width"
+                        v-model="custom.width"
+                        :mobile="$store.state.mobile"
+                      ></cv-number-input>
+                      <br />
+                      <cv-number-input
+                        label="height"
+                        v-model="custom.height"
+                        :mobile="$store.state.mobile"
+                      ></cv-number-input>
+                      <br />
+                      <cv-number-input
+                        label="depth"
+                        v-model="custom.depth"
+                        :mobile="$store.state.mobile"
+                      ></cv-number-input>
+                    </template>
+                  </cv-accordion-item>
+                </cv-accordion>
               </div>
             </div>
           </cv-tile>
@@ -82,7 +106,7 @@
                   >
                   <cv-structured-list-heading
                     >{{
-                      `${$t('priceList.tax')} (${$store.state.vatRate * 100}%)`
+                      `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)`
                     }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
@@ -154,6 +178,7 @@ export default {
   data() {
     return {
       hasNoProduct: true,
+      // TODO: make selectables cutomizable
       selectables: [],
       custom: {
         height: 0,
@@ -180,16 +205,17 @@ export default {
     }
   },
   mounted() {
-
     this.unsubscribe = this.$store.subscribe((mutation) => {
       if (mutation.type !== 'setLocation') return
       this.calcSum()
     })
-    this.calcSum()
+    if (this.product !== undefined) {
+      this.calcSum()
+    }
   },
   methods: {
     calcNet(gross) {
-      return gross / (1 + this.$store.state.vatRate)
+      return gross / (1 + this.$store.state.locals.vatRate)
     },
     calcSum() {
       this.price.items = [
@@ -224,7 +250,30 @@ export default {
       this.calcSum()
     },
     addToCart() {
-      console.log('added!')
+      if (this.product === undefined) return
+
+      const selectables = this.selectables.filter(s => s.selected)
+
+      const width = this.custom.width
+      const height = this.custom.height
+      const depth = this.custom.depth
+
+      const customized = (
+        this.product.customizable === true &&
+        width !== 0 &&
+        height !== 0 &&
+        depth !== 0
+      )
+
+      this.$store.commit('basket/addProduct', {
+        id: this.product.id,
+        info: {...this.product},
+        selectables,
+        customized,
+        width,
+        height,
+        depth
+      })
     }
   },
   beforeDestroy() {
@@ -296,7 +345,6 @@ export default {
 
 .selectables-container {
   width: 100%;
-  height: min-content;
   display: flex;
   justify-content: center;
   align-items: flex-start;

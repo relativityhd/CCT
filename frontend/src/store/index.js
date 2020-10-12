@@ -98,13 +98,12 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    formatPrice: () => price => {
-      // TODO: number Format & currency
-      const formatter = new Intl.NumberFormat('en-US', {
+    formatPrice: state => price => {
+      const formatter = new Intl.NumberFormat(state.numberFormat, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
         style: 'currency',
-        currency: 'EUR'
+        currency: state.currenyIso
       })
       return formatter.format(price)
     }

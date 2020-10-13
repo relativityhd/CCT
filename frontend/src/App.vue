@@ -35,6 +35,6 @@ export default {
   position: fixed;
   bottom: 2rem;
   bottom: -2rem;
-  right: 30rem;
+  right: 0vw;
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
 <div id=speak class=speech-bubble>
   <div id=bubblecontent>
-    <div id=greet>
-      {{ cuppyGreet }}
-    </div>
+    <h6 id="greet">{{cuppyGreet}}</h6>
     <div id=buttoncontainer>
         <router-link to="/" tag="button">{{ $t('location') }}</router-link>
         <router-link to="/support" tag="button">{{ $t('support') }}</router-link>
@@ -108,6 +106,7 @@ export default {
   flex-direction: column;
 }
 button{
+  font-size: 1rem;
   border: none;
   width: max-content;
   margin-top: 3px;

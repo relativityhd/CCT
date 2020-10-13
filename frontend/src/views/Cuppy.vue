@@ -1,7 +1,7 @@
 <template>
   <div id="cuppy" @click="()=>{cuppyButton()}">
     <div id="CuppyBubble" @click="(event)=>{event.stopPropagation()}" v-bind:class="showCuppyBubble ? 'visible': 'invisible'">
-      <CuppySpeak />
+      <CuppySpeak :showCuppyBubble="showCuppyBubble"/>
     </div>
   </div>
 </template>
@@ -15,6 +15,7 @@ export default {
   methods: {
     cuppyButton() {
       this.showCuppyBubble = !this.showCuppyBubble
+      console.log(this.$refs.cuppySpeak)
      }
   },
   data: () => {

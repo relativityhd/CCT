@@ -253,37 +253,48 @@ export default {
         }
       })
     },
+    calcSub(price) {
+      const sub = this.$store.state.locals.subQuotient || 100
+      return parseInt(Math.round(price * sub))
+    },
+    calcSubBack(price) {
+      return price / 100
+    },
     calcNet(gross) {
       return gross / (1 + this.$store.state.locals.vatRate)
     },
     calcSum(product, selectables, quantity) {
       const price = {}
+      const gross =  this.calcSub(product.price)
+      const net = this.calcNet(gross)
       price.items = [
         {
           name: product.name,
-          net: this.calcNet(product.price),
-          tax: product.price - this.calcNet(product.price),
-          gross: product.price
+          net: net,
+          tax: gross - net,
+          gross: gross
         }
       ]
       selectables
         .forEach(s => {
+          const gross = this.calcSub(s.price)
+          const net = this.calcNet(gross)
           price.items.push({
             name: s.name,
-            net: this.calcNet(s.price),
-            tax: s.price - this.calcNet(s.price),
-            gross: s.price
+            net: net,
+            tax: gross - net,
+            gross: gross
           })
         })
       price.single = {
-        net: price.items.reduce((a, b) => a + (b.net || 0), 0),
-        tax: price.items.reduce((a, b) => a + (b.tax || 0), 0),
-        gross: price.items.reduce((a, b) => a + (b.gross || 0), 0)
+        net: price.items.reduce((a, b) => a + (this.calcSubBack(b.net) || 0), 0),
+        tax: price.items.reduce((a, b) => a + (this.calcSubBack(b.tax) || 0), 0),
+        gross: price.items.reduce((a, b) => a + (this.calcSubBack(b.gross) || 0), 0)
       }
       price.sum = {
-        net: price.single.net * quantity,
-        tax: price.single.tax * quantity,
-        gross: price.single.gross * quantity
+        net: this.calcSubBack(this.calcSub(price.single.net) * quantity),
+        tax: this.calcSubBack(this.calcSub(price.single.tax) * quantity),
+        gross: this.calcSubBack(this.calcSub(price.single.gross) * quantity)
       }
       return price
     },

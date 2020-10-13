@@ -13,6 +13,7 @@ export default {
     currency: '£',
     currenyIso: 'GBP',
     numberFormat: 'en-GB',
+    subQuotient: 100,
     locations: [
       {
         isoCode: 'de',
@@ -21,6 +22,7 @@ export default {
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-DE',
+        subQuotient: 100,
         vatRate: 0.19,
         selected: false
       },
@@ -31,6 +33,7 @@ export default {
         currency: '£',
         currenyIso: 'GBP',
         numberFormat: 'en-GB',
+        subQuotient: 100,
         vatRate: 0.2,
         selected: true
       },
@@ -41,6 +44,7 @@ export default {
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'fr-FR',
+        subQuotient: 100,
         vatRate: 0.2,
         selected: false
       },
@@ -51,6 +55,7 @@ export default {
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'it-IT',
+        subQuotient: 100,
         vatRate: 0.22,
         selected: false
       },
@@ -61,6 +66,7 @@ export default {
         currency: 'Fr.',
         currenyIso: 'CHF',
         numberFormat: 'de-CH',
+        subQuotient: 100,
         vatRate: 0.077,
         selected: false
       },
@@ -71,6 +77,7 @@ export default {
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-AT',
+        subQuotient: 100,
         vatRate: 0.2,
         selected: false
       },
@@ -81,6 +88,7 @@ export default {
         currency: '$',
         currenyIso: 'USD',
         numberFormat: 'en-US',
+        subQuotient: 100,
         vatRate: 0,
         selected: false
       }
@@ -107,6 +115,7 @@ export default {
       state.currency = newLocation.currency
       state.currenyIso = newLocation.currenyIso
       state.numberFormat = newLocation.numberFormat
+      state.subQuotient = newLocation.subQuotient
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })

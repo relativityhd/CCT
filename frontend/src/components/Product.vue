@@ -220,33 +220,43 @@ export default {
     }
   },
   methods: {
+    calcSub(price) {
+      const sub = this.$store.state.locals.subQuotient || 100
+      return parseInt(Math.round(price * sub))
+    },
+    calcSubBack(price) {
+      return price / 100
+    },
     calcNet(gross) {
-      return gross / (1 + this.$store.state.locals.vatRate)
+      return parseInt(gross / (1 + this.$store.state.locals.vatRate))
     },
     calcSum() {
+      const gross =  this.calcSub(this.product.price)
+      const net = this.calcNet(gross)
       this.price.items = [
         {
           name: this.product.name,
-          net: this.calcNet(this.product.price),
-          tax: this.product.price - this.calcNet(this.product.price),
-          gross: this.product.price
+          net: net,
+          tax: gross - net,
+          gross: gross
         }
       ]
       this.selectables
         .filter(s => s.selected)
         .forEach(s => {
-          this.sum += s.price
+          const gross = this.calcSub(s.price)
+          const net = this.calcNet(gross)
           this.price.items.push({
             name: s.name,
-            net: this.calcNet(s.price),
-            tax: s.price - this.calcNet(s.price),
-            gross: s.price
+            net: net,
+            tax: gross - net,
+            gross: gross
           })
         })
-      this.price.net = this.price.items.reduce((a, b) => a + (b.net || 0), 0)
-      this.price.tax = this.price.items.reduce((a, b) => a + (b.tax || 0), 0)
+      this.price.net = this.price.items.reduce((a, b) => a + (this.calcSubBack(b.net) || 0), 0)
+      this.price.tax = this.price.items.reduce((a, b) => a + (this.calcSubBack(b.tax) || 0), 0)
       this.price.gross = this.price.items.reduce(
-        (a, b) => a + (b.gross || 0),
+        (a, b) => a + (this.calcSubBack(b.gross) || 0),
         0
       )
     },

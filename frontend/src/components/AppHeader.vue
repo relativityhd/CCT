@@ -176,6 +176,7 @@ a.bx--header__menu-item[aria-current='page']::after,
 }
 .bx--header-panel {
   background-color: $interactive-02;
+  overflow-y: auto;
 }
 
 .bx--switcher__item-link--selected {

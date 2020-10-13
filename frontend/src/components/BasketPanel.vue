@@ -37,7 +37,7 @@
     <cv-switcher>
       <cv-switcher-item>
         <cv-switcher-item-link to="/basket">
-          Edit your basket
+          {{$t('editBasket')}}
         </cv-switcher-item-link>
       </cv-switcher-item>
     </cv-switcher>
@@ -86,7 +86,8 @@ export default {
   "en": {
     "title": "Your Basket",
     "products": "Products",
-    "customized": "Customized"
+    "customized": "Customized",
+    "editBasket": "Edit your Basket"
   }
 }
 </i18n>

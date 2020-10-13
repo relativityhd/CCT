@@ -427,9 +427,9 @@ export default {
       "gross": "Gross",
       "tax": "Tax"
     },
-    "width": "Width",
-    "height": "Height",
-    "depth": "Depth"
+    "width": "Width in cm",
+    "height": "Height in cm",
+    "depth": "Depth in cm"
   }
 }
 </i18n>

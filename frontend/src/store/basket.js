@@ -30,8 +30,12 @@ export default {
   },
   mutations: {
     addProduct(state, { id, info, selectables, customized, width, height, depth }) {
+      let newBasketId = 0
+      while (state.products.findIndex(p => p.basketId === newBasketId) !== -1) {
+        newBasketId++
+      }
       const newProduct = {
-        basketId: state.products.length,
+        basketId: newBasketId,
         id,
         info,
         selectables: selectables.map(s => {

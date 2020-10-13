@@ -225,7 +225,8 @@ export default {
       return parseInt(Math.round(price * sub))
     },
     calcSubBack(price) {
-      return price / 100
+      const sub = this.$store.state.locals.subQuotient || 100
+      return price / sub
     },
     calcNet(gross) {
       return parseInt(gross / (1 + this.$store.state.locals.vatRate))

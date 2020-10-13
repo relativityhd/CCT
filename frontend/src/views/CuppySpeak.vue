@@ -8,8 +8,6 @@
         <router-link to="/" tag="button">{{ $t('location') }}</router-link>
         <router-link to="/support" tag="button">{{ $t('support') }}</router-link>
         <router-link to="/about" tag="button">{{ $t('imprint') }}</router-link>
-        <button>Philipp ist doof</button>
-        <button>Christopher ist doof</button>
     </div>
   </div>
 
@@ -76,40 +74,42 @@ export default {
   }
 }
 </i18n>
-<style lang="sass" scoped>
-.speech-bubble
-	position: relative
-	background: #ffffff
-	border-radius: .4em
+<style lang="scss" scoped>
+.speech-bubble{
+	position: relative;
+	background: #ffffff;
+	border-radius: .4em;
+}
 
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
 
-.speech-bubble:after 
-	content: ''
-	position: absolute
-	bottom: 0
-	left: 50%
-	width: 0
-	height: 0
-	border: 20px solid transparent
-	border-top-color: #ffffff
-	border-bottom: 0
-	border-left: 0
-	margin-left: -10px
-	margin-bottom: -20px
-
-
-#speak
-  display: flex
-  flex-direction: column
-  height: max-content
-  width: min-content
-#buttoncontainer
-  margin: 10px 10px 10px 10px
-  display: flex
-  flex-direction: column
-button
-  border: none
-  width: max-content
-  margin-top: 3px
-
+#speak{
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  width: min-content;
+}
+#buttoncontainer{
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+}
+button{
+  border: none;
+  width: max-content;
+  margin-top: 3px;
+}
 </style>

@@ -15,7 +15,6 @@ export default {
   methods: {
     cuppyButton() {
       this.showCuppyBubble = !this.showCuppyBubble
-      console.log(this.$refs.cuppySpeak)
      }
   },
   data: () => {
@@ -25,39 +24,43 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
-@keyframes fade-in
+@keyframes fade-in{
   from
-    opacity: 0
+    {opacity: 0;}
   to
-    opacity: 1
-@keyframes fade-out
+    {opacity: 1;}
+}
+
+@keyframes fade-out{
   from
-    opacity: 1
+    {opacity: 1;}
   to 
-    opacity: 0
-
-#cuppy
-  background-image: url("./../assets/cuppy.svg")
-  background-repeat: no-repeat
-  background-size: contain
-  height: 15rem
-  width: max-content
+    {opacity: 0;}
+}
+#cuppy{
+  background-image: url("./../assets/cuppy.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 15rem;
+  width: max-content;
   transform: rotate(10deg);
-
-.visible
-  animation-name: fade-in
-  animation-time: 15s
-
-.invisible
-  animation-name: fade-out
-  animation-time: 1s
-  opacity: 0
-
-#CuppyBubble
+}
+.visible{
+  animation-name: fade-in;
+  animation-time: 1s;
+ }
+  
+.invisible{
+  animation-name: fade-out;
+  animation-time: 1s;
+  opacity: 0;
+}
+#CuppyBubble{
   transform: rotate(-10deg);
-  position: relative
-  bottom: 43%
-  left: 15%
+  position: relative;
+  bottom: 43%;
+  left: 15%;
+}
 </style>

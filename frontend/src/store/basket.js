@@ -1,6 +1,6 @@
 import * as hash from 'object-hash'
 
-function removeProduct (state, basketId) {
+function removeProduct(state, basketId) {
   const indexInProducts = state.products.findIndex(
     product => product.basketId === basketId
   )
@@ -18,7 +18,10 @@ export default {
     products: []
   },
   mutations: {
-    addProduct(state, { id, info, selectables, customized, width, height, depth }) {
+    addProduct(
+      state,
+      { id, info, selectables, customized, width, height, depth }
+    ) {
       let newBasketId = 0
       while (state.products.findIndex(p => p.basketId === newBasketId) !== -1) {
         newBasketId++
@@ -27,20 +30,21 @@ export default {
         basketId: newBasketId,
         id,
         info,
-        selectables: selectables.map(s => {
-          const newS = {...s}
-          if (newS.customized === false) {
-            newS.custom = {width: 0, height: 0, depth: 0}
-          } else {
-            newS.custom = {...s.custom}
-          }
-          return newS
-        }) || [],
+        selectables:
+          selectables.map(s => {
+            const newS = { ...s }
+            if (newS.customized === false) {
+              newS.custom = { width: 0, height: 0, depth: 0 }
+            } else {
+              newS.custom = { ...s.custom }
+            }
+            return newS
+          }) || [],
         quantity: 1,
         customized: customized || false,
-        width: customized ? (width || 0) : 0,
-        height: customized ? (height || 0) : 0,
-        depth: customized ? (depth || 0) : 0
+        width: customized ? width || 0 : 0,
+        height: customized ? height || 0 : 0,
+        depth: customized ? depth || 0 : 0
       }
 
       const productsInBasket = state.products.filter(
@@ -49,11 +53,14 @@ export default {
       if (productsInBasket.length >= 0) {
         let inBasket = false
         productsInBasket.forEach(productInBasket => {
-          if (productInBasket.customized === newProduct.customized &&
-              productInBasket.width === newProduct.width &&
-              productInBasket.height === newProduct.height &&
-              productInBasket.depth === newProduct.depth &&
-              hash(productInBasket.selectables.sort(compareSelectable)) === hash(newProduct.selectables.sort(compareSelectable))) {
+          if (
+            productInBasket.customized === newProduct.customized &&
+            productInBasket.width === newProduct.width &&
+            productInBasket.height === newProduct.height &&
+            productInBasket.depth === newProduct.depth &&
+            hash(productInBasket.selectables.sort(compareSelectable)) ===
+              hash(newProduct.selectables.sort(compareSelectable))
+          ) {
             productInBasket.quantity++
             inBasket = true
             return
@@ -66,7 +73,7 @@ export default {
     removeProduct(state, basketId) {
       removeProduct(state, basketId)
     },
-    setProduct(state, { basketId, quantity}) {
+    setProduct(state, { basketId, quantity }) {
       if (quantity === 0) {
         removeProduct(state, basketId)
         return

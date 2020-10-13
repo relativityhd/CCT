@@ -2,42 +2,59 @@
   <div class="basket-wrapper">
     <h1>{{ $t('title') }}</h1>
     <div class="products-wrapper">
-
       <cv-data-table
-        :columns="$store.state.mobile ? [
-          $t('tableHeads.name'),
-          $t('tableHeads.price'),
-          $t('tableHeads.delete')] : [
-          $t('tableHeads.id'),
-          $t('tableHeads.image'),
-          $t('tableHeads.name'),
-          $t('tableHeads.price'),
-          $t('tableHeads.selectables'),
-          $t('tableHeads.quantity'),
-          $t('tableHeads.delete')]"
+        :columns="
+          $store.state.mobile
+            ? [
+                $t('tableHeads.name'),
+                $t('tableHeads.price'),
+                $t('tableHeads.delete')
+              ]
+            : [
+                $t('tableHeads.id'),
+                $t('tableHeads.image'),
+                $t('tableHeads.name'),
+                $t('tableHeads.price'),
+                $t('tableHeads.selectables'),
+                $t('tableHeads.quantity'),
+                $t('tableHeads.delete')
+              ]
+        "
         :pagination="false"
         :overflow-menu="false"
         :has-expand-all="true"
         v-if="products.length"
-        ref="table">
+        ref="table"
+      >
         <template slot="data">
           <cv-data-table-row
             v-for="product in products"
             :key="product.basketId"
-            :value="`${product.basketId}`">
-
-            <cv-data-table-cell v-if="!$store.state.mobile">{{ product.basketId }}</cv-data-table-cell>
+            :value="`${product.basketId}`"
+          >
+            <cv-data-table-cell v-if="!$store.state.mobile">{{
+              product.basketId
+            }}</cv-data-table-cell>
             <cv-data-table-cell v-if="!$store.state.mobile">
-              <img class="product-image" :src="product.info.imageUrl" alt="Image of product">
+              <img
+                class="product-image"
+                :src="product.info.imageUrl"
+                alt="Image of product"
+              />
             </cv-data-table-cell>
-            <cv-data-table-cell><h6>{{ product.info.name }}</h6></cv-data-table-cell>
-            <cv-data-table-cell>{{ $store.getters.formatPrice(product.price.sum.gross) }}</cv-data-table-cell>
+            <cv-data-table-cell
+              ><h6>{{ product.info.name }}</h6></cv-data-table-cell
+            >
+            <cv-data-table-cell>{{
+              $store.getters.formatPrice(product.price.sum.gross)
+            }}</cv-data-table-cell>
             <cv-data-table-cell v-if="!$store.state.mobile">
               <cv-tag
                 v-for="selectable in product.selectables"
                 :key="selectable.id"
                 :label="selectable.name"
-                :kind="(selectable.customized ? 'blue' : 'cool-gray')" />
+                :kind="selectable.customized ? 'blue' : 'cool-gray'"
+              />
             </cv-data-table-cell>
             <cv-data-table-cell v-if="!$store.state.mobile">
               <cv-number-input
@@ -56,15 +73,26 @@
                 :label="$t('deleteItem')"
                 tip-position="left"
                 tip-alignment="start"
-                @click="deleteItem(product.basketId)" />
+                @click="deleteItem(product.basketId)"
+              />
             </cv-data-table-cell>
 
             <template slot="expandedContent">
               <div class="expanded-content-wrapper">
                 <div class="mobile-container" v-if="$store.state.mobile">
                   <h6>{{ $t('tableHeads.about') }}</h6>
-                  <img class="product-image" :src="product.info.imageUrl" alt="Image of product">
-                  <h6>{{ `${$t('tableHeads.price')}: ${$store.getters.formatPrice(product.price.sum.gross)}` }}</h6>
+                  <img
+                    class="product-image"
+                    :src="product.info.imageUrl"
+                    alt="Image of product"
+                  />
+                  <h6>
+                    {{
+                      `${$t('tableHeads.price')}: ${$store.getters.formatPrice(
+                        product.price.sum.gross
+                      )}`
+                    }}
+                  </h6>
                   <cv-number-input
                     :label="$t('tableHeads.quantity')"
                     :mobile="$store.state.mobile"
@@ -83,18 +111,28 @@
                     <template slot="items">
                       <cv-structured-list-item
                         v-for="item in [
-                          { name: $t('tableHeads.custom'),
-                            value: product.customized ? $t('yes') : $t('no') },
-                          { name: $t('tableHeads.fixed'),
-                            value: product.info.priceStarting ? $t('yes') : $t('no') },
-                          { name: $t('width'), value:  product.width },
-                          { name: $t('height'), value:  product.height },
-                          { name: $t('depth'), value:  product.depth },
+                          {
+                            name: $t('tableHeads.custom'),
+                            value: product.customized ? $t('yes') : $t('no')
+                          },
+                          {
+                            name: $t('tableHeads.fixed'),
+                            value: product.info.priceStarting
+                              ? $t('yes')
+                              : $t('no')
+                          },
+                          { name: $t('width'), value: product.width },
+                          { name: $t('height'), value: product.height },
+                          { name: $t('depth'), value: product.depth }
                         ]"
                         :key="item.name"
                       >
-                        <cv-structured-list-data class="info-list-item"><h6>{{ item.name }}</h6></cv-structured-list-data>
-                        <cv-structured-list-data class="info-list-item">{{ item.value }}</cv-structured-list-data>
+                        <cv-structured-list-data class="info-list-item"
+                          ><h6>{{ item.name }}</h6></cv-structured-list-data
+                        >
+                        <cv-structured-list-data class="info-list-item">{{
+                          item.value
+                        }}</cv-structured-list-data>
                       </cv-structured-list-item>
                     </template>
                   </cv-structured-list>
@@ -102,26 +140,49 @@
                   <h6 v-else>{{ $t('notCustom') }}</h6>
                 </div>
 
-                <div class="selectables-container" v-if="product.selectables.length">
+                <div
+                  class="selectables-container"
+                  v-if="product.selectables.length"
+                >
                   <h6>{{ $t('tableHeads.selectables') }}</h6>
                   <cv-structured-list class="selectable-list">
                     <template slot="headings">
-                      <cv-structured-list-heading>{{ $t('tableHeads.name') }}</cv-structured-list-heading>
-                      <cv-structured-list-heading>{{ $t('tableHeads.custom') }}</cv-structured-list-heading>
-                      <cv-structured-list-heading>{{ $t('height') }}</cv-structured-list-heading>
-                      <cv-structured-list-heading>{{ $t('width') }}</cv-structured-list-heading>
-                      <cv-structured-list-heading>{{ $t('depth') }}</cv-structured-list-heading>
+                      <cv-structured-list-heading>{{
+                        $t('tableHeads.name')
+                      }}</cv-structured-list-heading>
+                      <cv-structured-list-heading>{{
+                        $t('tableHeads.custom')
+                      }}</cv-structured-list-heading>
+                      <cv-structured-list-heading>{{
+                        $t('height')
+                      }}</cv-structured-list-heading>
+                      <cv-structured-list-heading>{{
+                        $t('width')
+                      }}</cv-structured-list-heading>
+                      <cv-structured-list-heading>{{
+                        $t('depth')
+                      }}</cv-structured-list-heading>
                     </template>
                     <template slot="items">
                       <cv-structured-list-item
                         v-for="selectable in product.selectables"
                         :key="selectable.id"
                       >
-                        <cv-structured-list-data>{{selectable.name}}</cv-structured-list-data>
-                        <cv-structured-list-data>{{selectable.customized ? $t('yes') : $t('no')}}</cv-structured-list-data>
-                        <cv-structured-list-data>{{selectable.customized ? selectable.custom.width : '-'}}</cv-structured-list-data>
-                        <cv-structured-list-data>{{selectable.customized ? selectable.custom.height : '-'}}</cv-structured-list-data>
-                        <cv-structured-list-data>{{selectable.customized ?selectable.custom.depth : '-'}}</cv-structured-list-data>
+                        <cv-structured-list-data>{{
+                          selectable.name
+                        }}</cv-structured-list-data>
+                        <cv-structured-list-data>{{
+                          selectable.customized ? $t('yes') : $t('no')
+                        }}</cv-structured-list-data>
+                        <cv-structured-list-data>{{
+                          selectable.customized ? selectable.custom.width : '-'
+                        }}</cv-structured-list-data>
+                        <cv-structured-list-data>{{
+                          selectable.customized ? selectable.custom.height : '-'
+                        }}</cv-structured-list-data>
+                        <cv-structured-list-data>{{
+                          selectable.customized ? selectable.custom.depth : '-'
+                        }}</cv-structured-list-data>
                       </cv-structured-list-item>
                     </template>
                   </cv-structured-list>
@@ -139,7 +200,8 @@
                       >
                       <cv-structured-list-heading
                         >{{
-                          `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)`
+                          `${$t('priceList.tax')} (${$store.state.locals
+                            .vatRate * 100}%)`
                         }}
                       </cv-structured-list-heading>
                       <cv-structured-list-heading>
@@ -170,17 +232,29 @@
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.single.net) }}
+                            {{
+                              $store.getters.formatPrice(
+                                product.price.single.net
+                              )
+                            }}
                           </h6></cv-structured-list-data
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.single.tax) }}
+                            {{
+                              $store.getters.formatPrice(
+                                product.price.single.tax
+                              )
+                            }}
                           </h6></cv-structured-list-data
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.single.gross) }}
+                            {{
+                              $store.getters.formatPrice(
+                                product.price.single.gross
+                              )
+                            }}
                           </h6></cv-structured-list-data
                         >
                       </cv-structured-list-item>
@@ -190,17 +264,25 @@
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.sum.net) }}
+                            {{
+                              $store.getters.formatPrice(product.price.sum.net)
+                            }}
                           </h6></cv-structured-list-data
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.sum.tax) }}
+                            {{
+                              $store.getters.formatPrice(product.price.sum.tax)
+                            }}
                           </h6></cv-structured-list-data
                         >
                         <cv-structured-list-data
                           ><h6>
-                            {{ $store.getters.formatPrice(product.price.sum.gross) }}
+                            {{
+                              $store.getters.formatPrice(
+                                product.price.sum.gross
+                              )
+                            }}
                           </h6></cv-structured-list-data
                         >
                       </cv-structured-list-item>
@@ -214,10 +296,16 @@
       </cv-data-table>
 
       <div class="no-items" v-else>
-        <h6>{{$t('noItems')}}</h6>
-        <br>
-        <cv-button to="/tool">
-          {{$t('toStore')}}
+        <h6>{{ $t('noItems') }}</h6>
+        <br />
+        <cv-button
+          @click="
+            () => {
+              $router.push('tool')
+            }
+          "
+        >
+          {{ $t('toStore') }}
         </cv-button>
       </div>
     </div>
@@ -243,7 +331,11 @@ export default {
     loadProducts() {
       this.sum = 0
       this.products = this.$store.state.basket.products.map(p => {
-        const quantity = Number.isNaN(parseInt(p.quantity)) ? 1 : p.quantity > 0 ? p.quantity : 1
+        const quantity = Number.isNaN(parseInt(p.quantity))
+          ? 1
+          : p.quantity > 0
+          ? p.quantity
+          : 1
         const price = this.calcSum(p.info, p.selectables, quantity)
         this.sum += price.sum
         return {
@@ -266,7 +358,7 @@ export default {
     },
     calcSum(product, selectables, quantity) {
       const price = {}
-      const gross =  this.calcSub(product.price)
+      const gross = this.calcSub(product.price)
       const net = this.calcNet(gross)
       price.items = [
         {
@@ -276,21 +368,29 @@ export default {
           gross: gross
         }
       ]
-      selectables
-        .forEach(s => {
-          const gross = this.calcSub(s.price)
-          const net = this.calcNet(gross)
-          price.items.push({
-            name: s.name,
-            net: net,
-            tax: gross - net,
-            gross: gross
-          })
+      selectables.forEach(s => {
+        const gross = this.calcSub(s.price)
+        const net = this.calcNet(gross)
+        price.items.push({
+          name: s.name,
+          net: net,
+          tax: gross - net,
+          gross: gross
         })
+      })
       price.single = {
-        net: price.items.reduce((a, b) => a + (this.calcSubBack(b.net) || 0), 0),
-        tax: price.items.reduce((a, b) => a + (this.calcSubBack(b.tax) || 0), 0),
-        gross: price.items.reduce((a, b) => a + (this.calcSubBack(b.gross) || 0), 0)
+        net: price.items.reduce(
+          (a, b) => a + (this.calcSubBack(b.net) || 0),
+          0
+        ),
+        tax: price.items.reduce(
+          (a, b) => a + (this.calcSubBack(b.tax) || 0),
+          0
+        ),
+        gross: price.items.reduce(
+          (a, b) => a + (this.calcSubBack(b.gross) || 0),
+          0
+        )
       }
       price.sum = {
         net: this.calcSubBack(this.calcSub(price.single.net) * quantity),
@@ -342,7 +442,7 @@ export default {
   background-color: $ui-background;
 }
 
-.expanded-content-wrapper{
+.expanded-content-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -356,7 +456,7 @@ export default {
   margin: 0 10px;
 }
 
-.mobile-container{
+.mobile-container {
   max-width: 275px;
 }
 
@@ -372,8 +472,8 @@ export default {
   max-width: 425px;
 }
 
-.info-list-item{
-  padding: 1rem .5rem .5rem;
+.info-list-item {
+  padding: 1rem 0.5rem 0.5rem;
 }
 </style>
 

@@ -38,7 +38,10 @@
                 <h6>{{ selectable.name }}</h6>
                 <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
 
-                <cv-accordion class="custom-container" v-if="selectable.customizable">
+                <cv-accordion
+                  class="custom-container"
+                  v-if="selectable.customizable"
+                >
                   <cv-accordion-item>
                     <template slot="title">{{ $t('customize') }}</template>
                     <template slot="content">
@@ -108,7 +111,8 @@
                   >
                   <cv-structured-list-heading
                     >{{
-                      `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)`
+                      `${$t('priceList.tax')} (${$store.state.locals.vatRate *
+                        100}%)`
                     }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
@@ -166,7 +170,6 @@
           </cv-button>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -180,7 +183,6 @@ export default {
   data() {
     return {
       hasNoProduct: true,
-      // TODO: make selectables cutomizable
       selectables: [],
       custom: {
         height: 0,
@@ -196,22 +198,25 @@ export default {
     }
   },
   watch: {
-    product: function () {
+    product: function() {
       if (this.product === undefined) {
         this.hasNoProduct = true
         return
       }
       this.hasNoProduct = false
-      this.selectables = this.product.selectables.map(s => ({...s, custom: {
-        height: 0,
-        width: 0,
-        depth: 0
-      }}))
+      this.selectables = this.product.selectables.map(s => ({
+        ...s,
+        custom: {
+          height: 0,
+          width: 0,
+          depth: 0
+        }
+      }))
       this.calcSum()
     }
   },
   mounted() {
-    this.unsubscribe = this.$store.subscribe((mutation) => {
+    this.unsubscribe = this.$store.subscribe(mutation => {
       if (mutation.type !== 'setLocation') return
       this.calcSum()
     })
@@ -232,7 +237,7 @@ export default {
       return parseInt(gross / (1 + this.$store.state.locals.vatRate))
     },
     calcSum() {
-      const gross =  this.calcSub(this.product.price)
+      const gross = this.calcSub(this.product.price)
       const net = this.calcNet(gross)
       this.price.items = [
         {
@@ -254,8 +259,14 @@ export default {
             gross: gross
           })
         })
-      this.price.net = this.price.items.reduce((a, b) => a + (this.calcSubBack(b.net) || 0), 0)
-      this.price.tax = this.price.items.reduce((a, b) => a + (this.calcSubBack(b.tax) || 0), 0)
+      this.price.net = this.price.items.reduce(
+        (a, b) => a + (this.calcSubBack(b.net) || 0),
+        0
+      )
+      this.price.tax = this.price.items.reduce(
+        (a, b) => a + (this.calcSubBack(b.tax) || 0),
+        0
+      )
       this.price.gross = this.price.items.reduce(
         (a, b) => a + (this.calcSubBack(b.gross) || 0),
         0
@@ -269,30 +280,29 @@ export default {
     addToCart() {
       if (this.product === undefined) return
 
-      const selectables = this.selectables.filter(s => s.selected).map(s => {
-        const customized = (
-          s.custom.width !== 0 &&
-          s.custom.height !== 0 &&
-          s.custom.depth !== 0
-        )
-        console.log('--DEBUG : addToCart -> s.custom.width', s.custom.width)
-        return {...s, customized}
-      })
+      const selectables = this.selectables
+        .filter(s => s.selected)
+        .map(s => {
+          const customized =
+            s.custom.width !== 0 &&
+            s.custom.height !== 0 &&
+            s.custom.depth !== 0
+          return { ...s, customized }
+        })
 
       const width = this.custom.width
       const height = this.custom.height
       const depth = this.custom.depth
 
-      const customized = (
+      const customized =
         this.product.customizable === true &&
         width !== 0 &&
         height !== 0 &&
         depth !== 0
-      )
 
       this.$store.commit('basket/addProduct', {
         id: this.product.id,
-        info: {...this.product},
+        info: { ...this.product },
         selectables,
         customized,
         width,
@@ -308,14 +318,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .product-container {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto 1fr;
-  grid-template-areas: 
-    "info custom"
-    "pricing custom";
+  grid-template-areas:
+    'info custom'
+    'pricing custom';
   gap: 20px 10px;
   justify-content: center;
   justify-items: center;
@@ -405,10 +414,10 @@ export default {
 @media (max-width: 1060px) {
   .product-container {
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: 
-      "info"
-      "custom"
-      "pricing";
+    grid-template-areas:
+      'info'
+      'custom'
+      'pricing';
   }
 
   .product-info,

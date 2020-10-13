@@ -36,11 +36,9 @@
             </cv-dropdown-item>
           </cv-dropdown>
         </div>
-        <Product :product="selectedProduct"/>
+        <Product :product="selectedProduct" />
       </div>
-      <div class="pricing-wrapper">
-        
-      </div>
+      <div class="pricing-wrapper"></div>
     </div>
   </div>
 </template>
@@ -68,21 +66,27 @@ export default {
   mounted() {
     Vue.axios.get('/catalogue/categories').then(res => {
       this.categories = res.data
-      console.log(this.categories)
       this.categories.forEach(category => {
         category.products = []
-        Vue.axios.get(`/catalogue/categories/${category.id}/products`).then(res => {
-          const productIds = res.data.map(p => p.id)
-          productIds.forEach(id => {
-            Vue.axios.get(`/catalogue/products/${id}`).then(res => {
-              const product = res.data
-              category.products.push(product)
-              Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
-                product.selectables = res.data.map(s => ({ ...s, selected: false }))
+        Vue.axios
+          .get(`/catalogue/categories/${category.id}/products`)
+          .then(res => {
+            const productIds = res.data.map(p => p.id)
+            productIds.forEach(id => {
+              Vue.axios.get(`/catalogue/products/${id}`).then(res => {
+                const product = res.data
+                category.products.push(product)
+                Vue.axios
+                  .get(`/catalogue/products/${id}/selectables`)
+                  .then(res => {
+                    product.selectables = res.data.map(s => ({
+                      ...s,
+                      selected: false
+                    }))
+                  })
               })
             })
           })
-        })
       })
     })
 
@@ -90,12 +94,16 @@ export default {
   },
   methods: {
     selectCategory() {
-      const selectedCategory = this.categories.find(c => c.id.toString() === this.dropdowns.selectedCategoryId)
+      const selectedCategory = this.categories.find(
+        c => c.id.toString() === this.dropdowns.selectedCategoryId
+      )
       this.products = selectedCategory.products
       this.dropdowns.selectedProductId = ''
     },
     selectProduct() {
-      this.selectedProduct = this.products.find(p => p.id.toString() === this.dropdowns.selectedProductId)
+      this.selectedProduct = this.products.find(
+        p => p.id.toString() === this.dropdowns.selectedProductId
+      )
     }
   }
 }
@@ -116,7 +124,7 @@ export default {
   justify-content: center;
 }
 
-.new-item-wrapper{
+.new-item-wrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -125,7 +133,7 @@ export default {
   max-width: 100%;
 }
 
-.product-selection-wrapper{
+.product-selection-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -137,7 +145,7 @@ export default {
 }
 
 @media (max-width: 1060px) {
-  .product-selection-wrapper{
+  .product-selection-wrapper {
     width: 100%;
     max-width: 420px;
     margin: 0 auto 10px;

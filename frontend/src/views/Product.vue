@@ -1,6 +1,6 @@
 <template>
   <div class="category-page-wrapper">
-    <Product :product="selectedProduct"/>
+    <Product :product="selectedProduct" />
   </div>
 </template>
 
@@ -20,14 +20,15 @@ export default {
   },
   mounted() {
     const productId = parseInt(this.$route.params.productId)
-    console.log('--DEBUG : mounted -> productId', productId)
 
     Vue.axios.get(`/catalogue/products/${productId}`).then(res => {
       let product = res.data
-      Vue.axios.get(`/catalogue/products/${productId}/selectables`).then(res => {
-        product.selectables = res.data.map(s => ({ ...s, selected: false }))
-        this.selectedProduct = product
-      })
+      Vue.axios
+        .get(`/catalogue/products/${productId}/selectables`)
+        .then(res => {
+          product.selectables = res.data.map(s => ({ ...s, selected: false }))
+          this.selectedProduct = product
+        })
     })
   }
 }

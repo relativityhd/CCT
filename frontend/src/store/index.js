@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    mobile: window.innerWidth <= 800,
+    mobile: window.innerWidth <= 800
   },
   getters: {
     formatPrice: state => price => {

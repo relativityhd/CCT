@@ -3,10 +3,8 @@
     <h3>{{ $t('title') }}</h3>
 
     <div class="products-wrapper">
-      <div class="product"
-        v-for="product in products"
-        :key="product.basketId">
-        <h3>{{product.quantity}}x</h3>
+      <div class="product" v-for="product in products" :key="product.basketId">
+        <h3>{{ product.quantity }}x</h3>
         <div class="product-info">
           <img
             class="product-image"
@@ -23,21 +21,23 @@
             v-for="selectable in product.selectables"
             :key="selectable.id"
             :label="selectable.name"
-            :kind="(selectable.customized ? 'blue' : 'cool-gray')" />
+            :kind="selectable.customized ? 'blue' : 'cool-gray'"
+          />
           <cv-tag
             v-if="product.customized"
             :label="$t('customized')"
-            kind="purple" />
+            kind="purple"
+          />
         </div>
       </div>
     </div>
 
-    <hr>
+    <hr />
 
     <cv-switcher>
       <cv-switcher-item>
         <cv-switcher-item-link to="/basket">
-          {{$t('editBasket')}}
+          {{ $t('editBasket') }}
         </cv-switcher-item-link>
       </cv-switcher-item>
     </cv-switcher>

@@ -12,9 +12,18 @@ function loadLocaleMessages() {
   const messages = {}
   locales.keys().forEach(key => {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i)
-    if (matched && matched.length > 1) {
+    if (!matched || matched.length <= 1) return
+    const subMatched = key.match(/([A-Za-z0-9-_]+)\/([A-Za-z0-9-_]+)\./i)
+    if (subMatched && subMatched.length > 1) {
+      const sub = subMatched[1]
+      const locale = subMatched[2]
+      if (!messages[locale]) messages[locale] = {}
+      messages[locale][sub] = locales(key)
+    } else {
       const locale = matched[1]
-      messages[locale] = locales(key)
+      if (messages[locale])
+        messages[locale] = { ...messages[locale], ...locales(key) }
+      else messages[locale] = locales(key)
     }
   })
   return messages

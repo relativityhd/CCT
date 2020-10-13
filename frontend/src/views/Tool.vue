@@ -6,6 +6,7 @@
         <div class="product-selection-wrapper">
           <cv-dropdown
             :label="$t('categorySelect')"
+            :disabled="categories.length === 0"
             :value="dropdowns.selectedCategoryId"
             v-model="dropdowns.selectedCategoryId"
             @change="selectCategory"
@@ -21,6 +22,7 @@
 
           <cv-dropdown
             :label="$t('productSelect')"
+            :disabled="products.length === 0"
             :value="dropdowns.selectedProductId"
             v-model="dropdowns.selectedProductId"
             @change="selectProduct"
@@ -37,7 +39,7 @@
         <Product :product="selectedProduct"/>
       </div>
       <div class="pricing-wrapper">
-        PP
+        
       </div>
     </div>
   </div>
@@ -66,6 +68,7 @@ export default {
   mounted() {
     Vue.axios.get('/catalogue/categories').then(res => {
       this.categories = res.data
+      console.log(this.categories)
       this.categories.forEach(category => {
         category.products = []
         Vue.axios.get(`/catalogue/categories/${category.id}/products`).then(res => {

@@ -300,9 +300,7 @@ export default {
       return price
     },
     changeQuantity(basketId) {
-      console.log('--DEBUG : changeQuantity -> basketId', basketId)
       const changedItem = this.products.find(p => p.basketId === basketId)
-        console.log('--DEBUG : changeQuantity -> changedItem.quantity', changedItem.quantity)
       if (Number.isNaN(parseInt(changedItem.quantity))) {
         changedItem.invalidMessage = this.$t('invalidNumber')
         return

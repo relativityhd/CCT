@@ -1,3 +1,5 @@
+import * as hash from 'object-hash'
+
 function removeProduct (state, basketId) {
   const indexInProducts = state.products.findIndex(
     product => product.basketId === basketId
@@ -6,21 +8,8 @@ function removeProduct (state, basketId) {
   state.products.splice(indexInProducts, 1)
 }
 
-function compareArrays (array1, array2) {
-  if (!array1 || !array2) return false
-  if (array1.length !== array2.length) return false
-  array1.sort()
-  array2.sort()
-  for (var i = 0; i < array1.length; i++) {
-      if (
-        array1[i].id !== array2[i].id ||
-        (array1[i].customized || false) !== (array2[i].customized || false) ||
-        (array1[i].custom.width || 0) !== (array2[i].custom.width || 0) ||
-        (array1[i].custom.height || 0) !== (array2[i].custom.height || 0) ||
-        (array1[i].custom.depth || 0) !== (array2[i].custom.depth || 0)
-        ) return false
-  }
-  return true
+function compareSelectable(a, b) {
+  return a.id - b.id
 }
 
 export default {
@@ -39,10 +28,13 @@ export default {
         id,
         info,
         selectables: selectables.map(s => {
-          if (s.customized === false) {
-            s.custom = {width: 0, height: 0, depth: 0}
+          const newS = {...s}
+          if (newS.customized === false) {
+            newS.custom = {width: 0, height: 0, depth: 0}
+          } else {
+            newS.custom = {...s.custom}
           }
-          return s
+          return newS
         }) || [],
         quantity: 1,
         customized: customized || false,
@@ -61,17 +53,15 @@ export default {
               productInBasket.width === newProduct.width &&
               productInBasket.height === newProduct.height &&
               productInBasket.depth === newProduct.depth &&
-              compareArrays(productInBasket.selectables, newProduct.selectables)) {
+              hash(productInBasket.selectables.sort(compareSelectable)) === hash(newProduct.selectables.sort(compareSelectable))) {
             productInBasket.quantity++
             inBasket = true
-            console.log('--DEBUG : newProduct -> state.products', state.products)
             return
           }
         })
         if (inBasket) return
       }
       state.products.push(newProduct)
-      console.log('--DEBUG : newProduct -> state.products', state.products)
     },
     removeProduct(state, basketId) {
       removeProduct(state, basketId)

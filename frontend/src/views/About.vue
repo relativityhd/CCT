@@ -2,7 +2,7 @@
   <div class="about">
     <h1>{{ $t('about') }}</h1>
     <p>{{ $t('message') }}</p>
-    <Cuppy/>
+    <Cuppy />
   </div>
 </template>
 <script>

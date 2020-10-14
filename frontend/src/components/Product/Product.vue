@@ -9,7 +9,7 @@
 
       <div class="product-custom">
         <Selectables class="selectables-container" :selectables="selectables" v-on:select="select">
-          <ProductCustomization v-if="product.customizable" :product="product" :custom="custom" />
+          <ProductCustomization v-if="product.customizable" :custom="custom" :pname="product.name" />
         </Selectables>
       </div>
 
@@ -51,7 +51,8 @@ export default {
       custom: {
         height: 0,
         width: 0,
-        depth: 0
+        depth: 0,
+        customized: false
       },
       price: {
         net: 0,
@@ -74,7 +75,8 @@ export default {
         custom: {
           height: 0,
           width: 0,
-          depth: 0
+          depth: 0,
+          customized: false
         }
       }))
       this.calcSum()
@@ -136,27 +138,14 @@ export default {
     addToCart() {
       if (this.product === undefined) return
 
-      const selectables = this.selectables
-        .filter(s => s.selected)
-        .map(s => {
-          const customized = s.custom.width !== 0 && s.custom.height !== 0 && s.custom.depth !== 0
-          return { ...s, customized }
-        })
-
-      const width = this.custom.width
-      const height = this.custom.height
-      const depth = this.custom.depth
-
-      const customized = this.product.customizable === true && width !== 0 && height !== 0 && depth !== 0
+      this.calcSum()
 
       this.$store.commit('basket/addProduct', {
         id: this.product.id,
-        info: { ...this.product },
-        selectables,
-        customized,
-        width,
-        height,
-        depth
+        info: this.product,
+        price: this.price,
+        selectables: this.selectables.filter(s => s.selected),
+        custom: this.custom
       })
     }
   },

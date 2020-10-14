@@ -20,7 +20,7 @@
             :kind="selectable.customized ? 'blue' : 'cool-gray'"
           />
 
-          <cv-tag v-if="product.customized" :label="$t('customized')" kind="purple" />
+          <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />
         </div>
       </div>
     </div>

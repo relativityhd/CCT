@@ -30,7 +30,9 @@
         </div>
         <Product :product="selectedProduct" />
       </div>
-      <div class="pricing-wrapper"></div>
+      <div class="pricing-wrapper">
+        <Basket :products="this.$store.state.basket.products" />
+      </div>
     </div>
   </div>
 </template>
@@ -38,11 +40,13 @@
 <script>
 import Vue from 'vue'
 import Product from '../components/Product/Product'
+import Basket from '../components/Basket/Basket'
 
 export default {
   name: 'Tool',
   components: {
-    Product
+    Product,
+    Basket
   },
   data() {
     return {

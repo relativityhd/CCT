@@ -82,24 +82,20 @@
                   ></cv-number-input>
                 </div>
 
-                <div class="info-container" v-if="product.customized">
+                <div class="info-container" v-if="product.custom.customized">
                   <h6>{{ $t('tableHeads.info') }}</h6>
-                  <cv-structured-list v-if="product.customized">
+                  <cv-structured-list>
                     <template slot="headings"></template>
                     <template slot="items">
                       <cv-structured-list-item
                         v-for="item in [
                           {
-                            name: $t('tableHeads.custom'),
-                            value: product.customized ? $t('yes') : $t('no')
-                          },
-                          {
                             name: $t('tableHeads.fixed'),
                             value: product.info.priceStarting ? $t('yes') : $t('no')
                           },
-                          { name: $t('width'), value: product.width },
-                          { name: $t('height'), value: product.height },
-                          { name: $t('depth'), value: product.depth }
+                          { name: $t('width'), value: product.custom.width },
+                          { name: $t('height'), value: product.custom.height },
+                          { name: $t('depth'), value: product.custom.depth }
                         ]"
                         :key="item.name"
                       >
@@ -112,8 +108,6 @@
                       </cv-structured-list-item>
                     </template>
                   </cv-structured-list>
-
-                  <h6 v-else>{{ $t('notCustom') }}</h6>
                 </div>
 
                 <div class="selectables-container" v-if="product.selectables.length">
@@ -244,13 +238,7 @@
       <div class="no-items" v-else>
         <h6>{{ $t('noItems') }}</h6>
         <br />
-        <cv-button
-          @click="
-            () => {
-              $router.push('tool')
-            }
-          "
-        >
+        <cv-button @click="$router.push('tool')">
           {{ $t('toStore') }}
         </cv-button>
       </div>
@@ -262,7 +250,7 @@
 import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
 
 export default {
-  name: 'Basket',
+  name: 'BasketPage',
   data() {
     return {
       products: [],

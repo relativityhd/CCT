@@ -15,34 +15,7 @@
           <h6>{{ selectable.name }}</h6>
           <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
 
-          <cv-accordion class="custom-container" v-if="selectable.customizable">
-            <cv-accordion-item>
-              <template slot="title">{{ $t('customize') }}</template>
-              <template slot="content">
-                <cv-number-input
-                  :label="$t('width')"
-                  v-model="selectable.custom.width"
-                  :mobile="$store.state.mobile"
-                ></cv-number-input>
-
-                <br />
-
-                <cv-number-input
-                  :label="$t('height')"
-                  v-model="selectable.custom.height"
-                  :mobile="$store.state.mobile"
-                ></cv-number-input>
-
-                <br />
-
-                <cv-number-input
-                  :label="$t('depth')"
-                  v-model="selectable.custom.depth"
-                  :mobile="$store.state.mobile"
-                ></cv-number-input>
-              </template>
-            </cv-accordion-item>
-          </cv-accordion>
+          <ProductCustomization v-if="selectable.customizable" :custom="selectable.custom" :pname="selectable.name" />
         </div>
       </div>
     </cv-tile>
@@ -52,10 +25,15 @@
 </template>
 
 <script>
+import ProductCustomization from './ProductCustomization'
+
 export default {
   name: 'Selectables',
   props: {
     selectables: Array
+  },
+  components: {
+    ProductCustomization
   }
 }
 </script>

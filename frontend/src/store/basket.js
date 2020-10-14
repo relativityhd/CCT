@@ -16,7 +16,7 @@ export default {
     products: []
   },
   mutations: {
-    addProduct(state, { id, info, selectables, customized, width, height, depth }) {
+    addProduct(state, { id, info, price, selectables, custom }) {
       let newBasketId = 0
       while (state.products.findIndex(p => p.basketId === newBasketId) !== -1) {
         newBasketId++
@@ -24,22 +24,26 @@ export default {
       const newProduct = {
         basketId: newBasketId,
         id,
-        info,
+        info: { ...info },
+        price: { ...price },
         selectables:
           selectables.map(s => {
             const newS = { ...s }
-            if (newS.customized === false) {
-              newS.custom = { width: 0, height: 0, depth: 0 }
-            } else {
-              newS.custom = { ...s.custom }
+            newS.custom = s.custom.customized ? { ...s.custom } : {
+              height: 0,
+              width: 0,
+              depth: 0,
+              customized: false
             }
             return newS
           }) || [],
         quantity: 1,
-        customized: customized || false,
-        width: customized ? width || 0 : 0,
-        height: customized ? height || 0 : 0,
-        depth: customized ? depth || 0 : 0
+        custom: custom.customized ? { ...custom } : {
+          height: 0,
+          width: 0,
+          depth: 0,
+          customized: false
+        }
       }
 
       const productsInBasket = state.products.filter(product => product.id === id)
@@ -47,10 +51,7 @@ export default {
         let inBasket = false
         productsInBasket.forEach(productInBasket => {
           if (
-            productInBasket.customized === newProduct.customized &&
-            productInBasket.width === newProduct.width &&
-            productInBasket.height === newProduct.height &&
-            productInBasket.depth === newProduct.depth &&
+            hash({ ...productInBasket.custom }) === hash({ ...newProduct.custom }) &&
             hash(productInBasket.selectables.sort(compareSelectable)) ===
               hash(newProduct.selectables.sort(compareSelectable))
           ) {

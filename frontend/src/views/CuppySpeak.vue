@@ -95,7 +95,7 @@ export default {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 90%;
   width: 0;
   height: 0;
   border: 20px solid transparent;
@@ -122,5 +122,6 @@ button {
   border: none;
   width: max-content;
   margin-top: 3px;
+  cursor: pointer;
 }
 </style>

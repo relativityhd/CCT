@@ -51,8 +51,10 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   height: 15rem;
-  width: max-content;
+  width: 10rem;
+  overflow: visible;
   transform: rotate(-10deg);
+  cursor: pointer;
 }
 .cuppy-hoveraround {
   animation: hoveraround 15s ease-in-out 0s alternate;
@@ -69,7 +71,7 @@ export default {
   transition: opacity 0.2s ease;
 }
 .CuppySpeak {
-  transform: translateY(-100%);
+  transform: translate(-80%, -100%);
 }
 @keyframes hoveraround {
   0%,

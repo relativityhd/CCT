@@ -46,7 +46,7 @@ export default {
     "welcome": "Welcome to the Cupbaord Ltd.-Shop",
     "cuppyhelp": "Cuppy will asisst you!",
     "marketing":"We are Cup"
-  },ya
+  },
   "de":{
     "welcome": "Willkommen im Cupboard Ltd.-Shop",
     "cuppyhelp": "Cuppy hilft dir dabei!",

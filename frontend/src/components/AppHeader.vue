@@ -10,35 +10,21 @@
     </cv-header-name>
 
     <cv-header-nav aria-label="Carbon nav">
-      <cv-header-menu-item
-        v-for="link in links"
-        :key="link.to"
-        :to="link.to"
-        :active="link.active"
-      >
+      <cv-header-menu-item v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
         {{ link.name }}
       </cv-header-menu-item>
     </cv-header-nav>
 
     <div class="actions">
-      <cv-header-global-action
-        aria-label="Shopping Cart"
-        aria-controls="shopping-cart-panel"
-      >
+      <cv-header-global-action aria-label="Shopping Cart" aria-controls="shopping-cart-panel">
         <ShoppingCart20 />
       </cv-header-global-action>
-      <cv-header-global-action
-        aria-label="Locations"
-        aria-controls="location-panel"
-        ref="earthIcon"
-      >
+
+      <cv-header-global-action aria-label="Locations" aria-controls="location-panel" ref="earthIcon">
         <Earth20 />
       </cv-header-global-action>
-      <cv-header-global-action
-        aria-label="Languages"
-        aria-controls="language-panel"
-        ref="translateIcon"
-      >
+
+      <cv-header-global-action aria-label="Languages" aria-controls="language-panel" ref="translateIcon">
         <Translate20 />
       </cv-header-global-action>
     </div>
@@ -46,12 +32,7 @@
     <template v-slot:left-panels>
       <cv-side-nav id="side-nav" fixed>
         <cv-side-nav-items>
-          <cv-side-nav-link
-            v-for="link in links"
-            :key="link.to"
-            :to="link.to"
-            :active="link.active"
-          >
+          <cv-side-nav-link v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
             {{ link.name }}
           </cv-side-nav-link>
         </cv-side-nav-items>
@@ -106,7 +87,7 @@ export default {
   data() {
     let links = [
       { name: this.$i18n.t('region'), to: '/' },
-      //{ name: this.$i18n.t('tool'), to: '/tool' },
+      { name: this.$i18n.t('tool'), to: '/tool' },
       { name: this.$i18n.t('about'), to: '/about' },
       { name: this.$i18n.t('catalogue'), to: '/categories' }
     ]

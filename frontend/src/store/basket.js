@@ -1,9 +1,7 @@
 import * as hash from 'object-hash'
 
 function removeProduct(state, basketId) {
-  const indexInProducts = state.products.findIndex(
-    product => product.basketId === basketId
-  )
+  const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
   if (indexInProducts === -1) return
   state.products.splice(indexInProducts, 1)
 }
@@ -18,10 +16,7 @@ export default {
     products: []
   },
   mutations: {
-    addProduct(
-      state,
-      { id, info, selectables, customized, width, height, depth }
-    ) {
+    addProduct(state, { id, info, selectables, customized, width, height, depth }) {
       let newBasketId = 0
       while (state.products.findIndex(p => p.basketId === newBasketId) !== -1) {
         newBasketId++
@@ -47,9 +42,7 @@ export default {
         depth: customized ? depth || 0 : 0
       }
 
-      const productsInBasket = state.products.filter(
-        product => product.id === id
-      )
+      const productsInBasket = state.products.filter(product => product.id === id)
       if (productsInBasket.length >= 0) {
         let inBasket = false
         productsInBasket.forEach(productInBasket => {
@@ -78,9 +71,7 @@ export default {
         removeProduct(state, basketId)
         return
       }
-      const indexInProducts = state.products.findIndex(
-        product => product.basketId === basketId
-      )
+      const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
 
       if (indexInProducts !== -1) {
         state.products[indexInProducts].quantity = quantity

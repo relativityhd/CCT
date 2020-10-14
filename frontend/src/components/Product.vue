@@ -5,11 +5,7 @@
     </div>
     <div class="product-container" v-else>
       <div class="product-info">
-        <img
-          class="product-image"
-          :src="product.imageUrl"
-          alt="Image of Product"
-        />
+        <img class="product-image" :src="product.imageUrl" alt="Image of Product" />
         <div class="product-body">
           <h3>{{ product.name }}</h3>
           <h6>{{ $store.getters.formatPrice(product.price) }}</h6>
@@ -29,19 +25,12 @@
             class="selectable-tile"
           >
             <div class="inner-tile">
-              <img
-                class="tile-image"
-                :src="selectable.imageUrl"
-                alt="Image of Selectable"
-              />
+              <img class="tile-image" :src="selectable.imageUrl" alt="Image of Selectable" />
               <div class="tile-body">
                 <h6>{{ selectable.name }}</h6>
                 <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
 
-                <cv-accordion
-                  class="custom-container"
-                  v-if="selectable.customizable"
-                >
+                <cv-accordion class="custom-container" v-if="selectable.customizable">
                   <cv-accordion-item>
                     <template slot="title">{{ $t('customize') }}</template>
                     <template slot="content">
@@ -50,13 +39,17 @@
                         v-model="selectable.custom.width"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
+
                       <br />
+
                       <cv-number-input
                         :label="$t('height')"
                         v-model="selectable.custom.height"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
+
                       <br />
+
                       <cv-number-input
                         :label="$t('depth')"
                         v-model="selectable.custom.depth"
@@ -78,13 +71,17 @@
                   v-model="custom.width"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
+
                 <br />
+
                 <cv-number-input
                   :label="$t('height')"
                   v-model="custom.height"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
+
                 <br />
+
                 <cv-number-input
                   :label="$t('depth')"
                   v-model="custom.depth"
@@ -103,59 +100,55 @@
             <template slot="content">
               <cv-structured-list class="price-list">
                 <template slot="headings">
-                  <cv-structured-list-heading
-                    >{{ $t('priceList.name') }}
+                  <cv-structured-list-heading>
+                    {{ $t('priceList.name') }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
-                    {{ $t('priceList.net') }}</cv-structured-list-heading
-                  >
-                  <cv-structured-list-heading
-                    >{{
-                      `${$t('priceList.tax')} (${$store.state.locals.vatRate *
-                        100}%)`
-                    }}
+                    {{ $t('priceList.net') }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
-                    {{ $t('priceList.gross') }}</cv-structured-list-heading
-                  >
+                    {{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}
+                  </cv-structured-list-heading>
+                  <cv-structured-list-heading>
+                    {{ $t('priceList.gross') }}
+                  </cv-structured-list-heading>
                 </template>
+
                 <template slot="items">
-                  <cv-structured-list-item
-                    v-for="pItem in price.items"
-                    :key="pItem.name"
-                  >
-                    <cv-structured-list-data>{{
-                      pItem.name
-                    }}</cv-structured-list-data>
-                    <cv-structured-list-data>{{
-                      $store.getters.formatPrice(pItem.net)
-                    }}</cv-structured-list-data>
-                    <cv-structured-list-data>{{
-                      $store.getters.formatPrice(pItem.tax)
-                    }}</cv-structured-list-data>
-                    <cv-structured-list-data>{{
-                      $store.getters.formatPrice(pItem.gross)
-                    }}</cv-structured-list-data>
+                  <cv-structured-list-item v-for="pItem in price.items" :key="pItem.name">
+                    <cv-structured-list-data>
+                      {{ pItem.name }}
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      {{ $store.getters.formatPrice(pItem.net) }}
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      {{ $store.getters.formatPrice(pItem.tax) }}
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      {{ $store.getters.formatPrice(pItem.gross) }}
+                    </cv-structured-list-data>
                   </cv-structured-list-item>
+
                   <cv-structured-list-item>
-                    <cv-structured-list-data
-                      ><h6>{{ $t('sum') }}</h6></cv-structured-list-data
-                    >
-                    <cv-structured-list-data
-                      ><h6>
+                    <cv-structured-list-data>
+                      <h6>{{ $t('sum') }}</h6>
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      <h6>
                         {{ $store.getters.formatPrice(price.net) }}
-                      </h6></cv-structured-list-data
-                    >
-                    <cv-structured-list-data
-                      ><h6>
+                      </h6>
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      <h6>
                         {{ $store.getters.formatPrice(price.tax) }}
-                      </h6></cv-structured-list-data
-                    >
-                    <cv-structured-list-data
-                      ><h6>
+                      </h6>
+                    </cv-structured-list-data>
+                    <cv-structured-list-data>
+                      <h6>
                         {{ $store.getters.formatPrice(price.gross) }}
-                      </h6></cv-structured-list-data
-                    >
+                      </h6>
+                    </cv-structured-list-data>
                   </cv-structured-list-item>
                 </template>
               </cv-structured-list>
@@ -261,10 +254,7 @@ export default {
         })
       this.price.net = this.price.items.reduce((a, b) => a + (b.net || 0), 0)
       this.price.tax = this.price.items.reduce((a, b) => a + (b.tax || 0), 0)
-      this.price.gross = this.price.items.reduce(
-        (a, b) => a + (b.gross || 0),
-        0
-      )
+      this.price.gross = this.price.items.reduce((a, b) => a + (b.gross || 0), 0)
     },
     select(e, id) {
       let selectable = this.selectables.find(s => s.id === id)
@@ -277,10 +267,7 @@ export default {
       const selectables = this.selectables
         .filter(s => s.selected)
         .map(s => {
-          const customized =
-            s.custom.width !== 0 &&
-            s.custom.height !== 0 &&
-            s.custom.depth !== 0
+          const customized = s.custom.width !== 0 && s.custom.height !== 0 && s.custom.depth !== 0
           return { ...s, customized }
         })
 
@@ -288,11 +275,7 @@ export default {
       const height = this.custom.height
       const depth = this.custom.depth
 
-      const customized =
-        this.product.customizable === true &&
-        width !== 0 &&
-        height !== 0 &&
-        depth !== 0
+      const customized = this.product.customizable === true && width !== 0 && height !== 0 && depth !== 0
 
       this.$store.commit('basket/addProduct', {
         id: this.product.id,

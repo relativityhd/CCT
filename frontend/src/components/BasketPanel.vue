@@ -6,11 +6,7 @@
       <div class="product" v-for="product in products" :key="product.basketId">
         <h3>{{ product.quantity }}x</h3>
         <div class="product-info">
-          <img
-            class="product-image"
-            :src="product.info.imageUrl"
-            alt="Image of Product"
-          />
+          <img class="product-image" :src="product.info.imageUrl" alt="Image of Product" />
           <div class="product-body">
             <h6>{{ product.info.name }}</h6>
             <p>{{ $store.getters.formatPrice(product.info.price) }}</p>
@@ -23,11 +19,8 @@
             :label="selectable.name"
             :kind="selectable.customized ? 'blue' : 'cool-gray'"
           />
-          <cv-tag
-            v-if="product.customized"
-            :label="$t('customized')"
-            kind="purple"
-          />
+
+          <cv-tag v-if="product.customized" :label="$t('customized')" kind="purple" />
         </div>
       </div>
     </div>

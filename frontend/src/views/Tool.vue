@@ -11,11 +11,7 @@
             v-model="dropdowns.selectedCategoryId"
             @change="selectCategory"
           >
-            <cv-dropdown-item
-              v-for="category in categories"
-              :key="category.id"
-              :value="`${category.id}`"
-            >
+            <cv-dropdown-item v-for="category in categories" :key="category.id" :value="`${category.id}`">
               {{ category.name }}
             </cv-dropdown-item>
           </cv-dropdown>
@@ -27,11 +23,7 @@
             v-model="dropdowns.selectedProductId"
             @change="selectProduct"
           >
-            <cv-dropdown-item
-              v-for="product in products"
-              :key="product.id"
-              :value="`${product.id}`"
-            >
+            <cv-dropdown-item v-for="product in products" :key="product.id" :value="`${product.id}`">
               {{ product.name }}
             </cv-dropdown-item>
           </cv-dropdown>
@@ -68,25 +60,21 @@ export default {
       this.categories = res.data
       this.categories.forEach(category => {
         category.products = []
-        Vue.axios
-          .get(`/catalogue/categories/${category.id}/products`)
-          .then(res => {
-            const productIds = res.data.map(p => p.id)
-            productIds.forEach(id => {
-              Vue.axios.get(`/catalogue/products/${id}`).then(res => {
-                const product = res.data
-                category.products.push(product)
-                Vue.axios
-                  .get(`/catalogue/products/${id}/selectables`)
-                  .then(res => {
-                    product.selectables = res.data.map(s => ({
-                      ...s,
-                      selected: false
-                    }))
-                  })
+        Vue.axios.get(`/catalogue/categories/${category.id}/products`).then(res => {
+          const productIds = res.data.map(p => p.id)
+          productIds.forEach(id => {
+            Vue.axios.get(`/catalogue/products/${id}`).then(res => {
+              const product = res.data
+              category.products.push(product)
+              Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
+                product.selectables = res.data.map(s => ({
+                  ...s,
+                  selected: false
+                }))
               })
             })
           })
+        })
       })
     })
 
@@ -94,16 +82,12 @@ export default {
   },
   methods: {
     selectCategory() {
-      const selectedCategory = this.categories.find(
-        c => c.id.toString() === this.dropdowns.selectedCategoryId
-      )
+      const selectedCategory = this.categories.find(c => c.id.toString() === this.dropdowns.selectedCategoryId)
       this.products = selectedCategory.products
       this.dropdowns.selectedProductId = ''
     },
     selectProduct() {
-      this.selectedProduct = this.products.find(
-        p => p.id.toString() === this.dropdowns.selectedProductId
-      )
+      this.selectedProduct = this.products.find(p => p.id.toString() === this.dropdowns.selectedProductId)
     }
   }
 }

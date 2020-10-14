@@ -4,11 +4,9 @@
       <h2>{{ $t('title') }}</h2>
       <h4>{{ $t('aboutUs') }}</h4>
       <cv-list>
-        <cv-list-item
-          v-for="key in ['for0', 'for1', 'for2', 'for3']"
-          :key="key"
-          >{{ $t(key) }}</cv-list-item
-        >
+        <cv-list-item v-for="key in ['for0', 'for1', 'for2', 'for3']" :key="key">
+          {{ $t(key) }}
+        </cv-list-item>
       </cv-list>
     </div>
     <img class="berlinimg" src="../assets/startup.jpg" />
@@ -19,11 +17,9 @@
     <div class="usp">
       <h4>{{ $t('uspOpener') }}</h4>
       <cv-list>
-        <cv-list-item
-          v-for="key in ['usp0', 'usp1', 'usp2', 'usp3']"
-          :key="key"
-          >{{ $t(key) }}</cv-list-item
-        >
+        <cv-list-item v-for="key in ['usp0', 'usp1', 'usp2', 'usp3']" :key="key">
+          {{ $t(key) }}
+        </cv-list-item>
       </cv-list>
     </div>
   </div>

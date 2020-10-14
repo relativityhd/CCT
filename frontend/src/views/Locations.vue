@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ $t('welcome') }}</h1>
-    {{ $t('marketing') }}
+    <h3>{{ $t('marketing') }} </h3>
     <div class="closetimage">
       <img src="../assets/cupboard.png" alt="" />
     </div>
@@ -36,8 +36,9 @@ export default {
 }
 
 .closetimage img {
-  width: 100%;
-  height: 30vh;
+  width: 95%;
+  height: 60vh;
+  object-fit: cover;
 }
 </style>
 <i18n>

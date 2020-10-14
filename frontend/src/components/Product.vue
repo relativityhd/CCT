@@ -259,14 +259,8 @@ export default {
             gross: this.calcSubBack(gross)
           })
         })
-      this.price.net = this.price.items.reduce(
-        (a, b) => a + (b.net || 0),
-        0
-      )
-      this.price.tax = this.price.items.reduce(
-        (a, b) => a + (b.tax || 0),
-        0
-      )
+      this.price.net = this.price.items.reduce((a, b) => a + (b.net || 0), 0)
+      this.price.tax = this.price.items.reduce((a, b) => a + (b.tax || 0), 0)
       this.price.gross = this.price.items.reduce(
         (a, b) => a + (b.gross || 0),
         0

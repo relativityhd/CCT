@@ -1,48 +1,55 @@
 <template>
   <div class="about">
     <div class="aboutUs">
-      <h2>{{ $t('title')}}</h2>
+      <h2>{{ $t('title') }}</h2>
       <h4>{{ $t('aboutUs') }}</h4>
       <cv-list>
-        <cv-list-item v-for="key in ['for0', 'for1', 'for2', 'for3']" :key="key">{{ $t(key) }}</cv-list-item>
+        <cv-list-item
+          v-for="key in ['for0', 'for1', 'for2', 'for3']"
+          :key="key"
+          >{{ $t(key) }}</cv-list-item
+        >
       </cv-list>
     </div>
-    <img class=berlinimg src="../assets/startup.jpg">
+    <img class="berlinimg" src="../assets/startup.jpg" />
     <div class="ourVision">
       <h4>{{ $t('ourVision') }}</h4>
       {{ $t('ourVisionText') }}
     </div>
     <div class="usp">
-      <h4>{{$t('uspOpener')}} </h4>
+      <h4>{{ $t('uspOpener') }}</h4>
       <cv-list>
-        <cv-list-item v-for="key in ['usp0','usp1', 'usp2', 'usp3',]" :key="key">{{ $t(key) }}</cv-list-item>
+        <cv-list-item
+          v-for="key in ['usp0', 'usp1', 'usp2', 'usp3']"
+          :key="key"
+          >{{ $t(key) }}</cv-list-item
+        >
       </cv-list>
-
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-h4{
+h4 {
   padding-bottom: 0.2em;
 }
-.about{
+.about {
   padding-top: 1.5rem;
   text-align: left;
   padding-bottom: 2rem;
 }
-.aboutUs{
+.aboutUs {
   margin-left: 10vw;
   padding-bottom: 1.5rem;
 }
-.ourVision{
+.ourVision {
   padding-top: 1.5rem;
   margin-left: 10vw;
 }
-.usp{
+.usp {
   padding-top: 1.5rem;
   margin-left: 10vw;
 }
-.berlinimg{
+.berlinimg {
   object-fit: cover;
   height: 40vh;
   width: 100%;

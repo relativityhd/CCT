@@ -171,7 +171,7 @@ export default {
       this.calcSum()
     })
 
-    this.unsubscribe = this.$store.subscribe((mutation) => {
+    this.unsubscribe = this.$store.subscribe(mutation => {
       if (mutation.type !== 'setLocation') return
       this.calcSum()
     })

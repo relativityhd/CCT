@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppHeader />
-    <div id=theCuppy>
+    <div id="theCuppy">
       <Cuppy></Cuppy>
     </div>
     <router-view id="app-view" />
@@ -14,7 +14,8 @@ import Cuppy from './views/Cuppy'
 export default {
   name: 'App',
   components: {
-    AppHeader, Cuppy
+    AppHeader,
+    Cuppy
   },
   methods: {
     onResize() {
@@ -42,7 +43,7 @@ export default {
   margin-top: calc(48px + 24px);
   min-height: calc(100vh - 48px - 24px);
 }
-#theCuppy{
+#theCuppy {
   position: fixed;
   bottom: 2rem;
   bottom: -2rem;

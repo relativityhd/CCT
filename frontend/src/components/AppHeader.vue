@@ -24,12 +24,14 @@
       <cv-header-global-action
         aria-label="Locations"
         aria-controls="location-panel"
+        ref="earthIcon"
       >
         <Earth20 />
       </cv-header-global-action>
       <cv-header-global-action
         aria-label="Languages"
         aria-controls="language-panel"
+        ref="translateIcon"
       >
         <Translate20 />
       </cv-header-global-action>
@@ -110,6 +112,12 @@ export default {
   mounted() {
     this.$router.afterEach(to => {
       this.switchPage(to)
+    })
+    this.$root.$on('openLoc', () => {
+      this.$refs.earthIcon.$el.click()
+    })
+    this.$root.$on('openLang', () => {
+      this.$refs.translateIcon.$el.click()
     })
   },
   destroyed() {

@@ -11,6 +11,7 @@ export default new Vuex.Store({
    * languages: de, en, fr, it
    */
   state: {
+    mobile: window.innerWidth <= 800,
     lang: 'en',
     location: 'gb',
     vatRate: 0.2,
@@ -33,7 +34,7 @@ export default new Vuex.Store({
         lang: 'en',
         name: 'Great Britain',
         currency: '£',
-        currenyIso: 'EUR',
+        currenyIso: 'GBP',
         numberFormat: 'en-GB',
         vatRate: 0.2,
         selected: true
@@ -96,6 +97,17 @@ export default new Vuex.Store({
       { isoCode: 'fr', name: 'Français', selected: false }
     ]
   },
+  getters: {
+    formatPrice: state => price => {
+      const formatter = new Intl.NumberFormat(state.numberFormat, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: state.currenyIso
+      })
+      return formatter.format(price)
+    }
+  },
   mutations: {
     setLang(state, lang) {
       state.lang = lang
@@ -106,7 +118,6 @@ export default new Vuex.Store({
     },
     setLocation(state, location) {
       const newLocation = state.locations.find(loc => loc.isoCode === location)
-      console.log('--DEBUG : setLocation -> newLocation', newLocation)
       state.location = newLocation.isoCode
       state.vatRate = newLocation.vatRate
       state.currency = newLocation.currency
@@ -115,6 +126,9 @@ export default new Vuex.Store({
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
+    },
+    viewChange(state) {
+      state.mobile = window.innerWidth <= 800
     }
   },
   actions: {},

@@ -1,11 +1,13 @@
 <template>
-  <div class="location-wrapper">
-    <cv-button
-      v-for="location in locations"
-      :key="location.isoCode"
-      @click="setLocation(location.isoCode, location.lang)"
-      >{{ location.name }}</cv-button
-    >
+  <div class="home">
+    <h1>{{ $t('welcome') }}</h1>
+    <h3>{{ $t('marketing') }} </h3>
+    <div class="closetimage">
+      <img src="../assets/cupboard.png" alt="" />
+    </div>
+    <div class="cuppyhint">
+      <h2>{{ $t('cuppyhelp') }} &#8594;</h2>
+    </div>
   </div>
 </template>
 
@@ -26,3 +28,30 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.cuppyhint {
+  position: fixed;
+  right: 20vw;
+  bottom: 7vh;
+}
+
+.closetimage img {
+  width: 95%;
+  height: 60vh;
+  object-fit: cover;
+}
+</style>
+<i18n>
+{
+  "en":{
+    "welcome": "Welcome to the Cupbaord Ltd.-Shop",
+    "cuppyhelp": "Cuppy will asisst you!",
+    "marketing":"We are Cup"
+  },
+  "de":{
+    "welcome": "Willkommen im Cupboard Ltd.-Shop",
+    "cuppyhelp": "Cuppy hilft dir dabei!",
+    "marketing": "Warum willst du einen Schrank wenn du deinen Schrank haben kannst?"
+  }
+}
+</i18n>

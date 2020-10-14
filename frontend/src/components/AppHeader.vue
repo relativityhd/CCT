@@ -104,7 +104,7 @@ export default {
   data() {
     let links = [
       { name: this.$i18n.t('region'), to: '/' },
-      { name: this.$i18n.t('tool'), to: '/tool' },
+      //{ name: this.$i18n.t('tool'), to: '/tool' },
       { name: this.$i18n.t('about'), to: '/about' },
       { name: this.$i18n.t('catalogue'), to: '/categories' }
     ]

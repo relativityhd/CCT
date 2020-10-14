@@ -9,8 +9,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import AppHeader from './components/AppHeader'
 import Cuppy from './views/Cuppy'
+
 export default {
   name: 'App',
   components: {
@@ -19,10 +21,20 @@ export default {
   methods: {
     onResize() {
       this.$store.commit('viewChange')
+    },
+    setRegion() {
+      Vue.axios.get('http://ip2c.org/s').then(res => {
+        const location = this.$store.state.locals.locations.find(
+          l => l.isoCode === res.data.split(';')[1].toLowerCase()
+        )
+        this.$store.commit('setLocation', location.isoCode)
+        this.$store.commit('setLang', location.lang)
+      })
     }
   },
   mounted() {
     window.addEventListener('resize', this.onResize)
+    this.setRegion()
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)

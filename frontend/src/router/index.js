@@ -28,7 +28,18 @@ const routes = [
   {
     path: '/tool',
     name: 'Tool',
-    component: () => import('../views/Tool.vue')
+    component: () => import('../views/Tool.vue'),
+    meta: {
+      title: 'Tool'
+    }
+  },
+  {
+    path: '/basket',
+    name: 'Basket',
+    component: () => import('../views/Basket.vue'),
+    meta: {
+      title: 'Basket'
+    }
   },
   {
     path: '/categories',
@@ -42,7 +53,7 @@ const routes = [
   },
   {
     path: '/product/:productId',
-    name: 'Product',
+    name: 'ProductPage',
     component: () => import('../views/Product.vue')
   }
 ]

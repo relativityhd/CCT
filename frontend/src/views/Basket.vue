@@ -379,18 +379,9 @@ export default {
         })
       })
       price.single = {
-        net: price.items.reduce(
-          (a, b) => a + (b.net || 0),
-          0
-        ),
-        tax: price.items.reduce(
-          (a, b) => a + (b.tax || 0),
-          0
-        ),
-        gross: price.items.reduce(
-          (a, b) => a + (b.gross || 0),
-          0
-        )
+        net: price.items.reduce((a, b) => a + (b.net || 0), 0),
+        tax: price.items.reduce((a, b) => a + (b.tax || 0), 0),
+        gross: price.items.reduce((a, b) => a + (b.gross || 0), 0)
       }
       price.sum = {
         net: this.calcSubBack(this.calcSub(price.single.net) * quantity),

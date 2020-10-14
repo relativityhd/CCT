@@ -1,13 +1,30 @@
 <template>
-<div class="cuppy-hoveraround">
-  <div id="cuppy" @click="()=>{cuppyButton()}">
-    <div id="CuppyBubble" v-bind:class="showCuppyBubble ? 'visible': 'invisible'">
-      <div class="CuppySpeak" @click="(event)=>{event.stopPropagation()}">
-        <CuppySpeak :showCuppyBubble="showCuppyBubble"/>
+  <div class="cuppy-hoveraround">
+    <div
+      id="cuppy"
+      @click="
+        () => {
+          cuppyButton()
+        }
+      "
+    >
+      <div
+        id="CuppyBubble"
+        v-bind:class="showCuppyBubble ? 'visible' : 'invisible'"
+      >
+        <div
+          class="CuppySpeak"
+          @click="
+            event => {
+              event.stopPropagation()
+            }
+          "
+        >
+          <CuppySpeak :showCuppyBubble="showCuppyBubble" />
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -19,7 +36,7 @@ export default {
   methods: {
     cuppyButton() {
       this.showCuppyBubble = !this.showCuppyBubble
-     }
+    }
   },
   data: () => {
     return {
@@ -29,38 +46,38 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-#cuppy{
-  background-image: url("./../assets/cuppy.svg");
+#cuppy {
+  background-image: url('./../assets/cuppy.svg');
   background-repeat: no-repeat;
   background-size: contain;
   height: 15rem;
   width: max-content;
   transform: rotate(-10deg);
 }
-.cuppy-hoveraround{
+.cuppy-hoveraround {
   animation: hoveraround 15s ease-in-out 0s alternate;
   animation-iteration-count: infinite;
 }
-.visible{
+.visible {
   opacity: 1;
 }
-.invisible{
+.invisible {
   opacity: 0;
 }
-#CuppyBubble{
+#CuppyBubble {
   transform: rotate(10deg);
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
 }
-.CuppySpeak{
+.CuppySpeak {
   transform: translateY(-100%);
 }
 @keyframes hoveraround {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
-  50%{
-    transform: translateY(2.5vh)
+  50% {
+    transform: translateY(2.5vh);
   }
 }
 </style>

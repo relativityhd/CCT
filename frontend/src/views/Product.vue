@@ -6,7 +6,7 @@
 
 <script>
 import Vue from 'vue'
-import Product from '../components/Product'
+import Product from '../components/Product/Product'
 
 export default {
   name: 'ProductPage',
@@ -24,7 +24,7 @@ export default {
     Vue.axios.get(`/catalogue/products/${productId}`).then(res => {
       let product = res.data
       Vue.axios.get(`/catalogue/products/${productId}/selectables`).then(res => {
-        product.selectables = res.data.map(s => ({ ...s, selected: false }))
+        product.selectables = res.data
         this.selectedProduct = product
       })
     })

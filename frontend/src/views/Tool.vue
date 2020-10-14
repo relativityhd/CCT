@@ -37,7 +37,7 @@
 
 <script>
 import Vue from 'vue'
-import Product from '../components/Product'
+import Product from '../components/Product/Product'
 
 export default {
   name: 'Tool',
@@ -67,10 +67,7 @@ export default {
               const product = res.data
               category.products.push(product)
               Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
-                product.selectables = res.data.map(s => ({
-                  ...s,
-                  selected: false
-                }))
+                product.selectables = res.data
               })
             })
           })

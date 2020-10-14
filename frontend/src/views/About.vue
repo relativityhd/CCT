@@ -2,9 +2,11 @@
   <div class="about">
     <h1>{{ $t('about') }}</h1>
     <p>{{ $t('message') }}</p>
+    <Cuppy />
   </div>
 </template>
-
+<script>
+</script>
 <i18n>
 {
   "en": {

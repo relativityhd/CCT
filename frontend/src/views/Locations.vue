@@ -14,7 +14,7 @@ export default {
   name: 'Locations',
   data() {
     return {
-      locations: this.$store.state.locations
+      locations: this.$store.state.locals.locations
     }
   },
   methods: {

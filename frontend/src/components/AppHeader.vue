@@ -22,6 +22,12 @@
 
     <div class="actions">
       <cv-header-global-action
+        aria-label="Shopping Cart"
+        aria-controls="shopping-cart-panel"
+      >
+        <ShoppingCart20 />
+      </cv-header-global-action>
+      <cv-header-global-action
         aria-label="Locations"
         aria-controls="location-panel"
         ref="earthIcon"
@@ -80,6 +86,10 @@
           </cv-switcher-item>
         </cv-switcher>
       </cv-header-panel>
+
+      <cv-header-panel id="shopping-cart-panel">
+        <BasketPanel />
+      </cv-header-panel>
     </template>
   </cv-header>
 </template>
@@ -87,9 +97,12 @@
 <script>
 import Earth20 from '@carbon/icons-vue/es/earth/20'
 import Translate20 from '@carbon/icons-vue/es/translate/20'
+import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
+import BasketPanel from './BasketPanel'
+
 export default {
   name: 'AppHeader',
-  components: { Earth20, Translate20 },
+  components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
       { name: this.$i18n.t('region'), to: '/' },
@@ -102,12 +115,9 @@ export default {
     })
     return {
       links,
-      languages: this.$store.state.languages,
-      locations: this.$store.state.locations
+      languages: this.$store.state.locals.languages,
+      locations: this.$store.state.locals.locations
     }
-  },
-  created() {
-    window.addEventListener('resize', this.viewChange)
   },
   mounted() {
     this.$router.afterEach(to => {
@@ -119,9 +129,6 @@ export default {
     this.$root.$on('openLang', () => {
       this.$refs.translateIcon.$el.click()
     })
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.viewChange)
   },
   methods: {
     switchLanguage(lang) {
@@ -177,6 +184,15 @@ a.bx--header__menu-item[aria-current='page']::after,
 }
 .bx--header-panel {
   background-color: $interactive-02;
+  overflow-y: auto;
+}
+
+.bx--switcher__item-link--selected {
+  background-color: $active-primary;
+}
+
+.bx--switcher__item-link:hover:not(.bx--switcher__item-link--selected) {
+  background-color: $hover-primary;
 }
 </style>
 

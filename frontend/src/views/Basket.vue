@@ -363,9 +363,9 @@ export default {
       price.items = [
         {
           name: product.name,
-          net: net,
-          tax: gross - net,
-          gross: gross
+          net: this.calcSubBack(net),
+          tax: this.calcSubBack(gross - net),
+          gross: this.calcSubBack(gross)
         }
       ]
       selectables.forEach(s => {
@@ -373,22 +373,22 @@ export default {
         const net = this.calcNet(gross)
         price.items.push({
           name: s.name,
-          net: net,
-          tax: gross - net,
-          gross: gross
+          net: this.calcSubBack(net),
+          tax: this.calcSubBack(gross - net),
+          gross: this.calcSubBack(gross)
         })
       })
       price.single = {
         net: price.items.reduce(
-          (a, b) => a + (this.calcSubBack(b.net) || 0),
+          (a, b) => a + (b.net || 0),
           0
         ),
         tax: price.items.reduce(
-          (a, b) => a + (this.calcSubBack(b.tax) || 0),
+          (a, b) => a + (b.tax || 0),
           0
         ),
         gross: price.items.reduce(
-          (a, b) => a + (this.calcSubBack(b.gross) || 0),
+          (a, b) => a + (b.gross || 0),
           0
         )
       }

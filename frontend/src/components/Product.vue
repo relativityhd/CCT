@@ -242,9 +242,9 @@ export default {
       this.price.items = [
         {
           name: this.product.name,
-          net: net,
-          tax: gross - net,
-          gross: gross
+          net: this.calcSubBack(net),
+          tax: this.calcSubBack(gross - net),
+          gross: this.calcSubBack(gross)
         }
       ]
       this.selectables
@@ -254,21 +254,21 @@ export default {
           const net = this.calcNet(gross)
           this.price.items.push({
             name: s.name,
-            net: net,
-            tax: gross - net,
-            gross: gross
+            net: this.calcSubBack(net),
+            tax: this.calcSubBack(gross - net),
+            gross: this.calcSubBack(gross)
           })
         })
       this.price.net = this.price.items.reduce(
-        (a, b) => a + (this.calcSubBack(b.net) || 0),
+        (a, b) => a + (b.net || 0),
         0
       )
       this.price.tax = this.price.items.reduce(
-        (a, b) => a + (this.calcSubBack(b.tax) || 0),
+        (a, b) => a + (b.tax || 0),
         0
       )
       this.price.gross = this.price.items.reduce(
-        (a, b) => a + (this.calcSubBack(b.gross) || 0),
+        (a, b) => a + (b.gross || 0),
         0
       )
     },

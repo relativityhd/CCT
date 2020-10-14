@@ -15,6 +15,17 @@ export default {
   name: 'App',
   components: {
     AppHeader, Cuppy
+  },
+  methods: {
+    onResize() {
+      this.$store.commit('viewChange')
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.onResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
   }
 }
 </script>
@@ -28,8 +39,8 @@ export default {
   color: $text-01;
 }
 #app-view {
-  margin-top: 48px;
-  min-height: calc(100vh - 48px);
+  margin-top: calc(48px + 24px);
+  min-height: calc(100vh - 48px - 24px);
 }
 #theCuppy{
   position: fixed;

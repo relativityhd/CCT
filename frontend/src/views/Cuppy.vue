@@ -8,10 +8,7 @@
         }
       "
     >
-      <div
-        id="CuppyBubble"
-        v-bind:class="showCuppyBubble ? 'visible' : 'invisible'"
-      >
+      <div id="CuppyBubble" v-bind:class="showCuppyBubble ? 'visible' : 'invisible'">
         <div
           class="CuppySpeak"
           @click="

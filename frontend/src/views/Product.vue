@@ -23,12 +23,10 @@ export default {
 
     Vue.axios.get(`/catalogue/products/${productId}`).then(res => {
       let product = res.data
-      Vue.axios
-        .get(`/catalogue/products/${productId}/selectables`)
-        .then(res => {
-          product.selectables = res.data.map(s => ({ ...s, selected: false }))
-          this.selectedProduct = product
-        })
+      Vue.axios.get(`/catalogue/products/${productId}/selectables`).then(res => {
+        product.selectables = res.data.map(s => ({ ...s, selected: false }))
+        this.selectedProduct = product
+      })
     })
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ $t('welcome') }}</h1>
-    <h3>{{ $t('marketing') }} </h3>
+    <h3>{{ $t('marketing') }}</h3>
     <div class="closetimage">
       <img src="../assets/cupboard.png" alt="" />
     </div>

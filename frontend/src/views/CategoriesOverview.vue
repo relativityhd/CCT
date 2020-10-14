@@ -2,13 +2,7 @@
   <div class="overview-wrapper">
     <h1>{{ $t('title') }}</h1>
     <div class="categories-container">
-      <cv-tile
-        v-for="ct in categories"
-        :key="ct.id"
-        kind="clickable"
-        :to="ct.to"
-        class="category-tile"
-      >
+      <cv-tile v-for="ct in categories" :key="ct.id" kind="clickable" :to="ct.to" class="category-tile">
         <img class="tile-image" :src="ct.imageUrl" alt="Image of Category" />
         <div class="tile-body">
           <h2>{{ ct.name }}</h2>

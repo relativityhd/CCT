@@ -2,34 +2,16 @@
   <div class="category-page-wrapper">
     <h1>{{ `${$t('title')} ${name}` }}</h1>
     <div class="products-wrapper">
-      <cv-tile
-        v-for="product in products"
-        :key="product.id"
-        kind="clickable"
-        :to="product.to"
-        class="product-tile"
-      >
-        <img
-          class="tile-image"
-          :src="product.imageUrl"
-          alt="Image of product"
-        />
+      <cv-tile v-for="product in products" :key="product.id" kind="clickable" :to="product.to" class="product-tile">
+        <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
         <div class="tile-body">
           <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
           <p>{{ $store.getters.formatPrice(product.price) }}</p>
           <p>
-            {{
-              `${$t('priceStarting')} - ${
-                product.priceStarting ? $t('yes') : $t('no')
-              }`
-            }}
+            {{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}` }}
           </p>
           <p>
-            {{
-              `${$t('customizable')} - ${
-                product.customizable ? $t('yes') : $t('no')
-              }`
-            }}
+            {{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}` }}
           </p>
         </div>
       </cv-tile>

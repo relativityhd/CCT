@@ -3,11 +3,17 @@
     <div id="bubblecontent">
       <h6 id="greet">{{ cuppyGreet }}</h6>
       <div id="buttoncontainer">
-        <router-link to="/" tag="button">{{ $t('location') }}</router-link>
-        <router-link to="/support" tag="button">{{
-          $t('support')
-        }}</router-link>
-        <router-link to="/about" tag="button">{{ $t('imprint') }}</router-link>
+        <button @click="$root.$emit('openLoc')">
+          {{ $t('location') }}
+        </button>
+
+        <button @click="$root.$emit('openLang')">
+          {{ $t('language') }}
+        </button>
+
+        <button @click="toSide('/about')">
+          {{ $t('imprint') }}
+        </button>
       </div>
     </div>
   </div>
@@ -30,6 +36,9 @@ export default {
       const puns = this.$t('puns')
       console.log(puns[0])
       return puns[Math.floor(Math.random() * 4)]
+    },
+    toSide(path) {
+      if (this.$route.path !== path) this.$router.push(path)
     }
   },
   watch: {
@@ -43,6 +52,7 @@ export default {
 {
   "en":{
     "location": "I'm from somewhere else!",
+    "language": "I'm speaking a different Languge",
     "support": "I need some help",
     "imprint": "Who made this page?",
     "puns": [
@@ -55,6 +65,7 @@ export default {
   },
   "de":{
     "location": "Ich komme von woanders!",
+    "language": "Ich spreche eine andere Sprache",
     "support": "Ich brauche Hilfe",
     "imprint": "Wer ist verantwortlich?",
     "puns": [
@@ -67,6 +78,7 @@ export default {
   },
   "it":{
     "location": "Vengo da un altro posto!",
+    "language": "Parlo una lingua diversa",
     "support": "Ho bisogno di aiuto",
     "imprint": "Chi è il responsabile?"
   }
@@ -83,7 +95,7 @@ export default {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 90%;
   width: 0;
   height: 0;
   border: 20px solid transparent;
@@ -110,5 +122,6 @@ button {
   border: none;
   width: max-content;
   margin-top: 3px;
+  cursor: pointer;
 }
 </style>

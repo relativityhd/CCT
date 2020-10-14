@@ -17,7 +17,7 @@ module.exports = {
         @include carbon--theme();
         ${
           process.env.NODE_ENV === 'production'
-            ? "@import '~carbon-components/scss/globals/scss/styles.scss';"
+            ? "@import '~carbon-components/css/carbon-components.css'; @import '~carbon-components/scss/globals/scss/styles.scss';"
             : "@import '~carbon-components/css/carbon-components.css';"
         }`
       }

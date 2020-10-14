@@ -60,5 +60,6 @@ export default {
   bottom: 2rem;
   bottom: -2rem;
   right: 0vw;
+  z-index: 8001;
 }
 </style>

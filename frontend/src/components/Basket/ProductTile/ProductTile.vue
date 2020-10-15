@@ -6,20 +6,22 @@
 
     <Actions class="Actions" :product="product" />
 
-    <ProductCustomization
-      class="custom"
-      v-if="product.info.customizable"
-      :custom="product.custom"
-      :pname="product.info.name" />
+    <EditModal :product="product" />
 
-    <Selectables :selectables="product.selectables" />
+    <cv-tag
+      v-for="selectable in product.selectables"
+      :key="selectable.id"
+      :label="selectable.name"
+      :kind="selectable.custom.customized ? 'blue' : 'cool-gray'"
+    />
+
+    <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />
   </cv-tile>
 </template>
 
 <script>
 import Actions from './Actions'
-import ProductCustomization from '../../Product/ProductCustomization'
-import Selectables from './Selectables'
+import EditModal from './EditModal'
 
 export default {
   name: 'ProductTile',
@@ -28,8 +30,7 @@ export default {
   },
   components: {
     Actions,
-    ProductCustomization,
-    Selectables
+    EditModal
   }
 }
 </script>
@@ -41,7 +42,8 @@ export default {
     "height": "Height",
     "depth": "Depth",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "customized": "Customized"
   }
 }
 </i18n>

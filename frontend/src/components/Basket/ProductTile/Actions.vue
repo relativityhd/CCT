@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="actions-wrapper">
     <cv-number-input
-      label=""
+      class="quantity-input"
+      :label="$t('quantity')"
       :mobile="$store.state.mobile"
       :invalid-message="invalidMessage"
       :value="product.quantity"
@@ -9,6 +10,7 @@
       @input="changeQuantity()"
     ></cv-number-input>
     <cv-icon-button
+      class="delete-btn"
       :icon="iconDelete"
       :label="$t('deleteItem')"
       tip-position="left"
@@ -55,11 +57,35 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.actions-wrapper{
+  display: grid;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:'quantity delete';
+  gap: 20px 10px;
+}
+.quantity-input {
+  grid-area: quantity;
+  max-width: 100%;
+}
+.delete-btn {
+  grid-area: delete;
+  justify-self: center;
+  align-self: end;
+}
+.bx--number--mobile{
+  max-width: 100px;
+}
+</style>
+
 <i18n>
 {
   "en": {
     "invalidNumber": "Must be a number larger than 0!",
-    "deleteItem": "Remove item from your basket"
+    "deleteItem": "Remove item from your basket",
+    "quantity": "Quantity"
   }
 }
 </i18n>

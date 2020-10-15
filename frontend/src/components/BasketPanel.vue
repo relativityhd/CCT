@@ -17,7 +17,7 @@
             v-for="selectable in product.selectables"
             :key="selectable.id"
             :label="selectable.name"
-            :kind="selectable.customized ? 'blue' : 'cool-gray'"
+            :kind="selectable.custom.customized ? 'blue' : 'cool-gray'"
           />
 
           <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />

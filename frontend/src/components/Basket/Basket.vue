@@ -10,7 +10,7 @@ import ProductTile from './ProductTile/ProductTile'
 import BasketPricing from './BasketPricing'
 
 export default {
-  name:'Basket',
+  name: 'Basket',
   props: {
     products: Array
   },
@@ -19,10 +19,10 @@ export default {
     BasketPricing
   },
   watchs: {
-    products: function () {
+    products: function() {
       console.log(this.products)
     }
-  },
+  }
 }
 </script>
 

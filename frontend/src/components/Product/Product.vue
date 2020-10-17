@@ -4,7 +4,6 @@
       <h6>{{ $t('emptyMessage') }}</h6>
     </div>
     <div class="product-container" v-else>
-  
       <ProductInfo class="product-info" :product="product" />
 
       <div class="product-custom">
@@ -14,7 +13,8 @@
             v-for="selectable in selectables"
             :key="selectable.id"
             :selectable="selectable"
-            v-on:select="select" />
+            v-on:select="select"
+          />
           <ProductCustomization v-if="product.customizable" :custom="custom" :pname="product.name" />
         </div>
       </div>
@@ -28,7 +28,6 @@
           </cv-button>
         </div>
       </div>
-
     </div>
   </div>
 </template>

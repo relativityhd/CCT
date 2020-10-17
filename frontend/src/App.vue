@@ -63,7 +63,7 @@ export default {
   right: 0vw;
   z-index: 8001;
 }
-.bx--number--mobile input[type="number"] {
+.bx--number--mobile input[type='number'] {
   width: 100%;
 }
 </style>

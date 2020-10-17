@@ -42,7 +42,7 @@ export default {
     custom: Object,
     pname: String
   },
-  data () {
+  data() {
     return {
       invalids: {
         width: '',
@@ -52,20 +52,17 @@ export default {
     }
   },
   methods: {
-    changeCustom (key) {
+    changeCustom(key) {
       if (Number.isNaN(parseInt(this.custom[key]))) {
-        this.invalids[key] = this.$t('invalidNumber', {min: 0, max: 1000})
+        this.invalids[key] = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       if (parseInt(this.custom[key]) < 0 || parseInt(this.custom[key]) > 1000) {
-        this.invalids[key] = this.$t('invalidNumber', {min: 0, max: 1000})
+        this.invalids[key] = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       this.invalids[key] = ''
-      this.custom.customized = (
-        this.custom.width !== 0 &&
-        this.custom.height !== 0 &&
-        this.custom.depth !== 0)
+      this.custom.customized = this.custom.width !== 0 && this.custom.height !== 0 && this.custom.depth !== 0
     }
   }
 }

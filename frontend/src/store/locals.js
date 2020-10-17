@@ -100,6 +100,12 @@ export default {
       { isoCode: 'fr', name: 'Français', selected: false }
     ]
   },
+  getters: {
+    multiplyPrice: (_state, _getters, rootState) => (a, b) => {
+      const sub = rootState.locals.subQuotient || 100
+      return (parseInt(Math.round(a * sub)) * parseInt(Math.round(b * sub))) / sub ** 2
+    }
+  },
   mutations: {
     setLang(state, lang) {
       state.lang = lang

@@ -8,13 +8,11 @@
       <template slot="label">{{ $store.getters.formatPrice(product.price.gross) }}</template>
       <template slot="title">{{ product.info.name }}</template>
       <template slot="content">
-
-        <ProductCustomization
-          v-if="product.info.customizable"
-          :custom="product.custom"
-          :pname="product.info.name" />
+        <ProductCustomization v-if="product.info.customizable" :custom="product.custom" :pname="product.info.name" />
         <div v-else>{{ $t('nonEditable') }}</div>
+        <ProductPricing :price="product.price" />
 
+        TODO: Selectables
       </template>
     </cv-modal>
   </div>
@@ -22,6 +20,7 @@
 
 <script>
 import ProductCustomization from '../../Product/ProductCustomization'
+import ProductPricing from '../../Product/ProductPricing'
 
 export default {
   name: 'EditModal',
@@ -29,10 +28,11 @@ export default {
     product: Object
   },
   components: {
-    ProductCustomization
+    ProductCustomization,
+    ProductPricing
   },
   methods: {
-    showModal () {
+    showModal() {
       this.$refs.modal.show()
     }
   }

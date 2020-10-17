@@ -28,7 +28,7 @@ export default {
   props: {
     product: Object
   },
-  data () {
+  data() {
     return {
       invalidMessage: '',
       iconDelete: TrashCan16
@@ -58,12 +58,12 @@ export default {
 </script>
 
 <style lang="scss">
-.actions-wrapper{
+.actions-wrapper {
   display: grid;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr auto;
-  grid-template-areas:'quantity delete';
+  grid-template-areas: 'quantity delete';
   gap: 20px 10px;
 }
 .quantity-input {

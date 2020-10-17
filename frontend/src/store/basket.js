@@ -29,21 +29,25 @@ export default {
         selectables:
           selectables.map(s => {
             const newS = { ...s }
-            newS.custom = s.custom.customized ? { ...s.custom } : {
+            newS.custom = s.custom.customized
+              ? { ...s.custom }
+              : {
+                  height: 0,
+                  width: 0,
+                  depth: 0,
+                  customized: false
+                }
+            return newS
+          }) || [],
+        quantity: 1,
+        custom: custom.customized
+          ? { ...custom }
+          : {
               height: 0,
               width: 0,
               depth: 0,
               customized: false
             }
-            return newS
-          }) || [],
-        quantity: 1,
-        custom: custom.customized ? { ...custom } : {
-          height: 0,
-          width: 0,
-          depth: 0,
-          customized: false
-        }
       }
 
       const productsInBasket = state.products.filter(product => product.id === id)

@@ -1,13 +1,12 @@
 {
-    "location": "I'm from somewhere else!",
-    "language": "I'm speaking a different Languge",
-    "support": "I need some help",
-    "imprint": "Who made this page?",
-    "puns": [
-      "CUPE DIEM", 
-      "CUPOW! I’m here to help you",
-      "Im Cuppy from Cuptown and im coming to help you",
-      "Whats Cup, do you need any Help?"
-    ]
-
-  }
+  "location": "I'm from somewhere else!",
+  "language": "I'm speaking a different Languge",
+  "support": "I need some help",
+  "imprint": "Who made this page?",
+  "puns": [
+    "CUPE DIEM",
+    "CUPOW! I’m here to help you",
+    "Im Cuppy from Cuptown and im coming to help you",
+    "Whats Cup, do you need any Help?"
+  ]
+}

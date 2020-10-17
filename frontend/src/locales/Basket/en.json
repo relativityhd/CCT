@@ -1,38 +1,35 @@
-
-
-    {
-        "title": "Your Basket",
-        "noItems": "You havn't any items in your basket!",
-        "toStore": "Store",
-        "invalidNumber": "Must be a number larger than 0!",
-        "deleteItem": "Remove item from your basket",
-        "notCustom": "This item was not customized",
-        "tableHeads": {
-          "id": "ID",
-          "image": "Image",
-          "name": "Name",
-          "price": "Price",
-          "custom": "Customized",
-          "fixed": "Fixed Price",
-          "selectables": "Selectables",
-          "quantity": "Quantity",
-          "delete": "Delete",
-          "info": "Customized Data",
-          "about": "Item Info"
-        },
-        "itemSum": "Sum per Item",
-        "sum": "Sum",
-        "costCalculation": "Price Calculation",
-        "priceList": {
-          "name": "Item",
-          "net": "Net",
-          "gross": "Gross",
-          "tax": "Tax"
-        },
-        "width": "Width",
-        "height": "Height",
-        "depth": "Depth",
-        "yes": "Yes",
-        "no": "No"
-      }
-    
+{
+  "title": "Your Basket",
+  "noItems": "You havn't any items in your basket!",
+  "toStore": "Store",
+  "invalidNumber": "Must be a number larger than 0!",
+  "deleteItem": "Remove item from your basket",
+  "notCustom": "This item was not customized",
+  "tableHeads": {
+    "id": "ID",
+    "image": "Image",
+    "name": "Name",
+    "price": "Price",
+    "custom": "Customized",
+    "fixed": "Fixed Price",
+    "selectables": "Selectables",
+    "quantity": "Quantity",
+    "delete": "Delete",
+    "info": "Customized Data",
+    "about": "Item Info"
+  },
+  "itemSum": "Sum per Item",
+  "sum": "Sum",
+  "costCalculation": "Price Calculation",
+  "priceList": {
+    "name": "Item",
+    "net": "Net",
+    "gross": "Gross",
+    "tax": "Tax"
+  },
+  "width": "Width",
+  "height": "Height",
+  "depth": "Depth",
+  "yes": "Yes",
+  "no": "No"
+}

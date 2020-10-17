@@ -64,4 +64,3 @@ export default {
   background-color: $ui-background;
 }
 </style>
-

@@ -17,8 +17,7 @@ function loadLocaleMessages() {
       messages[locale][sub] = locales(key)
     } else {
       const locale = matched[1]
-      if (messages[locale])
-        messages[locale] = { ...messages[locale], ...locales(key) }
+      if (messages[locale]) messages[locale] = { ...messages[locale], ...locales(key) }
       else messages[locale] = locales(key)
     }
   })

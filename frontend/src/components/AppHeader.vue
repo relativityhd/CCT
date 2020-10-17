@@ -176,5 +176,3 @@ a.bx--header__menu-item[aria-current='page']::after,
   background-color: $hover-primary;
 }
 </style>
-
-

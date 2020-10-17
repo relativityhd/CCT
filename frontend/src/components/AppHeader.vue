@@ -11,7 +11,7 @@
 
     <cv-header-nav aria-label="Carbon nav">
       <cv-header-menu-item v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
-        {{ link.name }}
+        {{ $t(link.name) }}
       </cv-header-menu-item>
     </cv-header-nav>
 
@@ -33,7 +33,7 @@
       <cv-side-nav id="side-nav" fixed>
         <cv-side-nav-items>
           <cv-side-nav-link v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
-            {{ link.name }}
+            {{ $t(link.name) }}
           </cv-side-nav-link>
         </cv-side-nav-items>
       </cv-side-nav>
@@ -86,10 +86,10 @@ export default {
   components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
-      { name: this.$t('AppHeader.region'), to: '/' },
-      { name: this.$t('AppHeader.tool'), to: '/tool' },
-      { name: this.$t('AppHeader.about'), to: '/about' },
-      { name: this.$t('AppHeader.catalogue'), to: '/categories' }
+      { name: 'AppHeader.region', to: '/' },
+      { name: 'AppHeader.tool', to: '/tool' },
+      { name: 'AppHeader.about', to: '/about' },
+      { name: 'AppHeader.catalogue', to: '/categories' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath

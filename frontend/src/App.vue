@@ -56,10 +56,14 @@ export default {
   min-height: calc(100vh - 48px - 24px);
 }
 #theCuppy {
+  display: none;
   position: fixed;
   bottom: 2rem;
   bottom: -2rem;
   right: 0vw;
   z-index: 8001;
+}
+.bx--number--mobile input[type="number"] {
+  width: 100%;
 }
 </style>

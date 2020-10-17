@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cv-button kind="secondary" @click="showModal">
+    <cv-button class="show-btn" kind="secondary" @click="showModal">
       {{ $t('show') }}
     </cv-button>
 
@@ -8,7 +8,13 @@
       <template slot="label">{{ $store.getters.formatPrice(product.price.gross) }}</template>
       <template slot="title">{{ product.info.name }}</template>
       <template slot="content">
-        <ProductCustomization v-if="product.info.customizable" :custom="product.custom" :pname="product.info.name" />
+
+        <ProductCustomization
+          v-if="product.info.customizable"
+          :custom="product.custom"
+          :pname="product.info.name" />
+        <div v-else>{{ $t('nonEditable') }}</div>
+
       </template>
     </cv-modal>
   </div>
@@ -33,10 +39,17 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.show-btn {
+  width: 100%;
+}
+</style>
+
 <i18n>
 {
   "en": {
-    "show": "Edit Product in Basket"
+    "show": "View Product in Basket",
+    "nonEditable": "This product is not editable!"
   }
 }
 </i18n>

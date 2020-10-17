@@ -28,6 +28,9 @@ export default {
 
 <style lang="scss" scoped>
 .basket-wrapper {
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  gap: 20px 20px;
 }
 </style>

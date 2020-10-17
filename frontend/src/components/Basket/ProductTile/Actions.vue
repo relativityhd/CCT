@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .actions-wrapper{
   display: grid;
   display: grid;
@@ -74,9 +74,6 @@ export default {
   grid-area: delete;
   justify-self: center;
   align-self: end;
-}
-.bx--number--mobile{
-  max-width: 100px;
 }
 </style>
 

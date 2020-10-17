@@ -8,9 +8,15 @@
       <ProductInfo class="product-info" :product="product" />
 
       <div class="product-custom">
-        <Selectables class="selectables-container" :selectables="selectables" v-on:select="select">
+        <div class="selectables-container">
+          <Selectable
+            class="selectables-container"
+            v-for="selectable in selectables"
+            :key="selectable.id"
+            :selectable="selectable"
+            v-on:select="select" />
           <ProductCustomization v-if="product.customizable" :custom="custom" :pname="product.name" />
-        </Selectables>
+        </div>
       </div>
 
       <div class="product-pricing">
@@ -29,7 +35,7 @@
 
 <script>
 import ProductInfo from './ProductInfo'
-import Selectables from './Selectables'
+import Selectable from './Selectable'
 import ProductCustomization from './ProductCustomization'
 import ProductPricing from './ProductPricing'
 
@@ -37,7 +43,7 @@ export default {
   name: 'Product',
   components: {
     ProductInfo,
-    Selectables,
+    Selectable,
     ProductCustomization,
     ProductPricing
   },
@@ -72,6 +78,7 @@ export default {
       this.selectables = this.product.selectables.map(s => ({
         ...s,
         selected: false,
+        quantity: 0,
         custom: {
           height: 0,
           width: 0,
@@ -120,19 +127,17 @@ export default {
           const gross = this.calcSub(s.price)
           const net = this.calcNet(gross)
           this.price.items.push({
-            name: s.name,
-            net: this.calcSubBack(net),
-            tax: this.calcSubBack(gross - net),
-            gross: this.calcSubBack(gross)
+            name: `${s.name} (x${s.quantity})`,
+            net: this.calcSubBack(net * s.quantity),
+            tax: this.calcSubBack((gross - net) * s.quantity),
+            gross: this.calcSubBack(gross * s.quantity)
           })
         })
       this.price.net = this.price.items.reduce((a, b) => a + (b.net || 0), 0)
       this.price.tax = this.price.items.reduce((a, b) => a + (b.tax || 0), 0)
       this.price.gross = this.price.items.reduce((a, b) => a + (b.gross || 0), 0)
     },
-    select({e, id}) {
-      let selectable = this.selectables.find(s => s.id === id)
-      selectable.selected = e.target.checked
+    select() {
       this.calcSum()
     },
     addToCart() {
@@ -184,6 +189,15 @@ export default {
   grid-area: pricing;
   width: 100%;
   max-width: 400px;
+}
+
+.selectables-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .to-cart-button-container {

@@ -19,8 +19,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
       title: 'About'
     }
@@ -32,6 +31,29 @@ const routes = [
     meta: {
       title: 'Tool'
     }
+  },
+  {
+    path: '/basket',
+    name: 'Basket',
+    component: () => import('../views/Basket.vue'),
+    meta: {
+      title: 'Basket'
+    }
+  },
+  {
+    path: '/categories',
+    name: 'CategoriesOverview',
+    component: () => import('../views/CategoriesOverview.vue')
+  },
+  {
+    path: '/category/:categoryId',
+    name: 'Category',
+    component: () => import('../views/Category.vue')
+  },
+  {
+    path: '/product/:productId',
+    name: 'ProductPage',
+    component: () => import('../views/Product.vue')
   }
 ]
 
@@ -42,7 +64,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `CCT - ${to.meta.title}` || 'Cupboard Limited CCT'
+  document.title = `CCT - ${to.meta.title || 'Cupboard Limited'}`
   next()
 })
 

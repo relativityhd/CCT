@@ -1,7 +1,7 @@
 <template>
   <div class="product-wrapper">
     <div class="is-emtpy" v-if="hasNoProduct">
-      <h6>{{ $t('emptyMessage') }}</h6>
+      <h6>{{ $t('Product.emptyMessage') }}</h6>
     </div>
     <div class="product-container" v-else>
       <div class="product-info">
@@ -32,10 +32,10 @@
 
                 <cv-accordion class="custom-container" v-if="selectable.customizable">
                   <cv-accordion-item>
-                    <template slot="title">{{ $t('customize') }}</template>
+                    <template slot="title">{{ $t('Product.customize') }}</template>
                     <template slot="content">
                       <cv-number-input
-                        :label="$t('width')"
+                        :label="$t('Product.width')"
                         v-model="selectable.custom.width"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
@@ -43,7 +43,7 @@
                       <br />
 
                       <cv-number-input
-                        :label="$t('height')"
+                        :label="$t('Product.height')"
                         v-model="selectable.custom.height"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
@@ -51,7 +51,7 @@
                       <br />
 
                       <cv-number-input
-                        :label="$t('depth')"
+                        :label="$t('Product.depth')"
                         v-model="selectable.custom.depth"
                         :mobile="$store.state.mobile"
                       ></cv-number-input>
@@ -64,10 +64,10 @@
 
           <cv-accordion class="custom-container" v-if="product.customizable">
             <cv-accordion-item>
-              <template slot="title">{{ $t('customize') }}</template>
+              <template slot="title">{{ $t('Product.customize') }}</template>
               <template slot="content">
                 <cv-number-input
-                  :label="$t('width')"
+                  :label="$t('Product.width')"
                   v-model="custom.width"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
@@ -75,7 +75,7 @@
                 <br />
 
                 <cv-number-input
-                  :label="$t('height')"
+                  :label="$t('Product.height')"
                   v-model="custom.height"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
@@ -83,7 +83,7 @@
                 <br />
 
                 <cv-number-input
-                  :label="$t('depth')"
+                  :label="$t('Product.depth')"
                   v-model="custom.depth"
                   :mobile="$store.state.mobile"
                 ></cv-number-input>
@@ -96,21 +96,21 @@
       <div class="product-pricing">
         <cv-accordion>
           <cv-accordion-item class="price-list-container">
-            <template slot="title">{{ $t('costCalculation') }}</template>
+            <template slot="title">{{ $t('Product.costCalculation') }}</template>
             <template slot="content">
               <cv-structured-list class="price-list">
                 <template slot="headings">
                   <cv-structured-list-heading>
-                    {{ $t('priceList.name') }}
+                    {{ $t('Product.priceList.name') }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
-                    {{ $t('priceList.net') }}
+                    {{ $t('Product.priceList.net') }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
-                    {{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}
+                    {{ `${$t('Product.priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}
                   </cv-structured-list-heading>
                   <cv-structured-list-heading>
-                    {{ $t('priceList.gross') }}
+                    {{ $t('Product.priceList.gross') }}
                   </cv-structured-list-heading>
                 </template>
 
@@ -132,7 +132,7 @@
 
                   <cv-structured-list-item>
                     <cv-structured-list-data>
-                      <h6>{{ $t('sum') }}</h6>
+                      <h6>{{ $t('Product.sum') }}</h6>
                     </cv-structured-list-data>
                     <cv-structured-list-data>
                       <h6>
@@ -159,7 +159,7 @@
         <div class="to-cart-button-container">
           <h6>{{ $store.getters.formatPrice(price.gross) }}</h6>
           <cv-button class="to-cart-button" kind="primary" @click="addToCart">
-            {{ $t('addToCart') }}
+            {{ $t('Product.addToCart') }}
           </cv-button>
         </div>
       </div>
@@ -410,23 +410,4 @@ export default {
 }
 </style>
 
-<i18n>
-{
-  "en": {
-    "addToCart": "Add to cart",
-    "emptyMessage": "Please select a Product",
-    "customize": "Customize",
-    "sum": "Sum",
-    "costCalculation": "Price Calculation",
-    "priceList": {
-      "name": "Item",
-      "net": "Net",
-      "gross": "Gross",
-      "tax": "Tax"
-    },
-    "width": "Width in cm",
-    "height": "Height in cm",
-    "depth": "Depth in cm"
-  }
-}
-</i18n>
+

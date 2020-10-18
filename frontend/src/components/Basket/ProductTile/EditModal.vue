@@ -165,17 +165,3 @@ export default {
   margin-bottom: 15px;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "show": "Edit Product",
-    "goBack": "Go Back",
-    "modes": {
-      "customize": "Customize",
-      "selectables": "Edit Selectables",
-      "pricing": "View Pricing"
-    }
-  }
-}
-</i18n>

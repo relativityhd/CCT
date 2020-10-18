@@ -29,7 +29,7 @@ export default {
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
         )
         this.$store.commit('setLocation', location.isoCode)
-        // this.$store.commit('setLang', location.lang)
+        this.$store.commit('setLang', location.lang)
       })
     }
   },

@@ -1,17 +1,17 @@
 <template>
   <div class="category-page-wrapper">
-    <h1>{{ `${$t('title')} ${name}` }}</h1>
+    <h1>{{ `${$t('Category.title')} ${name}` }}</h1>
     <div class="products-wrapper">
       <cv-tile v-for="product in products" :key="product.id" kind="clickable" :to="product.to" class="product-tile">
         <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
         <div class="tile-body">
-          <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
+          <h3>{{ `${$t('Category.modell')} ${product.name}` }}</h3>
           <p>{{ $store.getters.formatPrice(product.price) }}</p>
           <p>
-            {{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}` }}
+            {{ `${$t('Category.priceStarting')} - ${product.priceStarting ? $t('Category.yes') : $t('Category.no')}` }}
           </p>
           <p>
-            {{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}` }}
+            {{ `${$t('Category.customizable')} - ${product.customizable ? $t('Category.yes') : $t('Category.no')}` }}
           </p>
         </div>
       </cv-tile>
@@ -78,16 +78,3 @@ export default {
   background-color: $ui-background;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "title": "Category:",
-    "modell": "Modell",
-    "priceStarting": "Fixed price?",
-    "customizable": "Customizable?",
-    "yes": "Yes",
-    "no": "No"
-  }
-}
-</i18n>

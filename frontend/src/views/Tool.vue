@@ -1,6 +1,6 @@
 <template>
   <div class="tool-page-wrapper">
-    <h1 class="p-title">{{ $t('title') }}</h1>
+    <h1 class="p-title">{{ $t('Tool.title') }}</h1>
     <div class="tool-wrapper">
       <div class="new-item-wrapper">
         <div class="product-selection-wrapper">

@@ -1,6 +1,6 @@
 <template>
   <div class="basket-wrapper">
-    <h3>{{ $t('title') }}</h3>
+    <h3>{{ $t('BasketPanel.title') }}</h3>
 
     <div class="products-wrapper">
       <div class="product" v-for="product in products" :key="product.basketId">
@@ -20,7 +20,7 @@
             :kind="selectable.custom.customized ? 'blue' : 'cool-gray'"
           />
 
-          <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />
+          <cv-tag v-if="product.custom.customized" :label="$t('BasketPanel.customized')" kind="purple" />
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <cv-switcher>
       <cv-switcher-item>
         <cv-switcher-item-link to="/basket">
-          {{ $t('editBasket') }}
+          {{ $t('BasketPanel.editBasket') }}
         </cv-switcher-item-link>
       </cv-switcher-item>
     </cv-switcher>
@@ -74,13 +74,3 @@ export default {
   background-color: transparent;
 }
 </style>
-<i18n>
-{
-  "en": {
-    "title": "Your Basket",
-    "products": "Products",
-    "customized": "Customized",
-    "editBasket": "Edit your Basket"
-  }
-}
-</i18n>

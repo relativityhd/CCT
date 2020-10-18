@@ -79,7 +79,7 @@
 import Earth20 from '@carbon/icons-vue/es/earth/20'
 import Translate20 from '@carbon/icons-vue/es/translate/20'
 import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
-import BasketPanel from './BasketPanel'
+import BasketPanel from './Basket/BasketPanel'
 
 export default {
   name: 'AppHeader',
@@ -88,8 +88,7 @@ export default {
     let links = [
       { name: 'AppHeader.region', to: '/' },
       { name: 'AppHeader.tool', to: '/tool' },
-      { name: 'AppHeader.about', to: '/about' },
-      { name: 'AppHeader.catalogue', to: '/categories' }
+      { name: 'AppHeader.about', to: '/about' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath

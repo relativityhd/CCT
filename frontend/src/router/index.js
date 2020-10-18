@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Locations from '../views/Locations.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Locations',
-    component: Locations,
+    component: () => import('../views/Locations.vue'),
     meta: {
       title: 'Locations'
     }
@@ -19,7 +18,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import('../views/About.vue'),
     meta: {
       title: 'About'
     }
@@ -27,10 +26,7 @@ const routes = [
   {
     path: '/tool',
     name: 'Tool',
-    component: () => import('../views/Tool.vue'),
-    meta: {
-      title: 'Tool'
-    }
+    component: () => import('../views/Tool.vue')
   },
   {
     path: '/basket',
@@ -39,21 +35,6 @@ const routes = [
     meta: {
       title: 'Basket'
     }
-  },
-  {
-    path: '/categories',
-    name: 'CategoriesOverview',
-    component: () => import('../views/CategoriesOverview.vue')
-  },
-  {
-    path: '/category/:categoryId',
-    name: 'Category',
-    component: () => import('../views/Category.vue')
-  },
-  {
-    path: '/product/:productId',
-    name: 'ProductPage',
-    component: () => import('../views/Product.vue')
   }
 ]
 

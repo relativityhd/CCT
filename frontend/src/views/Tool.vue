@@ -3,32 +3,56 @@
     <h1 class="p-title">{{ $t('title') }}</h1>
     <div class="tool-wrapper">
       <div class="new-item-wrapper">
-        <div class="product-selection-wrapper">
-          <cv-dropdown
-            :label="$t('categorySelect')"
-            :disabled="categories.length === 0"
-            :value="dropdowns.selectedCategoryId"
-            v-model="dropdowns.selectedCategoryId"
-            @change="selectCategory"
-          >
-            <cv-dropdown-item v-for="category in categories" :key="category.id" :value="`${category.id}`">
-              {{ category.name }}
-            </cv-dropdown-item>
-          </cv-dropdown>
 
-          <cv-dropdown
-            :label="$t('productSelect')"
-            :disabled="products.length === 0"
-            :value="dropdowns.selectedProductId"
-            v-model="dropdowns.selectedProductId"
-            @change="selectProduct"
-          >
-            <cv-dropdown-item v-for="product in products" :key="product.id" :value="`${product.id}`">
-              {{ product.name }}
-            </cv-dropdown-item>
-          </cv-dropdown>
+        <div class="product-selection-wrapper">
+
+          <div v-if="step==='categories-ov'" class="tile-container">
+            <cv-tile
+              v-for="ct in categories"
+              :key="ct.id"
+              kind="clickable"
+              class="tile"
+              @click="selectCategory(ct.id)">
+              <img class="tile-image" :src="ct.imageUrl" alt="Image of Category" />
+              <div class="tile-body">
+                <h2>{{ ct.name }}</h2>
+              </div>
+            </cv-tile>
+          </div>
+
+          <div v-if="step==='products-ov'" class="tile-container">
+            <cv-tile
+              v-for="product in products"
+              :key="product.id"
+              kind="clickable"
+              class="tile"
+              @click="selectProduct(product.id)">
+              <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
+              <div class="tile-body">
+                <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
+                <p>{{ $store.getters.formatPrice(product.price) }}</p>
+                <p>
+                  {{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}` }}
+                </p>
+                <p>
+                  {{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}` }}
+                </p>
+              </div>
+            </cv-tile>
+
+            <cv-tile
+              kind="clickable"
+              class="tile"
+              @click="chooseAnother">
+              <Undo32 class="tile-image" />
+              <div class="tile-body">
+                <h2>{{ $t('back') }}</h2>
+              </div>
+            </cv-tile>
+          </div>
         </div>
-        <Product :product="selectedProduct" />
+
+        <Product v-if="step==='product'" :product="selectedProduct" v-on:back="chooseAnother" />
       </div>
       <div class="pricing-wrapper">
         <h3>{{ $t('basket') }}</h3>
@@ -42,22 +66,21 @@
 import Vue from 'vue'
 import Product from '../components/Product/Product'
 import Basket from '../components/Basket/Basket'
+import Undo32 from '@carbon/icons-vue/es/undo/32'
 
 export default {
   name: 'Tool',
   components: {
     Product,
-    Basket
+    Basket,
+    Undo32
   },
   data() {
     return {
       categories: [],
       products: [],
-      dropdowns: {
-        selectedCategoryId: '',
-        selectedProductId: ''
-      },
-      selectedProduct: {}
+      selectedProduct: {},
+      step: 'categories-ov'
     }
   },
   mounted() {
@@ -79,17 +102,20 @@ export default {
         })
       })
     })
-
-    this.selectProduct()
   },
   methods: {
-    selectCategory() {
-      const selectedCategory = this.categories.find(c => c.id.toString() === this.dropdowns.selectedCategoryId)
-      this.products = selectedCategory.products
-      this.dropdowns.selectedProductId = ''
+    chooseAnother() {
+      this.step = 'categories-ov'
     },
-    selectProduct() {
-      this.selectedProduct = this.products.find(p => p.id.toString() === this.dropdowns.selectedProductId)
+    selectCategory(id) {
+      const selectedCategory = this.categories.find(c => c.id === id)
+      this.products = selectedCategory.products
+      this.step = 'products-ov'
+    },
+    selectProduct(id) {
+      this.selectedProduct = this.products.find(p => p.id === id)
+      console.log('--DEBUG : selectProduct -> selectedProduct', this.selectedProduct)
+      this.step = 'product'
     }
   }
 }
@@ -132,6 +158,28 @@ export default {
   margin: 10px;
 }
 
+.tile-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.tile {
+  text-align: left;
+  margin: 20px;
+  min-width: 312px;
+  width: calc(30% - 40px);
+}
+
+.tile-image {
+  width: 100%;
+  height: 156px;
+  object-fit: contain;
+  background-color: transparent;
+}
+
 @media (max-width: 1060px) {
   .product-selection-wrapper {
     width: 100%;
@@ -148,10 +196,16 @@ export default {
 <i18n>
 {
   "en": {
-    "title": "Tool",
+    "title": "Cupboard Customization Tool",
     "categorySelect": "Select a category",
     "productSelect": "Select a product",
-    "basket": "Your basket"
+    "basket": "Your basket",
+    "modell": "Modell",
+    "priceStarting": "Fixed price?",
+    "customizable": "Customizable?",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Go Back"
   }
 }
 </i18n>

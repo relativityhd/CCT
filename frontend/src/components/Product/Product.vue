@@ -33,11 +33,19 @@
             </template>
           </cv-accordion-item>
         </cv-accordion>
-        <div class="to-cart-button-container">
-          <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
-          <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
-            {{ $t('addToCart') }}
-          </cv-button>
+        <div class="to-cart-button-wrapper">
+          <cv-link
+            class="back-link"
+            @click="goBack">
+            {{ $t('chooseAnother') }}
+          </cv-link>
+          <div class="to-cart-button-container">
+            <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
+            <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
+              {{ $t('addToCart') }}
+            </cv-button>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -85,7 +93,23 @@ export default {
   },
   watch: {
     product: function() {
-      if (this.product === undefined) {
+      this.checkForProduct()
+    }
+  },
+  mounted() {
+    this.unsubscribe = this.$store.subscribe(mutation => {
+      if (mutation.type !== 'setLocation' || this.product === undefined) return
+      this.calcSum()
+    })
+    this.checkForProduct()
+  },
+  methods: {
+    goBack() {
+      console.log('back')
+      this.$emit('back')
+    },
+    checkForProduct() {
+      if (this.product === undefined || Object.keys(this.product).length === 0) {
         this.hasNoProduct = true
         return
       }
@@ -102,18 +126,7 @@ export default {
         }
       }))
       this.calcSum()
-    }
-  },
-  mounted() {
-    this.unsubscribe = this.$store.subscribe(mutation => {
-      if (mutation.type !== 'setLocation' || this.product === undefined) return
-      this.calcSum()
-    })
-    if (this.product !== undefined) {
-      this.calcSum()
-    }
-  },
-  methods: {
+    },
     calcSum() {
       this.price = this.$store.getters['basket/calcPrices'](
         this.product,
@@ -185,9 +198,16 @@ export default {
   max-width: 300px;
 }
 
-.to-cart-button-container {
+.to-cart-button-wrapper {
   width: 100%;
   margin: 20px 0;
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: end;
+  align-items: center;
+}
+
+.to-cart-button-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -196,6 +216,11 @@ export default {
 
 .to-cart-button-container h6 {
   margin-right: 5px;
+}
+
+.back-link {
+  justify-self: flex-start;
+  cursor: pointer;
 }
 
 @media (max-width: 1060px) {
@@ -221,7 +246,8 @@ export default {
     "addToCart": "Add to cart",
     "emptyMessage": "Please select a Product",
     "costCalculation": "Price Calculation",
-    "customize": "Customize"
+    "customize": "Customize",
+    "chooseAnother": "Choose another"
   }
 }
 </i18n>

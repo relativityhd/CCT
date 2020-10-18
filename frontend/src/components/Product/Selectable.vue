@@ -23,7 +23,15 @@
         ></cv-number-input>
       </div>
       <div class="tile-custom">
-        <ProductCustomization v-if="selectable.customizable" :custom="selectable.custom" :pname="selectable.name" />
+        <cv-accordion class="custom-container" v-if="selectable.customizable">
+          <cv-accordion-item>
+            <template slot="title">{{ `${$t('customize')} ${selectable.name}` }}</template>
+            <template slot="content">
+              <ProductCustomization :custom="selectable.custom" />
+            </template>
+          </cv-accordion-item>
+        </cv-accordion>
+        <p v-else>{{ $t('notEditable') }}</p>
       </div>
     </div>
   </cv-tile>
@@ -74,6 +82,7 @@ export default {
   max-width: 300px;
   margin: 5px;
   text-align: left;
+  min-height: 210px;
 }
 
 .inner-tile {
@@ -106,6 +115,10 @@ export default {
   grid-area: custom;
   width: 100%;
 }
+
+.custom-container {
+  width: 100%;
+}
 </style>
 
 <i18n>
@@ -116,7 +129,9 @@ export default {
     "customize": "Customize",
     "width": "Width in cm",
     "height": "Height in cm",
-    "depth": "Depth in cm"
+    "depth": "Depth in cm",
+    "notEditable": "This item is in this combination not editable.",
+    "customize": "Customize"
   }
 }
 </i18n>

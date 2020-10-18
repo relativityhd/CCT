@@ -1,7 +1,7 @@
 <template>
   <div class="basket-wrapper">
     <ProductTile v-for="product in products" :key="product.basketId" :product="product" />
-    <BasketPricing />
+    <BasketPricing :products="products" :prices="$store.state.basket.price" />
   </div>
 </template>
 
@@ -17,11 +17,6 @@ export default {
   components: {
     ProductTile,
     BasketPricing
-  },
-  watchs: {
-    products: function() {
-      console.log(this.products)
-    }
   }
 }
 </script>

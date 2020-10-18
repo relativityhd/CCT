@@ -1,46 +1,40 @@
 <template>
-  <cv-accordion class="custom-container">
-    <cv-accordion-item>
-      <template slot="title">{{ `${$t('customize')} ${pname}` }}</template>
-      <template slot="content">
-        <cv-number-input
-          :label="$t('width')"
-          v-model="custom.width"
-          :mobile="$store.state.mobile"
-          :invalid-message="invalids.width"
-          @input="changeCustom('width')"
-        ></cv-number-input>
+  <div>
+    <cv-number-input
+      :label="$t('width')"
+      v-model="custom.width"
+      :mobile="$store.state.mobile"
+      :invalid-message="invalids.width"
+      @input="changeCustom('width')"
+    ></cv-number-input>
 
-        <br />
+    <br />
 
-        <cv-number-input
-          :label="$t('height')"
-          v-model="custom.height"
-          :mobile="$store.state.mobile"
-          :invalid-message="invalids.height"
-          @input="changeCustom('height')"
-        ></cv-number-input>
+    <cv-number-input
+      :label="$t('height')"
+      v-model="custom.height"
+      :mobile="$store.state.mobile"
+      :invalid-message="invalids.height"
+      @input="changeCustom('height')"
+    ></cv-number-input>
 
-        <br />
+    <br />
 
-        <cv-number-input
-          :label="$t('depth')"
-          v-model="custom.depth"
-          :mobile="$store.state.mobile"
-          :invalid-message="invalids.depth"
-          @input="changeCustom('depth')"
-        ></cv-number-input>
-      </template>
-    </cv-accordion-item>
-  </cv-accordion>
+    <cv-number-input
+      :label="$t('depth')"
+      v-model="custom.depth"
+      :mobile="$store.state.mobile"
+      :invalid-message="invalids.depth"
+      @input="changeCustom('depth')"
+    ></cv-number-input>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ProductCustomization',
   props: {
-    custom: Object,
-    pname: String
+    custom: Object
   },
   data() {
     return {
@@ -68,18 +62,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.custom-container {
-  width: 100%;
-  max-width: 300px;
-  margin: 5px;
-}
-</style>
-
 <i18n>
 {
   "en": {
-    "customize": "Customize",
     "width": "Width in cm",
     "height": "Height in cm",
     "depth": "Depth in cm",

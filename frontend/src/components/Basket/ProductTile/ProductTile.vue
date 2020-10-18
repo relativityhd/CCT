@@ -1,7 +1,7 @@
 <template>
   <cv-tile>
     <h3>{{ product.info.name }}</h3>
-    <h6>{{ $store.getters.formatPrice($store.getters.multiplyPrice(product.price.gross, product.quantity)) }}</h6>
+    <h6>{{ $store.getters.formatPrice(product.price.sum.gross) }}</h6>
 
     <Actions class="Actions" :product="product" />
 

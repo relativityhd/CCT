@@ -9,21 +9,33 @@
       <div class="product-custom">
         <div class="selectables-container">
           <Selectable
-            class="selectables-container"
             v-for="selectable in selectables"
             :key="selectable.id"
             :selectable="selectable"
             v-on:select="select"
           />
-          <ProductCustomization v-if="product.customizable" :custom="custom" :pname="product.name" />
         </div>
       </div>
 
       <div class="product-pricing">
-        <ProductPricing :price="price" />
+        <cv-accordion>
+          <cv-accordion-item v-if="product.customizable">
+            <template slot="title">{{ `${$t('customize')} ${product.name}` }}</template>
+            <template slot="content">
+              <ProductCustomization class="custom-container" :custom="custom" />
+            </template>
+          </cv-accordion-item>
+
+          <cv-accordion-item class="price-list-container">
+            <template slot="title">{{ $t('costCalculation') }}</template>
+            <template slot="content">
+              <ProductPricing :price="price" :single="true" />
+            </template>
+          </cv-accordion-item>
+        </cv-accordion>
         <div class="to-cart-button-container">
-          <h6>{{ $store.getters.formatPrice(price.gross) }}</h6>
-          <cv-button class="to-cart-button" kind="primary" @click="addToCart">
+          <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
+          <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
             {{ $t('addToCart') }}
           </cv-button>
         </div>
@@ -37,6 +49,7 @@ import ProductInfo from './ProductInfo'
 import Selectable from './Selectable'
 import ProductCustomization from './ProductCustomization'
 import ProductPricing from './ProductPricing'
+import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
 
 export default {
   name: 'Product',
@@ -51,6 +64,7 @@ export default {
   },
   data() {
     return {
+      ShoppingCart20,
       hasNoProduct: true,
       selectables: [],
       custom: {
@@ -60,9 +74,11 @@ export default {
         customized: false
       },
       price: {
-        net: 0,
-        tax: 0,
-        gross: 0,
+        single: {
+          net: 0,
+          tax: 0,
+          gross: 0
+        },
         items: []
       }
     }
@@ -98,43 +114,12 @@ export default {
     }
   },
   methods: {
-    calcSub(price) {
-      const sub = this.$store.state.locals.subQuotient || 100
-      return parseInt(Math.round(price * sub))
-    },
-    calcSubBack(price) {
-      const sub = this.$store.state.locals.subQuotient || 100
-      return price / sub
-    },
-    calcNet(gross) {
-      return parseInt(gross / (1 + this.$store.state.locals.vatRate))
-    },
     calcSum() {
-      const gross = this.calcSub(this.product.price)
-      const net = this.calcNet(gross)
-      this.price.items = [
-        {
-          name: this.product.name,
-          net: this.calcSubBack(net),
-          tax: this.calcSubBack(gross - net),
-          gross: this.calcSubBack(gross)
-        }
-      ]
-      this.selectables
-        .filter(s => s.selected)
-        .forEach(s => {
-          const gross = this.calcSub(s.price)
-          const net = this.calcNet(gross)
-          this.price.items.push({
-            name: `${s.name} (x${s.quantity})`,
-            net: this.calcSubBack(net * s.quantity),
-            tax: this.calcSubBack((gross - net) * s.quantity),
-            gross: this.calcSubBack(gross * s.quantity)
-          })
-        })
-      this.price.net = this.price.items.reduce((a, b) => a + (b.net || 0), 0)
-      this.price.tax = this.price.items.reduce((a, b) => a + (b.tax || 0), 0)
-      this.price.gross = this.price.items.reduce((a, b) => a + (b.gross || 0), 0)
+      this.price = this.$store.getters['basket/calcPrices'](
+        this.product,
+        this.selectables.filter(s => s.selected),
+        1
+      )
     },
     select() {
       this.calcSum()
@@ -142,12 +127,9 @@ export default {
     addToCart() {
       if (this.product === undefined) return
 
-      this.calcSum()
-
-      this.$store.commit('basket/addProduct', {
+      this.$store.dispatch('basket/addProduct', {
         id: this.product.id,
         info: this.product,
-        price: this.price,
         selectables: this.selectables.filter(s => s.selected),
         custom: this.custom
       })
@@ -199,6 +181,10 @@ export default {
   flex-wrap: wrap;
 }
 
+.custom-container {
+  max-width: 300px;
+}
+
 .to-cart-button-container {
   width: 100%;
   margin: 20px 0;
@@ -233,7 +219,9 @@ export default {
 {
   "en": {
     "addToCart": "Add to cart",
-    "emptyMessage": "Please select a Product"
+    "emptyMessage": "Please select a Product",
+    "costCalculation": "Price Calculation",
+    "customize": "Customize"
   }
 }
 </i18n>

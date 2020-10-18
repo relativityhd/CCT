@@ -49,6 +49,7 @@ export default {
         basketId: this.product.basketId,
         quantity: parseInt(this.product.quantity)
       })
+      this.$store.dispatch('basket/calcPricesInBasket', this.product.basketId)
     },
     deleteItem() {
       this.$store.commit('basket/removeProduct', this.product.basketId)

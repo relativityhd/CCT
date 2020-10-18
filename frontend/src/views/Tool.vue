@@ -31,6 +31,7 @@
         <Product :product="selectedProduct" />
       </div>
       <div class="pricing-wrapper">
+        <h3>{{ $t('basket') }}</h3>
         <Basket :products="this.$store.state.basket.products" />
       </div>
     </div>
@@ -116,6 +117,8 @@ export default {
   justify-content: center;
   width: 1040px;
   max-width: 100%;
+  margin-bottom: 50px;
+  border-bottom: 1px $ui-03 solid;
 }
 
 .product-selection-wrapper {
@@ -147,7 +150,8 @@ export default {
   "en": {
     "title": "Tool",
     "categorySelect": "Select a category",
-    "productSelect": "Select a product"
+    "productSelect": "Select a product",
+    "basket": "Your basket"
   }
 }
 </i18n>

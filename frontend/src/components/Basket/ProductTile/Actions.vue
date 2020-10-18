@@ -45,14 +45,14 @@ export default {
         return
       }
       this.invalidMessage = ''
-      this.$store.commit('basket/setProduct', {
+      this.$store.dispatch('basket/setProduct', {
         basketId: this.product.basketId,
         quantity: parseInt(this.product.quantity)
       })
       this.$store.dispatch('basket/calcPricesInBasket', this.product.basketId)
     },
     deleteItem() {
-      this.$store.commit('basket/removeProduct', this.product.basketId)
+      this.$store.dispatch('basket/removeProduct', this.product.basketId)
     }
   }
 }

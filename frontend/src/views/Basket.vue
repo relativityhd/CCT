@@ -330,14 +330,14 @@ export default {
         changedItem.invalidMessage = this.$t('invalidNumber')
         return
       }
-      this.$store.commit('basket/setProduct', {
+      this.$store.dispatch('basket/setProduct', {
         basketId: basketId,
         quantity: parseInt(changedItem.quantity)
       })
       this.loadProducts()
     },
     deleteItem(basketId) {
-      this.$store.commit('basket/removeProduct', basketId)
+      this.$store.dispatch('basket/removeProduct', basketId)
       this.loadProducts()
     }
   }

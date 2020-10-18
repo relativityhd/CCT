@@ -1,11 +1,5 @@
 import * as hash from 'object-hash'
 
-function removeProduct(state, basketId) {
-  const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
-  if (indexInProducts === -1) return
-  state.products.splice(indexInProducts, 1)
-}
-
 function compareSelectable(a, b) {
   return a.id - b.id
 }
@@ -89,18 +83,15 @@ export default {
       state.products.push(newProduct)
     },
     removeProduct(state, basketId) {
-      removeProduct(state, basketId)
+      const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
+      if (indexInProducts === -1) return
+      state.products.splice(indexInProducts, 1)
     },
     setProduct(state, { basketId, quantity }) {
-      if (quantity === 0) {
-        removeProduct(state, basketId)
-        return
-      }
       const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
 
       if (indexInProducts !== -1) {
         state.products[indexInProducts].quantity = quantity
-        return
       }
     },
     calcAllPrices(state) {
@@ -114,7 +105,6 @@ export default {
         state.price.tax += p.price.sum.tax
         state.price.gross += p.price.sum.gross
       })
-      console.log('--DEBUG : state.price', state.price)
     }
   },
   actions: {
@@ -171,6 +161,18 @@ export default {
     calcPricesInBasket({ commit, getters }, basketId) {
       let item = getters.productById(basketId)
       item.price = getters.calcPrices(item.info, item.selectables, item.quantity)
+      commit('calcAllPrices')
+    },
+    removeProduct({ commit }, basketId) {
+      commit('removeProduct', basketId)
+      commit('calcAllPrices')
+    },
+    setProduct({ commit }, { basketId, quantity }) {
+      if (quantity === 0) {
+        commit('removeProduct', basketId)
+        return
+      }
+      commit('setProduct', { basketId, quantity })
       commit('calcAllPrices')
     }
   }

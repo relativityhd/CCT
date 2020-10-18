@@ -3,16 +3,16 @@
     <cv-structured-list class="price-list" v-if="!$store.state.mobile">
       <template slot="headings" v-if="!$store.state.mobile">
         <cv-structured-list-heading>
-          {{ $t('priceList.name') }}
+          {{ $t('Product.item') }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
-          {{ $t('priceList.net') }}
+          {{ $t('price.net') }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
-          {{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}
+          {{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
-          {{ $t('priceList.gross') }}
+          {{ $t('price.gross') }}
         </cv-structured-list-heading>
       </template>
 
@@ -34,8 +34,8 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="single">{{ $t('sum') }}</h6>
-            <h6 v-else>{{ $t('single') }}</h6>
+            <h6 v-if="single">{{ $t('price.sum') }}</h6>
+            <h6 v-else>{{ $t('price.single') }}</h6>
           </cv-structured-list-data>
           <cv-structured-list-data>
             <h6>
@@ -56,7 +56,7 @@
 
         <cv-structured-list-item v-if="!single">
           <cv-structured-list-data>
-            <h6>{{ $t('sum') }}</h6>
+            <h6>{{ $t('price.sum') }}</h6>
           </cv-structured-list-data>
           <cv-structured-list-data>
             <h6>
@@ -80,10 +80,10 @@
     <cv-structured-list class="price-list" v-else>
       <template slot="headings">
         <cv-structured-list-heading>
-          {{ $t('priceList.name') }}
+          {{ $t('Product.item') }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
-          {{ $t('priceList.price') }}
+          {{ $t('price.price') }}
         </cv-structured-list-heading>
       </template>
 
@@ -91,8 +91,8 @@
         <cv-structured-list-item v-for="pItem in price.items" :key="pItem.name">
           <cv-structured-list-data>
             <h6>{{ pItem.name }}</h6>
-            <p>{{ $t('priceList.net') }}</p>
-            <p>{{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
+            <p>{{ $t('price.net') }}</p>
+            <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
           </cv-structured-list-data>
 
           <cv-structured-list-data>
@@ -104,10 +104,10 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="single">{{ $t('sum') }}</h6>
-            <h6 v-else>{{ $t('single') }}</h6>
-            <p>{{ $t('priceList.net') }}</p>
-            <p>{{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
+            <h6 v-if="single">{{ $t('price.sum') }}</h6>
+            <h6 v-else>{{ $t('price.single') }}</h6>
+            <p>{{ $t('price.net') }}</p>
+            <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
           </cv-structured-list-data>
           <cv-structured-list-data>
             <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
@@ -118,9 +118,9 @@
 
         <cv-structured-list-item v-if="!single">
           <cv-structured-list-data>
-            <h6>{{ $t('sum') }}</h6>
-            <p>{{ $t('priceList.net') }}</p>
-            <p>{{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
+            <h6>{{ $t('price.sum') }}</h6>
+            <p>{{ $t('price.net') }}</p>
+            <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
           </cv-structured-list-data>
           <cv-structured-list-data>
             <h6>{{ $store.getters.formatPrice(price.sum.gross) }}</h6>
@@ -150,19 +150,3 @@ export default {
   text-align: left;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "sum": "Sum",
-    "single": "Sum per Item",
-    "priceList": {
-      "name": "Item",
-      "net": "Net",
-      "gross": "Gross",
-      "tax": "Tax",
-      "price": "Price"
-    }
-  }
-}
-</i18n>

@@ -1,5 +1,7 @@
 {
-  "title": "Tool",
-  "categorySelect": "Select a category",
-  "productSelect": "Select a product"
+  "title": "Cupboard Configuration Tool",
+  "basket": "Your basket",
+  "modell": "Modell",
+  "priceStarting": "Fixed price?",
+  "back": "Go Back"
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="product-wrapper">
     <div class="is-emtpy" v-if="hasNoProduct">
-      <h6>{{ $t('emptyMessage') }}</h6>
+      <h6>{{ $t('Product.emptyMessage') }}</h6>
     </div>
     <div class="product-container" v-else>
       <ProductInfo class="product-info" :product="product" />
@@ -27,7 +27,7 @@
           </cv-accordion-item>
 
           <cv-accordion-item class="price-list-container">
-            <template slot="title">{{ $t('costCalculation') }}</template>
+            <template slot="title">{{ $t('Product.costCalculation') }}</template>
             <template slot="content">
               <ProductPricing :price="price" :single="true" />
             </template>
@@ -35,12 +35,12 @@
         </cv-accordion>
         <div class="to-cart-button-wrapper">
           <cv-link class="back-link" @click="goBack">
-            {{ $t('chooseAnother') }}
+            {{ $t('Product.chooseAnother') }}
           </cv-link>
           <div class="to-cart-button-container">
             <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
             <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
-              {{ $t('addToCart') }}
+              {{ $t('Product.addToCart') }}
             </cv-button>
           </div>
         </div>
@@ -235,15 +235,3 @@ export default {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "addToCart": "Add to cart",
-    "emptyMessage": "Please select a Product",
-    "costCalculation": "Price Calculation",
-    "customize": "Customize",
-    "chooseAnother": "Choose another"
-  }
-}
-</i18n>

@@ -57,7 +57,6 @@ export default {
   padding-bottom: 15px;
 }
 #theCuppy {
-  display: none;
   position: fixed;
   bottom: 2rem;
   bottom: -2rem;

@@ -12,7 +12,7 @@
     <cv-icon-button
       class="delete-btn"
       :icon="iconDelete"
-      :label="$t('deleteItem')"
+      :label="$t('Basket.deleteItem')"
       tip-position="left"
       tip-alignment="start"
       @click="deleteItem()"
@@ -37,11 +37,11 @@ export default {
   methods: {
     changeQuantity() {
       if (Number.isNaN(parseInt(this.product.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber')
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       if (parseInt(this.product.quantity) <= 0) {
-        this.invalidMessage = this.$t('invalidNumber')
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       this.invalidMessage = ''
@@ -77,13 +77,3 @@ export default {
   align-self: end;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "invalidNumber": "Must be a number larger than 0!",
-    "deleteItem": "Remove item from your basket",
-    "quantity": "Quantity"
-  }
-}
-</i18n>

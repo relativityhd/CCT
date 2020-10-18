@@ -2,32 +2,32 @@
   <div>
     <div class="checkout-container">
       <cv-button :icon="Tag16" kind="secondary" @click="showModal">
-        {{ $t('show') }}
+        {{ $t('Basket.show') }}
       </cv-button>
     </div>
 
     <div class="checkout-container">
       <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
       <cv-button :icon="DeliveryTruck16" kind="primary" @click="checkout">
-        {{ $t('checkout') }}
+        {{ $t('Basket.checkout') }}
       </cv-button>
     </div>
 
     <cv-modal ref="modal">
       <template slot="label">{{ $store.getters.formatPrice(prices.gross) }}</template>
-      <template slot="title">{{ $t('title') }}</template>
+      <template slot="title">{{ $t('Basket.pricing') }}</template>
 
       <template slot="content">
         <div>
           <cv-data-table :pagination="false" :overflow-menu="false" :has-expand-all="false" ref="table">
             <template slot="headings">
-              <cv-data-table-heading :heading="$t('priceList.name')" />
-              <cv-data-table-heading v-if="!$store.state.mobile" :heading="$t('priceList.net')" />
+              <cv-data-table-heading :heading="$t('Basket.item')" />
+              <cv-data-table-heading v-if="!$store.state.mobile" :heading="$t('price.net')" />
               <cv-data-table-heading
                 v-if="!$store.state.mobile"
-                :heading="`${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)`"
+                :heading="`${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)`"
               />
-              <cv-data-table-heading :heading="$t('priceList.gross')" />
+              <cv-data-table-heading :heading="$t('price.gross')" />
             </template>
 
             <template slot="data">
@@ -54,7 +54,7 @@
 
               <cv-data-table-row value="sum">
                 <cv-data-table-cell>
-                  <h6>{{ $t('sum') }}</h6>
+                  <h6>{{ $t('price.sum') }}</h6>
                 </cv-data-table-cell>
                 <cv-data-table-cell v-if="!$store.state.mobile">
                   {{ $store.getters.formatPrice(prices.net) }}
@@ -70,9 +70,9 @@
                     <template slot="items">
                       <cv-structured-list-item>
                         <cv-structured-list-data>
-                          <h6>{{ $t('sum') }}</h6>
-                          <p>{{ $t('priceList.net') }}</p>
-                          <p>{{ `${$t('priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
+                          <h6>{{ $t('price.sum') }}</h6>
+                          <p>{{ $t('price.net') }}</p>
+                          <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
                         </cv-structured-list-data>
                         <cv-structured-list-data>
                           <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
@@ -140,20 +140,3 @@ export default {
   margin-right: 5px;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "title": "Pricing",
-    "show": "View complete Pricing",
-    "checkout": "To Checkout",
-    "sum": "Sum",
-    "priceList": {
-      "name": "Item",
-      "net": "Net",
-      "gross": "Price",
-      "tax": "Tax"
-    }
-  }
-}
-</i18n>

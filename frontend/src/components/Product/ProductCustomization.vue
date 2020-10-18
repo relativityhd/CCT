@@ -61,14 +61,3 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "width": "Width in cm",
-    "height": "Height in cm",
-    "depth": "Depth in cm",
-    "invalidNumber": "Must be a number between {min} and {max}!"
-  }
-}
-</i18n>

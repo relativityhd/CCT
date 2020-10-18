@@ -1,7 +1,7 @@
 <template>
   <div>
     <cv-button :icon="Edit16" class="show-btn" kind="secondary" @click="showModal">
-      {{ $t('show') }}
+      {{ $t('Basket.edit') }}
     </cv-button>
 
     <cv-modal ref="modal">
@@ -11,7 +11,7 @@
       <template slot="content">
         <div class="content-wrapper">
           <cv-button class="back-btn" v-if="mode !== 'menu'" :icon="Undo16" kind="secondary" @click="goTo('menu')">
-            {{ $t('goBack') }}
+            {{ $t('Basket.goBack') }}
           </cv-button>
 
           <div class="menu" v-if="mode === 'menu'">
@@ -25,15 +25,15 @@
 
             <div class="btn-wrapper">
               <cv-button v-if="product.info.customizable" :icon="Edit16" kind="secondary" @click="goTo('custom')">
-                {{ $t('modes.customize') }}
+                {{ $t('Basket.modes.customize') }}
               </cv-button>
 
               <cv-button :icon="Categories16" kind="secondary" @click="goTo('selectables')">
-                {{ $t('modes.selectables') }}
+                {{ $t('Basket.modes.selectables') }}
               </cv-button>
 
               <cv-button :icon="Tag16" kind="secondary" @click="goTo('pricing')">
-                {{ $t('modes.pricing') }}
+                {{ $t('Basket.modes.pricing') }}
               </cv-button>
             </div>
           </div>
@@ -159,9 +159,6 @@ export default {
 .menu {
   max-width: 300px;
   text-align: left;
-}
-
-.custom {
 }
 
 .back-btn {

@@ -91,11 +91,11 @@
                         v-for="item in [
                           {
                             name: $t('Basket.tableHeads.fixed'),
-                            value: product.info.priceStarting ? $t('Basket.yes') : $t('Basket.no')
+                            value: product.info.priceStarting ? $t('yes') : $t('no')
                           },
-                          { name: $t('Basket.width'), value: product.custom.width },
-                          { name: $t('Basket.height'), value: product.custom.height },
-                          { name: $t('Basket.depth'), value: product.custom.depth }
+                          { name: $t('width'), value: product.custom.width },
+                          { name: $t('height'), value: product.custom.height },
+                          { name: $t('depth'), value: product.custom.depth }
                         ]"
                         :key="item.name"
                       >
@@ -136,7 +136,7 @@
                           {{ selectable.name }}
                         </cv-structured-list-data>
                         <cv-structured-list-data>
-                          {{ selectable.customized ? $t('Basket.yes') : $t('Basket.no') }}
+                          {{ selectable.customized ? $t('yes') : $t('no') }}
                         </cv-structured-list-data>
                         <cv-structured-list-data>
                           {{ selectable.customized ? selectable.custom.width : '-' }}
@@ -157,16 +157,16 @@
                   <cv-structured-list class="price-list">
                     <template slot="headings">
                       <cv-structured-list-heading>
-                        {{ $t('Basket.priceList.name') }}
+                        {{ $t('Basket.item') }}
                       </cv-structured-list-heading>
                       <cv-structured-list-heading>
-                        {{ $t('Basket.priceList.net') }}
+                        {{ $t('price.net') }}
                       </cv-structured-list-heading>
                       <cv-structured-list-heading>
-                        {{ `${$t('Basket.priceList.tax')} (${$store.state.locals.vatRate * 100}%)` }}
+                        {{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}
                       </cv-structured-list-heading>
                       <cv-structured-list-heading>
-                        {{ $t('Basket.priceList.gross') }}
+                        {{ $t('price.gross') }}
                       </cv-structured-list-heading>
                     </template>
                     <template slot="items">
@@ -187,7 +187,7 @@
 
                       <cv-structured-list-item>
                         <cv-structured-list-data>
-                          <h6>{{ $t('Basket.itemSum') }}</h6>
+                          <h6>{{ $t('price.single') }}</h6>
                         </cv-structured-list-data>
                         <cv-structured-list-data>
                           <h6>
@@ -208,7 +208,7 @@
 
                       <cv-structured-list-item>
                         <cv-structured-list-data>
-                          <h6>{{ $t('Basket.sum') }}</h6>
+                          <h6>{{ $t('price.sum') }}</h6>
                         </cv-structured-list-data>
                         <cv-structured-list-data>
                           <h6>
@@ -323,11 +323,11 @@ export default {
     changeQuantity(basketId) {
       const changedItem = this.products.find(p => p.basketId === basketId)
       if (Number.isNaN(parseInt(changedItem.quantity))) {
-        changedItem.invalidMessage = this.$t('Basket.invalidNumber')
+        changedItem.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       if (parseInt(changedItem.quantity) <= 0) {
-        changedItem.invalidMessage = this.$t('Basket.invalidNumber')
+        changedItem.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       this.$store.dispatch('basket/setProduct', {

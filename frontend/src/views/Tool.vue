@@ -23,13 +23,13 @@
             >
               <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
               <div class="tile-body">
-                <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
+                <h3>{{ `${$t('Tool.modell')} ${product.name}` }}</h3>
                 <p>{{ $store.getters.formatPrice(product.price) }}</p>
                 <p>
-                  {{ `${$t('priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}` }}
+                  {{ `${$t('Tool.priceStarting')} - ${product.priceStarting ? $t('yes') : $t('no')}` }}
                 </p>
                 <p>
-                  {{ `${$t('customizable')} - ${product.customizable ? $t('yes') : $t('no')}` }}
+                  {{ `${$t('customizable')}? - ${product.customizable ? $t('yes') : $t('no')}` }}
                 </p>
               </div>
             </cv-tile>
@@ -37,7 +37,7 @@
             <cv-tile kind="clickable" class="tile" @click="chooseAnother('categories-ov')">
               <Undo32 class="tile-image" />
               <div class="tile-body">
-                <h2>{{ $t('back') }}</h2>
+                <h2>{{ $t('Tool.back') }}</h2>
               </div>
             </cv-tile>
           </div>
@@ -46,7 +46,7 @@
         <Product v-if="step === 'product'" :product="selectedProduct" v-on:back="chooseAnother('products-ov')" />
       </div>
       <div class="pricing-wrapper">
-        <h3>{{ $t('basket') }}</h3>
+        <h3>{{ $t('Tool.basket') }}</h3>
         <Basket :products="this.$store.state.basket.products" />
       </div>
     </div>
@@ -181,20 +181,3 @@ export default {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "title": "Cupboard Customization Tool",
-    "categorySelect": "Select a category",
-    "productSelect": "Select a product",
-    "basket": "Your basket",
-    "modell": "Modell",
-    "priceStarting": "Fixed price?",
-    "customizable": "Customizable?",
-    "yes": "Yes",
-    "no": "No",
-    "back": "Go Back"
-  }
-}
-</i18n>

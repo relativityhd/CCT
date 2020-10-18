@@ -31,7 +31,7 @@
             </template>
           </cv-accordion-item>
         </cv-accordion>
-        <p v-else>{{ $t('notEditable') }}</p>
+        <p v-else>{{ $t('Product.notEditable') }}</p>
       </div>
     </div>
   </cv-tile>
@@ -56,7 +56,7 @@ export default {
   methods: {
     changeQuantity() {
       if (Number.isNaN(parseInt(this.selectable.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber')
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       this.invalidMessage = ''
@@ -119,18 +119,3 @@ export default {
   width: 100%;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "quantity": "Quantity",
-    "invalidNumber": "Must be a positive number!",
-    "customize": "Customize",
-    "width": "Width in cm",
-    "height": "Height in cm",
-    "depth": "Depth in cm",
-    "notEditable": "This item is in this combination not editable.",
-    "customize": "Customize"
-  }
-}
-</i18n>

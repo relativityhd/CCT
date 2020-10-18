@@ -33,16 +33,3 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "width": "Width",
-    "height": "Height",
-    "depth": "Depth",
-    "yes": "Yes",
-    "no": "No",
-    "customized": "Customized"
-  }
-}
-</i18n>

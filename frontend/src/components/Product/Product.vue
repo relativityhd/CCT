@@ -34,9 +34,7 @@
           </cv-accordion-item>
         </cv-accordion>
         <div class="to-cart-button-wrapper">
-          <cv-link
-            class="back-link"
-            @click="goBack">
+          <cv-link class="back-link" @click="goBack">
             {{ $t('chooseAnother') }}
           </cv-link>
           <div class="to-cart-button-container">
@@ -45,7 +43,6 @@
               {{ $t('addToCart') }}
             </cv-button>
           </div>
-          
         </div>
       </div>
     </div>
@@ -189,7 +186,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
 }

@@ -3,16 +3,9 @@
     <h1 class="p-title">{{ $t('title') }}</h1>
     <div class="tool-wrapper">
       <div class="new-item-wrapper">
-
         <div class="product-selection-wrapper">
-
-          <div v-if="step==='categories-ov'" class="tile-container">
-            <cv-tile
-              v-for="ct in categories"
-              :key="ct.id"
-              kind="clickable"
-              class="tile"
-              @click="selectCategory(ct.id)">
+          <div v-if="step === 'categories-ov'" class="tile-container">
+            <cv-tile v-for="ct in categories" :key="ct.id" kind="clickable" class="tile" @click="selectCategory(ct.id)">
               <img class="tile-image" :src="ct.imageUrl" alt="Image of Category" />
               <div class="tile-body">
                 <h2>{{ ct.name }}</h2>
@@ -20,13 +13,14 @@
             </cv-tile>
           </div>
 
-          <div v-if="step==='products-ov'" class="tile-container">
+          <div v-if="step === 'products-ov'" class="tile-container">
             <cv-tile
               v-for="product in products"
               :key="product.id"
               kind="clickable"
               class="tile"
-              @click="selectProduct(product.id)">
+              @click="selectProduct(product.id)"
+            >
               <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
               <div class="tile-body">
                 <h3>{{ `${$t('modell')} ${product.name}` }}</h3>
@@ -40,10 +34,7 @@
               </div>
             </cv-tile>
 
-            <cv-tile
-              kind="clickable"
-              class="tile"
-              @click="chooseAnother">
+            <cv-tile kind="clickable" class="tile" @click="chooseAnother('categories-ov')">
               <Undo32 class="tile-image" />
               <div class="tile-body">
                 <h2>{{ $t('back') }}</h2>
@@ -52,7 +43,7 @@
           </div>
         </div>
 
-        <Product v-if="step==='product'" :product="selectedProduct" v-on:back="chooseAnother" />
+        <Product v-if="step === 'product'" :product="selectedProduct" v-on:back="chooseAnother('products-ov')" />
       </div>
       <div class="pricing-wrapper">
         <h3>{{ $t('basket') }}</h3>
@@ -104,18 +95,20 @@ export default {
     })
   },
   methods: {
-    chooseAnother() {
-      this.step = 'categories-ov'
+    chooseAnother(step) {
+      this.step = step
+      window.scrollTo(0, 0)
     },
     selectCategory(id) {
       const selectedCategory = this.categories.find(c => c.id === id)
       this.products = selectedCategory.products
       this.step = 'products-ov'
+      window.scrollTo(0, 0)
     },
     selectProduct(id) {
       this.selectedProduct = this.products.find(p => p.id === id)
-      console.log('--DEBUG : selectProduct -> selectedProduct', this.selectedProduct)
       this.step = 'product'
+      window.scrollTo(0, 0)
     }
   }
 }
@@ -137,10 +130,6 @@ export default {
 }
 
 .new-item-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
   width: 1040px;
   max-width: 100%;
   margin-bottom: 50px;
@@ -158,7 +147,7 @@ export default {
   margin: 10px;
 }
 
-.tile-container{
+.tile-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

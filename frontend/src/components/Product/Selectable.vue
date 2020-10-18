@@ -82,7 +82,6 @@ export default {
   max-width: 300px;
   margin: 5px;
   text-align: left;
-  min-height: 210px;
 }
 
 .inner-tile {

@@ -1,14 +1,17 @@
 <template>
   <div>
-    <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
+    <div class="checkout-container">
+      <cv-button :icon="Tag16" kind="secondary" @click="showModal">
+        {{ $t('show') }}
+      </cv-button>
+    </div>
 
-    <cv-button :icon="Tag16" class="show-btn" kind="secondary" @click="showModal">
-      {{ $t('show') }}
-    </cv-button>
-    <br />
-    <cv-button :icon="DeliveryTruck16" class="show-btn" kind="primary" @click="checkout">
-      {{ $t('checkout') }}
-    </cv-button>
+    <div class="checkout-container">
+      <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
+      <cv-button :icon="DeliveryTruck16" kind="primary" @click="checkout">
+        {{ $t('checkout') }}
+      </cv-button>
+    </div>
 
     <cv-modal ref="modal">
       <template slot="label">{{ $store.getters.formatPrice(prices.gross) }}</template>
@@ -123,6 +126,18 @@ export default {
 <style lang="scss">
 .bx--data-table-container {
   min-width: 0;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.checkout-container h6 {
+  margin-right: 5px;
 }
 </style>
 

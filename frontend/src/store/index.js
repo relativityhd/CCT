@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 import locals from './locals'
 import basket from './basket'
 
 Vue.use(Vuex)
+
+const vuexPersist = new VuexPersist({
+  key: 'cupboard-limited',
+  storage: window.sessionStorage
+})
 
 export default new Vuex.Store({
   state: {
@@ -29,5 +35,6 @@ export default new Vuex.Store({
   modules: {
     locals,
     basket
-  }
+  },
+  plugins: [vuexPersist.plugin]
 })

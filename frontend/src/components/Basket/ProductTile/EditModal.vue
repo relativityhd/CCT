@@ -63,9 +63,6 @@
 </template>
 
 <script>
-import ProductCustomization from '../../Product/ProductCustomization'
-import ProductPricing from '../../Product/ProductPricing'
-import Selectable from '../../Product/Selectable'
 import Edit16 from '@carbon/icons-vue/es/edit/16'
 import Undo16 from '@carbon/icons-vue/es/undo/16'
 import Tag16 from '@carbon/icons-vue/es/tag/16'
@@ -106,9 +103,9 @@ export default {
     }
   },
   components: {
-    ProductCustomization,
-    ProductPricing,
-    Selectable
+    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ '../../Product/ProductCustomization'),
+    ProductPricing: () => import(/* webpackChunkName: "ProductPricing" */ '../../Product/ProductPricing'),
+    Selectable: () => import(/* webpackChunkName: "Selectable" */ '../../Product/Selectable')
   },
   methods: {
     showModal() {

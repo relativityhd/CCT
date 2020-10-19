@@ -3,7 +3,7 @@ node_js:
   - 12
 cache:
   npm: true
-script: npm run build
+script: timeout=12000 npm run build
 deploy:
   - app_name: cablecard-cct
     provider: cloudfoundry

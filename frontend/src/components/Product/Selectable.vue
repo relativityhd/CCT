@@ -38,15 +38,13 @@
 </template>
 
 <script>
-import ProductCustomization from './ProductCustomization'
-
 export default {
   name: 'Selectable',
   props: {
     selectable: Object
   },
   components: {
-    ProductCustomization
+    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ './ProductCustomization')
   },
   data() {
     return {

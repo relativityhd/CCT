@@ -52,7 +52,6 @@
 <script>
 import ProductInfo from './ProductInfo'
 import Selectable from './Selectable'
-import ProductCustomization from './ProductCustomization'
 import ProductPricing from './ProductPricing'
 import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
 
@@ -61,7 +60,7 @@ export default {
   components: {
     ProductInfo,
     Selectable,
-    ProductCustomization,
+    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ './ProductCustomization'),
     ProductPricing
   },
   props: {
@@ -102,7 +101,6 @@ export default {
   },
   methods: {
     goBack() {
-      console.log('back')
       this.$emit('back')
     },
     checkForProduct() {

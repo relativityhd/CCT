@@ -55,15 +55,13 @@
 
 <script>
 import Vue from 'vue'
-import Product from '../components/Product/Product'
-import Basket from '../components/Basket/Basket'
 import Undo32 from '@carbon/icons-vue/es/undo/32'
 
 export default {
   name: 'Tool',
   components: {
-    Product,
-    Basket,
+    Product: () => import(/* webpackChunkName: "Product" */ '../components/Product/Product'),
+    Basket: () => import(/* webpackChunkName: "Basket" */ '../components/Basket/Basket'),
     Undo32
   },
   data() {

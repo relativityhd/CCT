@@ -16,5 +16,9 @@
     "email": "Email"
   },
   "invalid": "Please enter a value",
-  "waitForResponse": "Waiting for response"
+  "waitForResponse": "Waiting for response",
+  "sendOrder": "Sending your Order",
+  "failed": "Couldn't order stuff :(",
+  "sucessfull": "Sucessfully ordered!",
+  "orderId": "Your Order Id is:"
 }

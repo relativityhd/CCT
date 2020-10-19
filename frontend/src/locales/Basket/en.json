@@ -18,18 +18,17 @@
     "info": "Customized Data",
     "about": "Item Info"
   },
-  "itemSum": "Sum per Item",
-  "sum": "Sum",
   "costCalculation": "Price Calculation",
-  "priceList": {
-    "name": "Item",
-    "net": "Net",
-    "gross": "Gross",
-    "tax": "Tax"
+  "item": "Item",
+  "pricing": "Pricing",
+  "show": "View complete Pricing",
+  "checkout": "To Checkout",
+  "edit": "Edit Product",
+  "goBack": "Go Back",
+  "modes": {
+    "customize": "Customize",
+    "selectables": "Edit Selectables",
+    "pricing": "View Pricing"
   },
-  "width": "Width",
-  "height": "Height",
-  "depth": "Depth",
-  "yes": "Yes",
-  "no": "No"
+  "editBasket": "Edit your Basket"
 }

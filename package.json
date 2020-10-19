@@ -29,6 +29,7 @@
     "lint": "cd api && npm run lint; cd ../frontend && npm run lint --fix"
   },
   "dependencies": {
-    "@carbon/icons-vue": "^10.19.0"
+    "@carbon/icons-vue": "^10.19.0",
+    "vuex-persist": "^3.1.3"
   }
 }

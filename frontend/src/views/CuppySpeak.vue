@@ -34,7 +34,6 @@ export default {
   methods: {
     greetUser() {
       const puns = this.$t('CuppySpeak.puns')
-      console.log(puns[0])
       return puns[Math.floor(Math.random() * 4)]
     },
     toSide(path) {

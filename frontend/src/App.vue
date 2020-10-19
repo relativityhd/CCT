@@ -54,6 +54,7 @@ export default {
 #app-view {
   margin-top: calc(48px + 24px);
   min-height: calc(100vh - 48px - 24px);
+  padding-bottom: 15px;
 }
 #theCuppy {
   position: fixed;
@@ -61,5 +62,8 @@ export default {
   bottom: -2rem;
   right: 0vw;
   z-index: 8001;
+}
+.bx--number--mobile input[type='number'] {
+  width: 100%;
 }
 </style>

@@ -1,0 +1,20 @@
+{
+  "customizable": "Customizable",
+  "customize": "Customize",
+  "customized": "Customized",
+  "yes": "Yes",
+  "no": "No",
+  "width": "Width in cm",
+  "height": "Height in cm",
+  "depth": "Depth in cm",
+  "price": {
+    "price": "Price",
+    "sum": "Sum",
+    "single": "Sum per Item",
+    "net": "Net",
+    "gross": "Gross",
+    "tax": "Tax"
+  },
+  "invalidNumber": "Must be a number between {min} and {max}!",
+  "quantity": "Quantity"
+}

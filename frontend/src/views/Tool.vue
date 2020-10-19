@@ -1,11 +1,11 @@
 <template>
   <div class="tool-page-wrapper">
-    <h1 class="p-title">{{ $t('title') }}</h1>
+    <h1 class="p-title">{{ $t('Tool.title') }}</h1>
     <div class="tool-wrapper">
       <div class="new-item-wrapper">
         <div class="product-selection-wrapper">
           <cv-dropdown
-            :label="$t('categorySelect')"
+            :label="$t('Tool.categorySelect')"
             :disabled="categories.length === 0"
             :value="dropdowns.selectedCategoryId"
             v-model="dropdowns.selectedCategoryId"
@@ -17,7 +17,7 @@
           </cv-dropdown>
 
           <cv-dropdown
-            :label="$t('productSelect')"
+            :label="$t('Tool.productSelect')"
             :disabled="products.length === 0"
             :value="dropdowns.selectedProductId"
             v-model="dropdowns.selectedProductId"
@@ -140,13 +140,3 @@ export default {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "title": "Tool",
-    "categorySelect": "Select a category",
-    "productSelect": "Select a product"
-  }
-}
-</i18n>

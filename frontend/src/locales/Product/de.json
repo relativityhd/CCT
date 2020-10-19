@@ -1,0 +1,16 @@
+{
+  "addToCart": "Zum Einkaufswagen hinzufügen",
+  "emptyMessage": "Wähle einen Artikel aus",
+  "customize": "Individualisiere",
+  "sum": "Summe",
+  "costCalculation": "Preisrechner",
+  "priceList": {
+    "name": "Item",
+    "net": "Netto",
+    "gross": "Bruder",
+    "tax": "Tax"
+  },
+  "width": "Breite in cm",
+  "height": "Höhe in cm",
+  "depth": "Tiefe in cm"
+}

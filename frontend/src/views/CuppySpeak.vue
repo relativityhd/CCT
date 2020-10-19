@@ -4,15 +4,15 @@
       <h6 id="greet">{{ cuppyGreet }}</h6>
       <div id="buttoncontainer">
         <button @click="$root.$emit('openLoc')">
-          {{ $t('location') }}
+          {{ $t('CuppySpeak.location') }}
         </button>
 
         <button @click="$root.$emit('openLang')">
-          {{ $t('language') }}
+          {{ $t('CuppySpeak.language') }}
         </button>
 
         <button @click="toSide('/about')">
-          {{ $t('imprint') }}
+          {{ $t('CuppySpeak.imprint') }}
         </button>
       </div>
     </div>
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     greetUser() {
-      const puns = this.$t('puns')
+      const puns = this.$t('CuppySpeak.puns')
       console.log(puns[0])
       return puns[Math.floor(Math.random() * 4)]
     },
@@ -48,42 +48,7 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en":{
-    "location": "I'm from somewhere else!",
-    "language": "I'm speaking a different Languge",
-    "support": "I need some help",
-    "imprint": "Who made this page?",
-    "puns": [
-      "CUPE DIEM", 
-      "CUPOW! I’m here to help you",
-      "Im Cuppy from Cuptown and im coming to help you",
-      "Whats Cup, do you need any Help?"
-    ]
 
-  },
-  "de":{
-    "location": "Ich komme von woanders!",
-    "language": "Ich spreche eine andere Sprache",
-    "support": "Ich brauche Hilfe",
-    "imprint": "Wer ist verantwortlich?",
-    "puns": [
-      "CUPE DIEM!", 
-      "Du kupierst was nicht? Wie kann ich dir helfen?!", 
-      "CUPOW! Ich bin hier um dir zu helfen!",
-      "Ich bin Cuppy aus Cupstadt und eile zu deiner Hilfe!"
-    ]
-
-  },
-  "it":{
-    "location": "Vengo da un altro posto!",
-    "language": "Parlo una lingua diversa",
-    "support": "Ho bisogno di aiuto",
-    "imprint": "Chi è il responsabile?"
-  }
-}
-</i18n>
 <style lang="scss" scoped>
 .speech-bubble {
   position: relative;

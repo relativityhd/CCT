@@ -2,7 +2,7 @@
   <cv-header id="app-header" aria-label="Carbon header">
     <cv-header-menu-button aria-label="Header menu" aria-controls="side-nav" />
     <cv-skip-to-content to="#main-content">
-      {{ $t('skipto') }}
+      {{ $t('AppHeader.skipto') }}
     </cv-skip-to-content>
     <cv-header-name to="/" prefix="CL">
       <img class="logo" src="@/assets/images/logo.svg" alt="Logo" />
@@ -11,7 +11,7 @@
 
     <cv-header-nav aria-label="Carbon nav">
       <cv-header-menu-item v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
-        {{ link.name }}
+        {{ $t(link.name) }}
       </cv-header-menu-item>
     </cv-header-nav>
 
@@ -33,7 +33,7 @@
       <cv-side-nav id="side-nav" fixed>
         <cv-side-nav-items>
           <cv-side-nav-link v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
-            {{ link.name }}
+            {{ $t(link.name) }}
           </cv-side-nav-link>
         </cv-side-nav-items>
       </cv-side-nav>
@@ -86,10 +86,10 @@ export default {
   components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
-      { name: this.$i18n.t('region'), to: '/' },
-      { name: this.$i18n.t('tool'), to: '/tool' },
-      { name: this.$i18n.t('about'), to: '/about' },
-      { name: this.$i18n.t('catalogue'), to: '/categories' }
+      { name: 'AppHeader.region', to: '/' },
+      { name: 'AppHeader.tool', to: '/tool' },
+      { name: 'AppHeader.about', to: '/about' },
+      { name: 'AppHeader.catalogue', to: '/categories' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath
@@ -176,15 +176,3 @@ a.bx--header__menu-item[aria-current='page']::after,
   background-color: $hover-primary;
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "skipto": "Skip to main content.",
-    "region": "Set Region",
-    "tool": "Tool",
-    "about": "About",
-    "catalogue": "Catalogue"
-  }
-}
-</i18n>

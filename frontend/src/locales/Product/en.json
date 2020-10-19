@@ -1,0 +1,16 @@
+{
+  "addToCart": "Add to cart",
+  "emptyMessage": "Please select a Product",
+  "customize": "Customize",
+  "sum": "Sum",
+  "costCalculation": "Price Calculation",
+  "priceList": {
+    "name": "Item",
+    "net": "Net",
+    "gross": "Gross",
+    "tax": "Tax"
+  },
+  "width": "Width in cm",
+  "height": "Height in cm",
+  "depth": "Depth in cm"
+}

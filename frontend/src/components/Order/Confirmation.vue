@@ -12,17 +12,22 @@
       <div v-else>
         <h6>{{ $t('Order.failed') }}</h6>
       </div>
+      <cv-button class="to-shop-btn" :icon="ShoppingCart16" @click="$router.push('/tool')">
+        {{ $t('Order.backToShop') }}
+      </cv-button>
     </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/16'
 
 export default {
   name: 'OrderConfirmation',
   data() {
     return {
+      ShoppingCart16,
       orderId: 0,
       responsed: false,
       errored: false
@@ -50,3 +55,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.to-shop-btn {
+  margin-top: 15px;
+}
+</style>

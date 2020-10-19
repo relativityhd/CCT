@@ -31,7 +31,7 @@ import DeliveryTruck16 from '@carbon/icons-vue/es/delivery-truck/16'
 export default {
   name: 'BasketPricing',
   components: {
-    OrderPricing: () => import(/* webpackChunkName: "OrderPricing" */ '../Order/Pricing')
+    OrderPricing: () => import(/* webpackChunkName: "OrderPricingTable" */ '../Order/PricingTable')
   },
   props: {
     prices: Object

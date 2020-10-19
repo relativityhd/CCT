@@ -1,15 +1,18 @@
 <template>
-  <div>
+  <div class="order-wrapper">
     <keep-alive>
       <component ref="component" :is="currentComponent"></component>
     </keep-alive>
 
-    <cv-button :icon="PageFirst16" kind="secondary" @click="toBack">
-      {{ $t(back) }}
-    </cv-button>
-    <cv-button v-if="to" :icon="PageLast16" kind="primary" @click="toNext">
-      {{ $t(to) }}
-    </cv-button>
+    <div class="button-wrapper">
+      <cv-button v-if="back" :icon="PageFirst16" kind="secondary" @click="toBack">
+        {{ $t(back) }}
+      </cv-button>
+      <cv-button v-if="to" :icon="PageLast16" kind="primary" @click="toNext">
+        {{ $t(to) }}
+      </cv-button>
+    </div>
+    
   </div>
 </template>
 
@@ -32,7 +35,7 @@ export default {
       components: [
         { to: 'Order.userdata', from: 'Order.shop', src: 'Pricing' },
         { to: 'Order.order', from: 'Order.pricing', src: 'Userdata' },
-        { to: false, from: 'Order.shop', src: 'Confirmation' }
+        { to: false, from: false, src: 'Confirmation' }
       ],
       unableToOrder: false
     }
@@ -65,3 +68,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.order-wrapper {
+  width: 98%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  margin-top: 15px;
+}
+</style>

@@ -20,5 +20,7 @@
   "sendOrder": "Sending your Order",
   "failed": "Couldn't order stuff :(",
   "sucessfull": "Sucessfully ordered!",
-  "orderId": "Your Order Id is:"
+  "orderId": "Your Order Id is:",
+  "pricingInfo": "Here more Information about the prices, maybe juristical things or so...",
+  "backToShop": "Return to the shop"
 }

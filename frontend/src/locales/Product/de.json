@@ -6,8 +6,8 @@
   "costCalculation": "Preisrechner",
   "priceList": {
     "name": "Item",
-    "net": "Net",
-    "gross": "Gross",
+    "net": "Netto",
+    "gross": "Bruder",
     "tax": "Tax"
   },
   "width": "Breite in cm",

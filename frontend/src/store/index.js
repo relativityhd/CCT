@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 import locals from './locals'
 import basket from './basket'
+import customer from './customer'
 
 Vue.use(Vuex)
 
@@ -34,7 +35,8 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     locals,
-    basket
+    basket,
+    customer
   },
   plugins: [vuexPersist.plugin]
 })

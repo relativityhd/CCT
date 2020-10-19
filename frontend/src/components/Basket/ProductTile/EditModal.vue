@@ -103,7 +103,8 @@ export default {
     }
   },
   components: {
-    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ '../../Product/ProductCustomization'),
+    ProductCustomization: () =>
+      import(/* webpackChunkName: "ProductCustomization" */ '../../Product/ProductCustomization'),
     ProductPricing: () => import(/* webpackChunkName: "ProductPricing" */ '../../Product/ProductPricing'),
     Selectable: () => import(/* webpackChunkName: "Selectable" */ '../../Product/Selectable')
   },

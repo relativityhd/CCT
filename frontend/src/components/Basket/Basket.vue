@@ -1,7 +1,7 @@
 <template>
   <div class="basket-wrapper">
     <ProductTile v-for="product in products" :key="product.basketId" :product="product" />
-    <BasketPricing :products="products" :prices="$store.state.basket.price" />
+    <BasketPricing :prices="$store.state.basket.price" />
   </div>
 </template>
 

@@ -1,0 +1,20 @@
+{
+  "pricing": "Pricing",
+  "userdata": "Customer Information",
+  "shop": "Shop",
+  "order": "Order",
+  "back": "Back to",
+  "customer": {
+    "firstname": "Firstname",
+    "middlename": "Middlename",
+    "lastname": "Lastname",
+    "address": "Street",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "country": "Country",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "invalid": "Please enter a value",
+  "waitForResponse": "Waiting for response"
+}

@@ -1,6 +1,6 @@
 {
   "title": "Your Basket",
-  "noItems": "You havn't any items in your basket!",
+  "noItems": "Your basket is empty!",
   "toStore": "Store",
   "invalidNumber": "Must be a number larger than 0!",
   "deleteItem": "Remove item from your basket",

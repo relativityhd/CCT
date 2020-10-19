@@ -12,7 +12,6 @@
         {{ $t(to) }}
       </cv-button>
     </div>
-    
   </div>
 </template>
 
@@ -79,7 +78,7 @@ export default {
 .button-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   width: 100%;
   margin-top: 15px;
 }

@@ -33,22 +33,21 @@ export default {
       errored: false
     }
   },
-  mounted () {
+  mounted() {
     const postObject = {
-      orderDate: (new Date()).toISOString(),
+      orderDate: new Date().toISOString(),
       country: this.$store.state.locals.location,
       customer: this.$store.getters['customer/customerData'](),
       price: this.$store.getters['basket/orderPrice'](),
       products: this.$store.getters['basket/orderProducts']()
     }
-    console.log('--DEBUG : mounted -> postObject', postObject)
     Vue.axios
       .post('/order', postObject)
       .then(res => {
         this.responsed = true
         this.orderId = res.data.orderId
-      }).catch(err => {
-        console.log('--DEBUG : mounted -> err', err)
+      })
+      .catch(() => {
         this.responsed = true
         this.errored = true
       })

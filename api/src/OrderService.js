@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   console.log(req.body)
   res.json({
-    orderId: 'dsaknkjlads78'
+    orderId: 'dsaknkjlads78',
   })
   res.end()
 })

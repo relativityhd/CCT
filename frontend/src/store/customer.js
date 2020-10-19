@@ -19,16 +19,16 @@ export default {
   },
   getters: {
     customerData: state => () => {
-      return { ...state.customerData}
+      return { ...state.customerData }
     },
     validateSingle: state => key => {
-      state.invalids[key] = (state.customerData[key].length === 0) ? i18n.t('Order.invalid') : ''
+      state.invalids[key] = state.customerData[key].length === 0 ? i18n.t('Order.invalid') : ''
       return state.customerData[key].length === 0
     }
   },
   mutations: {
     resetInvalids(state) {
-      Object.keys(state.customerData).forEach((key) => {
+      Object.keys(state.customerData).forEach(key => {
         state.invalids[key] = ''
       })
     },
@@ -44,7 +44,7 @@ export default {
     }
   },
   actions: {
-    validate({state, getters}) {
+    validate({ state, getters }) {
       state.hasInvalids = false
       Object.keys(state.customerData).forEach(key => {
         state.hasInvalids = getters.validateSingle(key) ? true : state.hasInvalids

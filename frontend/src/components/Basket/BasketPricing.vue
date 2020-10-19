@@ -8,7 +8,7 @@
 
     <div class="checkout-container">
       <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
-      <cv-button :icon="DeliveryTruck16" kind="primary" @click="checkout">
+      <cv-button :icon="DeliveryTruck16" kind="primary" @click="$router.push('/order')">
         {{ $t('Basket.checkout') }}
       </cv-button>
     </div>
@@ -45,10 +45,6 @@ export default {
   methods: {
     showModal() {
       this.$refs.modal.show()
-    },
-    checkout() {
-      console.log('to Checkout!')
-      this.$router.push('/order')
     }
   }
 }

@@ -3,7 +3,7 @@
     <h3>{{ $t('Order.pricing') }}</h3>
     <PricingTable />
     <div class="info-wrapper">
-      <p class="pricing-info">{{$t('Order.pricingInfo')}}</p>
+      <p class="pricing-info">{{ $t('Order.pricingInfo') }}</p>
     </div>
   </div>
 </template>
@@ -27,6 +27,6 @@ export default {
 .info-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
 }
 </style>

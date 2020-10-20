@@ -9,7 +9,7 @@
           <img class="product-image" :src="product.info.imageUrl" alt="Image of Product" />
           <div class="product-body">
             <h6>{{ product.info.name }}</h6>
-            <p>{{ $store.getters.formatPrice(product.info.price) }}</p>
+            <p>{{ $store.getters.formatPrice(product.price.sum.gross) }}</p>
           </div>
         </div>
         <div class="product-selectables">
@@ -26,11 +26,19 @@
     </div>
 
     <hr />
+    
+    <h6>{{ `${$t('price.price')}: ${$store.getters.formatPrice($store.state.basket.price.gross)}` }}</h6>
+    <hr />
 
     <cv-switcher>
       <cv-switcher-item>
         <cv-switcher-item-link to="/basket">
           {{ $t('Basket.editBasket') }}
+        </cv-switcher-item-link>
+      </cv-switcher-item>
+      <cv-switcher-item>
+        <cv-switcher-item-link to="/order">
+          {{ $t('Basket.checkout') }}
         </cv-switcher-item-link>
       </cv-switcher-item>
     </cv-switcher>

@@ -145,6 +145,12 @@ export default {
         state.price.tax += p.price.sum.tax
         state.price.gross += p.price.sum.gross
       })
+    },
+    emptyBasket(state) {
+      state.price.net = 0
+      state.price.tax = 0
+      state.price.gross = 0
+      state.products = []
     }
   },
   actions: {

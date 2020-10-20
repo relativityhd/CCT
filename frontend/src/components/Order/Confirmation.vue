@@ -46,6 +46,7 @@ export default {
       .then(res => {
         this.responsed = true
         this.orderId = res.data.orderId
+        this.$store.commit('basket/emptyBasket')
       })
       .catch(() => {
         this.responsed = true

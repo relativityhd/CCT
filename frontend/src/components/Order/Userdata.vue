@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.usr-wrapper{
+.usr-wrapper {
   width: auto;
 }
 
@@ -120,12 +120,12 @@ export default {
   width: 224px;
 }
 
-.usr-inp{
+.usr-inp {
   margin-top: 15px;
   height: 84px;
 }
 
-.btns{
+.btns {
   width: 100%;
   max-width: 752px;
   margin: 0 auto;

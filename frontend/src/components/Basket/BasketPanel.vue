@@ -26,7 +26,7 @@
     </div>
 
     <hr />
-    
+
     <h6>{{ `${$t('price.price')}: ${$store.getters.formatPrice($store.state.basket.price.gross)}` }}</h6>
     <hr />
 

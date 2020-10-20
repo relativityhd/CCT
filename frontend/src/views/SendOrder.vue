@@ -1,6 +1,13 @@
 <template>
   <div>
-    <div v-if="!responsed">
+    <div v-if="emptyBasket">
+      <h6>{{ $t('Basket.noItems') }}</h6>
+      <br />
+      <cv-button class="to-shop-btn" :icon="ShoppingCart16" @click="$router.push('/tool')">
+        {{ $t('Order.backToShop') }}
+      </cv-button>
+    </div>
+    <div v-else-if="!responsed">
       <h3>{{ $t('Order.sendOrder') }}</h3>
       <h6>{{ $t('Order.waitForResponse') }}</h6>
     </div>
@@ -21,7 +28,7 @@
 
 <script>
 import Vue from 'vue'
-import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/16'
+import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/20'
 
 export default {
   name: 'OrderConfirmation',
@@ -30,10 +37,15 @@ export default {
       ShoppingCart16,
       orderId: 0,
       responsed: false,
-      errored: false
+      errored: false,
+      emptyBasket: false
     }
   },
   mounted() {
+    if (this.$store.state.basket.products.length === 0) {
+      this.emptyBasket = true
+      return
+    }
     const postObject = {
       orderDate: new Date().toISOString(),
       country: this.$store.state.locals.location,

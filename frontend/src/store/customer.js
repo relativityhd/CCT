@@ -22,7 +22,6 @@ export default {
       return { ...state.customerData }
     },
     validateSingle: state => key => {
-      state.invalids[key] = state.customerData[key].length === 0 ? i18n.t('Order.invalid') : ''
       return state.customerData[key].length === 0
     }
   },
@@ -34,16 +33,20 @@ export default {
     },
     translateInvalids(state) {
       Object.keys(state.customerData).forEach(key => {
-        state.invalids[key] = state.invalids[key].length ? i18n.t('Order.invalid') : ''
+        state.invalids[key] = state.invalids[key].length !== 0 ? i18n.t('Order.invalid') : ''
       })
-    },
-    revalidate(state) {
-      state.hasInvalids = Object.values(state.invalids).reduce((hasInvalids, val) => {
-        return val === '' ? hasInvalids : true
-      }, false)
     }
   },
   actions: {
+    validateInput({ state, getters, dispatch }, key) {
+      state.invalids[key] = getters.validateSingle(key) ? i18n.t('Order.invalid') : ''
+      dispatch('validate')
+    },
+    validateMessages({ state, getters }) {
+      Object.keys(state.customerData).forEach(key => {
+        state.invalids[key] = getters.validateSingle(key) ? i18n.t('Order.invalid') : ''
+      })
+    },
     validate({ state, getters }) {
       state.hasInvalids = false
       Object.keys(state.customerData).forEach(key => {

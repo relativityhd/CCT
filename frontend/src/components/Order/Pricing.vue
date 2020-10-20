@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="pricing-wrapper">
     <h3>{{ $t('Order.pricing') }}</h3>
     <PricingTable />
     <div class="info-wrapper">
       <p class="pricing-info">{{ $t('Order.pricingInfo') }}</p>
     </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -20,10 +21,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.pricing-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .pricing-info {
   text-align: right;
   width: 100%;
 }
+
 .info-wrapper {
   display: flex;
   flex-direction: row;

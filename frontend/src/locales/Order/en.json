@@ -22,5 +22,8 @@
   "sucessfull": "Sucessfully ordered!",
   "orderId": "Your Order Id is:",
   "pricingInfo": "Here more Information about the prices, maybe juristical things or so...",
-  "backToShop": "Return to the shop"
+  "backToShop": "Return to the shop",
+  "name": "Name",
+  "address": "Address",
+  "contact": "Contact Information"
 }

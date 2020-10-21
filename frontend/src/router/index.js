@@ -59,6 +59,11 @@ const routes = [
     meta: {
       title: 'Imprint'
     }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import(/* webpackCunkName: "Test" */ '../components/Visualization/Visualization.vue')
   }
 ]
 

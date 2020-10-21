@@ -1,9 +1,9 @@
 <template>
   <div class="imprint">
     <div class="imprint-head">
-      <h2>
+      <h1>
         {{ $t('Imprint.title') }}
-      </h2>
+      </h1>
       <div>
         <p>
           {{ $t('Imprint.article') }}
@@ -27,6 +27,7 @@
         {{ $t('Imprint.taxId') }}
       </div>
     </div>
+    
     <div class="liabilities">
       <div class="content-liability">
         <h2>{{ $t('Imprint.contentLiability') }}</h2>
@@ -47,12 +48,13 @@
     </div>
   </div>
 </template>
-styl
+
 <style lang="scss" scoped>
 .imprint {
   text-align: left;
   margin: 0 50px 0 30px;
 }
+
 @media screen and (max-width: 600px) {
   .imprint {
     margin: 0 10px 0 0;

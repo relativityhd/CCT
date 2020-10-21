@@ -1,5 +1,3 @@
-import i18n from '../i18n'
-
 export default {
   namespaced: true,
   state: {
@@ -22,29 +20,47 @@ export default {
       return { ...state.customerData }
     },
     validateSingle: state => key => {
-      return state.customerData[key].length === 0
+      let isInvalid = true
+      const value = state.customerData[key]
+      switch (key) {
+        case 'middlename':
+          isInvalid = false
+          break
+        case 'address':
+          isInvalid = !value.match(/^(\D+)\s(\S+)$/)
+          break
+        case 'phone':
+          isInvalid = !value.match(
+            /^[+]?(?=(?:[^\dx]*\d){7})(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?)(?:[ -]?(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?))*(?:[ ]?(?:x|ext)\.?[ ]?\d{1,5})?$/
+          )
+          break
+        case 'email':
+          isInvalid = !value.match(
+            /^[-!#-'*+/-9=?^-~]+(?:\.[-!#-'*+/-9=?^-~]+)*@[-!#-'*+/-9=?^-~]+(?:\.[-!#-'*+/-9=?^-~]+)+$/i
+          )
+          break
+        default:
+          isInvalid = value.length === 0
+          break
+      }
+      return isInvalid
     }
   },
   mutations: {
     resetInvalids(state) {
       Object.keys(state.customerData).forEach(key => {
-        state.invalids[key] = ''
-      })
-    },
-    translateInvalids(state) {
-      Object.keys(state.customerData).forEach(key => {
-        state.invalids[key] = state.invalids[key].length !== 0 ? i18n.t('Order.invalid') : ''
+        state.invalids[key] = false
       })
     }
   },
   actions: {
     validateInput({ state, getters, dispatch }, key) {
-      state.invalids[key] = getters.validateSingle(key) ? i18n.t('Order.invalid') : ''
+      state.invalids[key] = getters.validateSingle(key)
       dispatch('validate')
     },
     validateMessages({ state, getters }) {
       Object.keys(state.customerData).forEach(key => {
-        state.invalids[key] = getters.validateSingle(key) ? i18n.t('Order.invalid') : ''
+        state.invalids[key] = getters.validateSingle(key)
       })
     },
     validate({ state, getters }) {

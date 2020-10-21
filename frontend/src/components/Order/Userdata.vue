@@ -7,24 +7,36 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.firstname')"
+          :placeholder="$t('Order.customer.firstname')"
           v-model="customerData.firstname"
           @input="change('firstname')"
-          :invalid-message="invalids.firstname"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.firstname" slot="invalid-message">
+            {{ $t('Order.invalid.firstname') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.middlename')"
+          :placegolder="$t('Order.customer.middlename')"
           v-model="customerData.middlename"
           @input="change('middlename')"
-          :invalid-message="invalids.middlename"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.middlename" slot="invalid-message">
+            {{ $t('Order.invalid.middlename') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.lastname')"
+          :placegolder="$t('Order.customer.lastname')"
           v-model="customerData.lastname"
           @input="change('lastname')"
-          :invalid-message="invalids.lastname"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.lastname" slot="invalid-message">
+            {{ $t('Order.invalid.lastname') }}
+          </template>
+        </cv-text-input>
       </div>
 
       <div class="userdata-container">
@@ -32,31 +44,47 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.address')"
+          :placegolder="$t('Order.customer.address')"
           v-model="customerData.address"
           @input="change('address')"
-          :invalid-message="invalids.address"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.address" slot="invalid-message">
+            {{ $t('Order.invalid.address') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.postalCode')"
+          :placegolder="$t('Order.customer.postalCode')"
           v-model="customerData.postalCode"
           @input="change('postalCode')"
-          :invalid-message="invalids.postalCode"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.postalCode" slot="invalid-message">
+            {{ $t('Order.invalid.postalCode') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.city')"
+          :placegolder="$t('Order.customer.city')"
           v-model="customerData.city"
           @input="change('city')"
-          :invalid-message="invalids.city"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.city" slot="invalid-message">
+            {{ $t('Order.invalid.city') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.country')"
+          :placegolder="$t('Order.customer.country')"
           v-model="customerData.country"
           @input="change('country')"
-          :invalid-message="invalids.country"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.country" slot="invalid-message">
+            {{ $t('Order.invalid.country') }}
+          </template>
+        </cv-text-input>
       </div>
 
       <div class="userdata-container">
@@ -64,17 +92,25 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.phone')"
+          :placegolder="$t('Order.customer.phone')"
           v-model="customerData.phone"
           @input="change('phone')"
-          :invalid-message="invalids.phone"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.phone" slot="invalid-message">
+            {{ $t('Order.invalid.phone') }}
+          </template>
+        </cv-text-input>
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.email')"
+          :placegolder="$t('Order.customer.email')"
           v-model="customerData.email"
           @input="change('email')"
-          :invalid-message="invalids.email"
-        ></cv-text-input>
+        >
+          <template v-if="invalids.email" slot="invalid-message">
+            {{ $t('Order.invalid.email') }}
+          </template>
+        </cv-text-input>
       </div>
     </div>
     <div class="btns">

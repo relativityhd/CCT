@@ -106,13 +106,12 @@ export default {
     }
   },
   actions: {
-    setLang({ state, commit }, lang) {
+    setLang({ state }, lang) {
       state.lang = lang
       i18n.locale = lang
       state.languages.forEach(language => {
         language.selected = language.isoCode === lang
       })
-      commit('customer/translateInvalids', true)
     },
     setLocation({ state, dispatch }, location) {
       const newLocation = state.locations.find(loc => loc.isoCode === location)

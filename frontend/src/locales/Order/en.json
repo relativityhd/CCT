@@ -15,7 +15,17 @@
     "phone": "Phone",
     "email": "Email"
   },
-  "invalid": "Please enter a value",
+  "invalid": {
+    "firstname": "Please enter your firstname!",
+    "middlename": "Please enter your middlename!",
+    "lastname": "Please enter your lastname!",
+    "address": "Please enter your street and house no. !",
+    "postalCode": "Please enter your postal code!",
+    "city": "Please enter your city!",
+    "country": "Please enter your country!",
+    "phone": "Please enter a valid phone number!",
+    "email": "Please enter a valid email address!"
+  },
   "waitForResponse": "Waiting for response",
   "sendOrder": "Sending your Order",
   "failed": "Couldn't order stuff :(",

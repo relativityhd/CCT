@@ -34,8 +34,8 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="single">{{ $t('price.sum') }}</h6>
-            <h6 v-else>{{ $t('price.single') }}</h6>
+            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ $t('price.single') }}</h6>
+            <h6 v-else>{{ $t('price.sum') }}</h6>
           </cv-structured-list-data>
           <cv-structured-list-data>
             <h6>
@@ -54,7 +54,7 @@
           </cv-structured-list-data>
         </cv-structured-list-item>
 
-        <cv-structured-list-item v-if="!single">
+        <cv-structured-list-item v-if="!single && price.sum.gross !== price.single.gross">
           <cv-structured-list-data>
             <h6>{{ $t('price.sum') }}</h6>
           </cv-structured-list-data>
@@ -104,8 +104,8 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="single">{{ $t('price.sum') }}</h6>
-            <h6 v-else>{{ $t('price.single') }}</h6>
+            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ $t('price.single') }}</h6>
+            <h6 v-else>{{ $t('price.sum') }}</h6>
             <p>{{ $t('price.net') }}</p>
             <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
           </cv-structured-list-data>
@@ -116,7 +116,7 @@
           </cv-structured-list-data>
         </cv-structured-list-item>
 
-        <cv-structured-list-item v-if="!single">
+        <cv-structured-list-item v-if="!single && price.sum.gross !== price.single.gross">
           <cv-structured-list-data>
             <h6>{{ $t('price.sum') }}</h6>
             <p>{{ $t('price.net') }}</p>

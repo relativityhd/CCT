@@ -35,6 +35,22 @@ const routes = [
     meta: {
       title: 'Basket'
     }
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: () => import(/* webpackChunkName: "Order" */ '../views/Order.vue'),
+    meta: {
+      title: 'Order'
+    }
+  },
+  {
+    path: '/sendorder',
+    name: 'Send',
+    component: () => import(/* webpackChunkName: "OrderSend" */ '../views/SendOrder.vue'),
+    meta: {
+      title: 'Sending Order'
+    }
   }
 ]
 

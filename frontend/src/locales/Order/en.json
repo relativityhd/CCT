@@ -1,0 +1,39 @@
+{
+  "pricing": "Pricing",
+  "userdata": "Customer Information",
+  "shop": "Shop",
+  "order": "Order",
+  "back": "Back to",
+  "customer": {
+    "firstname": "Firstname",
+    "middlename": "Middlename",
+    "lastname": "Lastname",
+    "address": "Street",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "country": "Country",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "invalid": {
+    "firstname": "Please enter your firstname!",
+    "middlename": "Please enter your middlename!",
+    "lastname": "Please enter your lastname!",
+    "address": "Please enter your street and house no. !",
+    "postalCode": "Please enter your postal code!",
+    "city": "Please enter your city!",
+    "country": "Please enter your country!",
+    "phone": "Please enter a valid phone number!",
+    "email": "Please enter a valid email address!"
+  },
+  "waitForResponse": "Waiting for response",
+  "sendOrder": "Sending your Order",
+  "failed": "Couldn't order stuff :(",
+  "sucessfull": "Sucessfully ordered!",
+  "orderId": "Your Order Id is:",
+  "pricingInfo": "Here more Information about the prices, maybe juristical things or so...",
+  "backToShop": "Return to the shop",
+  "name": "Name",
+  "address": "Address",
+  "contact": "Contact Information"
+}

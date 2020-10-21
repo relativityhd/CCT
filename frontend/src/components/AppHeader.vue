@@ -112,10 +112,10 @@ export default {
   },
   methods: {
     switchLanguage(lang) {
-      this.$store.commit('setLang', lang)
+      this.$store.dispatch('setLang', lang)
     },
     switchLocation(loc) {
-      this.$store.commit('setLocation', loc)
+      this.$store.dispatch('setLocation', loc)
     },
     switchPage(to) {
       this.links.forEach(link => {

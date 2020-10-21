@@ -28,8 +28,8 @@ export default {
         const location = this.$store.state.locals.locations.find(
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
         )
-        this.$store.commit('setLocation', location.isoCode)
-        this.$store.commit('setLang', location.lang)
+        this.$store.dispatch('setLocation', location.isoCode)
+        this.$store.dispatch('setLang', location.lang)
       })
     }
   },

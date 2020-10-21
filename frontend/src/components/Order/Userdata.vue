@@ -1,0 +1,169 @@
+<template>
+  <div class="usr-wrapper">
+    <h3>{{ $t('Order.userdata') }}</h3>
+    <div class="userdata-wrapper">
+      <div class="userdata-container">
+        <h6>{{ $t('Order.name') }}</h6>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.firstname')"
+          :placeholder="$t('Order.customer.firstname')"
+          v-model="customerData.firstname"
+          @input="change('firstname')"
+        >
+          <template v-if="invalids.firstname" slot="invalid-message">
+            {{ $t('Order.invalid.firstname') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.middlename')"
+          :placegolder="$t('Order.customer.middlename')"
+          v-model="customerData.middlename"
+          @input="change('middlename')"
+        >
+          <template v-if="invalids.middlename" slot="invalid-message">
+            {{ $t('Order.invalid.middlename') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.lastname')"
+          :placegolder="$t('Order.customer.lastname')"
+          v-model="customerData.lastname"
+          @input="change('lastname')"
+        >
+          <template v-if="invalids.lastname" slot="invalid-message">
+            {{ $t('Order.invalid.lastname') }}
+          </template>
+        </cv-text-input>
+      </div>
+
+      <div class="userdata-container">
+        <h6>{{ $t('Order.address') }}</h6>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.address')"
+          :placegolder="$t('Order.customer.address')"
+          v-model="customerData.address"
+          @input="change('address')"
+        >
+          <template v-if="invalids.address" slot="invalid-message">
+            {{ $t('Order.invalid.address') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.postalCode')"
+          :placegolder="$t('Order.customer.postalCode')"
+          v-model="customerData.postalCode"
+          @input="change('postalCode')"
+        >
+          <template v-if="invalids.postalCode" slot="invalid-message">
+            {{ $t('Order.invalid.postalCode') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.city')"
+          :placegolder="$t('Order.customer.city')"
+          v-model="customerData.city"
+          @input="change('city')"
+        >
+          <template v-if="invalids.city" slot="invalid-message">
+            {{ $t('Order.invalid.city') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.country')"
+          :placegolder="$t('Order.customer.country')"
+          v-model="customerData.country"
+          @input="change('country')"
+        >
+          <template v-if="invalids.country" slot="invalid-message">
+            {{ $t('Order.invalid.country') }}
+          </template>
+        </cv-text-input>
+      </div>
+
+      <div class="userdata-container">
+        <h6>{{ $t('Order.contact') }}</h6>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.phone')"
+          :placegolder="$t('Order.customer.phone')"
+          v-model="customerData.phone"
+          @input="change('phone')"
+        >
+          <template v-if="invalids.phone" slot="invalid-message">
+            {{ $t('Order.invalid.phone') }}
+          </template>
+        </cv-text-input>
+        <cv-text-input
+          class="usr-inp"
+          :label="$t('Order.customer.email')"
+          :placegolder="$t('Order.customer.email')"
+          v-model="customerData.email"
+          @input="change('email')"
+        >
+          <template v-if="invalids.email" slot="invalid-message">
+            {{ $t('Order.invalid.email') }}
+          </template>
+        </cv-text-input>
+      </div>
+    </div>
+    <div class="btns">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'OrderUserdata',
+  data() {
+    return {
+      customerData: this.$store.state.customer.customerData,
+      invalids: this.$store.state.customer.invalids
+    }
+  },
+  methods: {
+    change(key) {
+      this.$store.dispatch('customer/validateInput', key)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.usr-wrapper {
+  width: auto;
+}
+
+.userdata-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  max-width: 792px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.userdata-container {
+  margin: 30px 20px;
+  width: 224px;
+}
+
+.usr-inp {
+  margin-top: 15px;
+  height: 84px;
+}
+
+.btns {
+  width: 100%;
+  max-width: 752px;
+  margin: 0 auto;
+}
+</style>

@@ -59,7 +59,7 @@ export default {
         const gross = getters.priceToInt(s.price)
         const net = getters.grossToNet(gross)
         price.items.push({
-          name: `${s.name} x(${s.quantity})`,
+          name: `${s.name} (x${s.quantity})`,
           net: getters.multiplyPrice(getters.priceToFloat(net), s.quantity),
           tax: getters.multiplyPrice(getters.priceToFloat(gross - net), s.quantity),
           gross: getters.multiplyPrice(getters.priceToFloat(gross), s.quantity)
@@ -76,6 +76,47 @@ export default {
         gross: getters.multiplyPrice(price.single.gross, quantity)
       }
       return price
+    },
+    orderProducts: state => () => {
+      const products = []
+      state.products.forEach(p => {
+        products.push({
+          id: p.id,
+          quantity: p.quantity,
+          customized: p.custom.customized,
+          width: p.custom.width,
+          height: p.custom.height,
+          depth: p.custom.width
+        })
+        p.selectables.forEach(s => {
+          products.push({
+            id: s.id,
+            quantity: s.quantity,
+            customized: s.custom.customized,
+            width: s.custom.width,
+            height: s.custom.height,
+            depth: s.custom.height
+          })
+        })
+      })
+      return products.reduce((reduced, p) => {
+        const inReduced = reduced.find(r => hash({ ...r, quantity: 0 }) === hash({ ...p, quantity: 0 }))
+        if (inReduced !== undefined) {
+          inReduced.quantity += p.quantity
+        } else {
+          reduced.push(p)
+        }
+        return reduced
+      }, [])
+    },
+    orderPrice: (state, _getters, rootState) => () => {
+      return {
+        currency: rootState.locals.currenyIso,
+        netPrice: state.price.net,
+        taxPercentage: rootState.locals.vatRate * 100,
+        taxAmount: state.price.tax,
+        grossPrice: state.price.gross
+      }
     }
   },
   mutations: {
@@ -95,16 +136,21 @@ export default {
       }
     },
     calcAllPrices(state) {
-      state.price = {
-        net: 0,
-        tax: 0,
-        gross: 0
-      }
+      state.price.net = 0
+      state.price.tax = 0
+      state.price.gross = 0
+
       state.products.forEach(p => {
         state.price.net += p.price.sum.net
         state.price.tax += p.price.sum.tax
         state.price.gross += p.price.sum.gross
       })
+    },
+    emptyBasket(state) {
+      state.price.net = 0
+      state.price.tax = 0
+      state.price.gross = 0
+      state.products = []
     }
   },
   actions: {
@@ -161,6 +207,12 @@ export default {
     calcPricesInBasket({ commit, getters }, basketId) {
       let item = getters.productById(basketId)
       item.price = getters.calcPrices(item.info, item.selectables, item.quantity)
+      commit('calcAllPrices')
+    },
+    recalcPricesInBasket({ state, commit, getters }) {
+      state.products.forEach(item => {
+        item.price = getters.calcPrices(item.info, item.selectables, item.quantity)
+      })
       commit('calcAllPrices')
     },
     removeProduct({ commit }, basketId) {

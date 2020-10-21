@@ -101,14 +101,19 @@ export default {
     ]
   },
   mutations: {
-    setLang(state, lang) {
+    viewChange(state) {
+      state.mobile = window.innerWidth <= 800
+    }
+  },
+  actions: {
+    setLang({ state }, lang) {
       state.lang = lang
       i18n.locale = lang
       state.languages.forEach(language => {
         language.selected = language.isoCode === lang
       })
     },
-    setLocation(state, location) {
+    setLocation({ state, dispatch }, location) {
       const newLocation = state.locations.find(loc => loc.isoCode === location)
       state.location = newLocation.isoCode
       state.vatRate = newLocation.vatRate
@@ -119,9 +124,7 @@ export default {
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
-    },
-    viewChange(state) {
-      state.mobile = window.innerWidth <= 800
+      dispatch('basket/recalcPricesInBasket')
     }
   }
 }

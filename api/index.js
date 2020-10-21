@@ -8,7 +8,7 @@ app.use(cors())
 
 app.use(bodyParser.json())
 app.use(cors())
-app.use('/', require('./src/OrderService'))
+app.use('/order', require('./src/OrderService'))
 app.use('/catalogue', require('./src/ProductService'))
 
 app.get('*', (req, res) => {

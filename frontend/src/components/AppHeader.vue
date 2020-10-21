@@ -88,7 +88,8 @@ export default {
     let links = [
       { name: 'AppHeader.region', to: '/' },
       { name: 'AppHeader.tool', to: '/tool' },
-      { name: 'AppHeader.about', to: '/about' }
+      { name: 'AppHeader.about', to: '/about' },
+      { name: 'AppHeader.imprint', to: '/imprint' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath

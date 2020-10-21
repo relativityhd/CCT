@@ -18,7 +18,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.middlename')"
-          :placegolder="$t('Order.customer.middlename')"
+          :placeholder="$t('Order.customer.middlename')"
           v-model="customerData.middlename"
           @input="change('middlename')"
         >
@@ -29,7 +29,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.lastname')"
-          :placegolder="$t('Order.customer.lastname')"
+          :placeholder="$t('Order.customer.lastname')"
           v-model="customerData.lastname"
           @input="change('lastname')"
         >
@@ -44,7 +44,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.address')"
-          :placegolder="$t('Order.customer.address')"
+          :placeholder="$t('Order.customer.address')"
           v-model="customerData.address"
           @input="change('address')"
         >
@@ -55,7 +55,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.postalCode')"
-          :placegolder="$t('Order.customer.postalCode')"
+          :placeholder="$t('Order.customer.postalCode')"
           v-model="customerData.postalCode"
           @input="change('postalCode')"
         >
@@ -66,7 +66,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.city')"
-          :placegolder="$t('Order.customer.city')"
+          :placeholder="$t('Order.customer.city')"
           v-model="customerData.city"
           @input="change('city')"
         >
@@ -77,7 +77,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.country')"
-          :placegolder="$t('Order.customer.country')"
+          :placeholder="$t('Order.customer.country')"
           v-model="customerData.country"
           @input="change('country')"
         >
@@ -92,7 +92,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.phone')"
-          :placegolder="$t('Order.customer.phone')"
+          :placeholder="$t('Order.customer.phone')"
           v-model="customerData.phone"
           @input="change('phone')"
         >
@@ -103,7 +103,7 @@
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.email')"
-          :placegolder="$t('Order.customer.email')"
+          :placeholder="$t('Order.customer.email')"
           v-model="customerData.email"
           @input="change('email')"
         >

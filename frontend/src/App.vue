@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <AppHeader />
+    <AppUpdate />
     <div id="theCuppy">
       <Cuppy></Cuppy>
     </div>
@@ -11,12 +12,14 @@
 <script>
 import Vue from 'vue'
 import AppHeader from './components/AppHeader'
+import AppUpdate from './components/AppUpdate'
 import Cuppy from './views/Cuppy'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
+    AppUpdate,
     Cuppy
   },
   methods: {
@@ -44,7 +47,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/styles/_carbon-precompile.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

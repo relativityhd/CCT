@@ -59,6 +59,14 @@ const routes = [
     meta: {
       title: 'Imprint'
     }
+  },
+  {
+    path: '*',
+    name: 'P404',
+    component: () => import(/* webpackCunkName: "P404" */ '../views/P404.vue'),
+    meta: {
+      title: '404'
+    }
   }
 ]
 

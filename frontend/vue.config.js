@@ -20,5 +20,17 @@ module.exports = {
   },
   chainWebpack: config => {
     config.plugins.delete('optimize-css')
+  },
+  pwa: {
+    name: 'Cupboard Limited CCT',
+    themeColor: '#012840',
+    msTileColor: '#ffffff',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: '#012840',
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js'
+    }
   }
 }

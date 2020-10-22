@@ -44,6 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/styles/_carbon-precompile.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -64,6 +65,6 @@ export default {
   z-index: 8001;
 }
 .bx--number--mobile input[type='number'] {
-  width: 100%;
+  width: 100% !important;
 }
 </style>

@@ -12,14 +12,9 @@ module.exports = {
       scss: {
         prependData: `
         @import '~@carbon/themes/scss/themes.scss';
-        @import './src/assets/scss/palette.scss';
+        @import './src/assets/styles/palette.scss';
         $carbon--theme: $carbon--theme--what;
-        @include carbon--theme();
-        ${
-          process.env.NODE_ENV === 'production'
-            ? "@import '~carbon-components/css/carbon-components.css'; @import '~carbon-components/scss/globals/scss/styles.scss';"
-            : "@import '~carbon-components/css/carbon-components.css';"
-        }`
+        @include carbon--theme();`
       }
     }
   },

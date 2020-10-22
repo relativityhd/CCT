@@ -11,6 +11,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 if (process.env.NODE_ENV === 'production') {
+  if (location.protocol !== 'https:') {
+    location.replace(`https:${location.href.substring(location.protocol.length)}`)
+  }
   axios.defaults.baseURL = '//cablecard-cct-api.eu-de.mybluemix.net'
 } else {
   axios.defaults.baseURL = '//localhost:3000/'

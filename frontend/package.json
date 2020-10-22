@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npx serve -s dist",
+    "test": "npx serve -s --ssl-cert ./certificates/localhost.pem --ssl-key ./certificates/localhost-key.pem dist",
     "serve": "vue-cli-service serve",
     "build": "npm run sass:precompile && vue-cli-service build",
     "lint": "vue-cli-service lint && node .json-formatter.js",

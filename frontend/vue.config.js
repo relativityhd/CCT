@@ -24,7 +24,7 @@ module.exports = {
   pwa: {
     name: 'Cupboard Limited CCT',
     themeColor: '#012840',
-    msTileColor: '#ffffff',
+    msTileColor: '#012840',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: '#012840',
     workboxPluginMode: 'InjectManifest',

@@ -2,4 +2,5 @@
 @import './palette.scss';
 $carbon--theme: $carbon--theme--what;
 @include carbon--theme();
+@import '~carbon-components/css/carbon-components.css';
 @import '~carbon-components/scss/globals/scss/styles.scss';

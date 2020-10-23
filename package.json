@@ -22,7 +22,6 @@
     "api:install": "cd api && npm install",
     "frontend:build": "cd frontend && npm run build",
     "frontend:serve": "cd frontend && npm run serve",
-    "frontend:test": "cd frontend && npm run test",
     "frontend:install": "cd frontend && npm install",
     "frontend:start": "cd frontend && npx serve -s dist",
     "install": "npm run frontend:install && npm run api:install",

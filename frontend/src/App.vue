@@ -27,7 +27,7 @@ export default {
       this.$store.commit('viewChange')
     },
     setRegion() {
-      Vue.axios.get('http://ip2c.org/s').then(res => {
+      Vue.axios.get('//ip2c.org/s').then(res => {
         const location = this.$store.state.locals.locations.find(
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
         )

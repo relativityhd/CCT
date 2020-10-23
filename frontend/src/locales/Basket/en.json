@@ -12,7 +12,7 @@
     "price": "Price",
     "custom": "Customized",
     "fixed": "Fixed Price",
-    "selectables": "Selectables",
+    "selectables": "Selection",
     "quantity": "Quantity",
     "delete": "Delete",
     "info": "Customized Data",
@@ -27,7 +27,7 @@
   "goBack": "Go Back",
   "modes": {
     "customize": "Customize",
-    "selectables": "Edit Selectables",
+    "selectables": "Edit Selection",
     "pricing": "View Pricing"
   },
   "editBasket": "Edit your Basket"

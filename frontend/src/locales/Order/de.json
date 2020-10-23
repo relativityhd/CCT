@@ -1,0 +1,39 @@
+{
+    "pricing": "Preisberechnung",
+    "userdata": "Kundeninformationen",
+    "shop": "Shop",
+    "order": "Bestellung",
+    "back": "Zurück zu",
+    "customer": {
+      "firstname": "Vorname",
+      "middlename": "Zweitname",
+      "lastname": "Nachname",
+      "address": "Straße",
+      "postalCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land",
+      "phone": "Telfon",
+      "email": "Email"
+    },
+    "invalid": {
+      "firstname": "Bitte gib deinen Vornamen ein!",
+      "middlename": "Bitte gib deinen Zweitnamen ein!",
+      "lastname": "Bitte gib deinen Nachnamen ein!",
+      "address": "Bitte gib deine Straße und Hausnummer ein!",
+      "postalCode": "Bitte gib deine Postleitzahl ein",
+      "city": "Bitte gib deinen Wohnort an!",
+      "country": "Bitte gib dein Land an!",
+      "phone": "Bitte gib eine gültige Telefonnumer an!",
+      "email": "Bitte gib eine gültige Mail Adresse an!"
+    },
+    "waitForResponse": "Auf Antwort warten",
+    "sendOrder": "Sende deine Bestellung",
+    "failed": "Couldn't order stuff :(",
+    "sucessfull": "Erfolgreich bestellt",
+    "orderId": "Deine Bestellnummer ist:",
+    "pricingInfo": "Here more Information about the prices, maybe juristical things or so...",
+    "backToShop": "Zurück zum Shop",
+    "name": "Name",
+    "address": "Addresse",
+    "contact": "Kontaktinformationen"
+  }

@@ -1,0 +1,34 @@
+{
+    "title": "Dein Einkaufswagen",
+    "noItems": "Dein Einkaufswagen ist leer",
+    "toStore": "Store",
+    "invalidNumber": "Die Zahl muss größer als 0 sein",
+    "deleteItem": "Lösche Artikel aus deinem Einkaufswagen",
+    "notCustom": "Dieser Artikel wurde nich individualisiertd",
+    "tableHeads": {
+      "id": "ID",
+      "image": "Bild",
+      "name": "Name",
+      "price": "Preis",
+      "custom": "Individuell",
+      "fixed": "Festpreis",
+      "selectables": "Auswahl",
+      "quantity": "Menge",
+      "delete": "Löschen",
+      "info": "Individuelle Daten",
+      "about": "Artikelinfo"
+    },
+    "costCalculation": "Preisberechnung",
+    "item": "Artikel",
+    "pricing": "Kalkulation",
+    "show": "Zeige vollständige Kalkulation",
+    "checkout": "Zur Kasse gehen",
+    "edit": "Artikel bearbeiten",
+    "goBack": "Zurück",
+    "modes": {
+      "customize": "Individuzalisiere",
+      "selectables": "Auswahl bearbeiten",
+      "pricing": "Zeige kalkulation"
+    },
+    "editBasket": "Einkaufswagen bearbeiten"
+  }

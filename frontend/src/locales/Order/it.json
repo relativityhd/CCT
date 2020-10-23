@@ -1,0 +1,39 @@
+{
+    "pricing": "Prezzi",
+    "userdata": "Informazioni per i clienti",
+    "shop": "Negozio",
+    "order": "Ordine",
+    "back": "Torna a",
+    "customer": {
+      "firstname": "Nome",
+      "middlename": "Nome del sito",
+      "lastname": "Cognome",
+      "address": "Via",
+      "postalCode": "Codice postale",
+      "city": "Città",
+      "country": "Paese",
+      "phone": "Telefono",
+      "email": "Email"
+    },
+    "invalid": {
+      "firstname": "Inserisci il tuo nome!",
+      "middlename": "Inserisci il tuo nome utente!",
+      "lastname": "Inserisci il tuo cognome!",
+      "address": "Inserisci il tuo numero di strada e di casa!",
+      "postalCode": "Inserite il vostro codice postale!",
+      "city": "Inserisci la tua città!",
+      "country": "Inserisci il tuo paese!",
+      "phone": "Si prega di inserire un numero di telefono valido!",
+      "email": "Inserisci un indirizzo e-mail valido!"
+    },
+    "waitForResponse": "In attesa di risposta",
+    "sendOrder": "Invio dell'ordine",
+    "failed": "Couldn't order stuff :(",
+    "sucessfull": "Ordinato con successo!",
+    "orderId": "Il tuo ID ordine è:",
+    "pricingInfo": "Here more Information about the prices, maybe juristical things or so...",
+    "backToShop": "Ritorno al negozio",
+    "name": "Nome",
+    "address": "Indirizzo",
+    "contact": "Informazioni di contatto"
+  }

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <AppHeader />
+    <AppUpdate />
     <div id="theCuppy">
       <Cuppy></Cuppy>
     </div>
@@ -11,12 +12,14 @@
 <script>
 import Vue from 'vue'
 import AppHeader from './components/AppHeader'
+import AppUpdate from './components/AppUpdate'
 import Cuppy from './views/Cuppy'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
+    AppUpdate,
     Cuppy
   },
   methods: {
@@ -24,7 +27,7 @@ export default {
       this.$store.commit('viewChange')
     },
     setRegion() {
-      Vue.axios.get('http://ip2c.org/s').then(res => {
+      Vue.axios.get('//ip2c.org/s').then(res => {
         const location = this.$store.state.locals.locations.find(
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
         )
@@ -64,6 +67,6 @@ export default {
   z-index: 8001;
 }
 .bx--number--mobile input[type='number'] {
-  width: 100%;
+  width: 100% !important;
 }
 </style>

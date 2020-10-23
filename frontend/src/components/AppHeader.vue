@@ -2,7 +2,7 @@
   <cv-header id="app-header" aria-label="Carbon header">
     <cv-header-menu-button aria-label="Header menu" aria-controls="side-nav" />
     <cv-skip-to-content to="#main-content">
-      {{ $t('AppHeader.skipto') }}
+      {{ $t('App.skipto') }}
     </cv-skip-to-content>
     <cv-header-name to="/" prefix="CL">
       <img class="logo" src="@/assets/images/logo.svg" alt="Logo" />
@@ -86,10 +86,10 @@ export default {
   components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
-      { name: 'AppHeader.region', to: '/' },
-      { name: 'AppHeader.tool', to: '/tool' },
-      { name: 'AppHeader.about', to: '/about' },
-      { name: 'AppHeader.imprint', to: '/imprint' }
+      { name: 'App.region', to: '/' },
+      { name: 'App.tool', to: '/tool' },
+      { name: 'App.about', to: '/about' },
+      { name: 'App.imprint', to: '/imprint' }
     ]
     links.forEach(link => {
       link.active = link.to === this.$router.currentRoute.fullPath

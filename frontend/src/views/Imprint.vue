@@ -27,7 +27,7 @@
         {{ $t('Imprint.taxId') }}
       </div>
     </div>
-    
+
     <div class="liabilities">
       <div class="content-liability">
         <h2>{{ $t('Imprint.contentLiability') }}</h2>

@@ -12,18 +12,25 @@ module.exports = {
       scss: {
         prependData: `
         @import '~@carbon/themes/scss/themes.scss';
-        @import './src/assets/scss/palette.scss';
+        @import './src/assets/styles/palette.scss';
         $carbon--theme: $carbon--theme--what;
-        @include carbon--theme();
-        ${
-          process.env.NODE_ENV === 'production'
-            ? "@import '~carbon-components/css/carbon-components.css'; @import '~carbon-components/scss/globals/scss/styles.scss';"
-            : "@import '~carbon-components/css/carbon-components.css';"
-        }`
+        @include carbon--theme();`
       }
     }
   },
   chainWebpack: config => {
     config.plugins.delete('optimize-css')
+  },
+  pwa: {
+    name: 'Cupboard Limited CCT',
+    themeColor: '#012840',
+    msTileColor: '#012840',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: '#012840',
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js'
+    }
   }
 }

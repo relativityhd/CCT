@@ -1,0 +1,17 @@
+{
+  "skipto": "Skip to main content.",
+  "region": "Homepage",
+  "tool": "Tool",
+  "about": "About",
+  "catalogue": "Catalogue",
+  "imprint": "Imprint",
+  "close": "Close",
+  "update": {
+    "label": "New Update available!",
+    "title": "Update",
+    "body": "Here explaination... (TODO)",
+    "later": "Update later",
+    "now": "Reload page"
+  },
+  "P404": "Sorry this Page is not available. :("
+}

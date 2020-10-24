@@ -61,6 +61,11 @@ const routes = [
     }
   },
   {
+    path: '/test',
+    name: 'Test',
+    component: () => import(/* webpackCunkName: "Test" */ '../components/Visualization/Visualization.vue')
+  },
+  {
     path: '*',
     name: 'P404',
     component: () => import(/* webpackCunkName: "P404" */ '../views/P404.vue'),

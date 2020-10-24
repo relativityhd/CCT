@@ -1,8 +1,8 @@
 {
   "addToCart": "Add to cart",
-  "emptyMessage": "Please select a Product",
-  "costCalculation": "Price Calculation",
+  "emptyMessage": "Please select a product",
+  "costCalculation": "Price calculation",
   "item": "Item",
   "chooseAnother": "Choose another",
-  "notEditable": "This item is in this combination not editable."
+  "notEditable": "This item is not editable in this combination."
 }

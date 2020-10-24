@@ -1,0 +1,39 @@
+{
+    "pricing": "Prix",
+    "userdata": "Informations sur les clients",
+    "shop": "Boutique",
+    "order": " l'Ordre",
+    "back": "Retour à",
+    "customer": {
+      "firstname": "Prénom",
+      "middlename": "Nom du centre",
+      "lastname": "Nom de famille",
+      "address": "Rue",
+      "postalCode": "Code postal",
+      "city": "Ville",
+      "country": "Pays",
+      "phone": "Téléphone",
+      "email": "Email"
+    },
+    "invalid": {
+      "firstname": "Veuillez entrer votre prénom!",
+      "middlename": "Veuillez entrer votre nom de milieu!",
+      "lastname": "Veuillez entrer votre nom de famille!",
+      "address": "Veuillez entrer votre rue et votre numéro de maison!",
+      "postalCode": "Veuillez entrer votre code postal!",
+      "city": "Veuillez entrer votre ville!",
+      "country": "Veuillez entrer votre pays!",
+      "phone": "Veuillez entrer un numéro de téléphone valide!",
+      "email": "Veuillez entrer une adresse électronique valide!"
+    },
+    "waitForResponse": "En attente d'une réponse",
+    "sendOrder": "Envoi de votre commande",
+    "failed": "Quelque chose a mal tourné",
+    "sucessfull": "Commande réussie!",
+    "orderId": "Votre numéro d'ordre est:",
+    "pricingInfo": "",
+    "backToShop": "Retour à la boutique",
+    "name": "Nom",
+    "address": "Adresse",
+    "contact": "Informations de contact"
+  }

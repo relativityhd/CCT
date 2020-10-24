@@ -45,17 +45,19 @@ export default {
   props: {
     interior: Object
   },
-  data() {return {
-    selected: false,
-    invalidMessage: '',
-    quantity: 0,
-    custom: {
-      customized: false,
-      width: 0,
-      height: 0,
-      depth: 0
+  data() {
+    return {
+      selected: false,
+      invalidMessage: '',
+      quantity: 0,
+      custom: {
+        customized: false,
+        width: 0,
+        height: 0,
+        depth: 0
+      }
     }
-  }},
+  },
   methods: {
     changeQuantity() {
       if (Number.isNaN(parseInt(this.exterior.quantity))) {

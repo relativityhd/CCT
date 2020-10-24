@@ -23,7 +23,7 @@
         ></cv-number-input>
       </div>
       <div class="tile-custom">
-        <cv-accordion class="custom-container" v-if="selectable.customizable">
+        <cv-accordion class="custom-container" v-if="customizable">
           <cv-accordion-item>
             <template slot="title">{{ `${$t('customize')} ${selectable.name}` }}</template>
             <template slot="content">
@@ -41,7 +41,8 @@
 export default {
   name: 'Selectable',
   props: {
-    selectable: Object
+    selectable: Object,
+    customizable: Boolean
   },
   components: {
     ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ '../Product/ProductCustomization')
@@ -61,8 +62,8 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
+      if (Number.isNaN(parseInt(this.quantity)) || parseInt(this.quantity) < 0 || parseInt(this.quantity) > 10) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
         return
       }
       this.invalidMessage = ''
@@ -78,6 +79,14 @@ export default {
     },
     getInputs() {
       return { selected: this.selected, quantity: this.quantity, custom: this.custom }
+    },
+    clearInputs() {
+      this.selected = false
+      this.quantity = 0
+      this.custom.customized = false
+      this.custom.width = 0
+      this.custom.height = 0
+      this.custom.depth = 0
     }
   }
 }

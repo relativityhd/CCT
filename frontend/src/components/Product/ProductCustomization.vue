@@ -57,6 +57,7 @@ export default {
       }
       this.invalids[key] = ''
       this.custom.customized = this.custom.width !== 0 && this.custom.height !== 0 && this.custom.depth !== 0
+      this.$emit('change-custom')
     }
   }
 }

@@ -10,11 +10,7 @@
 
       <div class="selection-wrapper">
         <div class="exteriors-wrapper">
-          <Exteriors
-            :selectables="product.exteriors"
-            :exteriors="exteriors"
-            v-on:changes="calcSum()"
-          />
+          <Exteriors :selectables="product.exteriors" :exteriors="exteriors" v-on:change-items="calcSum()" />
         </div>
 
         <div class="interiors-wrapper"></div>
@@ -128,7 +124,7 @@ export default {
     calcSum() {
       this.price = this.$store.getters['basket/calcPrices'](
         this.product,
-        this.selectables.filter(s => s.selected),
+        [], //this.selectables.filter(s => s.selected),
         1
       )
     },

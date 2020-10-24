@@ -46,20 +46,29 @@
 </template>
 
 <script>
+import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
+import ProductCustomization from '../Product/ProductCustomization'
+
 export default {
   name: 'SingleExterior',
+  components: {
+    ProductCustomization
+  },
   props: {
     exterior: Object
   },
-  data() {return {
-    invalidMessage: '',
-    custom: {
-      customized: false,
-      width: 0,
-      height: 0,
-      depth: 0
+  data() {
+    return {
+      iconDelete: TrashCan16,
+      invalidMessage: '',
+      custom: {
+        customized: false,
+        width: 0,
+        height: 0,
+        depth: 0
+      }
     }
-  }},
+  },
   methods: {
     changeQuantity() {
       if (Number.isNaN(parseInt(this.exterior.quantity))) {
@@ -67,7 +76,7 @@ export default {
         return
       }
       this.invalidMessage = ''
-      this.$emit('quantity')
+      this.$emit('change-quantity')
     }
   }
 }

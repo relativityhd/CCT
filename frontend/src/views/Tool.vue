@@ -66,7 +66,7 @@ export default {
   name: 'Tool',
   components: {
     Product: () => import(/* webpackChunkName: "Product" */ '../components/Product/Product'),
-    Custom: () => import(/* webpackChunkName: "CustomProduct" */ '../components/Product/Custom'),
+    Custom: () => import(/* webpackChunkName: "CustomProduct" */ '../components/Custom/Custom'),
     Undo32
   },
   data() {
@@ -91,7 +91,28 @@ export default {
               Vue.axios
                 .get(`/catalogue/products/${id}/selectables`)
                 .then(res => {
-                  product.selectables = res.data
+                  product.exteriors = []
+                  product.interiors = []
+                  product.materials = []
+
+                  res.data.forEach(selectable => {
+                    switch (selectable.selectableCategory) {
+                      case 'exterior':
+                        product.exteriors.push(selectable)
+                        break
+
+                      case 'interior':
+                        product.interiors.push(selectable)
+                        break
+
+                      case 'material':
+                        product.materials.push(selectable)
+                        break
+
+                      default:
+                        break
+                    }
+                  })
                 })
                 .catch(error => {
                   if (error.response)

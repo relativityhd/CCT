@@ -3,5 +3,7 @@
   "basket": "Your basket",
   "modell": "Modell",
   "priceStarting": "Fixed price?",
-  "back": "Go Back"
+  "back": "Go Back",
+  "addExterior": "Add Exteriors",
+  "deleteItem": "Delete Item"
 }

@@ -1,10 +1,10 @@
 <template>
   <cv-tile
     kind="selectable"
-    :selected="selectable.selected"
+    :selected="selected"
     @click="select($event)"
     :value="`${selectable.id}`"
-    v-model="selectable.selected"
+    v-model="selected"
     class="selectable-tile"
   >
     <div class="inner-tile">
@@ -17,8 +17,8 @@
           :label="$t('quantity')"
           :mobile="$store.state.mobile"
           :invalid-message="invalidMessage"
-          :value="selectable.quantity"
-          v-model="selectable.quantity"
+          :value="quantity"
+          v-model="quantity"
           @input="changeQuantity()"
         ></cv-number-input>
       </div>
@@ -27,7 +27,7 @@
           <cv-accordion-item>
             <template slot="title">{{ `${$t('customize')} ${selectable.name}` }}</template>
             <template slot="content">
-              <ProductCustomization :custom="selectable.custom" />
+              <ProductCustomization :custom="custom" />
             </template>
           </cv-accordion-item>
         </cv-accordion>
@@ -48,27 +48,36 @@ export default {
   },
   data() {
     return {
-      invalidMessage: ''
+      invalidMessage: '',
+      selected: false,
+      quantity: 0,
+      custom: {
+        customized: false,
+        height: 0,
+        width: 0,
+        depth: 0
+      }
     }
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.selectable.quantity))) {
+      if (Number.isNaN(parseInt(this.quantity))) {
         this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }
       this.invalidMessage = ''
-      this.selectable.selected = parseInt(this.selectable.quantity) > 0
-      this.$emit('select')
+      this.selected = parseInt(this.quantity) > 0
     },
     select: function(e) {
-      this.selectable.selected = e.target.checked
-      if (this.selectable.selected) {
-        this.selectable.quantity = this.selectable.quantity <= 0 ? 1 : this.selectable.quantity
+      this.selected = e.target.checked
+      if (this.selected) {
+        this.quantity = this.quantity <= 0 ? 1 : this.quantity
       } else {
-        this.selectable.quantity = 0
+        this.quantity = 0
       }
-      this.$emit('select')
+    },
+    getInputs() {
+      return { selected: this.selected, quantity: this.quantity, custom: this.custom }
     }
   }
 }

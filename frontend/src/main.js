@@ -12,7 +12,6 @@ import VueAxios from 'vue-axios'
 
 // TODO: Remove this
 axios.defaults.headers.common['x-api-key'] = process.env.VUE_APP_GATEWAY_API_KEY
-console.log('--DEBUG : process.env', process.env)
 axios.defaults.baseURL = '//cupboard.eu-gb.cf.appdomain.cloud'
 
 Vue.use(VueAxios, axios)

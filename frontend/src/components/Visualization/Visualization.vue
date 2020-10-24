@@ -1,5 +1,5 @@
 <template>
-  <div ref="renderer"></div>
+  <div class="container" ref="renderer"></div>
 </template>
 
 <script>
@@ -17,12 +17,11 @@ export default {
   },
   methods: {
     createCorpus(width, height, depth, strength) {
-
       this.removeObjectFromScene(this.corpus)
 
       let material = new Three.MeshNormalMaterial()
 
-    //eigenschaften für meshes werden definiert
+      //eigenschaften für meshes werden definiert
       let leftwall_geometry = new Three.BoxGeometry(strength, height, depth)
       let rightwall_geometry = new Three.BoxGeometry(strength, height, depth)
       let centerwall_geometry = new Three.BoxGeometry(strength, height - strength - 0.06, depth - strength)
@@ -54,7 +53,7 @@ export default {
       let ceiling_mesh = new Three.Mesh(ceiling_geometry, material)
       ceiling_mesh.position.set(0, height / 2 - strength / 2, strength / 2)
       this.scene.add(ceiling_mesh)
-      
+
       this.corpus = {
         left: leftwall_mesh,
         right: rightwall_mesh,
@@ -65,18 +64,18 @@ export default {
       }
     },
     removeObjectFromScene(obj) {
-      if(!obj) return
-      Object.values(obj).forEach((mesh) => {
-        this.scene.remove(mesh);
-        mesh.geometry.dispose();
-        mesh.material.dispose();
-        mesh = undefined;
+      if (!obj) return
+      Object.values(obj).forEach(mesh => {
+        this.scene.remove(mesh)
+        mesh.geometry.dispose()
+        mesh.material.dispose()
+        mesh = undefined
       })
       obj = undefined
     },
     init() {
       //axios call to get the following values: (sample data)
-      
+
       let container = this.$refs.renderer
       console.log(container)
       this.camera = new Three.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
@@ -85,9 +84,9 @@ export default {
       this.scene = new Three.Scene()
 
       //first of all, light settings:
-        
-        //createCorpus
-        this.createCorpus(2, 2.4, 0.5, 0.02)
+
+      //createCorpus
+      this.createCorpus(2, 2.4, 0.5, 0.02)
 
       //var light = new THREE.AmbientLight(0xffffff);
       //this.scene.add(this.light);
@@ -99,7 +98,6 @@ export default {
       container.appendChild(this.renderer.domElement)
     },
     animate: function() {
-      this.scene.rotation.y += 0.005
       this.renderer.render(this.scene, this.camera)
       this.myrequest = requestAnimationFrame(this.animate)
     }
@@ -107,14 +105,14 @@ export default {
   mounted() {
     console.log(this.$store.state.basket.products)
     this.init()
-    setInterval(
-      () => {this.createCorpus(
-         Math.floor(Math.random() * 6) + 2,
-         Math.floor(Math.random() * 3) + 1,
-         Math.floor(Math.random() * 1) + 0.2,
-         Math.floor(Math.random() * 0.05) + 0.01
-      )},5000
-    )
+    setInterval(() => {
+      this.createCorpus(
+        Math.floor(Math.random() * 6) + 2,
+        Math.floor(Math.random() * 3) + 1,
+        Math.floor(Math.random() * 1) + 0.2,
+        Math.floor(Math.random() * 0.05) + 0.01
+      )
+    }, 5000)
     this.myrequest = requestAnimationFrame(this.animate)
   },
   destroyed() {
@@ -124,8 +122,8 @@ export default {
 </script>
 
 <style scoped>
-#container {
+.container {
   width: 100%;
-  height: 800px;
+  height: 100%;
 }
 </style>

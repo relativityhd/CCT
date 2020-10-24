@@ -16,5 +16,6 @@
     "tax": "Tax"
   },
   "invalidNumber": "Must be a number between {min} and {max}!",
-  "quantity": "Quantity"
+  "quantity": "Quantity",
+  "close": "Close"
 }

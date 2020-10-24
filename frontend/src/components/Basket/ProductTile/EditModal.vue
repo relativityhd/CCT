@@ -106,7 +106,7 @@ export default {
     ProductCustomization: () =>
       import(/* webpackChunkName: "ProductCustomization" */ '../../Product/ProductCustomization'),
     ProductPricing: () => import(/* webpackChunkName: "ProductPricing" */ '../../Product/ProductPricing'),
-    Selectable: () => import(/* webpackChunkName: "Selectable" */ '../../Product/Selectable')
+    Selectable: () => import(/* webpackChunkName: "Selectable" */ '../../Selectables/Selectable')
   },
   methods: {
     showModal() {

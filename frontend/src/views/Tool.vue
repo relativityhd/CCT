@@ -43,11 +43,16 @@
           </div>
         </div>
 
-        <Product v-if="step === 'product'" :product="selectedProduct" v-on:back="chooseAnother('products-ov')" />
-      </div>
-      <div class="pricing-wrapper">
-        <h3>{{ $t('Tool.basket') }}</h3>
-        <Basket :products="this.$store.state.basket.products" />
+        <Product
+          v-if="step === 'product' && !selectedProduct.customizable"
+          :product="selectedProduct"
+          v-on:back="chooseAnother('products-ov')"
+        />
+        <Custom
+          v-if="step === 'product' && selectedProduct.customizable"
+          :product="selectedProduct"
+          v-on:back="chooseAnother('products-ov')"
+        />
       </div>
     </div>
   </div>
@@ -61,7 +66,7 @@ export default {
   name: 'Tool',
   components: {
     Product: () => import(/* webpackChunkName: "Product" */ '../components/Product/Product'),
-    Basket: () => import(/* webpackChunkName: "Basket" */ '../components/Basket/Basket'),
+    Custom: () => import(/* webpackChunkName: "CustomProduct" */ '../components/Product/Custom'),
     Undo32
   },
   data() {
@@ -83,9 +88,17 @@ export default {
             Vue.axios.get(`/catalogue/products/${id}`).then(res => {
               const product = res.data
               category.products.push(product)
-              Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
-                product.selectables = res.data
-              })
+              Vue.axios
+                .get(`/catalogue/products/${id}/selectables`)
+                .then(res => {
+                  product.selectables = res.data
+                })
+                .catch(error => {
+                  if (error.response)
+                    if (error.response.status === 404) {
+                      product.selectables = []
+                    }
+                })
             })
           })
         })
@@ -115,7 +128,7 @@ export default {
 <style lang="scss" scoped>
 .tool-page-wrapper {
   width: 98%;
-  max-width: 1420px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 
@@ -128,8 +141,7 @@ export default {
 }
 
 .new-item-wrapper {
-  width: 1040px;
-  max-width: 100%;
+  width: 100%;
   margin-bottom: 50px;
   border-bottom: 1px $ui-03 solid;
 }

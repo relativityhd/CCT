@@ -44,7 +44,7 @@ export default {
     selectable: Object
   },
   components: {
-    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ './ProductCustomization')
+    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ '../Product/ProductCustomization')
   },
   data() {
     return {

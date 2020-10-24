@@ -10,11 +10,11 @@ import i18n from './i18n'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = '//cablecard-cct-api.eu-de.mybluemix.net'
-} else {
-  axios.defaults.baseURL = '//localhost:3000/'
-}
+// TODO: Remove this
+axios.defaults.headers.common['x-api-key'] = process.env.VUE_APP_GATEWAY_API_KEY
+console.log('--DEBUG : process.env', process.env)
+axios.defaults.baseURL = '//cupboard.eu-gb.cf.appdomain.cloud'
+
 Vue.use(VueAxios, axios)
 
 Vue.use(CarbonIconsVue, { components: [] })

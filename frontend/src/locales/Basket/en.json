@@ -1,5 +1,5 @@
 {
-  "title": "Your Basket",
+  "title": "Your basket",
   "noItems": "Your basket is empty!",
   "toStore": "Store",
   "invalidNumber": "Must be a number larger than 0!",
@@ -11,24 +11,24 @@
     "name": "Name",
     "price": "Price",
     "custom": "Customized",
-    "fixed": "Fixed Price",
+    "fixed": "Fixed price",
     "selectables": "Selection",
     "quantity": "Quantity",
     "delete": "Delete",
-    "info": "Customized Data",
-    "about": "Item Info"
+    "info": "Customized data",
+    "about": "Item info"
   },
-  "costCalculation": "Price Calculation",
+  "costCalculation": "Price calculation",
   "item": "Item",
   "pricing": "Pricing",
-  "show": "View complete Pricing",
-  "checkout": "To Checkout",
-  "edit": "Edit Product",
-  "goBack": "Go Back",
+  "show": "View complete pricing",
+  "checkout": "To checkout",
+  "edit": "Edit product",
+  "goBack": "Go back",
   "modes": {
     "customize": "Customize",
-    "selectables": "Edit Selection",
-    "pricing": "View Pricing"
+    "selectables": "Edit selection",
+    "pricing": "View pricing"
   },
-  "editBasket": "Edit your Basket"
+  "editBasket": "Edit your basket"
 }

@@ -1,10 +1,10 @@
 {
     "title": "Votre panier",
-    "noItems": "YVotre panier est vide !",
+    "noItems": "Votre panier est vide!",
     "toStore": "magasin",
-    "invalidNumber": "Doit être un nombre supérieur à 0 !",
+    "invalidNumber": "Doit être un nombre supérieur à 0!",
     "deleteItem": "Retirer un article de votre panier",
-    "notCustom": "ThiCe point n'a pas été personnalisés",
+    "notCustom": "Cet point n'a pas été personnalisés",
     "tableHeads": {
       "id": "ID",
       "image": "Photo",
@@ -16,7 +16,7 @@
       "quantity": "Quantité",
       "delete": "Supprimer",
       "info": "Données personnalisées",
-      "about": "Point Info"
+      "about": "Point info"
     },
     "costCalculation": "Calcul du prix",
     "item": "Point",

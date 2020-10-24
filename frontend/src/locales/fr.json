@@ -1,0 +1,22 @@
+{
+    "customizable": "Personnalisable",
+    "customize": "Personnaliser",
+    "customized": "Personnalisé",
+    "yes": "Oui",
+    "no": "Non",
+    "width": "Largeur en cm",
+    "height": "Hauteur en cm",
+    "depth": "Profondeur en cm",
+    "price": {
+      "price": "Prix",
+      "sum": "Somme",
+      "single": "Somme par poste",
+      "net": "Netto",
+      "gross": "Brut",
+      "tax": " Fiscalité"
+    },
+    "invalidNumber": "Doit être un nombre compris entre {min} et {max}!",
+    "quantity": "Quantité"
+  }
+  
+  

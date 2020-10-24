@@ -3,8 +3,8 @@
     "noItems": "Dein Einkaufswagen ist leer",
     "toStore": "Store",
     "invalidNumber": "Die Zahl muss größer als 0 sein",
-    "deleteItem": "Lösche Artikel aus deinem Einkaufswagen",
-    "notCustom": "Dieser Artikel wurde nich individualisiertd",
+    "deleteItem": "Lösche den Artikel",
+    "notCustom": "Dieser Artikel wurde nicht individualisiert",
     "tableHeads": {
       "id": "ID",
       "image": "Bild",
@@ -21,14 +21,14 @@
     "costCalculation": "Preisberechnung",
     "item": "Artikel",
     "pricing": "Kalkulation",
-    "show": "Zeige vollständige Kalkulation",
+    "show": "Preiskalkulation zeigen",
     "checkout": "Zur Kasse gehen",
     "edit": "Artikel bearbeiten",
     "goBack": "Zurück",
     "modes": {
-      "customize": "Individuzalisiere",
+      "customize": "Individualisiere",
       "selectables": "Auswahl bearbeiten",
-      "pricing": "Zeige kalkulation"
+      "pricing": "Zeige Kalkulation"
     },
     "editBasket": "Einkaufswagen bearbeiten"
   }

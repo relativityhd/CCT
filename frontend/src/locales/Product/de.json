@@ -1,8 +1,9 @@
 {
-    "addToCart": "In Einkaufswagen",
+    "addToCart": "In den Einkaufswagen",
     "emptyMessage": "Bitte wähle einen Artikel aus",
     "costCalculation": "Preisberechnung",
     "item": "Artikel",
     "chooseAnother": "Andere Auswahl",
-    "notEditable": "Diese Artikelkombination lässt sich nich anpassenn"
+    "notEditable": "Diese Artikelkombination lässt sich nicht anpassen"
   }
+  

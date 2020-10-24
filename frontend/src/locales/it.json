@@ -1,0 +1,23 @@
+{
+    "customizable": "Personalizzabile",
+    "customize": "Personalizza",
+    "customized": "Personalizzato",
+    "yes": "Sì",
+    "no": "No",
+    "width": "Larghezza in cm",
+    "height": "Altezza in cm",
+    "depth": "Profondità in cm",
+    "price": {
+      "price": "Prezzo",
+      "sum": "Somma",
+      "single": "Somma per articolo",
+      "net": "Netto",
+      "gross": "Lordo",
+      "tax": "Tassa"
+    },
+    "invalidNumber": "Deve essere un numero compreso tra {min} e {max}!",
+    "quantity": "Quantità"
+  }
+  
+
+  

@@ -54,7 +54,7 @@ export default {
       products: this.$store.getters['basket/orderItems']()
     }
     console.log('--DEBUG : mounted -> postObject', postObject)
-        this.$store.commit('basket/clearBasket')
+    this.$store.commit('basket/clearBasket')
     return
     /* Vue.axios
       .post('/order', postObject)

@@ -52,27 +52,27 @@ export default {
   components: {
     Undo32
   },
-  data() { return {
-    categories: [],
-    products: []
-  }},
-  mounted () {
+  data() {
+    return {
+      categories: [],
+      products: []
+    }
+  },
+  mounted() {
     this.getCategories()
   },
   methods: {
     getCategories() {
       this.products = []
-      Vue.axios.get('/catalogue/categories')
-        .then(res => {
-          this.categories = res.data
-        })
+      Vue.axios.get('/catalogue/categories').then(res => {
+        this.categories = res.data
+      })
     },
     selectCategory(id) {
       this.categories = []
-      Vue.axios.get(`/catalogue/categories/${id}/products`)
-        .then(res => {
-          this.products = res.data
-        })
+      Vue.axios.get(`/catalogue/categories/${id}/products`).then(res => {
+        this.products = res.data
+      })
     }
   }
 }

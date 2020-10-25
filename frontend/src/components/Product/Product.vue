@@ -85,10 +85,7 @@ export default {
       this.calcSum()
     },
     calcSum() {
-      this.price = this.$store.getters['basket/calcPrices'](
-        [{ quantity: 1, ...this.product}],
-        1
-      )
+      this.price = this.$store.getters['basket/calcPrices']([{ quantity: 1, ...this.product }], 1)
     },
     addToCart() {
       if (this.product === undefined) return

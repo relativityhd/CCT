@@ -35,7 +35,7 @@
             :materials="product.materials"
             :ext="selectedExt"
             v-on:change-items="calcSum()"
-           />
+          />
         </div>
 
         <div class="info-wrapper">
@@ -146,7 +146,7 @@ export default {
 
       this.$store.dispatch('basket/addItem', {
         product: this.product,
-        exteriors: this.exteriors,
+        exteriors: this.exteriors
       })
     }
   },
@@ -161,7 +161,7 @@ export default {
   height: 500px;
 }
 
-.selection-wrapper{
+.selection-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

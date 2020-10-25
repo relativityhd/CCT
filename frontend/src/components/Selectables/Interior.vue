@@ -60,12 +60,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.int-wrapper{
+.int-wrapper {
   display: grid;
   grid-template-areas:
     'img actions'
-    'info info'
-  ;
+    'info info';
   gap: 5px;
 }
 

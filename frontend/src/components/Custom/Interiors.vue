@@ -34,10 +34,7 @@
       />
 
       <div class="add-btn">
-        <cv-tile
-          class="add-tile"
-          kind="clickable"
-          @click="$refs.addModal.show()">
+        <cv-tile class="add-tile" kind="clickable" @click="$refs.addModal.show()">
           <Add32 class="add-icon" />
         </cv-tile>
       </div>
@@ -90,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.selection-wrapper{
+.selection-wrapper {
   text-align: right;
 }
 
@@ -100,11 +97,11 @@ export default {
   gap: 5px;
 }
 
-.add-modal{
+.add-modal {
   text-align: left;
 }
 
-.selectables-wrapper{
+.selectables-wrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -119,7 +116,7 @@ export default {
 }
 
 .add-tile {
-  opacity: .3;
+  opacity: 0.3;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -131,7 +128,7 @@ export default {
   opacity: 1;
 }
 
-.add-icon{
+.add-icon {
   height: 64px;
   width: 64px;
 }

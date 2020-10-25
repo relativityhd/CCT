@@ -82,12 +82,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ext-wrapper{
+.ext-wrapper {
   display: grid;
   grid-template-areas:
     'img actions'
-    'info custom'
-  ;
+    'info custom';
   gap: 5px;
 }
 

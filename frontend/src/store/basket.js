@@ -15,7 +15,7 @@ function compareInterior(a, b) {
 function compareExterior(a, b) {
   if (a.id !== b.id) return a.id - b.id
   if (a.quantity !== b.quantity) return a.quantity - b.quantity
-  
+
   const custHashA = hash(clonedeep(a.custom))
   const custHashB = hash(clonedeep(b.custom))
   if (custHashA !== custHashB) return custHashA - custHashB
@@ -67,13 +67,10 @@ export default {
     },
 
     calcPrices: (_state, getters) => (items, quantity) => {
-    console.log('--DEBUG : quantity', quantity)
-    console.log('--DEBUG : items', items)
       const price = {}
       price.items = []
 
       items.forEach(it => {
-      console.log('--DEBUG : it', it)
         const gross = getters.priceToInt(it.price)
         const net = getters.grossToNet(gross)
         price.items.push({
@@ -100,10 +97,10 @@ export default {
       return price
     },
 
-    extractPriceItems: () => (exteriors) => {
+    extractPriceItems: () => exteriors => {
       let products = []
       exteriors.forEach(ext => {
-        for (let q=0; q<ext.quantity; q++) {
+        for (let q = 0; q < ext.quantity; q++) {
           ext.interiors.forEach(int => {
             products.push({
               id: int.id,
@@ -144,7 +141,7 @@ export default {
       state.items.forEach(it => {
         if (it.isCustom) {
           it.exteriors.forEach(ext => {
-            for (let q=0; q<ext.quantity; q++) {
+            for (let q = 0; q < ext.quantity; q++) {
               ext.interiors.forEach(int => {
                 products.push({
                   id: int.id,
@@ -241,7 +238,7 @@ export default {
   actions: {
     addItem({ commit, getters, dispatch }, { product, exteriors }) {
       const isCustom = exteriors !== undefined
-      const priceItems = isCustom ? getters.extractPriceItems(exteriors) : [{quantity: 1, ...product}]
+      const priceItems = isCustom ? getters.extractPriceItems(exteriors) : [{ quantity: 1, ...product }]
       const newItem = {
         _uid: uuidv4(),
         product: clonedeep(product),
@@ -274,23 +271,20 @@ export default {
         })
         if (isInBasket) return
       }
-      console.log('generate new Item: ', newItem)
       commit('pushItem', newItem)
       commit('calcAllPrices')
     },
     calcPricesInBasket({ commit, getters }, _uid) {
       const item = getters.itemById(_uid)
-      const priceItems = item.isCustom ?
-        getters.extractPriceItems(item.exteriors) :
-        [{quantity: 1, ...item.product}]
+      const priceItems = item.isCustom ? getters.extractPriceItems(item.exteriors) : [{ quantity: 1, ...item.product }]
       item.price = getters.calcPrices(priceItems, item.quantity)
       commit('calcAllPrices')
     },
     recalcPricesInBasket({ state, commit, getters }) {
       state.items.forEach(item => {
-        const priceItems = item.isCustom ?
-          getters.extractPriceItems(item.exteriors) :
-          [{quantity: 1, ...item.product}]
+        const priceItems = item.isCustom
+          ? getters.extractPriceItems(item.exteriors)
+          : [{ quantity: 1, ...item.product }]
         item.price = getters.calcPrices(priceItems, item.quantity)
       })
       commit('calcAllPrices')

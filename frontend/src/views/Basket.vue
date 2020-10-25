@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ $t('Tool.basket') }}</h3>
-    <Basket :products="this.$store.state.basket.products" />
+    <Basket :items="this.$store.state.basket.items" />
   </div>
 </template>
 

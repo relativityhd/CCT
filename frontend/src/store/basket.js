@@ -141,25 +141,48 @@ export default {
     orderItems: state => () => {
       // TODO: make new
       const products = []
-      state.products.forEach(p => {
-        products.push({
-          id: p.id,
-          quantity: p.quantity,
-          customized: p.custom.customized,
-          width: p.custom.width,
-          height: p.custom.height,
-          depth: p.custom.width
-        })
-        p.selectables.forEach(s => {
-          products.push({
-            id: s.id,
-            quantity: s.quantity,
-            customized: s.custom.customized,
-            width: s.custom.width,
-            height: s.custom.height,
-            depth: s.custom.height
+      state.items.forEach(it => {
+        if (it.isCustom) {
+          it.exteriors.forEach(ext => {
+            for (let q=0; q<ext.quantity; q++) {
+              ext.interiors.forEach(int => {
+                products.push({
+                  id: int.id,
+                  quantity: int.quantity,
+                  customized: ext.custom.customized,
+                  width: ext.custom.width,
+                  height: ext.custom.height,
+                  depth: ext.custom.depth
+                })
+              })
+              products.push({
+                id: ext.material.id,
+                quantity: 1,
+                customized: false,
+                width: 0,
+                height: 0,
+                depth: 0
+              })
+            }
+            products.push({
+              id: ext.id,
+              quantity: ext.quantity,
+              customized: ext.custom.customized,
+              width: ext.custom.width,
+              height: ext.custom.height,
+              depth: ext.custom.depth
+            })
           })
-        })
+        } else {
+          products.push({
+            id: it.id,
+            quantity: it.quantity,
+            customized: false,
+            width: 0,
+            height: 0,
+            depth: 0
+          })
+        }
       })
       return products.reduce((reduced, p) => {
         const inReduced = reduced.find(r => hash({ ...r, quantity: 0 }) === hash({ ...p, quantity: 0 }))
@@ -229,12 +252,12 @@ export default {
       }
       const itemsInBasket = getters.itemsByProductId(product.id)
       if (itemsInBasket.length >= 0) {
-        let inBasket = false
+        let isInBasket = false
         itemsInBasket.forEach(inBasket => {
           if (!isCustom) {
             inBasket.quantity++
+            isInBasket = true
             dispatch('calcPricesInBasket', inBasket._uid)
-            inBasket = true
             return
           }
 
@@ -244,13 +267,14 @@ export default {
           const extHashNew = hash(newItem.exteriors.map(removeUid).sort(compareExterior))
           if (extHashBasket === extHashNew) {
             inBasket.quantity++
+            isInBasket = true
             dispatch('calcPricesInBasket', inBasket._uid)
-            inBasket = true
             return
           }
         })
-        if (inBasket) return
+        if (isInBasket) return
       }
+      console.log('generate new Item: ', newItem)
       commit('pushItem', newItem)
       commit('calcAllPrices')
     },
@@ -263,7 +287,7 @@ export default {
       commit('calcAllPrices')
     },
     recalcPricesInBasket({ state, commit, getters }) {
-      state.products.forEach(item => {
+      state.items.forEach(item => {
         const priceItems = item.isCustom ?
           getters.extractPriceItems(item.exteriors) :
           [{quantity: 1, ...item.product}]

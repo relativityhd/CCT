@@ -1,7 +1,7 @@
 <template>
   <div class="product-wrapper">
     <div class="is-emtpy" v-if="hasNoProduct">
-      <h6>{{ $t('Product.emptyMessage') }}</h6>
+      <h6>{{ $t('Tool.emptyMessage') }}</h6>
     </div>
     <div class="product-container" v-else>
       <ProductInfo class="product-info" :product="product" />
@@ -9,7 +9,7 @@
       <div class="product-pricing">
         <cv-accordion>
           <cv-accordion-item class="price-list-container">
-            <template slot="title">{{ $t('Product.costCalculation') }}</template>
+            <template slot="title">{{ $t('Tool.costCalculation') }}</template>
             <template slot="content">
               <ProductPricing :price="price" :single="true" />
             </template>
@@ -17,12 +17,12 @@
         </cv-accordion>
         <div class="to-cart-button-wrapper">
           <cv-link class="back-link" @click="goBack">
-            {{ $t('Product.chooseAnother') }}
+            {{ $t('Tool.chooseAnother') }}
           </cv-link>
           <div class="to-cart-button-container">
             <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
             <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
-              {{ $t('Product.addToCart') }}
+              {{ $t('Tool.addToCart') }}
             </cv-button>
           </div>
         </div>

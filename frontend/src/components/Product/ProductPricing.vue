@@ -3,7 +3,7 @@
     <cv-structured-list class="price-list" v-if="!$store.state.mobile">
       <template slot="headings" v-if="!$store.state.mobile">
         <cv-structured-list-heading>
-          {{ $t('Product.item') }}
+          {{ $t('Tool.item') }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
           {{ $t('price.net') }}
@@ -80,7 +80,7 @@
     <cv-structured-list class="price-list" v-else>
       <template slot="headings">
         <cv-structured-list-heading>
-          {{ $t('Product.item') }}
+          {{ $t('Tool.item') }}
         </cv-structured-list-heading>
         <cv-structured-list-heading>
           {{ $t('price.price') }}

@@ -47,11 +47,7 @@ export default {
   },
   methods: {
     changeCustom(key) {
-      if (Number.isNaN(parseInt(this.custom[key]))) {
-        this.invalids[key] = this.$t('invalidNumber', { min: 0, max: 1000 })
-        return
-      }
-      if (parseInt(this.custom[key]) < 0 || parseInt(this.custom[key]) > 1000) {
+      if (!this.$validateNumber(this.custom[key], 0, 1000)) {
         this.invalids[key] = this.$t('invalidNumber', { min: 0, max: 1000 })
         return
       }

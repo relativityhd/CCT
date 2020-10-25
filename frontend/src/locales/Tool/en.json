@@ -5,5 +5,13 @@
   "priceStarting": "Fixed price?",
   "back": "Go Back",
   "addExterior": "Add Exteriors",
-  "deleteItem": "Delete Item"
+  "addInterior": "Add Interiors",
+  "deleteItem": "Delete Item",
+  "addToCart": "Add to cart",
+  "emptyMessage": "Please select a Product",
+  "costCalculation": "Price Calculation",
+  "item": "Item",
+  "chooseAnother": "Choose another",
+  "notEditable": "This item is in this combination not editable.",
+  "noExteriorSelected": "Please select an Exterior to add Interiors!"
 }

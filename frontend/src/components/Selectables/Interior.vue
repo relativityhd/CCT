@@ -1,38 +1,32 @@
 <template>
   <div>
-    <cv-tile
-      kind="selectable"
-      :selected="selected"
-      @click="select($event)"
-      :value="`${exterior.id}`"
-      v-model="selected"
-      class="exterior-tile"
-    >
-      <div class="inner-tile">
-        <img class="tile-image" :src="exterior.imageUrl" alt="Image of Exterior" />
-        <div class="tile-body">
-          <h6>{{ exterior.name }}</h6>
-          <p>{{ $store.getters.formatPrice(exterior.price) }}</p>
+    <cv-tile :value="`${interior._uid}`">
+      <div>
+        <div>
+          <img :src="interior.imageUrl" alt="Image of Interior" />
+
+          <div>
+            <h6>{{ interior.name }}</h6>
+            <p>{{ $store.getters.formatPrice(interior.price) }}</p>
+          </div>
+        </div>
+
+        <div>
           <cv-number-input
-            class="quantity-input"
             :label="$t('quantity')"
             :mobile="$store.state.mobile"
             :invalid-message="invalidMessage"
-            :value="quantity"
-            v-model="quantity"
+            :value="interior.quantity"
+            v-model="interior.quantity"
             @input="changeQuantity()"
           ></cv-number-input>
-        </div>
-        <div class="tile-custom">
-          <cv-accordion class="custom-container" v-if="exterior.customizable">
-            <cv-accordion-item>
-              <template slot="title">{{ `${$t('customize')} ${exterior.name}` }}</template>
-              <template slot="content">
-                <ProductCustomization :custom="custom" />
-              </template>
-            </cv-accordion-item>
-          </cv-accordion>
-          <p v-else>{{ $t('Product.notEditable') }}</p>
+          <cv-icon-button
+            :icon="iconDelete"
+            :label="$t('Tool.deleteItem')"
+            tip-position="left"
+            tip-alignment="start"
+            @click="$emit('delete')"
+          />
         </div>
       </div>
     </cv-tile>
@@ -40,42 +34,27 @@
 </template>
 
 <script>
+import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
+
 export default {
-  name: 'SingleExterior',
+  name: 'SingleInterior',
   props: {
     interior: Object
   },
   data() {
     return {
-      selected: false,
-      invalidMessage: '',
-      quantity: 0,
-      custom: {
-        customized: false,
-        width: 0,
-        height: 0,
-        depth: 0
-      }
+      iconDelete: TrashCan16,
+      invalidMessage: ''
     }
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.exterior.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
+      if (!this.$validateNumber(this.interior.quantity, 0, 5)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 5 })
         return
       }
       this.invalidMessage = ''
-      this.selected = parseInt(this.quantity) > 0
-      this.$emit('select')
-    },
-    select: function(e) {
-      this.selected = e.target.checked
-      if (this.selected) {
-        this.quantity = this.quantity <= 0 ? 1 : this.quantity
-      } else {
-        this.quantity = 0
-      }
-      this.$emit('select')
+      this.$emit('change-quantity')
     }
   }
 }

@@ -36,12 +36,8 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.product.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
-        return
-      }
-      if (parseInt(this.product.quantity) <= 0) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
+      if (!this.$validateNumber(this.product.quantity, 0, 10)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
         return
       }
       this.invalidMessage = ''

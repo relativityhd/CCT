@@ -31,7 +31,6 @@
             </template>
           </cv-accordion-item>
         </cv-accordion>
-        <p v-else>{{ $t('Product.notEditable') }}</p>
       </div>
     </div>
   </cv-tile>
@@ -62,7 +61,7 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.quantity)) || parseInt(this.quantity) < 0 || parseInt(this.quantity) > 10) {
+      if (!this.$validateNumber(this.quantity, 0, 10)) {
         this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
         return
       }

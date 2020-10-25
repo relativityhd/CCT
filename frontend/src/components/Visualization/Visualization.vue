@@ -112,7 +112,7 @@ export default {
         Math.floor(Math.random() * 1) + 0.2,
         Math.floor(Math.random() * 0.05) + 0.01
       )
-    }, 5000)
+    }, 500000)
     this.myrequest = requestAnimationFrame(this.animate)
   },
   destroyed() {

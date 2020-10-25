@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cv-tile :value="`${exterior._uid}`">
+    <cv-tile kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div>
         <div>
           <img :src="exterior.imageUrl" alt="Image of Exterior" />
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.exterior.quantity))) {
+      if (!this.$validateNumber(this.exterior.quantity, 0, 5)) {
         this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 5 })
         return
       }

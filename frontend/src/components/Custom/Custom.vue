@@ -1,9 +1,9 @@
 <template>
-  <div class="product-wrapper">
-    <div class="is-emtpy" v-if="hasNoProduct">
+  <div>
+    <div v-if="hasNoProduct">
       <h6>{{ $t('Tool.emptyMessage') }}</h6>
     </div>
-    <div class="product-container" v-else>
+    <div v-else>
       <div class="visualization-wrapper">
         <Visualization />
       </div>
@@ -13,6 +13,7 @@
           <Exteriors
             :selectables="product.exteriors"
             :exteriors="exteriors"
+            :standardMat="product.materials[0]"
             v-on:change-items="calcSum()"
             v-on:select="setExterior"
           />
@@ -22,15 +23,21 @@
           <Interiors
             v-if="hasExtSelected"
             :selectables="product.interiors"
-            :interiors="interiors"
+            :interiors="selectedExt.interiors"
             v-on:change-items="calcSum()"
           />
           <p v-else>{{ $t('Tool.noExteriorSelected') }}</p>
         </div>
 
-        <div class="materials-wrapper"></div>
+        <div class="materials-wrapper">
+          <Materials
+            v-if="hasExtSelected"
+            :materials="product.materials"
+            :ext="selectedExt"
+           />
+        </div>
 
-        <div class="product-info">
+        <div class="info-wrapper">
           <div class="product-body">
             <h3>{{ product.name }}</h3>
             <h6>{{ $store.getters.formatPrice(product.price) }}</h6>
@@ -67,6 +74,7 @@
 <script>
 import Exteriors from './Exteriors'
 import Interiors from './Interiors'
+import Materials from './Materials'
 import Visualization from '../Visualization/Visualization'
 import ProductPricing from '../Product/ProductPricing'
 import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
@@ -76,6 +84,7 @@ export default {
   components: {
     Exteriors,
     Interiors,
+    Materials,
     Visualization,
     ProductPricing
   },
@@ -87,7 +96,7 @@ export default {
       ShoppingCart20,
       hasNoProduct: true,
       exteriors: [],
-      interiors: [],
+      selectedExt: {},
       hasExtSelected: false,
       custom: {
         height: 0,
@@ -119,11 +128,8 @@ export default {
   },
   methods: {
     setExterior(_uid) {
-      const selectedExterior = this.exteriors.find(ext => ext._uid === _uid)
-      console.log('--DEBUG : setExterior -> selectedExterior', selectedExterior)
-      this.interiors = selectedExterior ? selectedExterior.interiors : []
-      console.log('--DEBUG : setExterior -> this.interiors', this.interiors)
-      this.hasExtSelected = selectedExterior ? true : false
+      this.selectedExt = this.exteriors.find(ext => ext._uid === _uid) || {}
+      this.hasExtSelected = this.selectedExt._uid ? true : false
     },
     checkForProduct() {
       if (this.product === undefined || Object.keys(this.product).length === 0) {
@@ -131,7 +137,7 @@ export default {
         return
       }
       this.exteriors = []
-      this.interiors = []
+      this.selectedExt = {}
       this.selectedExteriorId = ''
       this.hasNoProduct = false
       this.calcSum()
@@ -163,5 +169,47 @@ export default {
 <style lang="scss" scoped>
 .visualization-wrapper {
   height: 500px;
+}
+
+.selection-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.exteriors-wrapper,
+.interiors-wrapper,
+.materials-wrapper,
+.info-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+.to-cart-button-wrapper {
+  width: 100%;
+  margin: 20px 0;
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: end;
+  align-items: center;
+}
+
+.to-cart-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.to-cart-button-container h6 {
+  margin-right: 5px;
+}
+
+.back-link {
+  justify-self: flex-start;
+  cursor: pointer;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div>
+    <!-- Desktop Version -->
     <cv-structured-list class="price-list" v-if="!$store.state.mobile">
-      <template slot="headings" v-if="!$store.state.mobile">
+      <template slot="headings">
         <cv-structured-list-heading>
           {{ $t('Tool.item') }}
         </cv-structured-list-heading>
@@ -16,7 +17,7 @@
         </cv-structured-list-heading>
       </template>
 
-      <template slot="items" v-if="!$store.state.mobile">
+      <template slot="items">
         <cv-structured-list-item v-for="pItem in price.items" :key="pItem.name">
           <cv-structured-list-data>
             {{ pItem.name }}
@@ -77,6 +78,7 @@
       </template>
     </cv-structured-list>
 
+    <!-- Mobile Version -->
     <cv-structured-list class="price-list" v-else>
       <template slot="headings">
         <cv-structured-list-heading>

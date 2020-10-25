@@ -1,30 +1,31 @@
 <template>
-  <div class="product-wrapper">
+  <div>
     <div class="is-emtpy" v-if="hasNoProduct">
       <h6>{{ $t('Tool.emptyMessage') }}</h6>
     </div>
     <div class="product-container" v-else>
-      <ProductInfo class="product-info" :product="product" />
+      <ProductInfo :product="product" />
 
-      <div class="product-pricing">
-        <cv-accordion>
-          <cv-accordion-item class="price-list-container">
-            <template slot="title">{{ $t('Tool.costCalculation') }}</template>
-            <template slot="content">
-              <ProductPricing :price="price" :single="true" />
-            </template>
-          </cv-accordion-item>
-        </cv-accordion>
-        <div class="to-cart-button-wrapper">
-          <cv-link class="back-link" @click="goBack">
-            {{ $t('Tool.chooseAnother') }}
-          </cv-link>
-          <div class="to-cart-button-container">
-            <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
-            <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
-              {{ $t('Tool.addToCart') }}
-            </cv-button>
-          </div>
+      <br />
+
+      <cv-accordion>
+        <cv-accordion-item class="price-list-container">
+          <template slot="title">{{ $t('Tool.costCalculation') }}</template>
+          <template slot="content">
+            <ProductPricing :price="price" :single="true" />
+          </template>
+        </cv-accordion-item>
+      </cv-accordion>
+
+      <div class="to-cart-button-wrapper">
+        <cv-link class="back-link" @click="goBack">
+          {{ $t('Tool.chooseAnother') }}
+        </cv-link>
+        <div class="to-cart-button-container">
+          <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
+          <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
+            {{ $t('Tool.addToCart') }}
+          </cv-button>
         </div>
       </div>
     </div>
@@ -49,13 +50,6 @@ export default {
     return {
       ShoppingCart20,
       hasNoProduct: true,
-      selectables: [],
-      custom: {
-        height: 0,
-        width: 0,
-        depth: 0,
-        customized: false
-      },
       price: {
         single: {
           net: 0,
@@ -72,8 +66,9 @@ export default {
     }
   },
   mounted() {
-    this.unsubscribe = this.$store.subscribe(mutation => {
-      if (mutation.type !== 'setLocation' || this.product === undefined) return
+    console.log('siubscribing...')
+    this.unsubscribe = this.$store.subscribeAction(action => {
+      if (action.type !== 'setLocation' || this.product === undefined) return
       this.calcSum()
     })
     this.checkForProduct()
@@ -88,28 +83,14 @@ export default {
         return
       }
       this.hasNoProduct = false
-      this.selectables = this.product.selectables.map(s => ({
-        ...s,
-        selected: false,
-        quantity: 0,
-        custom: {
-          height: 0,
-          width: 0,
-          depth: 0,
-          customized: false
-        }
-      }))
       this.calcSum()
     },
     calcSum() {
       this.price = this.$store.getters['basket/calcPrices'](
         this.product,
-        this.selectables.filter(s => s.selected),
+        [],
         1
       )
-    },
-    select() {
-      this.calcSum()
     },
     addToCart() {
       if (this.product === undefined) return
@@ -130,45 +111,9 @@ export default {
 
 <style lang="scss" scoped>
 .product-container {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'info custom'
-    'pricing custom';
-  gap: 20px 10px;
-  justify-content: center;
-  justify-items: center;
-}
-
-.product-info {
-  grid-area: info;
   width: 100%;
   max-width: 400px;
-}
-
-.product-custom {
-  grid-area: custom;
-  width: 100%;
-  max-width: 620px;
-}
-
-.product-pricing {
-  grid-area: pricing;
-  width: 100%;
-  max-width: 400px;
-}
-
-.selectables-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.custom-container {
-  max-width: 300px;
+  margin: 0 auto;
 }
 
 .to-cart-button-wrapper {
@@ -194,21 +139,5 @@ export default {
 .back-link {
   justify-self: flex-start;
   cursor: pointer;
-}
-
-@media (max-width: 1060px) {
-  .product-container {
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      'info'
-      'custom'
-      'pricing';
-  }
-
-  .product-info,
-  .product-custom,
-  .product-pricing {
-    max-width: 400px;
-  }
 }
 </style>

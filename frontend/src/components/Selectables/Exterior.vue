@@ -1,17 +1,15 @@
 <template>
   <div>
     <cv-tile kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
-      <div>
-        <div>
-          <img :src="exterior.imageUrl" alt="Image of Exterior" />
+      <div class="ext-wrapper">
+        <img class="ext-img" :src="exterior.imageUrl" alt="Image of Exterior" />
 
-          <div>
-            <h6>{{ exterior.name }}</h6>
-            <p>{{ $store.getters.formatPrice(exterior.price) }}</p>
-          </div>
+        <div class="ext-info">
+          <h6>{{ exterior.name }}</h6>
+          <p>{{ $store.getters.formatPrice(exterior.price) }}</p>
         </div>
 
-        <div>
+        <div class="ext-actions">
           <cv-number-input
             :label="$t('quantity')"
             :mobile="$store.state.mobile"
@@ -21,6 +19,7 @@
             @input="changeQuantity()"
           ></cv-number-input>
           <cv-icon-button
+            class="delete-btn"
             :icon="iconDelete"
             :label="$t('Tool.deleteItem')"
             tip-position="left"
@@ -29,7 +28,7 @@
           />
         </div>
 
-        <div>
+        <div class="ext-custom">
           <cv-accordion v-if="exterior.customizable">
             <cv-accordion-item>
               <template slot="title">{{ `${$t('customize')} ${exterior.name}` }}</template>
@@ -81,3 +80,42 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.ext-wrapper{
+  display: grid;
+  grid-template-areas:
+    'img actions'
+    'info custom'
+  ;
+  gap: 5px;
+}
+
+.ext-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background-color: $ui-background;
+  grid-area: img;
+}
+
+.ext-info {
+  grid-area: info;
+  text-align: left;
+}
+
+.ext-actions {
+  grid-area: actions;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.delete-btn {
+  justify-self: center;
+  align-self: end;
+}
+
+.ext-custom {
+  grid-area: custom;
+}
+</style>

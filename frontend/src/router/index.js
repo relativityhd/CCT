@@ -61,6 +61,14 @@ const routes = [
     }
   },
   {
+    path: '/catalogue',
+    name: 'Catalogue',
+    component: () => import(/* webpackCunkName: "Catalogue" */ '../views/Catalogue.vue'),
+    meta: {
+      title: 'Catalogue'
+    }
+  },
+  {
     path: '/test',
     name: 'Test',
     component: () => import(/* webpackCunkName: "Test" */ '../components/Visualization/Visualization.vue')

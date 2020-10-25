@@ -57,7 +57,6 @@ export default {
 <style lang="scss">
 .actions-wrapper {
   display: grid;
-  display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr auto;
   grid-template-areas: 'quantity delete';

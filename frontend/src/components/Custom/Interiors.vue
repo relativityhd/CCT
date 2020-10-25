@@ -1,26 +1,26 @@
 <template>
   <div>
     <div class="selection-wrapper">
-      <cv-button :icon="Edit16" kind="primary" @click="$refs.addModal.show()">
-        {{ $t('Tool.interior.add') }}
-      </cv-button>
-
-      <cv-modal :close-aria-label="$t('close')" ref="addModal" @primary-click="addInteriors">
+      <cv-modal class="add-modal" :close-aria-label="$t('close')" ref="addModal" @primary-click="addInteriors">
         <template slot="label">{{ $t('Tool.interior.addLabel') }}</template>
         <template slot="title">{{ $t('Tool.interior.addTitle') }}</template>
         <template slot="content">
-          <Selectable
-            ref="selectables"
-            v-for="selectable in selectables"
-            :key="selectable.id"
-            :selectable="selectable"
-            :customizable="false"
-          />
+          <div class="selectables-wrapper">
+            <Selectable
+              ref="selectables"
+              v-for="selectable in selectables"
+              :key="selectable.id"
+              :selectable="selectable"
+              :customizable="false"
+            />
+          </div>
         </template>
         <template slot="secondary-button">{{ $t('close') }}</template>
         <template slot="primary-button">{{ $t('Tool.interior.add') }}</template>
       </cv-modal>
     </div>
+
+    <h3>{{ $t('Tool.interior.title') }}</h3>
 
     <hr />
 
@@ -32,6 +32,15 @@
         v-on:delete="deleteInterior(interior._uid)"
         v-on:change-quantity="$emit('change-items')"
       />
+
+      <div class="add-btn">
+        <cv-tile
+          class="add-tile"
+          kind="clickable"
+          @click="$refs.addModal.show()">
+          <Add32 class="add-icon" />
+        </cv-tile>
+      </div>
     </div>
   </div>
 </template>
@@ -40,22 +49,18 @@
 import { v4 as uuidv4 } from 'uuid'
 import Interior from '../Selectables/Interior'
 import Selectable from '../Selectables/Selectable'
-import Edit16 from '@carbon/icons-vue/es/edit/16'
+import Add32 from '@carbon/icons-vue/es/add/32'
 
 export default {
-  name: 'Exteriors',
+  name: 'Interiors',
   components: {
+    Add32,
     Interior,
     Selectable
   },
   props: {
     selectables: Array,
     interiors: Array
-  },
-  data() {
-    return {
-      Edit16
-    }
   },
   methods: {
     addInteriors() {
@@ -83,3 +88,51 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.selection-wrapper{
+  text-align: right;
+}
+
+.edit-wrapper {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 5px;
+}
+
+.add-modal{
+  text-align: left;
+}
+
+.selectables-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.add-btn {
+  border: 1px dashed $ui-04;
+}
+
+.add-btn:hover {
+  border: 2px solid $interactive-03;
+}
+
+.add-tile {
+  opacity: .3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 143px;
+}
+
+.add-tile:hover {
+  opacity: 1;
+}
+
+.add-icon{
+  height: 64px;
+  width: 64px;
+}
+</style>

@@ -24,7 +24,7 @@ export default {
 }
 
 .product-image {
-  width: 100%;
+  width: 300px;
   height: 300px;
   object-fit: contain;
   background-color: $ui-background;

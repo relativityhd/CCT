@@ -1,17 +1,15 @@
 <template>
   <div>
     <cv-tile :value="`${interior._uid}`">
-      <div>
-        <div>
-          <img :src="interior.imageUrl" alt="Image of Interior" />
+      <div class="int-wrapper">
+        <img class="int-img" :src="interior.imageUrl" alt="Image of Interior" />
 
-          <div>
-            <h6>{{ interior.name }}</h6>
-            <p>{{ $store.getters.formatPrice(interior.price) }}</p>
-          </div>
+        <div class="int-info">
+          <h6>{{ interior.name }}</h6>
+          <p>{{ $store.getters.formatPrice(interior.price) }}</p>
         </div>
 
-        <div>
+        <div class="int-actions">
           <cv-number-input
             :label="$t('quantity')"
             :mobile="$store.state.mobile"
@@ -21,6 +19,7 @@
             @input="changeQuantity()"
           ></cv-number-input>
           <cv-icon-button
+            class="delete-btn"
             :icon="iconDelete"
             :label="$t('Tool.deleteItem')"
             tip-position="left"
@@ -59,3 +58,38 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.int-wrapper{
+  display: grid;
+  grid-template-areas:
+    'img actions'
+    'info info'
+  ;
+  gap: 5px;
+}
+
+.int-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background-color: $ui-background;
+  grid-area: img;
+}
+
+.int-info {
+  grid-area: info;
+  text-align: left;
+}
+
+.int-actions {
+  grid-area: actions;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.delete-btn {
+  justify-self: center;
+  align-self: end;
+}
+</style>

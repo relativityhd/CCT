@@ -44,7 +44,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #cuppy {
-  background-image: url('./../assets/cuppy.svg');
+  background-image: url('./../../assets/cuppy.svg');
   background-repeat: no-repeat;
   background-size: contain;
   height: 15rem;
@@ -62,6 +62,7 @@ export default {
 }
 .invisible {
   opacity: 0;
+  display: none;
 }
 #CuppyBubble {
   transform: rotate(10deg);

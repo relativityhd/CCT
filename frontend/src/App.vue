@@ -13,7 +13,7 @@
 import Vue from 'vue'
 import AppHeader from './components/AppHeader'
 import AppUpdate from './components/AppUpdate'
-import Cuppy from './views/Cuppy'
+import Cuppy from './components/Cuppy/Cuppy'
 
 export default {
   name: 'App',

@@ -34,13 +34,14 @@
             v-if="hasExtSelected"
             :materials="product.materials"
             :ext="selectedExt"
+            v-on:change-items="calcSum()"
            />
         </div>
 
         <div class="info-wrapper">
           <div class="product-body">
             <h3>{{ product.name }}</h3>
-            <h6>{{ $store.getters.formatPrice(product.price) }}</h6>
+            <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
             <p>{{ product.description }}</p>
           </div>
 
@@ -98,12 +99,6 @@ export default {
       exteriors: [],
       selectedExt: {},
       hasExtSelected: false,
-      custom: {
-        height: 0,
-        width: 0,
-        depth: 0,
-        customized: false
-      },
       price: {
         single: {
           net: 0,
@@ -120,11 +115,11 @@ export default {
     }
   },
   mounted() {
+    this.checkForProduct()
     this.unsubscribe = this.$store.subscribe(mutation => {
-      if (mutation.type !== 'setLocation' || this.product === undefined) return
+      if (mutation.type !== 'setLocation' || this.hasNoProduct) return
       this.calcSum()
     })
-    this.checkForProduct()
   },
   methods: {
     setExterior(_uid) {
@@ -143,20 +138,15 @@ export default {
       this.calcSum()
     },
     calcSum() {
-      this.price = this.$store.getters['basket/calcPrices'](
-        this.product,
-        [], //this.selectables.filter(s => s.selected),
-        1
-      )
+      const priceItems = this.$store.getters['basket/extractPriceItems'](this.exteriors)
+      this.price = this.$store.getters['basket/calcPrices'](priceItems, 1)
     },
     addToCart() {
       if (this.product === undefined) return
 
-      this.$store.dispatch('basket/addProduct', {
-        id: this.product.id,
-        info: this.product,
-        selectables: this.selectables.filter(s => s.selected),
-        custom: this.custom
+      this.$store.dispatch('basket/addItem', {
+        product: this.product,
+        exteriors: this.exteriors,
       })
     }
   },

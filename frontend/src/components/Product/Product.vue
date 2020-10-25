@@ -66,7 +66,6 @@ export default {
     }
   },
   mounted() {
-    console.log('siubscribing...')
     this.unsubscribe = this.$store.subscribeAction(action => {
       if (action.type !== 'setLocation' || this.product === undefined) return
       this.calcSum()
@@ -87,19 +86,15 @@ export default {
     },
     calcSum() {
       this.price = this.$store.getters['basket/calcPrices'](
-        this.product,
-        [],
+        [{ quantity: 1, ...this.product}],
         1
       )
     },
     addToCart() {
       if (this.product === undefined) return
 
-      this.$store.dispatch('basket/addProduct', {
-        id: this.product.id,
-        info: this.product,
-        selectables: this.selectables.filter(s => s.selected),
-        custom: this.custom
+      this.$store.dispatch('basket/addItem', {
+        product: this.product
       })
     }
   },

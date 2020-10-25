@@ -39,11 +39,21 @@ export default {
         selected: (mat.id === this.materials[0].id)
         }))
   }},
+  watch: {
+    ext: function () {
+      if (!this.ext.material) return
+      this.selections = Array.from(this.materials, mat => ({
+        id: mat.id,
+        selected: (mat.id === this.ext.material.id)
+        }))
+    }
+  },
   methods: {
     selectMat(id) {
       this.selections.forEach(s => { s.selected = false })
       this.selections.find(s => s.id === id).selected = true
       this.ext.material = this.materials.find(m => m.id === id)
+      this.$emit('change-items')
     }
   }
 }

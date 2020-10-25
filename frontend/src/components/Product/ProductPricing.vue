@@ -18,9 +18,9 @@
       </template>
 
       <template slot="items">
-        <cv-structured-list-item v-for="pItem in price.items" :key="pItem.name">
+        <cv-structured-list-item v-for="pItem in price.items" :key="pItem._uid">
           <cv-structured-list-data>
-            {{ pItem.name }}
+            {{ `${pItem.name} (x${pItem.quantity})` }}
           </cv-structured-list-data>
           <cv-structured-list-data>
             {{ $store.getters.formatPrice(pItem.net) }}
@@ -35,7 +35,7 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ $t('price.single') }}</h6>
+            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ `${$t('price.single')} (x${price.quantity})` }}</h6>
             <h6 v-else>{{ $t('price.sum') }}</h6>
           </cv-structured-list-data>
           <cv-structured-list-data>
@@ -90,9 +90,9 @@
       </template>
 
       <template slot="items">
-        <cv-structured-list-item v-for="pItem in price.items" :key="pItem.name">
+        <cv-structured-list-item v-for="pItem in price.items" :key="pItem._uid">
           <cv-structured-list-data>
-            <h6>{{ pItem.name }}</h6>
+            <h6>{{ `${pItem.name} (x${pItem.quantity})` }}</h6>
             <p>{{ $t('price.net') }}</p>
             <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>
           </cv-structured-list-data>
@@ -106,7 +106,7 @@
 
         <cv-structured-list-item>
           <cv-structured-list-data>
-            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ $t('price.single') }}</h6>
+            <h6 v-if="!single && price.sum.gross !== price.single.gross">{{ `${$t('price.single')} (x${price.quantity})` }}</h6>
             <h6 v-else>{{ $t('price.sum') }}</h6>
             <p>{{ $t('price.net') }}</p>
             <p>{{ `${$t('price.tax')} (${$store.state.locals.vatRate * 100}%)` }}</p>

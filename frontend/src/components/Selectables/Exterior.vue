@@ -33,7 +33,7 @@
             <cv-accordion-item>
               <template slot="title">{{ `${$t('customize')} ${exterior.name}` }}</template>
               <template slot="content">
-                <ProductCustomization :custom="custom" />
+                <ProductCustomization :custom="exterior.custom" />
               </template>
             </cv-accordion-item>
           </cv-accordion>
@@ -59,13 +59,7 @@ export default {
   data() {
     return {
       iconDelete: TrashCan16,
-      invalidMessage: '',
-      custom: {
-        customized: false,
-        width: 0,
-        height: 0,
-        depth: 0
-      }
+      invalidMessage: ''
     }
   },
   methods: {

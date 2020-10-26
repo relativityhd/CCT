@@ -10,7 +10,9 @@
 
       <div class="selection-wrapper">
         <div class="exteriors-wrapper">
+          <h5>{{ $t('Tool.exterior.title') }}</h5>
           <Exteriors
+            ref="ext"
             :selectables="product.exteriors"
             :exteriors="exteriors"
             :standardMat="product.materials[0]"
@@ -20,28 +22,41 @@
         </div>
 
         <div class="interiors-wrapper">
+          <h5>{{ $t('Tool.interior.title') }}</h5>
           <Interiors
             v-if="hasExtSelected"
             :selectables="product.interiors"
             :interiors="selectedExt.interiors"
             v-on:change-items="calcSum()"
           />
-          <p v-else>{{ $t('Tool.noExteriorSelected') }}</p>
+          <div v-else>
+            <p>{{ $t('Tool.noExteriorSelected') }}</p>
+            <cv-button @click="$refs.ext.$refs.addModal.show()" :icon="Add20">
+              {{ $t('Tool.exterior.add') }}
+            </cv-button>
+          </div>
         </div>
 
         <div class="materials-wrapper">
+          <h5>{{ $t('Tool.mat.title') }}</h5>
           <Materials
             v-if="hasExtSelected"
             :materials="product.materials"
             :ext="selectedExt"
             v-on:change-items="calcSum()"
           />
+          <div v-else>
+            <p>{{ $t('Tool.noExteriorSelected') }}</p>
+            <cv-button @click="$refs.ext.$refs.addModal.show()" :icon="Add20">
+              {{ $t('Tool.exterior.add') }}
+            </cv-button>
+          </div>
         </div>
 
         <div class="info-wrapper">
           <div class="product-body">
             <h3>{{ product.name }}</h3>
-            <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
+            <h6>{{ `${$t('Tool.startingAt')} ${$store.getters.formatPrice(product.price)}` }}</h6>
             <p>{{ product.description }}</p>
           </div>
 
@@ -60,7 +75,7 @@
               </cv-link>
               <div class="to-cart-button-container">
                 <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
-                <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20">
+                <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20" :disabled="!exteriors.length">
                   {{ $t('Tool.addToCart') }}
                 </cv-button>
               </div>
@@ -79,6 +94,7 @@ import Materials from './Materials'
 import Visualization from '../Visualization/Visualization'
 import ProductPricing from '../Product/ProductPricing'
 import ShoppingCart20 from '@carbon/icons-vue/es/shopping--cart/20'
+import Add20 from '@carbon/icons-vue/es/add/20'
 
 export default {
   name: 'CustomProduct',
@@ -95,6 +111,7 @@ export default {
   data() {
     return {
       ShoppingCart20,
+      Add20,
       hasNoProduct: true,
       exteriors: [],
       selectedExt: {},
@@ -142,7 +159,7 @@ export default {
       this.price = this.$store.getters['basket/calcPrices'](priceItems, 1)
     },
     addToCart() {
-      if (this.product === undefined) return
+      if (this.product === undefined || !this.exteriors.length) return
 
       this.$store.dispatch('basket/addItem', {
         product: this.product,
@@ -176,6 +193,11 @@ export default {
 .info-wrapper {
   width: 100%;
   max-width: 400px;
+  text-align: left;
+}
+
+.info-wrapper {
+  text-align: right;
 }
 
 .to-cart-button-wrapper {

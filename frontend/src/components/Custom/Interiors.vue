@@ -20,10 +20,6 @@
       </cv-modal>
     </div>
 
-    <h3>{{ $t('Tool.interior.title') }}</h3>
-
-    <hr />
-
     <div class="edit-wrapper">
       <Interior
         v-for="interior in interiors"

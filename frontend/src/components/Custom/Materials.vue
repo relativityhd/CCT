@@ -1,9 +1,5 @@
 <template>
   <div>
-    <h3>{{ $t('Tool.mats.title') }}</h3>
-
-    <hr />
-
     <div class="materials-wrapper">
       <cv-tile
         v-for="mat in materials"

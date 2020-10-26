@@ -1,28 +1,23 @@
 <template>
   <div>
-    <div class="selection-wrapper">
-      <cv-modal class="add-modal" :close-aria-label="$t('close')" ref="addModal" @primary-click="addExteriors">
-        <template slot="label">{{ $t('Tool.exterior.addLabel') }}</template>
-        <template slot="title">{{ $t('Tool.exterior.addTitle') }}</template>
-        <template slot="content">
-          <div class="selectables-wrapper">
-            <Selectable
-              ref="selectables"
-              v-for="selectable in selectables"
-              :key="selectable.id"
-              :selectable="selectable"
-              :customizable="true"
-            />
-          </div>
-        </template>
-        <template slot="secondary-button">{{ $t('close') }}</template>
-        <template slot="primary-button">{{ $t('Tool.addExterior') }}</template>
-      </cv-modal>
-    </div>
-
-    <h3>{{ $t('Tool.exterior.title') }}</h3>
-
-    <hr />
+    <cv-modal class="add-modal" :close-aria-label="$t('close')" ref="addModal" @primary-click="addExteriors" :primary-button-disabled="!addable">
+      <template slot="label">{{ $t('Tool.exterior.addLabel') }}</template>
+      <template slot="title">{{ $t('Tool.exterior.addTitle') }}</template>
+      <template slot="content">
+        <div class="selectables-wrapper">
+          <Selectable
+            ref="selectables"
+            v-for="selectable in selectables"
+            :key="selectable.id"
+            :selectable="selectable"
+            :customizable="true"
+            v-on:select="checkSelects"
+          />
+        </div>
+      </template>
+      <template slot="secondary-button">{{ $t('close') }}</template>
+      <template slot="primary-button">{{ $t('Tool.addExterior') }}</template>
+    </cv-modal>
 
     <div class="edit-wrapper">
       <Exterior
@@ -59,14 +54,23 @@ export default {
   props: {
     selectables: Array,
     exteriors: Array,
-    standardMat: Object
+    standardMat: Object,
+
   },
   data() {
     return {
-      addIds: []
+      addable: false
     }
   },
   methods: {
+    checkSelects() {
+      this.addable = false
+      for (let i=0; i<this.selectables.length; i++) {
+        const { selected } = this.$refs.selectables[i].getInputs()
+        if (selected) this.addable = true
+        break
+      }
+    },
     addExteriors() {
       this.selectables.forEach((s, i) => {
         const { selected, quantity, custom } = this.$refs.selectables[i].getInputs()

@@ -67,6 +67,7 @@ export default {
       }
       this.invalidMessage = ''
       this.selected = parseInt(this.quantity) > 0
+      this.$emit('select')
     },
     select: function(e) {
       this.selected = e.target.checked
@@ -75,6 +76,7 @@ export default {
       } else {
         this.quantity = 0
       }
+      this.$emit('select')
     },
     getInputs() {
       return { selected: this.selected, quantity: this.quantity, custom: this.custom }

@@ -79,7 +79,7 @@ export default {
       this.$emit('select')
     },
     getInputs() {
-      return { selected: this.selected, quantity: this.quantity, custom: this.custom }
+      return { selected: this.selected, quantity: this.quantity, custom: { ...this.custom } }
     },
     clearInputs() {
       this.selected = false

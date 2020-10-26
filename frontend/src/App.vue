@@ -27,7 +27,6 @@ export default {
       this.$store.commit('viewChange')
     },
     setRegion() {
-      delete Vue.axios.defaults.headers.common['x-api-key']
       Vue.axios.get('//ip2c.org/s').then(res => {
         const location = this.$store.state.locals.locations.find(
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
@@ -37,7 +36,6 @@ export default {
           this.$store.dispatch('setLang', location.lang)
         }
       })
-      Vue.axios.defaults.headers.common['x-api-key'] = process.env.VUE_APP_GATEWAY_API_KEY
     }
   },
   mounted() {

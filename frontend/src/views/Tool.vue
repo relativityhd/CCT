@@ -23,49 +23,8 @@ export default {
   mounted() {
     const id = this.$route.params.id
     Vue.axios.get(`/catalogue/products/${id}`).then(res => {
-      const product = res.data
-      const isCustom = product.customizable
-      if (!isCustom) {
-        this.product = product
-        this.type = 'product'
-        return
-      }
-      Vue.axios
-        .get(`/catalogue/products/${id}/selectables`)
-        .then(res => {
-          product.exteriors = []
-          product.interiors = []
-          product.materials = []
-
-          res.data.forEach(selectable => {
-            switch (selectable.selectableCategory) {
-              case 'exterior':
-                product.exteriors.push(selectable)
-                break
-
-              case 'interior':
-                product.interiors.push(selectable)
-                break
-
-              case 'material':
-                product.materials.push(selectable)
-                break
-
-              default:
-                break
-            }
-          })
-          this.product = product
-          this.type = 'custom'
-        })
-        .catch(error => {
-          if (error.response)
-            if (error.response.status === 404) {
-              product.selectables = []
-              this.product = product
-              this.type = 'custom'
-            }
-        })
+      this.product = res.data
+      this.type = this.product.customizable ? 'custom' : 'product'
     })
   }
 }

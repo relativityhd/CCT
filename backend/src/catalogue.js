@@ -27,8 +27,7 @@ router.get('/products/:id', (req, res) => {
       return res.end()
     }
     get(`/catalogue/products/${req.params.id}/selectables`, (e, selectables) => {
-      product.selectables = selectables
-      /* product.exteriors = []
+      product.exteriors = []
       product.interiors = []
       product.materials = []
       product.accessories = []
@@ -49,7 +48,7 @@ router.get('/products/:id', (req, res) => {
           default:
             break
         }
-      }) */
+      })
       res.json(product)
       res.end()
     })

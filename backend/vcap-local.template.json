@@ -1,7 +1,7 @@
 {
   "services": {
     "clApiGateway": {
-      "apiUrl": "",
+      "apiUrl": "//cupboard.eu-gb.cf.appdomain.cloud",
       "apiKey": ""
     }
   }

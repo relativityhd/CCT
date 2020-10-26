@@ -99,6 +99,7 @@ export default {
   max-width: 300px;
   margin: 5px;
   text-align: left;
+  border: 1px dashed $ui-04;
 }
 
 .inner-tile {

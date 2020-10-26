@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <cv-tile :value="`${interior._uid}`">
+  <div :class="{inactive: quantity === 0, active: quantity !==0}">
+    <cv-tile :class="{'inactive-tile': quantity === 0}" :value="`${interior._uid}`">
       <div class="int-wrapper">
         <img class="int-img" :src="interior.imageUrl" alt="Image of Interior" />
 
@@ -9,14 +9,14 @@
           <p>{{ $store.getters.formatPrice(interior.price) }}</p>
         </div>
 
-        <div class="int-actions">
+        <div class="int-actions" v-if="quantity !== 0">
           <cv-number-input
             :label="$t('quantity')"
             :mobile="$store.state.mobile"
             :invalid-message="invalidMessage"
-            :value="interior.quantity"
-            v-model="interior.quantity"
-            @input="changeQuantity()"
+            :value="quantity"
+            v-model="quantity"
+            @input="changeQuantity"
           ></cv-number-input>
           <cv-icon-button
             class="delete-btn"
@@ -24,8 +24,13 @@
             :label="$t('Tool.deleteItem')"
             tip-position="left"
             tip-alignment="start"
-            @click="$emit('delete')"
+            @click="deleteItem"
           />
+        </div>
+        <div class="int-actions" v-else>
+          <cv-button class="add-btn" :icon="iconAdd" @click="addItem">
+            {{ $t('Tool.interior.addItem') }}
+          </cv-button>
         </div>
       </div>
     </cv-tile>
@@ -34,6 +39,7 @@
 
 <script>
 import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
+import Add16 from '@carbon/icons-vue/es/add/16'
 
 export default {
   name: 'SingleInterior',
@@ -43,23 +49,57 @@ export default {
   data() {
     return {
       iconDelete: TrashCan16,
-      invalidMessage: ''
+      iconAdd: Add16,
+      invalidMessage: '',
+      quantity: 0
     }
   },
   methods: {
+    addItem() {
+      this.quantity = 1
+      this.invalidMessage = ''
+      this.$emit('add', this.interior.id)
+    },
     changeQuantity() {
-      if (!this.$validateNumber(this.interior.quantity, 0, 5)) {
+      if (!this.$validateNumber(this.quantity, 0, 5)) {
         this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 5 })
         return
       }
       this.invalidMessage = ''
-      this.$emit('change-quantity')
+      this.$emit('change-quantity', this.interior.id, this.quantity)
+    },
+    deleteItem() {
+      this.quantity = 0
+      this.invalidMessage = ''
+      this.$emit('delete', this.interior.id)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.active {
+  margin: 1px;
+}
+
+.inactive {
+  border: 1px dashed $ui-04;
+}
+
+.inactive:hover {
+  outline: 2px solid $interactive-03;
+  outline-offset: -2px;
+}
+
+.inactive-tile {
+  opacity: .3;
+}
+
+.inactive-tile:hover {
+  opacity: 1;
+}
+
 .int-wrapper {
   display: grid;
   grid-template-areas:
@@ -87,6 +127,7 @@ export default {
   grid-auto-flow: column;
 }
 
+.add-btn,
 .delete-btn {
   justify-self: center;
   align-self: end;

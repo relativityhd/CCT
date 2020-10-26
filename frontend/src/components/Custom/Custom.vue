@@ -16,7 +16,7 @@
             :selectables="product.exteriors"
             :exteriors="exteriors"
             :standardMat="product.materials[0]"
-            v-on:change-items="calcSum()"
+            :selectedExt="selectedExt"
             v-on:select="setExterior"
           />
         </div>

@@ -24,8 +24,8 @@
         v-for="exterior in exteriors"
         :key="exterior._uid"
         :exterior="exterior"
+        :selected="selectedExt._uid === exterior._uid"
         v-on:delete="deleteExterior(exterior._uid)"
-        v-on:change-quantity="$emit('change-items')"
         v-on:select="$emit('select', exterior._uid)"
       />
 
@@ -55,7 +55,7 @@ export default {
     selectables: Array,
     exteriors: Array,
     standardMat: Object,
-
+    selectedExt: Object
   },
   data() {
     return {
@@ -123,7 +123,8 @@ export default {
 }
 
 .add-btn:hover {
-  border: 2px solid $interactive-03;
+  outline: 2px solid $interactive-03;
+  outline-offset: -2px;
 }
 
 .add-tile {

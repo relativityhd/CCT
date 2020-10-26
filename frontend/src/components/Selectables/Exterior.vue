@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cv-tile kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
+    <cv-tile :class="{selected: selected}" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div class="ext-wrapper">
         <img class="ext-img" :src="exterior.imageUrl" alt="Image of Exterior" />
 
@@ -10,16 +10,12 @@
         </div>
 
         <div class="ext-actions">
-          <cv-number-input
-            :label="$t('quantity')"
-            :mobile="$store.state.mobile"
-            :invalid-message="invalidMessage"
-            :value="exterior.quantity"
-            v-model="exterior.quantity"
-            @input="changeQuantity()"
-          ></cv-number-input>
+          <cv-button class="select-btn" @click="$emit('select')" :icon="iconEdit">
+            {{ $t('Tool.exterior.select') }}
+          </cv-button>
           <cv-icon-button
             class="delete-btn"
+            kind="secondary"
             :icon="iconDelete"
             :label="$t('Tool.deleteItem')"
             tip-position="left"
@@ -46,6 +42,7 @@
 
 <script>
 import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
+import Edit16 from '@carbon/icons-vue/es/edit/16'
 import ProductCustomization from '../Product/ProductCustomization'
 
 export default {
@@ -54,22 +51,14 @@ export default {
     ProductCustomization
   },
   props: {
-    exterior: Object
+    exterior: Object,
+    selected: Boolean
   },
   data() {
     return {
       iconDelete: TrashCan16,
+      iconEdit: Edit16,
       invalidMessage: ''
-    }
-  },
-  methods: {
-    changeQuantity() {
-      if (!this.$validateNumber(this.exterior.quantity, 0, 5)) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 5 })
-        return
-      }
-      this.invalidMessage = ''
-      this.$emit('change-quantity')
     }
   }
 }
@@ -103,6 +92,7 @@ export default {
   grid-auto-flow: column;
 }
 
+.select-btn,
 .delete-btn {
   justify-self: center;
   align-self: end;
@@ -110,5 +100,11 @@ export default {
 
 .ext-custom {
   grid-area: custom;
+}
+
+.selected {
+  background: $ui-03;
+  outline: 2px solid $active-primary;
+  outline-offset: -2px; 
 }
 </style>

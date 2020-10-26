@@ -7,8 +7,8 @@
       @primary-click="addExteriors"
       :primary-button-disabled="!addable"
     >
-      <template slot="label">{{ $t('Tool.exterior.addLabel') }}</template>
-      <template slot="title">{{ $t('Tool.exterior.addTitle') }}</template>
+      <template slot="label">{{ $t('Tool.ext.addLabel') }}</template>
+      <template slot="title">{{ $t('Tool.ext.add') }}</template>
       <template slot="content">
         <div class="selectables-wrapper">
           <Selectable
@@ -22,7 +22,7 @@
         </div>
       </template>
       <template slot="secondary-button">{{ $t('close') }}</template>
-      <template slot="primary-button">{{ $t('Tool.addExterior') }}</template>
+      <template slot="primary-button">{{ $t('Tool.ext.add') }}</template>
     </cv-modal>
 
     <div class="edit-wrapper">

@@ -1,17 +1,29 @@
 {
-  "title": "Cupboard Configuration Tool",
-  "basket": "Your basket",
-  "modell": "Modell",
-  "priceStarting": "Fixed price?",
-  "back": "Go Back",
-  "addExterior": "Add Exteriors",
-  "addInterior": "Add Interiors",
-  "deleteItem": "Delete Item",
-  "addToCart": "Add to cart",
-  "emptyMessage": "Please select a Product",
+  "catalogue": "Catalogue",
+  "back": "Go back",
+  "emptyMessage": "Couldn't find product. :(",
   "costCalculation": "Price Calculation",
-  "item": "Item",
   "chooseAnother": "Choose another",
-  "notEditable": "This item is in this combination not editable.",
-  "noExteriorSelected": "Please select an Exterior to add Interiors!"
+  "addToCart": "Add to Basket",
+  "item": "Item",
+  "customTitle": "Cupboard Customizer",
+  "startingAt": "Starting at",
+  "ext": {
+    "title": "Exteriors",
+    "add": "Add Exteriors",
+    "addLabel": "Please select at least one Exterior which should be added to your build.",
+    "select": "Select & edit",
+    "delete": "Delete Exterior",
+    "notEditable": "Exterior is not editable."
+  },
+  "int": {
+    "title": "Interiors",
+    "noExt": "Please select an Exterior to add an Interior.",
+    "add": "Add {name}",
+    "delete": "Delete Interior"
+  },
+  "mat": {
+    "title": "Materials",
+    "noExt": "Please select an Exterior to select the Material."
+  }
 }

@@ -2,7 +2,7 @@
   <div :class="{ inactive: quantity === 0, active: quantity !== 0 }">
     <cv-tile :class="{ 'inactive-tile': quantity === 0 }" :value="`${interior.id}`">
       <div class="int-wrapper">
-        <img class="int-img" :src="interior.imageUrl" alt="Image of Interior" />
+        <img class="int-img" :src="interior.imageUrl" :alt="$t('altImg', { name: interior.name })" />
 
         <div class="int-info">
           <h6>{{ interior.name }}</h6>
@@ -21,7 +21,7 @@
           <cv-icon-button
             class="delete-btn"
             :icon="iconDelete"
-            :label="$t('Tool.deleteItem')"
+            :label="$t('Tool.int.delete')"
             tip-position="left"
             tip-alignment="start"
             @click="deleteItem"
@@ -29,7 +29,7 @@
         </div>
         <div class="int-actions" v-else>
           <cv-button class="add-btn" :icon="iconAdd" @click="addItem">
-            {{ $t('Tool.interior.addItem') }}
+            {{ $t('Tool.int.add', { name: interior.name }) }}
           </cv-button>
         </div>
       </div>

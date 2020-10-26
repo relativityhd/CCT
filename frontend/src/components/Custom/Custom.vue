@@ -4,13 +4,14 @@
       <h6>{{ $t('Tool.emptyMessage') }}</h6>
     </div>
     <div v-else>
+      <h1>{{ $t('Tool.customTitle') }}</h1>
       <div class="visualization-wrapper">
         <Visualization />
       </div>
 
       <div class="selection-wrapper">
         <div class="exteriors-wrapper">
-          <h5>{{ $t('Tool.exterior.title') }}</h5>
+          <h5>{{ $t('Tool.ext.title') }}</h5>
           <Exteriors
             ref="ext"
             :selectables="product.exteriors"
@@ -23,7 +24,7 @@
         </div>
 
         <div class="interiors-wrapper">
-          <h5>{{ $t('Tool.interior.title') }}</h5>
+          <h5>{{ $t('Tool.int.title') }}</h5>
           <Interiors
             v-if="hasExtSelected"
             :selectables="product.interiors"
@@ -31,9 +32,9 @@
             v-on:change-items="calcSum()"
           />
           <div v-else>
-            <p>{{ $t('Tool.noExteriorSelected') }}</p>
+            <p>{{ $t('Tool.int.noExt') }}</p>
             <cv-button @click="$refs.ext.$refs.addModal.show()" :icon="Add20">
-              {{ $t('Tool.exterior.add') }}
+              {{ $t('Tool.ext.add') }}
             </cv-button>
           </div>
         </div>
@@ -47,9 +48,9 @@
             v-on:change-items="calcSum()"
           />
           <div v-else>
-            <p>{{ $t('Tool.noExteriorSelected') }}</p>
+            <p>{{ $t('Tool.mat.noExt') }}</p>
             <cv-button @click="$refs.ext.$refs.addModal.show()" :icon="Add20">
-              {{ $t('Tool.exterior.add') }}
+              {{ $t('Tool.ext.add') }}
             </cv-button>
           </div>
         </div>

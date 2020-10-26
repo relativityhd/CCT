@@ -2,7 +2,7 @@
   <div>
     <cv-tile :class="{ selected: selected }" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div class="ext-wrapper">
-        <img class="ext-img" :src="exterior.imageUrl" alt="Image of Exterior" />
+        <img class="ext-img" :src="exterior.imageUrl" :alt="$t('altImg', { name: exterior.name })" />
 
         <div class="ext-info">
           <h6>{{ exterior.name }}</h6>
@@ -11,13 +11,13 @@
 
         <div class="ext-actions">
           <cv-button class="select-btn" @click="$emit('select')" :icon="iconEdit">
-            {{ $t('Tool.exterior.select') }}
+            {{ $t('Tool.ext.select') }}
           </cv-button>
           <cv-icon-button
             class="delete-btn"
             kind="secondary"
             :icon="iconDelete"
-            :label="$t('Tool.deleteItem')"
+            :label="$t('Tool.ext.delete')"
             tip-position="left"
             tip-alignment="start"
             @click="$emit('delete')"
@@ -33,7 +33,7 @@
               </template>
             </cv-accordion-item>
           </cv-accordion>
-          <p v-else>{{ $t('Product.notEditable') }}</p>
+          <p v-else>{{ $t('Tool.ext.notEditable') }}</p>
         </div>
       </div>
     </cv-tile>

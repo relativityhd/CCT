@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ $t('Catalogue.title') }}</h1>
+    <h1>{{ $t('Tool.catalogue') }}</h1>
     <div class="cat-container">
       <div v-if="categories.length" class="tile-wrapper">
         <cv-tile v-for="ct in categories" :key="ct.id" kind="clickable" class="tile" @click="selectCategory(ct.id)">
@@ -21,7 +21,7 @@
         >
           <img class="tile-image" :src="product.imageUrl" alt="Image of product" />
           <div class="tile-body">
-            <h3>{{ `${$t('Tool.modell')} ${product.name}` }}</h3>
+            <h3>{{ product.name }}</h3>
             <p>{{ $store.getters.formatPrice(product.price) }}</p>
           </div>
         </cv-tile>

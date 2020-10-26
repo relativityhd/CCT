@@ -8,7 +8,7 @@
     class="selectable-tile"
   >
     <div class="inner-tile">
-      <img class="tile-image" :src="selectable.imageUrl" alt="Image of Selectable" />
+      <img class="tile-image" :src="selectable.imageUrl" :alt="$t('altImg', { name: selectable.name })" />
       <div class="tile-body">
         <h6>{{ selectable.name }}</h6>
         <p>{{ $store.getters.formatPrice(selectable.price) }}</p>

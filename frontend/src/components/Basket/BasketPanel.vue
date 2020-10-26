@@ -4,14 +4,26 @@
 
     <div class="products-wrapper" v-if="this.$store.state.basket.items.length">
       <div class="product" v-for="it in this.$store.state.basket.items" :key="it._uid">
-        <h3>{{ it.quantity }}x</h3>
         <div class="product-info">
+          <h3>{{ it.quantity }}x</h3>
           <img class="product-image" :src="it.product.imageUrl" alt="Image of Product" />
           <div class="product-body">
             <h6>{{ it.product.name }}</h6>
             <p>{{ $store.getters.formatPrice(it.price.sum.gross) }}</p>
           </div>
         </div>
+        
+        <div>
+          <div
+            v-for="ext in it.exteriors"
+            :key="ext._uid">
+            <cv-tag :label="ext.name" kind="blue" />
+            <cv-tag :label="ext.material.name" kind="purple" />
+            <cv-tag
+              v-for="int in ext.interiors" :key="int._uid" :label="`${int.name} (x${int.quantity})`" kind="cool-gray" />
+          </div>
+        </div>
+        
       </div>
     </div>
 
@@ -54,19 +66,21 @@ export default {
   padding: 10px 0;
   border-top: 1px solid $ui-01;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .product-info {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
   text-align: left;
-  margin-left: 5px;
+  align-items: flex-end;
 }
 
 .product-image {
-  width: 64px;
-  height: 64px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   background-color: transparent;
 }

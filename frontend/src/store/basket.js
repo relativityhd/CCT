@@ -289,16 +289,16 @@ export default {
       })
       commit('calcAllPrices')
     },
-    removeProduct({ commit }, _uid) {
-      commit('removeProduct', _uid)
+    removeItem({ commit }, _uid) {
+      commit('removeItem', _uid)
       commit('calcAllPrices')
     },
-    setProduct({ commit }, { _uid, quantity }) {
+    setItem({ commit }, { _uid, quantity }) {
       if (quantity === 0) {
-        commit('removeProduct', _uid)
+        commit('removeItem', _uid)
         return
       }
-      commit('setProduct', { _uid, quantity })
+      commit('setItem', { _uid, quantity })
       commit('calcAllPrices')
     }
   }

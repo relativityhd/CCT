@@ -1,0 +1,34 @@
+{
+  "title": "Il tuo carrello",
+  "noItems": "Il tuo cestino è vuoto!",
+  "toStore": "negozio",
+  "invalidNumber": "Deve essere un numero maggiore di 0!",
+  "deleteItem": "Rimuovere l'articolo dal carrello",
+  "notCustom": "Questo articolo non è stato personalizzato",
+  "tableHeads": {
+    "id": "ID",
+    "image": "Immagine",
+    "name": "Nome",
+    "price": "Prezzo",
+    "custom": "Personalizzato",
+    "fixed": "Prezzo fisso",
+    "selectables": "Selezionabili",
+    "quantity": "Quantità",
+    "delete": "Cancellare",
+    "info": "Dati personalizzati",
+    "about": "Informazioni sull'articolo"
+  },
+  "costCalculation": "Calcolo del prezzo",
+  "item": "Voce",
+  "pricing": "Prezzi",
+  "show": "Visualizza i prezzi completi",
+  "checkout": "Alla cassa",
+  "edit": "Modifica prodotto",
+  "goBack": "Torna indietro",
+  "modes": {
+    "customize": "Personalizza",
+    "selectables": "Modifica selezione",
+    "pricing": "Visualizza i prezzi"
+  },
+  "editBasket": "Modifica il tuo carrello"
+}

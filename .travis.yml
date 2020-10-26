@@ -14,7 +14,7 @@ deploy:
     space: $BLUEMIX_SPACE
     on:
       branch: development
-  - app_name: cablecard-cct-api
+  - app_name: cablecard-cct-backend
     provider: cloudfoundry
     username: apikey
     password: $BLUEMIX_API

@@ -83,9 +83,9 @@ export default {
             Vue.axios.get(`/catalogue/products/${id}`).then(res => {
               const product = res.data
               category.products.push(product)
-              Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
+              /* Vue.axios.get(`/catalogue/products/${id}/selectables`).then(res => {
                 product.selectables = res.data
-              })
+              }) */
             })
           })
         })

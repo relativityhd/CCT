@@ -1,9 +1,8 @@
 {
-    "addToCart": "Ajouter au panier",
-    "emptyMessage": "Sélectionner un produit",
-    "costCalculation": "Calcul du prix",
-    "item": "Point",
-    "chooseAnother": "Choisissez une autre",
-    "notEditable": "Combinaison non modifiable."
-  }
-  
+  "addToCart": "Ajouter au panier",
+  "emptyMessage": "Sélectionner un produit",
+  "costCalculation": "Calcul du prix",
+  "item": "Point",
+  "chooseAnother": "Choisissez une autre",
+  "notEditable": "Combinaison non modifiable."
+}

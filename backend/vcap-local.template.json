@@ -1,0 +1,8 @@
+{
+  "services": {
+    "clApiGateway": {
+      "apiUrl": "",
+      "apiKey": ""
+    }
+  }
+}

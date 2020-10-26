@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cv-tile :class="{selected: selected}" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
+    <cv-tile :class="{ selected: selected }" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div class="ext-wrapper">
         <img class="ext-img" :src="exterior.imageUrl" alt="Image of Exterior" />
 
@@ -105,6 +105,6 @@ export default {
 .selected {
   background: $ui-03;
   outline: 2px solid $active-primary;
-  outline-offset: -2px; 
+  outline-offset: -2px;
 }
 </style>

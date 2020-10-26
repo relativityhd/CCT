@@ -1,15 +1,7 @@
 <template>
   <div class="product-container">
-    <Product
-      v-if="type === 'product'"
-      :product="product"
-      v-on:back="$router.push('/catalogue')"
-    />
-    <Custom
-      v-if="type === 'custom'"
-      :product="product"
-      v-on:back="$router.push('/catalogue')"
-    />
+    <Product v-if="type === 'product'" :product="product" v-on:back="$router.push('/catalogue')" />
+    <Custom v-if="type === 'custom'" :product="product" v-on:back="$router.push('/catalogue')" />
   </div>
 </template>
 
@@ -22,10 +14,12 @@ export default {
     Product: () => import(/* webpackChunkName: "Product" */ '../components/Product/Product'),
     Custom: () => import(/* webpackChunkName: "CustomProduct" */ '../components/Custom/Custom')
   },
-  data() { return {
-    product: {},
-    type: 'none'
-  }},
+  data() {
+    return {
+      product: {},
+      type: 'none'
+    }
+  },
   mounted() {
     const id = this.$route.params.id
     Vue.axios.get(`/catalogue/products/${id}`).then(res => {

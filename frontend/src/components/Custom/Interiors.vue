@@ -2,6 +2,7 @@
   <div>
     <div class="edit-wrapper">
       <Interior
+        ref="interiors"
         v-for="interior in selectables"
         :key="interior.id"
         :interior="interior"
@@ -24,31 +25,50 @@ export default {
   },
   props: {
     selectables: Array,
-    interiors: Array
+    ext: Object
+  },
+  mounted() {
+    this.setInteriors()
+  },
+  watch: {
+    ext() {
+      this.setInteriors()
+    }
   },
   methods: {
+    setInteriors() {
+      this.selectables.forEach((s, i) => {
+        const int = this.ext.interiors.find(int => int.id === s.id)
+        const ref = this.$refs.interiors[i]
+        if (int) {
+          ref.quantity = int.quantity
+        } else {
+          ref.quantity = 0
+        }
+      })
+    },
     addInterior(id) {
-      const existingInt = this.interiors.find(int => int.id === id)
+      const existingInt = this.ext.interiors.find(int => int.id === id)
       if (existingInt) {
         existingInt.quantity = 1
       } else {
         const newInterior = { ...this.selectables.find(s => s.id === id) }
         newInterior._uid = uuidv4()
         newInterior.quantity = 1
-        this.interiors.push(newInterior)
+        this.ext.interiors.push(newInterior)
       }
       this.$emit('change-items')
     },
     changeInterior(id, quantity) {
-      const existingInt = this.interiors.find(int => int.id === id)
+      const existingInt = this.ext.interiors.find(int => int.id === id)
       if (!existingInt) return
       existingInt.quantity = quantity
       this.$emit('change-items')
     },
     deleteInterior(id) {
-      const i = this.interiors.findIndex(int => int.id === id)
+      const i = this.ext.interiors.findIndex(int => int.id === id)
       if (i === -1) return
-      this.interiors.splice(i, 1)
+      this.ext.interiors.splice(i, 1)
       this.$emit('change-items')
     }
   }

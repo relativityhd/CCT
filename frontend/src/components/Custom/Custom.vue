@@ -18,6 +18,7 @@
             :standardMat="product.materials[0]"
             :selectedExt="selectedExt"
             v-on:select="setExterior"
+            v-on:change-items="calcSum()"
           />
         </div>
 
@@ -26,7 +27,7 @@
           <Interiors
             v-if="hasExtSelected"
             :selectables="product.interiors"
-            :interiors="selectedExt.interiors"
+            :ext="selectedExt"
             v-on:change-items="calcSum()"
           />
           <div v-else>
@@ -75,7 +76,13 @@
               </cv-link>
               <div class="to-cart-button-container">
                 <h6>{{ $store.getters.formatPrice(price.single.gross) }}</h6>
-                <cv-button class="to-cart-button" kind="primary" @click="addToCart" :icon="ShoppingCart20" :disabled="!exteriors.length">
+                <cv-button
+                  class="to-cart-button"
+                  kind="primary"
+                  @click="addToCart"
+                  :icon="ShoppingCart20"
+                  :disabled="!exteriors.length"
+                >
                   {{ $t('Tool.addToCart') }}
                 </cv-button>
               </div>

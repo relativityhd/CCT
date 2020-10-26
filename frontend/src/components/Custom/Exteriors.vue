@@ -1,6 +1,12 @@
 <template>
   <div>
-    <cv-modal class="add-modal" :close-aria-label="$t('close')" ref="addModal" @primary-click="addExteriors" :primary-button-disabled="!addable">
+    <cv-modal
+      class="add-modal"
+      :close-aria-label="$t('close')"
+      ref="addModal"
+      @primary-click="addExteriors"
+      :primary-button-disabled="!addable"
+    >
       <template slot="label">{{ $t('Tool.exterior.addLabel') }}</template>
       <template slot="title">{{ $t('Tool.exterior.addTitle') }}</template>
       <template slot="content">
@@ -21,6 +27,7 @@
 
     <div class="edit-wrapper">
       <Exterior
+        ref="exteriors"
         v-for="exterior in exteriors"
         :key="exterior._uid"
         :exterior="exterior"
@@ -65,7 +72,7 @@ export default {
   methods: {
     checkSelects() {
       this.addable = false
-      for (let i=0; i<this.selectables.length; i++) {
+      for (let i = 0; i < this.selectables.length; i++) {
         const { selected } = this.$refs.selectables[i].getInputs()
         if (selected) this.addable = true
         break
@@ -89,6 +96,8 @@ export default {
       })
       this.$refs.addModal.hide()
       this.$emit('change-items')
+      if (this.exteriors.length === 0) return
+      this.$emit('select', this.exteriors[this.exteriors.length - 1]._uid)
     },
     deleteExterior(_uid) {
       const i = this.exteriors.findIndex(ext => ext._uid === _uid)

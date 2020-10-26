@@ -37,16 +37,22 @@ export default {
       }))
     }
   },
+  mounted() {
+    this.setMat()
+  },
   watch: {
-    ext: function() {
+    ext() {
+      this.setMat()
+    }
+  },
+  methods: {
+    setMat() {
       if (!this.ext.material) return
       this.selections = Array.from(this.materials, mat => ({
         id: mat.id,
         selected: mat.id === this.ext.material.id
       }))
-    }
-  },
-  methods: {
+    },
     selectMat(id) {
       this.selections.forEach(s => {
         s.selected = false

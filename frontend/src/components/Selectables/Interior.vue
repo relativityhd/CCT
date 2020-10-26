@@ -1,6 +1,6 @@
 <template>
-  <div :class="{inactive: quantity === 0, active: quantity !==0}">
-    <cv-tile :class="{'inactive-tile': quantity === 0}" :value="`${interior._uid}`">
+  <div :class="{ inactive: quantity === 0, active: quantity !== 0 }">
+    <cv-tile :class="{ 'inactive-tile': quantity === 0 }" :value="`${interior.id}`">
       <div class="int-wrapper">
         <img class="int-img" :src="interior.imageUrl" alt="Image of Interior" />
 
@@ -78,7 +78,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .active {
   margin: 1px;
 }
@@ -93,7 +92,7 @@ export default {
 }
 
 .inactive-tile {
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .inactive-tile:hover {

@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cat-container{
+.cat-container {
   margin: 0 auto;
   max-width: 1600px;
   width: 98%;

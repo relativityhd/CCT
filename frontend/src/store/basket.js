@@ -136,7 +136,6 @@ export default {
     },
 
     orderItems: state => () => {
-      // TODO: make new
       const products = []
       state.items.forEach(it => {
         if (it.isCustom) {

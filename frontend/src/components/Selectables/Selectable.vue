@@ -53,9 +53,9 @@ export default {
       quantity: 0,
       custom: {
         customized: false,
-        height: 0,
-        width: 0,
-        depth: 0
+        height: 160,
+        width: 200,
+        depth: 80
       }
     }
   },
@@ -85,9 +85,9 @@ export default {
       this.selected = false
       this.quantity = 0
       this.custom.customized = false
-      this.custom.width = 0
-      this.custom.height = 0
-      this.custom.depth = 0
+      this.custom.width = 160
+      this.custom.height = 200
+      this.custom.depth = 80
     }
   }
 }

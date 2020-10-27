@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ $t('Tool.basket') }}</h3>
+    <h3>{{ $t('Basket.title') }}</h3>
     <Basket :items="this.$store.state.basket.items" />
   </div>
 </template>

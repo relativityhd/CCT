@@ -1,8 +1,7 @@
 {
-    "title": "Schrank-Konfigurations-Tool",
-    "basket": "Dein Einkaufswagen",
-    "modell": "Modell",
-    "priceStarting": "Fester Preis?",
-    "back": "Zurück"
-  }
-  
+  "title": "Schrank-Konfigurations-Tool",
+  "basket": "Dein Einkaufswagen",
+  "modell": "Modell",
+  "priceStarting": "Fester Preis?",
+  "back": "Zurück"
+}

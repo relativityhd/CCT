@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/20'
 
 export default {
@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.basket.products.length === 0) {
+    if (this.$store.state.basket.items.length === 0) {
       this.emptyBasket = true
       return
     }
@@ -51,19 +51,22 @@ export default {
       country: this.$store.state.locals.location,
       customer: this.$store.getters['customer/customerData'](),
       price: this.$store.getters['basket/orderPrice'](),
-      products: this.$store.getters['basket/orderProducts']()
+      products: this.$store.getters['basket/orderItems']()
     }
-    Vue.axios
+    console.log('--DEBUG : mounted -> postObject', postObject)
+    this.$store.commit('basket/clearBasket')
+    return
+    /* Vue.axios
       .post('/order', postObject)
       .then(res => {
         this.responsed = true
         this.orderId = res.data.orderId
-        this.$store.commit('basket/emptyBasket')
+        this.$store.commit('basket/clearBasket')
       })
       .catch(() => {
         this.responsed = true
         this.errored = true
-      })
+      }) */
   }
 }
 </script>

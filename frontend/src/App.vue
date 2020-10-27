@@ -32,7 +32,9 @@ export default {
           l => l.isoCode === res.data.split(';')[1].toLowerCase()
         )
         this.$store.dispatch('setLocation', location.isoCode)
-        this.$store.dispatch('setLang', location.lang)
+        if (process.env.NODE_ENV === 'production') {
+          this.$store.dispatch('setLang', location.lang)
+        }
       })
     }
   },

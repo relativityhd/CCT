@@ -1,13 +1,40 @@
 import * as hash from 'object-hash'
+import { v4 as uuidv4 } from 'uuid'
+import * as clonedeep from 'lodash.clonedeep'
 
-function compareSelectable(a, b) {
-  return a.id - b.id
+function removeUid(e) {
+  /* eslint-disable no-unused-vars */
+  const { _uid, ...newE } = e
+  return newE
+}
+
+function compareInterior(a, b) {
+  if (a.id !== b.id) return a.id - b.id
+}
+
+function compareExterior(a, b) {
+  if (a.id !== b.id) return a.id - b.id
+  if (a.quantity !== b.quantity) return a.quantity - b.quantity
+
+  const custHashA = hash(clonedeep(a.custom))
+  const custHashB = hash(clonedeep(b.custom))
+  if (custHashA !== custHashB) return custHashA - custHashB
+
+  const matHashA = hash(clonedeep(a.material))
+  const matHashB = hash(clonedeep(b.material))
+  if (matHashA !== matHashB) return matHashA - matHashB
+
+  const intHashA = hash(a.interiors.map(removeUid).sort(compareInterior))
+  const intHashB = hash(b.interiors.map(removeUid).sort(compareInterior))
+  if (intHashA !== intHashB) return intHashA - intHashB
+
+  return 0
 }
 
 export default {
   namespaced: true,
   state: {
-    products: [],
+    items: [],
     price: {
       net: 0,
       tax: 0,
@@ -15,23 +42,18 @@ export default {
     }
   },
   getters: {
-    newBasketId: state => () => {
-      let newBasketId = 0
-      while (state.products.findIndex(p => p.basketId === newBasketId) !== -1) {
-        newBasketId++
-      }
-      return newBasketId
+    itemById: state => _uid => {
+      return state.items.find(it => it._uid === _uid)
     },
-    productById: state => basketId => {
-      return state.products.find(p => p.basketId === basketId)
+    itemsByProductId: state => id => {
+      return state.items.filter(it => it.product.id === id)
     },
-    productsById: state => id => {
-      return state.products.filter(product => product.id === id)
-    },
+
     multiplyPrice: (_state, _getters, rootState) => (a, b) => {
       const sub = rootState.locals.subQuotient || 100
       return (parseInt(Math.round(a * sub)) * parseInt(Math.round(b * sub))) / sub ** 2
     },
+
     priceToInt: (_state, _getters, rootState) => price => {
       const sub = rootState.locals.subQuotient || 100
       return parseInt(Math.round(price * sub))
@@ -43,26 +65,21 @@ export default {
     grossToNet: (_state, _getters, rootState) => gross => {
       return parseInt(gross / (1 + rootState.locals.vatRate))
     },
-    calcPrices: (_state, getters) => (info, selectables, quantity) => {
+
+    calcPrices: (_state, getters) => (items, quantity) => {
       const price = {}
-      const gross = getters.priceToInt(info.price)
-      const net = getters.grossToNet(gross)
-      price.items = [
-        {
-          name: info.name,
-          net: getters.priceToFloat(net),
-          tax: getters.priceToFloat(gross - net),
-          gross: getters.priceToFloat(gross)
-        }
-      ]
-      selectables.forEach(s => {
-        const gross = getters.priceToInt(s.price)
+      price.items = []
+
+      items.forEach(it => {
+        const gross = getters.priceToInt(it.price)
         const net = getters.grossToNet(gross)
         price.items.push({
-          name: `${s.name} (x${s.quantity})`,
-          net: getters.multiplyPrice(getters.priceToFloat(net), s.quantity),
-          tax: getters.multiplyPrice(getters.priceToFloat(gross - net), s.quantity),
-          gross: getters.multiplyPrice(getters.priceToFloat(gross), s.quantity)
+          _uid: uuidv4(),
+          name: it.name,
+          quantity: it.quantity,
+          net: getters.multiplyPrice(getters.priceToFloat(net), it.quantity),
+          tax: getters.multiplyPrice(getters.priceToFloat(gross - net), it.quantity),
+          gross: getters.multiplyPrice(getters.priceToFloat(gross), it.quantity)
         })
       })
       price.single = {
@@ -75,29 +92,93 @@ export default {
         tax: getters.multiplyPrice(price.single.tax, quantity),
         gross: getters.multiplyPrice(price.single.gross, quantity)
       }
+      price.quantity = quantity
+
       return price
     },
-    orderProducts: state => () => {
-      const products = []
-      state.products.forEach(p => {
-        products.push({
-          id: p.id,
-          quantity: p.quantity,
-          customized: p.custom.customized,
-          width: p.custom.width,
-          height: p.custom.height,
-          depth: p.custom.width
-        })
-        p.selectables.forEach(s => {
-          products.push({
-            id: s.id,
-            quantity: s.quantity,
-            customized: s.custom.customized,
-            width: s.custom.width,
-            height: s.custom.height,
-            depth: s.custom.height
+
+    extractPriceItems: () => exteriors => {
+      let products = []
+      exteriors.forEach(ext => {
+        for (let q = 0; q < ext.quantity; q++) {
+          ext.interiors.forEach(int => {
+            products.push({
+              id: int.id,
+              name: int.name,
+              quantity: int.quantity,
+              price: int.price
+            })
           })
+          products.push({
+            id: ext.material.id,
+            name: ext.material.name,
+            quantity: 1,
+            price: ext.material.price
+          })
+        }
+        products.push({
+          id: ext.id,
+          name: ext.name,
+          quantity: ext.quantity,
+          price: ext.price
         })
+      })
+      products = products.reduce((prods, item) => {
+        const prod = prods.find(p => p.id === item.id)
+        if (prod) {
+          prod.quantity += item.quantity
+        } else {
+          prods.push(item)
+        }
+        return prods
+      }, [])
+      return products
+    },
+
+    orderItems: state => () => {
+      const products = []
+      state.items.forEach(it => {
+        if (it.isCustom) {
+          it.exteriors.forEach(ext => {
+            for (let q = 0; q < ext.quantity; q++) {
+              ext.interiors.forEach(int => {
+                products.push({
+                  id: int.id,
+                  quantity: int.quantity,
+                  customized: ext.custom.customized,
+                  width: ext.custom.width,
+                  height: ext.custom.height,
+                  depth: ext.custom.depth
+                })
+              })
+              products.push({
+                id: ext.material.id,
+                quantity: 1,
+                customized: false,
+                width: 0,
+                height: 0,
+                depth: 0
+              })
+            }
+            products.push({
+              id: ext.id,
+              quantity: ext.quantity,
+              customized: ext.custom.customized,
+              width: ext.custom.width,
+              height: ext.custom.height,
+              depth: ext.custom.depth
+            })
+          })
+        } else {
+          products.push({
+            id: it.id,
+            quantity: it.quantity,
+            customized: false,
+            width: 0,
+            height: 0,
+            depth: 0
+          })
+        }
       })
       return products.reduce((reduced, p) => {
         const inReduced = reduced.find(r => hash({ ...r, quantity: 0 }) === hash({ ...p, quantity: 0 }))
@@ -120,19 +201,19 @@ export default {
     }
   },
   mutations: {
-    pushProduct(state, newProduct) {
-      state.products.push(newProduct)
+    pushItem(state, newItem) {
+      state.items.push(newItem)
     },
-    removeProduct(state, basketId) {
-      const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
-      if (indexInProducts === -1) return
-      state.products.splice(indexInProducts, 1)
+    removeItem(state, _uid) {
+      const indexInItems = state.items.findIndex(it => it._uid === _uid)
+      if (indexInItems === -1) return
+      state.items.splice(indexInItems, 1)
     },
-    setProduct(state, { basketId, quantity }) {
-      const indexInProducts = state.products.findIndex(product => product.basketId === basketId)
+    setItem(state, { _uid, quantity }) {
+      const indexInItems = state.items.findIndex(it => it._uid === _uid)
 
-      if (indexInProducts !== -1) {
-        state.products[indexInProducts].quantity = quantity
+      if (indexInItems === -1) {
+        state.items[indexInItems === -1].quantity = quantity
       }
     },
     calcAllPrices(state) {
@@ -140,91 +221,83 @@ export default {
       state.price.tax = 0
       state.price.gross = 0
 
-      state.products.forEach(p => {
-        state.price.net += p.price.sum.net
-        state.price.tax += p.price.sum.tax
-        state.price.gross += p.price.sum.gross
+      state.items.forEach(it => {
+        state.price.net += it.price.sum.net
+        state.price.tax += it.price.sum.tax
+        state.price.gross += it.price.sum.gross
       })
     },
-    emptyBasket(state) {
+    clearBasket(state) {
       state.price.net = 0
       state.price.tax = 0
       state.price.gross = 0
-      state.products = []
+      state.items = []
     }
   },
   actions: {
-    addProduct({ commit, getters, dispatch }, { id, info, selectables, custom }) {
-      const newProduct = {
-        basketId: getters.newBasketId(),
-        id,
-        info: { ...info },
-        price: getters.calcPrices(info, selectables, 1),
-        selectables: selectables
-          ? selectables.map(s => {
-              const newS = { ...s }
-              newS.custom = s.custom.customized
-                ? { ...s.custom }
-                : {
-                    height: 0,
-                    width: 0,
-                    depth: 0,
-                    customized: false
-                  }
-              return newS
-            })
-          : [],
-        quantity: 1,
-        custom: custom.customized
-          ? { ...custom }
-          : {
-              height: 0,
-              width: 0,
-              depth: 0,
-              customized: false
-            }
+    addItem({ commit, getters, dispatch }, { product, exteriors }) {
+      const isCustom = exteriors !== undefined
+      const priceItems = isCustom ? getters.extractPriceItems(exteriors) : [{ quantity: 1, ...product }]
+      const newItem = {
+        _uid: uuidv4(),
+        product: clonedeep(product),
+        price: getters.calcPrices(priceItems, 1),
+        exteriors: isCustom ? clonedeep(exteriors) : [],
+        isCustom: isCustom,
+        quantity: 1
       }
-      const productsInBasket = getters.productsById(id)
-      if (productsInBasket.length >= 0) {
-        let inBasket = false
-        productsInBasket.forEach(productInBasket => {
-          if (
-            hash({ ...productInBasket.custom }) === hash({ ...newProduct.custom }) &&
-            hash(productInBasket.selectables.sort(compareSelectable)) ===
-              hash(newProduct.selectables.sort(compareSelectable))
-          ) {
-            productInBasket.quantity++
-            dispatch('calcPricesInBasket', productInBasket.basketId)
-            inBasket = true
+      const itemsInBasket = getters.itemsByProductId(product.id)
+      if (itemsInBasket.length >= 0) {
+        let isInBasket = false
+        itemsInBasket.forEach(inBasket => {
+          if (!isCustom) {
+            inBasket.quantity++
+            isInBasket = true
+            dispatch('calcPricesInBasket', inBasket._uid)
+            return
+          }
+
+          if (inBasket.price.single.gross !== newItem.price.single.gross) return
+
+          const extHashBasket = hash(inBasket.exteriors.map(removeUid).sort(compareExterior))
+          const extHashNew = hash(newItem.exteriors.map(removeUid).sort(compareExterior))
+          if (extHashBasket === extHashNew) {
+            inBasket.quantity++
+            isInBasket = true
+            dispatch('calcPricesInBasket', inBasket._uid)
             return
           }
         })
-        if (inBasket) return
+        if (isInBasket) return
       }
-      commit('pushProduct', newProduct)
+      commit('pushItem', newItem)
       commit('calcAllPrices')
     },
-    calcPricesInBasket({ commit, getters }, basketId) {
-      let item = getters.productById(basketId)
-      item.price = getters.calcPrices(item.info, item.selectables, item.quantity)
+    calcPricesInBasket({ commit, getters }, _uid) {
+      const item = getters.itemById(_uid)
+      const priceItems = item.isCustom ? getters.extractPriceItems(item.exteriors) : [{ quantity: 1, ...item.product }]
+      item.price = getters.calcPrices(priceItems, item.quantity)
       commit('calcAllPrices')
     },
     recalcPricesInBasket({ state, commit, getters }) {
-      state.products.forEach(item => {
-        item.price = getters.calcPrices(item.info, item.selectables, item.quantity)
+      state.items.forEach(item => {
+        const priceItems = item.isCustom
+          ? getters.extractPriceItems(item.exteriors)
+          : [{ quantity: 1, ...item.product }]
+        item.price = getters.calcPrices(priceItems, item.quantity)
       })
       commit('calcAllPrices')
     },
-    removeProduct({ commit }, basketId) {
-      commit('removeProduct', basketId)
+    removeItem({ commit }, _uid) {
+      commit('removeItem', _uid)
       commit('calcAllPrices')
     },
-    setProduct({ commit }, { basketId, quantity }) {
+    setItem({ commit }, { _uid, quantity }) {
       if (quantity === 0) {
-        commit('removeProduct', basketId)
+        commit('removeItem', _uid)
         return
       }
-      commit('setProduct', { basketId, quantity })
+      commit('setItem', { _uid, quantity })
       commit('calcAllPrices')
     }
   }

@@ -1,35 +1,32 @@
 <template>
   <cv-tile>
-    <h3>{{ product.info.name }}</h3>
-    <h6>{{ $store.getters.formatPrice(product.price.sum.gross) }}</h6>
+    <h3>{{ item.product.name }}</h3>
+    <h6>{{ $store.getters.formatPrice(item.price.sum.gross) }}</h6>
 
-    <Actions class="Actions" :product="product" />
+    <Actions class="Actions" :item="item" />
 
-    <EditModal :product="product" />
+    <!-- <EditModal :item="item" /> -->
 
-    <cv-tag
-      v-for="selectable in product.selectables"
-      :key="selectable.id"
-      :label="selectable.name"
-      :kind="selectable.custom.customized ? 'blue' : 'cool-gray'"
-    />
-
-    <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />
+    <div v-for="ext in item.exteriors" :key="ext._uid">
+      <cv-tag :label="ext.name" kind="blue" />
+      <cv-tag :label="ext.material.name" kind="purple" />
+      <cv-tag v-for="int in ext.interiors" :key="int._uid" :label="`${int.name} (x${int.quantity})`" kind="cool-gray" />
+    </div>
   </cv-tile>
 </template>
 
 <script>
 import Actions from './Actions'
-import EditModal from './EditModal'
+//import EditModal from './EditModal'
 
 export default {
   name: 'ProductTile',
   props: {
-    product: Object
+    item: Object
   },
   components: {
-    Actions,
-    EditModal
+    Actions
+    //EditModal
   }
 }
 </script>

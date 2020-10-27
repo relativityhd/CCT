@@ -1,34 +1,34 @@
 {
-    "title": "Votre panier",
-    "noItems": "Votre panier est vide!",
-    "toStore": "magasin",
-    "invalidNumber": "Doit être un nombre supérieur à 0!",
-    "deleteItem": "Retirer un article de votre panier",
-    "notCustom": "Cet point n'a pas été personnalisés",
-    "tableHeads": {
-      "id": "ID",
-      "image": "Photo",
-      "name": "Nom",
-      "price": "Prix",
-      "custom": "Personnalisé",
-      "fixed": "Prix fixe",
-      "selectables": "Sélection",
-      "quantity": "Quantité",
-      "delete": "Supprimer",
-      "info": "Données personnalisées",
-      "about": "Point info"
-    },
-    "costCalculation": "Calcul du prix",
-    "item": "Point",
-    "pricing": "Prix",
-    "show": "Voir la tarification complète",
-    "checkout": "Pour passer à la caisse",
-    "edit": "Modifier le produit",
-    "goBack": "Retour en arrière",
-    "modes": {
-      "customize": "Personnaliser",
-      "selectables": "Modifier la sélection",
-      "pricing": "Voir les prix"
-    },
-    "editBasket": "Modifier votre panier"
-  }
+  "title": "Votre panier",
+  "noItems": "Votre panier est vide!",
+  "toStore": "magasin",
+  "invalidNumber": "Doit être un nombre supérieur à 0!",
+  "deleteItem": "Retirer un article de votre panier",
+  "notCustom": "Cet point n'a pas été personnalisés",
+  "tableHeads": {
+    "id": "ID",
+    "image": "Photo",
+    "name": "Nom",
+    "price": "Prix",
+    "custom": "Personnalisé",
+    "fixed": "Prix fixe",
+    "selectables": "Sélection",
+    "quantity": "Quantité",
+    "delete": "Supprimer",
+    "info": "Données personnalisées",
+    "about": "Point info"
+  },
+  "costCalculation": "Calcul du prix",
+  "item": "Point",
+  "pricing": "Prix",
+  "show": "Voir la tarification complète",
+  "checkout": "Pour passer à la caisse",
+  "edit": "Modifier le produit",
+  "goBack": "Retour en arrière",
+  "modes": {
+    "customize": "Personnaliser",
+    "selectables": "Modifier la sélection",
+    "pricing": "Voir les prix"
+  },
+  "editBasket": "Modifier votre panier"
+}

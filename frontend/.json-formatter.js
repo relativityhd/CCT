@@ -28,7 +28,8 @@ var walk = function(dir, done) {
 walk('./src/locales', function(err, results) {
   if (err) throw err
   results.forEach(json => {
-    fs.writeFile(json, jsonFormat(require(json), { type: 'space', size: 2 }), err => {
+    const j = jsonFormat(require(json), { type: 'space', size: 2 }) + '\n'
+    fs.writeFile(json, j, err => {
       if (err) throw err
     })
   })

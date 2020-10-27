@@ -1,8 +1,7 @@
 {
-    "title": "Configurazione dell'armadio",
-    "basket": "Il tuo carrello",
-    "modell": "Modell",
-    "priceStarting": "Prezzo fisso?",
-    "back": "Torna indietro"
-  }
-  
+  "title": "Configurazione dell'armadio",
+  "basket": "Il tuo carrello",
+  "modell": "Modell",
+  "priceStarting": "Prezzo fisso?",
+  "back": "Torna indietro"
+}

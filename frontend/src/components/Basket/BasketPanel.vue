@@ -2,32 +2,35 @@
   <div class="basket-wrapper">
     <h3>{{ $t('Basket.title') }}</h3>
 
-    <div class="products-wrapper" v-if="this.$store.state.basket.products.length">
-      <div class="product" v-for="product in this.$store.state.basket.products" :key="product.basketId">
-        <h3>{{ product.quantity }}x</h3>
+    <div class="products-wrapper" v-if="this.$store.state.basket.items.length">
+      <div class="product" v-for="it in this.$store.state.basket.items" :key="it._uid">
         <div class="product-info">
-          <img class="product-image" :src="product.info.imageUrl" alt="Image of Product" />
+          <h3>{{ it.quantity }}x</h3>
+          <img class="product-image" :src="it.product.imageUrl" alt="Image of Product" />
           <div class="product-body">
-            <h6>{{ product.info.name }}</h6>
-            <p>{{ $store.getters.formatPrice(product.price.sum.gross) }}</p>
+            <h6>{{ it.product.name }}</h6>
+            <p>{{ $store.getters.formatPrice(it.price.sum.gross) }}</p>
           </div>
         </div>
-        <div class="product-selectables">
-          <cv-tag
-            v-for="selectable in product.selectables"
-            :key="selectable.id"
-            :label="selectable.name"
-            :kind="selectable.custom.customized ? 'blue' : 'cool-gray'"
-          />
 
-          <cv-tag v-if="product.custom.customized" :label="$t('customized')" kind="purple" />
+        <div>
+          <div v-for="ext in it.exteriors" :key="ext._uid">
+            <cv-tag :label="ext.name" kind="blue" />
+            <cv-tag :label="ext.material.name" kind="purple" />
+            <cv-tag
+              v-for="int in ext.interiors"
+              :key="int._uid"
+              :label="`${int.name} (x${int.quantity})`"
+              kind="cool-gray"
+            />
+          </div>
         </div>
       </div>
     </div>
 
-    <hr v-if="this.$store.state.basket.products.length" />
+    <hr v-if="this.$store.state.basket.items.length" />
 
-    <h6 v-if="this.$store.state.basket.products.length">
+    <h6 v-if="this.$store.state.basket.items.length">
       {{ `${$t('price.price')}: ${$store.getters.formatPrice($store.state.basket.price.gross)}` }}
     </h6>
 
@@ -64,19 +67,21 @@ export default {
   padding: 10px 0;
   border-top: 1px solid $ui-01;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .product-info {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
   text-align: left;
-  margin-left: 5px;
+  align-items: flex-end;
 }
 
 .product-image {
-  width: 64px;
-  height: 64px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   background-color: transparent;
 }

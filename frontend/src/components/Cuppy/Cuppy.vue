@@ -41,7 +41,7 @@ export default {
     cuppyButton() {
       this.showCuppy = !this.showCuppy
     },
-    summonCuppy(){
+    summonCuppy() {
       this.showCuppy = true
     }
   },
@@ -54,7 +54,7 @@ export default {
     idleTime: function() {
       console.log(this.idleTime)
       console.log('hi')
-      if (this.idleTime > timeToCup){
+      if (this.idleTime > timeToCup) {
         this.summonCuppy()
       }
     }

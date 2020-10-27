@@ -1,48 +1,69 @@
 <template>
+<div v-bind:class="showCuppy ? 'hello-cuppy': 'shy-cuppy'">
   <div class="cuppy-hoveraround">
     <div
       id="cuppy"
-      @click="
-        () => {
-          cuppyButton()
-        }
-      "
-    >
-      <div id="CuppyBubble" v-bind:class="showCuppyBubble ? 'visible' : 'invisible'">
+        @click="
+          () => {
+            cuppyButton()
+          }
+        "
+      >
+      <div id="CuppyBubble" v-bind:class="showCuppy ? 'visible' : 'invisible'">
         <div
           class="CuppySpeak"
-          @click="
-            event => {
+          @click="event => {
               event.stopPropagation()
-            }
-          "
+            }"
         >
-          <CuppySpeak :showCuppyBubble="showCuppyBubble" />
+          <CuppySpeak :showCuppyBubble="showCuppy" />
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import CuppySpeak from './CuppySpeak'
+const timeToCup = 30
 export default {
   components: {
     CuppySpeak
   },
+  props:{
+    idleTime: Number
+  },
+
   methods: {
     cuppyButton() {
-      this.showCuppyBubble = !this.showCuppyBubble
-    }
+      console.log("fuck")
+      this.showCuppy = !this.showCuppy
+    }    
   },
   data: () => {
     return {
-      showCuppyBubble: false
+      showCuppy: true
+    }
+  },
+  computed:{
+    longIdle: function(){
+      return this.idleTime > timeToCup
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.shy-cuppy{
+  position: relative;
+  bottom: -60px;
+  animation: slide-out 1s ease-in-out;
+}
+.hello-cuppy{
+  position: relative;
+  bottom: 0px;
+  animation: slide-in 1s ease-in-out;
+}
 #cuppy {
   background-image: url('./../../assets/cuppy.svg');
   background-repeat: no-repeat;
@@ -59,17 +80,35 @@ export default {
 }
 .visible {
   opacity: 1;
+  visibility: visible;
 }
 .invisible {
   opacity: 0;
-  display: none;
+  visibility: hidden;
 }
 #CuppyBubble {
   transform: rotate(10deg);
-  transition: opacity 0.2s ease;
+  //transition: opacity 0.5s ease;
+  transition: visibility 1s, opacity 2s;
 }
 .CuppySpeak {
   transform: translate(-80%, -100%);
+}
+@keyframes slide-in {
+  from{
+    bottom: -60px
+  }
+  to{
+    bottom: 0
+  }
+}
+@keyframes slide-out {
+  from{
+    bottom: 0
+  }
+  to{
+    bottom: -60px
+  }
 }
 @keyframes hoveraround {
   0%,

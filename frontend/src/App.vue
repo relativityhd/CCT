@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader />
     <AppUpdate />
-    <div id="theCuppy">
+    <div id="theCuppy" idleTime="idleTime">
       <Cuppy></Cuppy>
     </div>
     <router-view id="app-view" />
@@ -17,6 +17,11 @@ import Cuppy from './components/Cuppy/Cuppy'
 
 export default {
   name: 'App',
+  data: ()=>{
+    return{
+      idleTime: 0
+    }
+  },
   components: {
     AppHeader,
     AppUpdate,
@@ -39,7 +44,14 @@ export default {
   mounted() {
     window.addEventListener('resize', this.onResize)
     this.setRegion()
+    setInterval(()=>{
+      this.idleTime++
+    },1000)
+    document.body.addEventListener('click', ()=>{
+      this.idleTime = 0
+    }, true); 
   },
+
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)
   }

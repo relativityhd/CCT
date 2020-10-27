@@ -2,8 +2,8 @@
   <div id="app">
     <AppHeader />
     <AppUpdate />
-    <div id="theCuppy" idleTime="idleTime">
-      <Cuppy></Cuppy>
+    <div id="theCuppy" >
+      <Cuppy :idleTime="idleTime"></Cuppy>
     </div>
     <router-view id="app-view" />
   </div>

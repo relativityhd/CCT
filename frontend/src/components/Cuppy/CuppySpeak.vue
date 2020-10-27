@@ -41,8 +41,8 @@ export default {
     }
   },
   watch: {
-    showCuppyBubble: function() {
-      if (this.showCuppyBubble) {
+    showCuppyBubble: function(oldVal) {
+      if (oldVal) {
         this.cuppyGreet = this.greetUser()
       }
     }

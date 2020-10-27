@@ -40,16 +40,23 @@ export default {
   methods: {
     cuppyButton() {
       this.showCuppy = !this.showCuppy
+    },
+    summonCuppy(){
+      this.showCuppy = true
     }
   },
   data: () => {
     return {
-      showCuppy: true
+      showCuppy: false
     }
   },
-  computed: {
-    longIdle: function() {
-      return this.idleTime > timeToCup
+  watch: {
+    idleTime: function() {
+      console.log(this.idleTime)
+      console.log('hi')
+      if (this.idleTime > timeToCup){
+        this.summonCuppy()
+      }
     }
   }
 }

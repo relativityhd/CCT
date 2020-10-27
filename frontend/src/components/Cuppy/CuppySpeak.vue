@@ -42,7 +42,7 @@ export default {
   },
   watch: {
     showCuppyBubble: function() {
-      if(this.showCuppyBubble){
+      if (this.showCuppyBubble) {
         this.cuppyGreet = this.greetUser()
       }
     }

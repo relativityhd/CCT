@@ -17,8 +17,8 @@ import Cuppy from './components/Cuppy/Cuppy'
 
 export default {
   name: 'App',
-  data: ()=>{
-    return{
+  data: () => {
+    return {
       idleTime: 0
     }
   },
@@ -44,12 +44,16 @@ export default {
   mounted() {
     window.addEventListener('resize', this.onResize)
     this.setRegion()
-    setInterval(()=>{
+    setInterval(() => {
       this.idleTime++
-    },1000)
-    document.body.addEventListener('click', ()=>{
-      this.idleTime = 0
-    }, true); 
+    }, 1000)
+    document.body.addEventListener(
+      'click',
+      () => {
+        this.idleTime = 0
+      },
+      true
+    )
   },
 
   beforeDestroy() {

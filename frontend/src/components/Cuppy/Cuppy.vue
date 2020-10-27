@@ -1,27 +1,29 @@
 <template>
-<div v-bind:class="showCuppy ? 'hello-cuppy': 'shy-cuppy'">
-  <div class="cuppy-hoveraround">
-    <div
-      id="cuppy"
+  <div v-bind:class="showCuppy ? 'hello-cuppy' : 'shy-cuppy'">
+    <div class="cuppy-hoveraround">
+      <div
+        id="cuppy"
         @click="
           () => {
             cuppyButton()
           }
         "
       >
-      <div id="CuppyBubble" v-bind:class="showCuppy ? 'visible' : 'invisible'">
-        <div
-          class="CuppySpeak"
-          @click="event => {
-              event.stopPropagation()
-            }"
-        >
-          <CuppySpeak :showCuppyBubble="showCuppy" />
+        <div id="CuppyBubble" v-bind:class="showCuppy ? 'visible' : 'invisible'">
+          <div
+            class="CuppySpeak"
+            @click="
+              event => {
+                event.stopPropagation()
+              }
+            "
+          >
+            <CuppySpeak :showCuppyBubble="showCuppy" />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -31,34 +33,34 @@ export default {
   components: {
     CuppySpeak
   },
-  props:{
+  props: {
     idleTime: Number
   },
 
   methods: {
     cuppyButton() {
       this.showCuppy = !this.showCuppy
-    }    
+    }
   },
   data: () => {
     return {
       showCuppy: true
     }
   },
-  computed:{
-    longIdle: function(){
+  computed: {
+    longIdle: function() {
       return this.idleTime > timeToCup
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.shy-cuppy{
+.shy-cuppy {
   position: relative;
   bottom: -60px;
   animation: slide-out 1s ease-in-out;
 }
-.hello-cuppy{
+.hello-cuppy {
   position: relative;
   bottom: 0px;
   animation: slide-in 1s ease-in-out;
@@ -94,19 +96,19 @@ export default {
   transform: translate(-80%, -100%);
 }
 @keyframes slide-in {
-  from{
-    bottom: -60px
+  from {
+    bottom: -60px;
   }
-  to{
-    bottom: 0
+  to {
+    bottom: 0;
   }
 }
 @keyframes slide-out {
-  from{
-    bottom: 0
+  from {
+    bottom: 0;
   }
-  to{
-    bottom: -60px
+  to {
+    bottom: -60px;
   }
 }
 @keyframes hoveraround {

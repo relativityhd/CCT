@@ -37,7 +37,6 @@ export default {
 
   methods: {
     cuppyButton() {
-      console.log("fuck")
       this.showCuppy = !this.showCuppy
     }    
   },

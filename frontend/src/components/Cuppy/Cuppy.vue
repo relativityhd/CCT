@@ -44,7 +44,6 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      console.log(this.idleTime)
       this.idleTime++
     }, 1000)
     document.body.addEventListener(

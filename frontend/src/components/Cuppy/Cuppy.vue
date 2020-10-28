@@ -1,15 +1,9 @@
 <template>
-  <div v-bind:class="{ 'hello-cuppy': showCuppy, 'shy-cuppy': !showCuppy}">
+  <div v-bind:class="{ 'hello-cuppy': showCuppy, 'shy-cuppy': !showCuppy }">
     <div class="cuppy-hoveraround">
-      <div
-        id="cuppy"
-        @click="cuppyButton"
-      >
-        <div id="CuppyBubble" v-bind:class="{ 'visible': showCuppy, 'invisible': !showCuppy}">
-          <div
-            class="CuppySpeak"
-            @click.stop=""
-          >
+      <div id="cuppy" @click="cuppyButton">
+        <div id="CuppyBubble" v-bind:class="{ visible: showCuppy, invisible: !showCuppy }">
+          <div class="CuppySpeak" @click.stop="">
             <CuppySpeak :showCuppyBubble="showCuppy" />
           </div>
         </div>
@@ -25,33 +19,32 @@ export default {
   components: {
     CuppySpeak
   },
-  props: {
-    //idleTime: Number
-  },
 
   methods: {
     cuppyButton() {
       this.showCuppy = !this.showCuppy
     },
-    summonCuppy(){
+    summonCuppy() {
       this.showCuppy = true
     }
   },
   data: () => {
     return {
       showCuppy: false,
-      idleTime: 0
+      idleTime: 0,
+      interval: Function
     }
   },
   watch: {
     idleTime: function() {
-      if (this.idleTime > timeToCup){
+      if (this.idleTime > timeToCup) {
         this.summonCuppy()
       }
     }
   },
-  mounted(){
-        setInterval(() => {
+  created() {
+    this.interval = setInterval(() => {
+      console.log(this.idleTime)
       this.idleTime++
     }, 1000)
     document.body.addEventListener(
@@ -61,6 +54,9 @@ export default {
       },
       true
     )
+  },
+  beforeDestroy() {
+    clearInterval(this.interval)
   }
 }
 </script>

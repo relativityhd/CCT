@@ -3,7 +3,7 @@
     <AppHeader />
     <AppUpdate />
     <div id="theCuppy">
-      <Cuppy :idleTime="idleTime"></Cuppy>
+      <Cuppy></Cuppy>
     </div>
     <router-view id="app-view" />
   </div>
@@ -44,16 +44,6 @@ export default {
   mounted() {
     window.addEventListener('resize', this.onResize)
     this.setRegion()
-    setInterval(() => {
-      this.idleTime++
-    }, 1000)
-    document.body.addEventListener(
-      'click',
-      () => {
-        this.idleTime = 0
-      },
-      true
-    )
   },
 
   beforeDestroy() {

@@ -1,22 +1,14 @@
 <template>
-  <div v-bind:class="showCuppy ? 'hello-cuppy' : 'shy-cuppy'">
+  <div v-bind:class="{ 'hello-cuppy': showCuppy, 'shy-cuppy': !showCuppy}">
     <div class="cuppy-hoveraround">
       <div
         id="cuppy"
-        @click="
-          () => {
-            cuppyButton()
-          }
-        "
+        @click="cuppyButton"
       >
-        <div id="CuppyBubble" v-bind:class="showCuppy ? 'visible' : 'invisible'">
+        <div id="CuppyBubble" v-bind:class="{ 'visible': showCuppy, 'invisible': !showCuppy}">
           <div
             class="CuppySpeak"
-            @click="
-              event => {
-                event.stopPropagation()
-              }
-            "
+            @click.stop=""
           >
             <CuppySpeak :showCuppyBubble="showCuppy" />
           </div>
@@ -34,30 +26,41 @@ export default {
     CuppySpeak
   },
   props: {
-    idleTime: Number
+    //idleTime: Number
   },
 
   methods: {
     cuppyButton() {
       this.showCuppy = !this.showCuppy
     },
-    summonCuppy() {
+    summonCuppy(){
       this.showCuppy = true
     }
   },
   data: () => {
     return {
-      showCuppy: false
+      showCuppy: false,
+      idleTime: 0
     }
   },
   watch: {
     idleTime: function() {
-      console.log(this.idleTime)
-      console.log('hi')
-      if (this.idleTime > timeToCup) {
+      if (this.idleTime > timeToCup){
         this.summonCuppy()
       }
     }
+  },
+  mounted(){
+        setInterval(() => {
+      this.idleTime++
+    }, 1000)
+    document.body.addEventListener(
+      'click',
+      () => {
+        this.idleTime = 0
+      },
+      true
+    )
   }
 }
 </script>

@@ -28,6 +28,10 @@ function compareExterior(a, b) {
   const intHashB = hash(b.interiors.map(removeUid).sort(compareInterior))
   if (intHashA !== intHashB) return intHashA - intHashB
 
+  const accHashA = hash(a.accessories.map(removeUid).sort(compareInterior))
+  const accHashB = hash(b.accessories.map(removeUid).sort(compareInterior))
+  if (accHashA !== accHashB) return accHashA - accHashB
+
   return 0
 }
 
@@ -101,12 +105,12 @@ export default {
       let products = []
       exteriors.forEach(ext => {
         for (let q = 0; q < ext.quantity; q++) {
-          ext.interiors.forEach(int => {
+          ext.interiors.concat(ext.accessories).forEach(sel => {
             products.push({
-              id: int.id,
-              name: int.name,
-              quantity: int.quantity,
-              price: int.price
+              id: sel.id,
+              name: sel.name,
+              quantity: sel.quantity,
+              price: sel.price
             })
           })
           products.push({
@@ -138,38 +142,7 @@ export default {
     orderItems: state => () => {
       const products = []
       state.items.forEach(it => {
-        if (it.isCustom) {
-          it.exteriors.forEach(ext => {
-            for (let q = 0; q < ext.quantity; q++) {
-              ext.interiors.forEach(int => {
-                products.push({
-                  id: int.id,
-                  quantity: int.quantity,
-                  customized: ext.custom.customized,
-                  width: ext.custom.width,
-                  height: ext.custom.height,
-                  depth: ext.custom.depth
-                })
-              })
-              products.push({
-                id: ext.material.id,
-                quantity: 1,
-                customized: false,
-                width: 0,
-                height: 0,
-                depth: 0
-              })
-            }
-            products.push({
-              id: ext.id,
-              quantity: ext.quantity,
-              customized: ext.custom.customized,
-              width: ext.custom.width,
-              height: ext.custom.height,
-              depth: ext.custom.depth
-            })
-          })
-        } else {
+        if (!it.isCustom) {
           products.push({
             id: it.id,
             quantity: it.quantity,
@@ -178,7 +151,38 @@ export default {
             height: 0,
             depth: 0
           })
+          return
         }
+        it.exteriors.forEach(ext => {
+          for (let q = 0; q < ext.quantity; q++) {
+            ext.interiors.concat(ext.accessories).forEach(sel => {
+              products.push({
+                id: sel.id,
+                quantity: sel.quantity,
+                customized: ext.custom.customized && sel.customizable,
+                width: sel.customizable ? ext.custom.width : 0,
+                height: sel.customizable ? ext.custom.height : 0,
+                depth: sel.customizable ? ext.custom.depth : 0
+              })
+            })
+            products.push({
+              id: ext.material.id,
+              quantity: 1,
+              customized: false,
+              width: 0,
+              height: 0,
+              depth: 0
+            })
+          }
+          products.push({
+            id: ext.id,
+            quantity: ext.quantity,
+            customized: ext.custom.customized,
+            width: ext.custom.width,
+            height: ext.custom.height,
+            depth: ext.custom.depth
+          })
+        })
       })
       return products.reduce((reduced, p) => {
         const inReduced = reduced.find(r => hash({ ...r, quantity: 0 }) === hash({ ...p, quantity: 0 }))

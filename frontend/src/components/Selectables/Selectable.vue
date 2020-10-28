@@ -52,7 +52,7 @@ export default {
       selected: false,
       quantity: 0,
       custom: {
-        customized: false,
+        customized: true,
         height: 160,
         width: 200,
         depth: 80

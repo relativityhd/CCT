@@ -27,7 +27,8 @@
           <h5>{{ $t('Tool.int.title') }}</h5>
           <Interiors
             v-if="hasExtSelected"
-            :selectables="product.interiors"
+            :selectableInteriors="product.interiors"
+            :selectableAccessories="product.accessories"
             :ext="selectedExt"
             v-on:change-items="calcSum()"
           />

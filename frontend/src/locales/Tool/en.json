@@ -17,7 +17,7 @@
     "notEditable": "Exterior is not editable."
   },
   "int": {
-    "title": "Interiors",
+    "title": "Interiors & Accessoriers",
     "noExt": "Please select an Exterior to add an Interior.",
     "add": "Add {name}",
     "delete": "Delete Interior"

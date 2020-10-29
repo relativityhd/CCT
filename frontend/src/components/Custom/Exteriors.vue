@@ -89,6 +89,7 @@ export default {
             newExterior.quantity = 1
             newExterior.custom = custom
             newExterior.interiors = []
+            newExterior.accessories = []
             newExterior.material = this.standardMat
             this.exteriors.push(newExterior)
           }

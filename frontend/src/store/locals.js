@@ -18,7 +18,7 @@ export default {
       {
         isoCode: 'de',
         lang: 'de',
-        name: 'Deutschland',
+        name: 'germany',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-DE',
@@ -29,7 +29,7 @@ export default {
       {
         isoCode: 'gb',
         lang: 'en',
-        name: 'Great Britain',
+        name: 'greatBritain',
         currency: '£',
         currenyIso: 'GBP',
         numberFormat: 'en-GB',
@@ -40,7 +40,7 @@ export default {
       {
         isoCode: 'fr',
         lang: 'fr',
-        name: 'France',
+        name: 'france',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'fr-FR',
@@ -51,7 +51,7 @@ export default {
       {
         isoCode: 'it',
         lang: 'it',
-        name: 'Italia',
+        name: 'italy',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'it-IT',
@@ -62,7 +62,7 @@ export default {
       {
         isoCode: 'ch',
         lang: 'de',
-        name: 'Schweiz',
+        name: 'switzerland',
         currency: 'Fr.',
         currenyIso: 'CHF',
         numberFormat: 'de-CH',
@@ -73,7 +73,7 @@ export default {
       {
         isoCode: 'at',
         lang: 'de',
-        name: 'Österreich',
+        name: 'austria',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-AT',
@@ -84,7 +84,7 @@ export default {
       {
         isoCode: 'rw',
         lang: 'en',
-        name: 'Other Country',
+        name: 'otherCountry',
         currency: '$',
         currenyIso: 'USD',
         numberFormat: 'en-US',

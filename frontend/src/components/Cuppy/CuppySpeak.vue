@@ -1,20 +1,11 @@
 <template>
   <div id="speak" class="speech-bubble">
+    <h6 id="greet">
+      {{ cuppyGreet }}
+    </h6>
     <div id="bubblecontent">
-      <h6 id="greet">{{ cuppyGreet }}</h6>
-      <div id="buttoncontainer">
-        <button @click="$root.$emit('openLoc')">
-          {{ $t('CuppySpeak.location') }}
-        </button>
-
-        <button @click="$root.$emit('openLang')">
-          {{ $t('CuppySpeak.language') }}
-        </button>
-
-        <button @click="toSide('/about')">
-          {{ $t('CuppySpeak.imprint') }}
-        </button>
-      </div>
+      <slot>
+      </slot>
     </div>
   </div>
 </template>
@@ -36,9 +27,7 @@ export default {
       const puns = this.$t('CuppySpeak.puns')
       return puns[Math.floor(Math.random() * 4)]
     },
-    toSide(path) {
-      if (this.$route.path !== path) this.$router.push(path)
-    }
+    
   },
   watch: {
     showCuppyBubble: function(oldVal) {

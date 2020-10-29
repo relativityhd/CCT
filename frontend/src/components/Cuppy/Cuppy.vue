@@ -4,7 +4,9 @@
       <div id="cuppy" @click="cuppyButton">
         <div id="CuppyBubble" v-bind:class="{ visible: showCuppy, invisible: !showCuppy }">
           <div class="CuppySpeak" @click.stop="">
-            <CuppySpeak :showCuppyBubble="showCuppy" />
+            <CuppySpeak :showCuppyBubble="showCuppy">
+              <RouterHelper></RouterHelper>
+            </CuppySpeak>
           </div>
         </div>
       </div>
@@ -14,10 +16,12 @@
 
 <script>
 import CuppySpeak from './CuppySpeak'
+import RouterHelper from './RouterHelper'
 const timeToCup = 30
 export default {
   components: {
-    CuppySpeak
+    CuppySpeak,
+    RouterHelper
   },
 
   methods: {

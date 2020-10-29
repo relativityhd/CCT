@@ -36,8 +36,8 @@
         v-on:select="$emit('select', exterior._uid)"
       />
 
-      <div class="add-btn">
-        <cv-tile class="add-tile" kind="clickable" @click="$refs.addModal.show()">
+      <div class="add-btn" v-if="notFull">
+        <cv-tile class="add-tile" kind="clickable" @click="openModal">
           <Add32 class="add-icon" />
         </cv-tile>
       </div>
@@ -66,17 +66,45 @@ export default {
   },
   data() {
     return {
-      addable: false
+      addable: false,
+      notFull: this.exteriors.length < 5
     }
   },
+  mounted() {
+    if (!this.selectables || !this.selectables.length || this.exteriors.length > 1) return
+    const { custom } = this.$refs.selectables[0].getInputs()
+    const newExterior = { ...this.selectables[0] }
+    newExterior._uid = uuidv4()
+    newExterior.quantity = 1
+    newExterior.custom = custom
+    newExterior.interiors = []
+    newExterior.accessories = []
+    newExterior.material = this.standardMat
+    this.exteriors.push(newExterior)
+    this.$emit('select', newExterior._uid)
+    this.$emit('change-items')
+  },
   methods: {
+    openModal() {
+      this.$refs.addModal.show()
+      this.checkSelects()
+    },
     checkSelects() {
       this.addable = false
+      let newLength = this.exteriors.length
       for (let i = 0; i < this.selectables.length; i++) {
-        const { selected } = this.$refs.selectables[i].getInputs()
+        const { selected, quantity } = this.$refs.selectables[i].getInputs()
+        newLength += quantity
+        if (newLength > 5) {
+          this.addable = false
+          this.$refs.selectables[i].invalidMessage = this.$t('invalidNumber', { min: 1, max: 5 - this.exteriors.length })
+          break
+        }
         if (selected) this.addable = true
-        break
       }
+    },
+    checkFull() {
+      this.notFull = this.exteriors.length < 5
     },
     addExteriors() {
       this.selectables.forEach((s, i) => {
@@ -84,6 +112,7 @@ export default {
         this.$refs.selectables[i].clearInputs()
         if (selected) {
           for (let _ = 0; _ < quantity; _++) {
+            if (this.exteriors.length >= 5) return
             const newExterior = { ...s }
             newExterior._uid = uuidv4()
             newExterior.quantity = 1
@@ -99,6 +128,7 @@ export default {
       this.$emit('change-items')
       if (this.exteriors.length === 0) return
       this.$emit('select', this.exteriors[this.exteriors.length - 1]._uid)
+      this.checkFull()
     },
     deleteExterior(_uid) {
       const i = this.exteriors.findIndex(ext => ext._uid === _uid)
@@ -106,6 +136,7 @@ export default {
       this.exteriors.splice(i, 1)
       this.$emit('change-items')
       this.$emit('select', '')
+      this.checkFull()
     }
   }
 }

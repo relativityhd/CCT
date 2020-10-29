@@ -61,8 +61,8 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (!this.$validateNumber(this.quantity, 0, 10)) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
+      if (!this.$validateNumber(this.quantity, 0, 5)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 1, max: 5 })
         return
       }
       this.invalidMessage = ''

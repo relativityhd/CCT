@@ -16,7 +16,7 @@
     </cv-header-nav>
 
     <div class="actions">
-      <cv-header-global-action aria-label="Shopping Cart" aria-controls="shopping-cart-panel">
+      <cv-header-global-action aria-label="Shopping Cart" aria-controls="shopping-cart-panel" ref="cartIcon">
         <ShoppingCart20 />
       </cv-header-global-action>
 
@@ -104,6 +104,9 @@ export default {
   mounted() {
     this.$router.afterEach(to => {
       this.switchPage(to)
+    })
+    this.$root.$on('openBasket', () => {
+      this.$refs.cartIcon.$el.click()
     })
     this.$root.$on('openLoc', () => {
       this.$refs.earthIcon.$el.click()

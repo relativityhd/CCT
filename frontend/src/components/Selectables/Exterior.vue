@@ -90,6 +90,8 @@ export default {
   grid-area: actions;
   display: grid;
   grid-auto-flow: column;
+  justify-content: end;
+  gap: 5px;
 }
 
 .select-btn,

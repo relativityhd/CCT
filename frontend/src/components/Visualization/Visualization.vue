@@ -17,17 +17,15 @@ export default {
     }
   },
   methods: {
-    
     createCorpus(width, height, depth, maindrawer, position_x, position_y, position_z) {
       //const loader = new Three.TextureLoader()
-      //const texture = loader.load('crate0/crate0_diffuse.png') 
+      //const texture = loader.load('crate0/crate0_diffuse.png')
       const material = new Three.MeshPhongMaterial({
-        color: 0xf8f8ff,
+        color: 0xf8f8ff
         //map: texture, //textur = aus object
       })
 
-      var strength = 0.02;
-
+      var strength = 0.02
 
       //this.removeObjectFromScene(this.corpus)
 
@@ -70,7 +68,7 @@ export default {
 
       this.scene.add(mainbody)
       mainbody.position.set(position_x, position_y, position_z)
-      
+
       this.corpus = {
         left: leftwall_mesh,
         right: rightwall_mesh,
@@ -80,35 +78,43 @@ export default {
         main: mainbody
       }
     },
-    createInteriors(type, width, depth, strength, position_x, position_y /*, height, depth, position_x, position_y, position_z*/) {
-      if (type == "clothesrail") {/*create rack, position rack*/
-        var clothesrail_geometry = new Three.CylinderGeometry( 0.013, 0.013, width, 8 )
-        var clothesrail_material = new Three.MeshPhongMaterial({ color: 0x4A4A4A})
-        var clothesrail_mesh = new Three.Mesh( clothesrail_geometry, clothesrail_material )
+    createInteriors(
+      type,
+      width,
+      depth,
+      strength,
+      position_x,
+      position_y /*, height, depth, position_x, position_y, position_z*/
+    ) {
+      if (type == 'clothesrail') {
+        /*create rack, position rack*/
+        var clothesrail_geometry = new Three.CylinderGeometry(0.013, 0.013, width, 8)
+        var clothesrail_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
+        var clothesrail_mesh = new Three.Mesh(clothesrail_geometry, clothesrail_material)
         clothesrail_mesh.position.x = position_x
         clothesrail_mesh.position.y = position_y
-        clothesrail_mesh.rotation.z = Math.PI/2 // Pi entspricht einer umdrehung, (wegen sinuskurve etc.)
-        this.scene.add( clothesrail_mesh )
+        clothesrail_mesh.rotation.z = Math.PI / 2 // Pi entspricht einer umdrehung, (wegen sinuskurve etc.)
+        this.scene.add(clothesrail_mesh)
       }
 
-      if (type == "drawer") {
-        var drawer_material = new Three.MeshPhongMaterial({ color: 0x4A4A4A})
+      if (type == 'drawer') {
+        var drawer_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var drawer_leftwall_geometry = new Three.BoxGeometry(strength, 0.16, depth)
         var drawer_rightwall_geometry = new Three.BoxGeometry(strength, 0.16, depth)
         var drawer_backwall_geometry = new Three.BoxGeometry(width - strength, 0.16, strength)
         var drawer_frontwall_geometry = new Three.BoxGeometry(width - strength, 0.12, strength)
         var drawer_base_geometry = new Three.BoxGeometry(width - strength, strength, depth)
-        var drawer_leftwall_mesh = new Three.Mesh( drawer_leftwall_geometry, drawer_material )
-        var drawer_rightwall_mesh = new Three.Mesh( drawer_rightwall_geometry, drawer_material )
-        var drawer_backwall_mesh = new Three.Mesh( drawer_backwall_geometry, drawer_material )
-        var drawer_frontwall_mesh = new Three.Mesh( drawer_frontwall_geometry, drawer_material )
-        var drawer_base_mesh = new Three.Mesh( drawer_base_geometry, drawer_material)
+        var drawer_leftwall_mesh = new Three.Mesh(drawer_leftwall_geometry, drawer_material)
+        var drawer_rightwall_mesh = new Three.Mesh(drawer_rightwall_geometry, drawer_material)
+        var drawer_backwall_mesh = new Three.Mesh(drawer_backwall_geometry, drawer_material)
+        var drawer_frontwall_mesh = new Three.Mesh(drawer_frontwall_geometry, drawer_material)
+        var drawer_base_mesh = new Three.Mesh(drawer_base_geometry, drawer_material)
 
-        drawer_leftwall_mesh.position.set(-width/2 + strength,0,0)
-        drawer_rightwall_mesh.position.set(width/2 - strength,0,0)
-        drawer_backwall_mesh.position.set(0,0,-depth/2 + strength)
-        drawer_frontwall_mesh.position.set(0,-0.02,depth/2 - strength/2)
-        drawer_base_mesh.position.set(0,-0.07,0)
+        drawer_leftwall_mesh.position.set(-width / 2 + strength, 0, 0)
+        drawer_rightwall_mesh.position.set(width / 2 - strength, 0, 0)
+        drawer_backwall_mesh.position.set(0, 0, -depth / 2 + strength)
+        drawer_frontwall_mesh.position.set(0, -0.02, depth / 2 - strength / 2)
+        drawer_base_mesh.position.set(0, -0.07, 0)
 
         let maindrawer = new Three.Mesh()
         maindrawer.add(drawer_leftwall_mesh)
@@ -117,36 +123,36 @@ export default {
         maindrawer.add(drawer_frontwall_mesh)
         maindrawer.add(drawer_base_mesh)
 
-        maindrawer.position.set(position_x,position_y,0)
+        maindrawer.position.set(position_x, position_y, 0)
         this.scene.add(maindrawer)
       }
 
-      if (type == "shelf") {
-        var shelf_material = new Three.MeshPhongMaterial({ color: 0x4A4A4A})
+      if (type == 'shelf') {
+        var shelf_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var shelf_geometry = new Three.BoxGeometry(width, strength, depth)
         var shelf_mesh = new Three.Mesh(shelf_geometry, shelf_material)
-        shelf_mesh.position.set(position_x,position_y,0)
+        shelf_mesh.position.set(position_x, position_y, 0)
         this.scene.add(shelf_mesh)
       }
 
-      if (type == "meshbasket") {
-        var meshbasket_material = new Three.MeshPhongMaterial({ color: 0x4A4A4A})
+      if (type == 'meshbasket') {
+        var meshbasket_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var meshbasket_leftwall_geometry = new Three.BoxGeometry(strength, 0.1, depth)
         var meshbasket_rightwall_geometry = new Three.BoxGeometry(strength, 0.1, depth)
         var meshbasket_backwall_geometry = new Three.BoxGeometry(width - strength, 0.1, strength)
         var meshbasket_frontwall_geometry = new Three.BoxGeometry(width - strength, 0.1, strength)
         var meshbasket_base_geometry = new Three.BoxGeometry(width - strength, strength, depth)
-        var meshbasket_leftwall_mesh = new Three.Mesh( meshbasket_leftwall_geometry, meshbasket_material )
-        var meshbasket_rightwall_mesh = new Three.Mesh( meshbasket_rightwall_geometry, meshbasket_material )
-        var meshbasket_backwall_mesh = new Three.Mesh( meshbasket_backwall_geometry, meshbasket_material )
-        var meshbasket_frontwall_mesh = new Three.Mesh( meshbasket_frontwall_geometry, meshbasket_material )
-        var meshbasket_base_mesh = new Three.Mesh( meshbasket_base_geometry, meshbasket_material)
+        var meshbasket_leftwall_mesh = new Three.Mesh(meshbasket_leftwall_geometry, meshbasket_material)
+        var meshbasket_rightwall_mesh = new Three.Mesh(meshbasket_rightwall_geometry, meshbasket_material)
+        var meshbasket_backwall_mesh = new Three.Mesh(meshbasket_backwall_geometry, meshbasket_material)
+        var meshbasket_frontwall_mesh = new Three.Mesh(meshbasket_frontwall_geometry, meshbasket_material)
+        var meshbasket_base_mesh = new Three.Mesh(meshbasket_base_geometry, meshbasket_material)
 
-        meshbasket_leftwall_mesh.position.set(-width/2 + strength,0,0)
-        meshbasket_rightwall_mesh.position.set(width/2 - strength,0,0)
-        meshbasket_backwall_mesh.position.set(0,0,-depth/2 + strength)
-        meshbasket_frontwall_mesh.position.set(0,0,depth/2 - strength/2)
-        meshbasket_base_mesh.position.set(0,-0.06,0)
+        meshbasket_leftwall_mesh.position.set(-width / 2 + strength, 0, 0)
+        meshbasket_rightwall_mesh.position.set(width / 2 - strength, 0, 0)
+        meshbasket_backwall_mesh.position.set(0, 0, -depth / 2 + strength)
+        meshbasket_frontwall_mesh.position.set(0, 0, depth / 2 - strength / 2)
+        meshbasket_base_mesh.position.set(0, -0.06, 0)
 
         let mainmeshbasket = new Three.Mesh()
         mainmeshbasket.add(meshbasket_leftwall_mesh)
@@ -155,31 +161,29 @@ export default {
         mainmeshbasket.add(meshbasket_frontwall_mesh)
         mainmeshbasket.add(meshbasket_base_mesh)
 
-        mainmeshbasket.position.set(position_x,position_y)
+        mainmeshbasket.position.set(position_x, position_y)
         this.scene.add(mainmeshbasket)
       }
-      
+
       /*
       else {create placeholder}*/
-      
     },
     removeObjectFromScene(obj) {
-      if(!obj) return
-      Object.values(obj).forEach((mesh) => {
-        this.scene.remove(mesh);
-        mesh.geometry.dispose();
-        mesh.material.dispose();
-        mesh = undefined;
+      if (!obj) return
+      Object.values(obj).forEach(mesh => {
+        this.scene.remove(mesh)
+        mesh.geometry.dispose()
+        mesh.material.dispose()
+        mesh = undefined
       })
       obj = undefined
     },
-    init() {    
-      
+    init() {
       let container = this.$refs.renderer
       //console.log(container)
-      
+
       this.camera = new Three.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
-      this.camera.position.set(0,0,3)
+      this.camera.position.set(0, 0, 3)
 
       /*const controls = new OrbitControls(this.camera, renderer.domElement)
       controls.enableDamping = true
@@ -206,8 +210,8 @@ export default {
 
       //create standard Corpus
       //this.createCorpus(2, 2.4, 0.5, 0.02)
-      var axis = new Three.AxisHelper(75);
-      this.scene.add(axis);      
+      var axis = new Three.AxisHelper(75)
+      this.scene.add(axis)
 
       //renderer zeigt szene visuell an
       this.renderer = new Three.WebGLRenderer({ antialias: true })
@@ -221,10 +225,10 @@ export default {
       this.myrequest = requestAnimationFrame(this.animate)
     }
   },
-  mounted() { 
+  mounted() {
     var exteriors = [
       {
-        id: "John",
+        id: 'John',
         customized: true,
         height: 300,
         width: 100,
@@ -232,23 +236,23 @@ export default {
         //material: {},
         interiors: [
           {
-              id: 123,
-              type: "clothesrail",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'clothesrail',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "meshbasket",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'meshbasket',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           }
-        ] 
+        ]
       },
       {
-        id: "Peter",
+        id: 'Peter',
         customized: true,
         height: 200,
         width: 50,
@@ -256,66 +260,65 @@ export default {
         //material: {},
         interiors: [
           {
-              id: 456,
-              type: "clothesrail",
-              height: 10, // selbe wie vom exterior
-              width: 10,
-              depth: 10
+            id: 456,
+            type: 'clothesrail',
+            height: 10, // selbe wie vom exterior
+            width: 10,
+            depth: 10
           },
           {
-              id: 789,
-              type: "drawer",
-              height: 20, // selbe wie vom exterior
-              width: 20,
-              depth: 20
+            id: 789,
+            type: 'drawer',
+            height: 20, // selbe wie vom exterior
+            width: 20,
+            depth: 20
           },
           {
-              id: 123,
-              type: "drawer",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'drawer',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "drawer",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'drawer',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "drawer",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'drawer',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "drawer",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'drawer',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "meshbasket",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'meshbasket',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           },
           {
-              id: 123,
-              type: "meshbasket",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'meshbasket',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           }
-          
-        ] 
+        ]
       },
       {
-        id: "IDJSJ",
+        id: 'IDJSJ',
         customized: true,
         height: 240,
         width: 50,
@@ -323,43 +326,41 @@ export default {
         //material: {},
         interiors: [
           {
-              id: 123,
-              type: "clothesrail",
-              height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
-              width: 12,
+            id: 123,
+            type: 'clothesrail',
+            height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
+            width: 12
           },
           {
-              id: 123,
-              type: "clothesrail",
-              height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
-              width: 12,
+            id: 123,
+            type: 'clothesrail',
+            height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
+            width: 12
           },
           {
-              id: 123,
-              type: "shelf",
-              height: 15, // selbe wie vom exterior
-              width: 15,
-              depth: 15
+            id: 123,
+            type: 'shelf',
+            height: 15, // selbe wie vom exterior
+            width: 15,
+            depth: 15
           }
-        ] 
+        ]
       }
     ]
 
-
-
     this.init()
-    
+
     //let number_exteriors = exteriors.length // gesamte Anzahl von Exteriors/frames wird gespeichert
 
     var strength = 0.02
 
-    var totalWidth = exteriors.reduce((accum,item) => accum + item.width, 0) // gesamte Breite aller Exteriors/frames zusammen wird gespeichert
+    var totalWidth = exteriors.reduce((accum, item) => accum + item.width, 0) // gesamte Breite aller Exteriors/frames zusammen wird gespeichert
 
     var höchsteHöhe = exteriors.reduce(function(prev, current) {
       if (+current.height > +prev.height) {
-        return current;
+        return current
       } else {
-        return prev;
+        return prev
       }
     }).height
 
@@ -367,52 +368,64 @@ export default {
 
     var tiefsteTiefe = exteriors.reduce(function(prev, current) {
       if (+current.depth > +prev.depth) {
-        return current;
+        return current
       } else {
-        return prev;
+        return prev
       }
     }).depth
 
-    var previousWidths = [];
+    var previousWidths = []
 
-    exteriors.forEach((exterior)=> {
+    exteriors.forEach(exterior => {
       var sum = 0
       for (var i = 0; i < previousWidths.length; i++) {
         sum += previousWidths[i]
-      }      
+      }
       console.log(sum)
 
       this.createCorpus(
-         exterior.width/100,
-         exterior.height/100,
-         exterior.depth/100,
-         strength,
-         (-totalWidth/2 + exterior.width/2 + sum)/100, // + breite der vorherigen exteriors in array summiert, //position_x 
-         (exterior.height/2 - höchsteHöhe/2)/100, //position_y
-         (exterior.depth/2 - tiefsteTiefe/2)/100 //position_z
+        exterior.width / 100,
+        exterior.height / 100,
+        exterior.depth / 100,
+        strength,
+        (-totalWidth / 2 + exterior.width / 2 + sum) / 100, // + breite der vorherigen exteriors in array summiert, //position_x
+        (exterior.height / 2 - höchsteHöhe / 2) / 100, //position_y
+        (exterior.depth / 2 - tiefsteTiefe / 2) / 100 //position_z
       )
       console.log(previousWidths)
       previousWidths.push(exterior.width)
 
       if (exterior.customized == true) {
-      var bottom_count = 0
-      console.log(bottom_count) 
-      var top_count = 0 
-      console.log(top_count)
-      exterior.interiors.forEach((interior) => {
-        if (interior.type == "clothesrail") {
-          this.createInteriors(interior.type, exterior.width/100 - 0.02 , exterior.depth/100 - 0.02, 0.02, (-totalWidth/2 + exterior.width/2 + sum)/100, ((exterior.height - 10 - höchsteHöhe/2)/100)-top_count)
-          top_count += 0.16
-        }
-        else {
-          this.createInteriors(interior.type, exterior.width/100 - 0.02, exterior.depth/100 - 0.02, 0.02, (-totalWidth/2 + exterior.width/2 + sum)/100, ((- höchsteHöhe/2)/100 + 0.14)+bottom_count)
-          bottom_count += 0.16
+        var bottom_count = 0
+        console.log(bottom_count)
+        var top_count = 0
+        console.log(top_count)
+        exterior.interiors.forEach(interior => {
+          if (interior.type == 'clothesrail') {
+            this.createInteriors(
+              interior.type,
+              exterior.width / 100 - 0.02,
+              exterior.depth / 100 - 0.02,
+              0.02,
+              (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
+              (exterior.height - 10 - höchsteHöhe / 2) / 100 - top_count
+            )
+            top_count += 0.16
+          } else {
+            this.createInteriors(
+              interior.type,
+              exterior.width / 100 - 0.02,
+              exterior.depth / 100 - 0.02,
+              0.02,
+              (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
+              -höchsteHöhe / 2 / 100 + 0.14 + bottom_count
+            )
+            bottom_count += 0.16
           }
         })
-        }//tba unterschiedliche 
-      }
-    )
-  
+      } //tba unterschiedliche
+    })
+
     /*setInterval(
       () => {this.createCorpus(
          exteriors.exterior1.width/100,
@@ -433,7 +446,7 @@ export default {
 <style scoped>
 #container {
   width: 100%;
-  height: 2000px
+  height: 2000px;
 }
 </style>
 

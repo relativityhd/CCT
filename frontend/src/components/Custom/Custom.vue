@@ -6,7 +6,7 @@
     <div v-else>
       <h1>{{ $t('Tool.customTitle') }}</h1>
       <div class="visualization-wrapper">
-        <Visualization />
+        <Visualization ref="viz" />
       </div>
 
       <div class="selection-wrapper">
@@ -165,6 +165,8 @@ export default {
     calcSum() {
       const priceItems = this.$store.getters['basket/extractPriceItems'](this.exteriors)
       this.price = this.$store.getters['basket/calcPrices'](priceItems, 1)
+      if (!this.$refs.viz) return
+      this.$refs.viz.render(this.exteriors)
     },
     addToCart() {
       if (this.product === undefined || !this.exteriors.length) return

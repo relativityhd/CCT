@@ -222,210 +222,91 @@ export default {
     animate: function() {
       this.renderer.render(this.scene, this.camera)
       this.myrequest = requestAnimationFrame(this.animate)
-    }
-  },
-  mounted() {
-    var exteriors = [
-      {
-        id: 'John',
-        customized: true,
-        height: 300,
-        width: 100,
-        depth: 50,
-        //material: {},
-        interiors: [
-          {
-            id: 123,
-            type: 'clothesrail',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'meshbasket',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          }
-        ]
-      },
-      {
-        id: 'Peter',
-        customized: true,
-        height: 200,
-        width: 50,
-        depth: 50,
-        //material: {},
-        interiors: [
-          {
-            id: 456,
-            type: 'clothesrail',
-            height: 10, // selbe wie vom exterior
-            width: 10,
-            depth: 10
-          },
-          {
-            id: 789,
-            type: 'drawer',
-            height: 20, // selbe wie vom exterior
-            width: 20,
-            depth: 20
-          },
-          {
-            id: 123,
-            type: 'drawer',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'drawer',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'drawer',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'drawer',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'meshbasket',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          },
-          {
-            id: 123,
-            type: 'meshbasket',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          }
-        ]
-      },
-      {
-        id: 'IDJSJ',
-        customized: true,
-        height: 240,
-        width: 50,
-        depth: 50,
-        //material: {},
-        interiors: [
-          {
-            id: 123,
-            type: 'clothesrail',
-            height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
-            width: 12
-          },
-          {
-            id: 123,
-            type: 'clothesrail',
-            height: 15, // selbe wie vom exterior //höhe und breite entsprechend schrankelelementen
-            width: 12
-          },
-          {
-            id: 123,
-            type: 'shelf',
-            height: 15, // selbe wie vom exterior
-            width: 15,
-            depth: 15
-          }
-        ]
-      }
-    ]
-
-    this.init()
-
-    //let number_exteriors = exteriors.length // gesamte Anzahl von Exteriors/frames wird gespeichert
-
-    var strength = 0.02
-
-    var totalWidth = exteriors.reduce((accum, item) => accum + item.width, 0) // gesamte Breite aller Exteriors/frames zusammen wird gespeichert
-
-    var höchsteHöhe = exteriors.reduce(function(prev, current) {
-      if (+current.height > +prev.height) {
-        return current
-      } else {
-        return prev
-      }
-    }).height
-
-    console.log(höchsteHöhe)
-
-    var tiefsteTiefe = exteriors.reduce(function(prev, current) {
-      if (+current.depth > +prev.depth) {
-        return current
-      } else {
-        return prev
-      }
-    }).depth
-
-    var previousWidths = []
-
-    exteriors.forEach(exterior => {
-      var sum = 0
-      for (var i = 0; i < previousWidths.length; i++) {
-        sum += previousWidths[i]
-      }
-      console.log(sum)
-
-      this.createCorpus(
-        exterior.width / 100,
-        exterior.height / 100,
-        exterior.depth / 100,
-        strength,
-        (-totalWidth / 2 + exterior.width / 2 + sum) / 100, // + breite der vorherigen exteriors in array summiert, //position_x
-        (exterior.height / 2 - höchsteHöhe / 2) / 100, //position_y
-        (exterior.depth / 2 - tiefsteTiefe / 2) / 100 //position_z
+    },
+    render(exteriors) {
+      console.log(
+        '--DEBUG : render -> exteriors',
+        exteriors.map(e => ({ ...e }))
       )
-      console.log(previousWidths)
-      previousWidths.push(exterior.width)
+      if (exteriors.length === 0) return
 
-      if (exterior.customized == true) {
-        var bottom_count = 0
-        console.log(bottom_count)
-        var top_count = 0
-        console.log(top_count)
-        exterior.interiors.forEach(interior => {
-          if (interior.type == 'clothesrail') {
-            this.createInteriors(
-              interior.type,
-              exterior.width / 100 - 0.02,
-              exterior.depth / 100 - 0.02,
-              0.02,
-              (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
-              (exterior.height - 10 - höchsteHöhe / 2) / 100 - top_count
-            )
-            top_count += 0.16
-          } else {
-            this.createInteriors(
-              interior.type,
-              exterior.width / 100 - 0.02,
-              exterior.depth / 100 - 0.02,
-              0.02,
-              (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
-              -höchsteHöhe / 2 / 100 + 0.14 + bottom_count
-            )
-            bottom_count += 0.16
-          }
-        })
-      } //tba unterschiedliche
-    })
+      //let number_exteriors = exteriors.length // gesamte Anzahl von Exteriors/frames wird gespeichert
 
-    /*setInterval(
+      var strength = 0.02
+
+      var totalWidth = exteriors.reduce((accum, item) => accum + item.width, 0) // gesamte Breite aller Exteriors/frames zusammen wird gespeichert
+
+      var höchsteHöhe = exteriors.reduce(function(prev, current) {
+        if (+current.height > +prev.height) {
+          return current
+        } else {
+          return prev
+        }
+      }).height
+
+      console.log(höchsteHöhe)
+
+      var tiefsteTiefe = exteriors.reduce(function(prev, current) {
+        if (+current.depth > +prev.depth) {
+          return current
+        } else {
+          return prev
+        }
+      }).depth
+
+      var previousWidths = []
+
+      exteriors.forEach(exterior => {
+        var sum = 0
+        for (var i = 0; i < previousWidths.length; i++) {
+          sum += previousWidths[i]
+        }
+        console.log(sum)
+
+        this.createCorpus(
+          exterior.width / 100,
+          exterior.height / 100,
+          exterior.depth / 100,
+          strength,
+          (-totalWidth / 2 + exterior.width / 2 + sum) / 100, // + breite der vorherigen exteriors in array summiert, //position_x
+          (exterior.height / 2 - höchsteHöhe / 2) / 100, //position_y
+          (exterior.depth / 2 - tiefsteTiefe / 2) / 100 //position_z
+        )
+        console.log(previousWidths)
+        previousWidths.push(exterior.width)
+
+        if (exterior.customized == true) {
+          var bottom_count = 0
+          console.log(bottom_count)
+          var top_count = 0
+          console.log(top_count)
+          exterior.interiors.forEach(interior => {
+            if (interior.type == 'clothesrail') {
+              this.createInteriors(
+                interior.type,
+                exterior.width / 100 - 0.02,
+                exterior.depth / 100 - 0.02,
+                0.02,
+                (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
+                (exterior.height - 10 - höchsteHöhe / 2) / 100 - top_count
+              )
+              top_count += 0.16
+            } else {
+              this.createInteriors(
+                interior.type,
+                exterior.width / 100 - 0.02,
+                exterior.depth / 100 - 0.02,
+                0.02,
+                (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
+                -höchsteHöhe / 2 / 100 + 0.14 + bottom_count
+              )
+              bottom_count += 0.16
+            }
+          })
+        } //tba unterschiedliche
+      })
+
+      /*setInterval(
       () => {this.createCorpus(
          exteriors.exterior1.width/100,
          exteriors.exterior1.height/100,
@@ -434,7 +315,12 @@ export default {
       )},5000
     )*/
 
-    this.myrequest = requestAnimationFrame(this.animate)
+      this.myrequest = requestAnimationFrame(this.animate)
+    }
+  },
+  mounted() {
+    this.init()
+    this.render([])
   },
   destroyed() {
     cancelAnimationFrame(this.myrequest)

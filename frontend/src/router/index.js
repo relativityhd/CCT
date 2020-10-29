@@ -58,7 +58,8 @@ const routes = [
     component: () => import(/* webpackCunkName: "Imprint" */ '../views/Imprint.vue'),
     meta: {
       title: 'Imprint'
-    }
+    },
+    
   },
   {
     path: '/test',

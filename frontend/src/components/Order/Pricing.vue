@@ -5,7 +5,6 @@
     <div class="info-wrapper">
       <p class="pricing-info">{{ $t('Order.pricingInfo') }}</p>
     </div>
-    <slot></slot>
   </div>
 </template>
 

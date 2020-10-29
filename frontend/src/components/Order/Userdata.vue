@@ -113,9 +113,6 @@
         </cv-text-input>
       </div>
     </div>
-    <div class="btns">
-      <slot></slot>
-    </div>
   </div>
 </template>
 
@@ -159,11 +156,5 @@ export default {
 .usr-inp {
   margin-top: 15px;
   height: 84px;
-}
-
-.btns {
-  width: 100%;
-  max-width: 752px;
-  margin: 0 auto;
 }
 </style>

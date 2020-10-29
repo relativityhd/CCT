@@ -33,7 +33,7 @@
         />
         <div v-else>
           <p>{{ $t('Tool.int.noExt') }}</p>
-          <cv-button @click="$refs.ext.openModal" :icon="Add20" :disabled="!$refs.ext.notFull">
+          <cv-button @click="openModal" :icon="Add20">
             {{ $t('Tool.ext.add') }}
           </cv-button>
         </div>
@@ -49,7 +49,7 @@
         />
         <div v-else>
           <p>{{ $t('Tool.mat.noExt') }}</p>
-          <cv-button @click="$refs.ext.openModal" :icon="Add20" :disabled="!$refs.ext.notFull">
+          <cv-button @click="openModal" :icon="Add20">
             {{ $t('Tool.ext.add') }}
           </cv-button>
         </div>
@@ -80,7 +80,7 @@
               <cv-button
                 class="to-cart-button"
                 kind="primary"
-                to=""
+                @click="order"
                 :icon="DeliveryTruck16"
                 :disabled="!exteriors.length"
               >
@@ -147,6 +147,9 @@ export default {
     })
   },
   methods: {
+    openModal() {
+      this.$refs.ext.openModal()
+    },
     setExterior(_uid) {
       this.selectedExt = this.exteriors.find(ext => ext._uid === _uid) || {}
       this.hasExtSelected = this.selectedExt._uid ? true : false
@@ -174,6 +177,15 @@ export default {
         exteriors: this.exteriors
       })
       this.$root.$emit('openBasket')
+    },
+    order() {
+      if (this.product === undefined || !this.exteriors.length) return
+
+      this.$store.dispatch('basket/addItem', {
+        product: this.product,
+        exteriors: this.exteriors
+      })
+      this.$router.push('/order')
     }
   },
   beforeDestroy() {

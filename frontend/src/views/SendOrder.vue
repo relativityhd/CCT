@@ -27,7 +27,7 @@
 </template>
 
 <script>
-// import Vue from 'vue'
+import Vue from 'vue'
 import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/20'
 
 export default {
@@ -54,9 +54,7 @@ export default {
       products: this.$store.getters['basket/orderItems']()
     }
     console.log('--DEBUG : mounted -> postObject', postObject)
-    this.$store.commit('basket/clearBasket')
-    return
-    /* Vue.axios
+    Vue.axios
       .post('/order', postObject)
       .then(res => {
         this.responsed = true
@@ -66,7 +64,7 @@ export default {
       .catch(() => {
         this.responsed = true
         this.errored = true
-      }) */
+      })
   }
 }
 </script>

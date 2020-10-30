@@ -5,7 +5,7 @@
         <cv-loading class="loader" :active="true" :overlay="false"></cv-loading>
       </div>
       <h3>{{ $t('Order.validatingData') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy waiting" />
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy.svg" alt="Cuppy waiting" />
     </div>
 
     <div v-else-if="status === 'invalid'">
@@ -15,7 +15,7 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.invalidData') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy fill in" />
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy_neutral.svg" alt="Cuppy fill in" />
     </div>
 
     <div v-else-if="status === 'empty'">
@@ -25,7 +25,7 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.emptyBasket') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has no items" />
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy_neutral.svg" alt="Cuppy has no items" />
     </div>
 
     <div v-else-if="status === 'sending'">
@@ -33,17 +33,7 @@
         <cv-loading class="loader" :active="true" :overlay="false"></cv-loading>
       </div>
       <h3>{{ $t('Order.sending') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy sending data" />
-    </div>
-
-    <div v-else-if="status === 'errored'">
-      <div class="action">
-        <cv-button @click="orderStuff" :icon="redoIcon">
-          {{ $t('Order.tryAgain') }}
-        </cv-button>
-      </div>
-      <h3>{{ $t('Order.errored') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has error" />
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy.svg" alt="Cuppy sending data" />
     </div>
 
     <div v-else-if="status === 'successful'">
@@ -54,11 +44,17 @@
       </div>
       <h3>{{ $t('Order.successful') }}</h3>
       <h6>{{ $t('Order.orderId', { id: orderId }) }}</h6>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy is successful" />
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy_thanks.svg" alt="Cuppy is successful" />
     </div>
 
     <div v-else>
-      <h3>{{ $t('Order.errord') }}</h3>
+      <div class="action">
+        <cv-button @click="orderStuff" :icon="redoIcon">
+          {{ $t('Order.tryAgain') }}
+        </cv-button>
+      </div>
+      <h3>{{ $t('Order.errored') }}</h3>
+      <img class="order-cuppy" src="../assets/images/cuppy/cuppy_sad.svg" alt="Cuppy has error" />
     </div>
   </div>
 </template>

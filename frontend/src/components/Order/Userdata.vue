@@ -47,16 +47,14 @@
             id="loc-dd"
             class="dd-container"
             :value="this.$store.state.locals.location"
-            @change="changeLocation">
-              <cv-dropdown-item
-                v-for="location in locations"
-                :key="location.isoCode"
-                :value="location.isoCode">
-                {{ $t(`App.locations.${location.name}`) }}
-              </cv-dropdown-item>
+            @change="changeLocation"
+          >
+            <cv-dropdown-item v-for="location in locations" :key="location.isoCode" :value="location.isoCode">
+              {{ $t(`App.locations.${location.name}`) }}
+            </cv-dropdown-item>
           </cv-dropdown>
         </div>
-        
+
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.address')"
@@ -166,11 +164,11 @@ export default {
   width: 250px;
 }
 
-.dd-container{
+.dd-container {
   width: 100%;
 }
 
-.dd-label{
+.dd-label {
   font-weight: 500;
 }
 

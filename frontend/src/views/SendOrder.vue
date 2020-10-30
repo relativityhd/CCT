@@ -1,12 +1,11 @@
 <template>
   <div class="buy-wrapper">
-
     <div v-if="status === 'validate'">
       <div class="action">
         <cv-loading class="loader" :active="true" :overlay="false"></cv-loading>
       </div>
       <h3>{{ $t('Order.validatingData') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy waiting">
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy waiting" />
     </div>
 
     <div v-else-if="status === 'invalid'">
@@ -16,7 +15,7 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.invalidData') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy fill in">
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy fill in" />
     </div>
 
     <div v-else-if="status === 'empty'">
@@ -26,7 +25,7 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.emptyBasket') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has no items">
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has no items" />
     </div>
 
     <div v-else-if="status === 'sending'">
@@ -34,7 +33,7 @@
         <cv-loading class="loader" :active="true" :overlay="false"></cv-loading>
       </div>
       <h3>{{ $t('Order.sending') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy sending data">
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy sending data" />
     </div>
 
     <div v-else-if="status === 'errored'">
@@ -44,7 +43,7 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.errored') }}</h3>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has error">
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy has error" />
     </div>
 
     <div v-else-if="status === 'successful'">
@@ -54,14 +53,13 @@
         </cv-button>
       </div>
       <h3>{{ $t('Order.successful') }}</h3>
-      <h6>{{ $t('Order.orderId', {id: orderId}) }}</h6>
-      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy is successful">
+      <h6>{{ $t('Order.orderId', { id: orderId }) }}</h6>
+      <img class="order-cuppy" src="../assets/cuppy.svg" alt="Cuppy is successful" />
     </div>
 
     <div v-else>
       <h3>{{ $t('Order.errord') }}</h3>
     </div>
-
   </div>
 </template>
 
@@ -100,7 +98,7 @@ export default {
     this.orderStuff()
   },
   methods: {
-    orderStuff () {
+    orderStuff() {
       this.status = 'sending'
 
       const postObject = {
@@ -127,31 +125,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buy-wrapper{
+.buy-wrapper {
   width: 98%;
   max-width: 400px;
   margin: auto auto;
 }
 
-.buy-wrapper div{
+.buy-wrapper div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.order-cuppy{
+.order-cuppy {
   margin-top: 30px;
   width: 400px;
   height: 35vh;
   object-fit: contain;
 }
 
-.loader{
+.loader {
   max-width: 200px;
 }
 
-.action{
+.action {
   height: 15vh;
   min-height: 150px;
 }

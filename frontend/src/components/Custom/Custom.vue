@@ -4,7 +4,6 @@
       <h6>{{ $t('Tool.emptyMessage') }}</h6>
     </div>
     <div v-else class="grid-wrapper">
-
       <div class="visualization-wrapper">
         <Visualization />
       </div>
@@ -90,7 +89,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -195,11 +193,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.grid-wrapper{
+.grid-wrapper {
   display: grid;
-  grid-template-areas: 
-    "ext sel viz viz"
-    "ext sel mat info";
+  grid-template-areas:
+    'ext sel viz viz'
+    'ext sel mat info';
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 500px 1fr;
   gap: 10px;
@@ -229,11 +227,11 @@ export default {
 }
 
 @media screen and (max-width: 1500px) {
-  .grid-wrapper{
-    grid-template-areas: 
-      "ext mat viz"
-      "ext sel viz"
-      "ext sel info";
+  .grid-wrapper {
+    grid-template-areas:
+      'ext mat viz'
+      'ext sel viz'
+      'ext sel info';
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto 1fr;
   }
@@ -243,25 +241,25 @@ export default {
 }
 
 @media screen and (max-width: 1100px) {
-  .grid-wrapper{
-    grid-template-areas: 
-      "ext viz"
-      "ext info"
-      "mat info"
-      "sel info";
+  .grid-wrapper {
+    grid-template-areas:
+      'ext viz'
+      'ext info'
+      'mat info'
+      'sel info';
     grid-template-columns: 400px 1fr;
     grid-template-rows: auto auto auto 1fr;
   }
 }
 
 @media screen and (max-width: 750px) {
-  .grid-wrapper{
-    grid-template-areas: 
-      "viz"
-      "ext"
-      "mat"
-      "sel"
-      "info";
+  .grid-wrapper {
+    grid-template-areas:
+      'viz'
+      'ext'
+      'mat'
+      'sel'
+      'info';
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto;
     max-width: 400px;

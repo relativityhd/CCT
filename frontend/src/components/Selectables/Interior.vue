@@ -2,7 +2,7 @@
   <div :class="{ inactive: quantity === 0, active: quantity !== 0 }">
     <cv-tile :class="{ 'inactive-tile': quantity === 0 }" :value="`${interior.id}`">
       <div class="int-wrapper">
-        <img class="int-img" :src="interior.imageUrl" :alt="$t('Tool.altImg', { name: interior.name })" />
+        <img class="int-img" :src="interior.imageUrl" :alt="$t('altMsg', { name: interior.name })" />
 
         <div class="int-info">
           <h6>{{ interior.name }}</h6>

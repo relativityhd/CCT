@@ -3,7 +3,7 @@
     <Userdata />
     <Pricing />
     <div class="btns">
-      <cv-button :icon="ShoppingCart16" kind="secondary" @click="$router.push('/tool')">
+      <cv-button :icon="ShoppingCart16" kind="ghost" @click="$router.push('/tool')">
         {{ $t('Order.shop') }}
       </cv-button>
       <cv-button
@@ -15,7 +15,6 @@
         {{ $t('Order.order') }}
       </cv-button>
     </div>
-    
   </div>
   <div v-else>
     <h6>{{ $t('Basket.noItems') }}</h6>

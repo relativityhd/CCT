@@ -2,7 +2,7 @@
   <div>
     <cv-tile :class="{ selected: selected }" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div class="ext-wrapper">
-        <img class="ext-img" :src="exterior.imageUrl" :alt="$t('Tool.altImg', { name: exterior.name })" />
+        <img class="ext-img" :src="exterior.imageUrl" :alt="$t('altMsg', { name: exterior.name })" />
 
         <div class="ext-info">
           <h6>{{ exterior.name }}</h6>
@@ -15,7 +15,7 @@
           </cv-button>
           <cv-icon-button
             class="delete-btn"
-            kind="secondary"
+            kind="ghost"
             :icon="iconDelete"
             :label="$t('Tool.ext.delete')"
             tip-position="left"

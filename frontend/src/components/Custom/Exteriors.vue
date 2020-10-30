@@ -97,7 +97,10 @@ export default {
         newLength += quantity
         if (newLength > 5) {
           this.addable = false
-          this.$refs.selectables[i].invalidMessage = this.$t('invalidNumber', { min: 1, max: 5 - this.exteriors.length })
+          this.$refs.selectables[i].invalidMessage = this.$t('invalidNumber', {
+            min: 1,
+            max: 5 - this.exteriors.length
+          })
           break
         }
         if (selected) this.addable = true

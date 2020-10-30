@@ -3,28 +3,24 @@
     <div class="paralax-wrapper">
       <img class="paralax-img" src="../assets/cupboard.png" alt="Image of fancy Cupboard" />
     </div>
-    
 
     <div class="actions">
       <h6>{{ $t('Homepage.welcome') }}</h6>
       <h1>{{ $t('Homepage.marketing') }}</h1>
 
       <div class="btns">
-        <cv-tile
-          kind="clickable" to="/tool/2">
+        <cv-tile kind="clickable" to="/tool/2">
           <h1>{{ $t('Homepage.toolTitle') }}</h1>
           <p>{{ $t('Homepage.tool') }}</p>
           <ArrowRight16 />
         </cv-tile>
 
-        <cv-tile
-          kind="clickable" to="/catalogue">
+        <cv-tile kind="clickable" to="/catalogue">
           <h1>{{ $t('Homepage.catalogueTitle') }}</h1>
           <p>{{ $t('Homepage.catalogue') }}</p>
           <ArrowRight16 />
         </cv-tile>
       </div>
-      
     </div>
 
     <div class="cuppyhint" v-if="!$store.state.mobile">
@@ -55,18 +51,18 @@ export default {
   margin-top: 48px !important;
 }
 
-.paralax-wrapper{
+.paralax-wrapper {
   height: 50vh;
   width: 100%;
 }
 
-.paralax-img{
+.paralax-img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.actions{
+.actions {
   padding-top: 24px;
   display: flex;
   flex-direction: column;
@@ -87,7 +83,7 @@ export default {
   width: 100%;
 }
 
-.btns a{
+.btns a {
   text-align: left;
   width: 100%;
   max-width: 300px;
@@ -96,7 +92,7 @@ export default {
   color: $text-04;
 }
 
-.btns a svg{
+.btns a svg {
   position: absolute;
   bottom: 15px;
   right: 15px;

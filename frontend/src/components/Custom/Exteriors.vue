@@ -34,6 +34,7 @@
         :selected="selectedExt._uid === exterior._uid"
         v-on:delete="deleteExterior(exterior._uid)"
         v-on:select="$emit('select', exterior._uid)"
+        v-on:change-custom="$emit('change-items')"
       />
 
       <div class="add-btn" v-if="notFull">

@@ -29,7 +29,7 @@
             <cv-accordion-item>
               <template slot="title">{{ `${$t('customize')} ${exterior.name}` }}</template>
               <template slot="content">
-                <ProductCustomization :custom="exterior.custom" />
+                <ProductCustomization :custom="exterior.custom" v-on:change-custom="$emit('change-custom')" />
               </template>
             </cv-accordion-item>
           </cv-accordion>

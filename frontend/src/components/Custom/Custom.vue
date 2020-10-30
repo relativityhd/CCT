@@ -164,6 +164,7 @@ export default {
       this.calcSum()
     },
     calcSum() {
+      console.log('here...')
       const priceItems = this.$store.getters['basket/extractPriceItems'](this.exteriors)
       this.price = this.$store.getters['basket/calcPrices'](priceItems, 1)
     },

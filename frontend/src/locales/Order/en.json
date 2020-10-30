@@ -29,15 +29,15 @@
     "email": "Please enter a valid email address!"
   },
   "pricingInfo": "Pricing information here...",
-  "validatingData": "Validating Data...",
-  "fillInformation": "Fill in your Data",
-  "invalidData": "Invalid Customer Data!",
-  "backtoShop": "Back to Shop",
+  "validatingData": "Validating data...",
+  "fillInformation": "Fill in your sata",
+  "invalidData": "Invalid customer Dsata!",
+  "backtoShop": "Back to shop",
   "emptyBasket": "Your basket is empty!",
   "sending": "Ordering items...",
   "tryAgain": "Try to resend order",
   "errored": "Something went wrong :(",
-  "successfulRedirect": "Back to Home",
+  "successfulRedirect": "Back to home",
   "successful": "Ordered items!",
   "orderId": "Your order ID is: {id}"
 }

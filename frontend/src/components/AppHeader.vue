@@ -87,8 +87,8 @@ export default {
   data() {
     let links = [
       { name: 'App.home', to: '/' },
-      { name: 'App.catalogue', to: '/catalogue' },
       { name: 'App.tool', to: '/tool/2' },
+      { name: 'App.catalogue', to: '/catalogue' },
       { name: 'App.about', to: '/about' },
       { name: 'App.imprint', to: '/imprint' }
     ]

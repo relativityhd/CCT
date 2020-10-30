@@ -4,8 +4,6 @@
 
 <script>
 import * as Three from 'three'
-//import { OrbitControls } from 'three'
-
 export default {
   name: 'Visualization',
   data() {
@@ -18,18 +16,11 @@ export default {
   },
   methods: {
     createCorpus(width, height, depth, maindrawer, position_x, position_y, position_z) {
-      //const loader = new Three.TextureLoader()
-      //const texture = loader.load('crate0/crate0_diffuse.png')
       const material = new Three.MeshPhongMaterial({
         color: 0xf8f8ff
-        //map: texture, //textur = aus object
       })
 
       var strength = 0.02
-
-      //this.removeObjectFromScene(this.corpus)
-
-      //eigenschaften für meshes werden definiert
 
       let mainbody = new Three.Mesh()
 
@@ -39,26 +30,20 @@ export default {
       let base_geometry = new Three.BoxGeometry(width - strength, 0.06, depth - strength)
       let ceiling_geometry = new Three.BoxGeometry(width - strength, strength, depth - strength)
 
-      //meshes werden gesetzt
       let leftwall_mesh = new Three.Mesh(leftwall_geometry, material)
       leftwall_mesh.position.set(-(width / 2 - strength / 2), 0, 0)
-      //this.scene.add(leftwall_mesh)
 
       let rightwall_mesh = new Three.Mesh(rightwall_geometry, material)
       rightwall_mesh.position.set(width / 2 - strength / 2, 0, 0)
-      //this.scene.add(rightwall_mesh)
 
       let backwall_mesh = new Three.Mesh(backwall_geometry, material)
       backwall_mesh.position.set(0, 0, -(depth / 2 - strength / 2))
-      //this.scene.add(backwall_mesh)
 
       let base_mesh = new Three.Mesh(base_geometry, material)
       base_mesh.position.set(0, -(height / 2 - 0.06 / 2), strength / 2)
-      //this.scene.add(base_mesh)
 
       let ceiling_mesh = new Three.Mesh(ceiling_geometry, material)
       ceiling_mesh.position.set(0, height / 2 - strength / 2, strength / 2)
-      //this.scene.add(ceiling_mesh)
 
       mainbody.add(leftwall_mesh)
       mainbody.add(rightwall_mesh)
@@ -78,26 +63,18 @@ export default {
         main: mainbody
       }
     },
-    createInteriors(
-      type,
-      width,
-      depth,
-      strength,
-      position_x,
-      position_y /*, height, depth, position_x, position_y, position_z*/
-    ) {
-      if (type == 'clothesrail') {
-        /*create rack, position rack*/
+    createInteriors(id, width, depth, strength, position_x, position_y) {
+      if (id === 92) {
         var clothesrail_geometry = new Three.CylinderGeometry(0.013, 0.013, width, 8)
         var clothesrail_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var clothesrail_mesh = new Three.Mesh(clothesrail_geometry, clothesrail_material)
         clothesrail_mesh.position.x = position_x
         clothesrail_mesh.position.y = position_y
-        clothesrail_mesh.rotation.z = Math.PI / 2 // Pi entspricht einer umdrehung, (wegen sinuskurve etc.)
+        clothesrail_mesh.rotation.z = Math.PI / 2
         this.scene.add(clothesrail_mesh)
       }
 
-      if (type == 'drawer') {
+      if (id === 94) {
         var drawer_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var drawer_leftwall_geometry = new Three.BoxGeometry(strength, 0.16, depth)
         var drawer_rightwall_geometry = new Three.BoxGeometry(strength, 0.16, depth)
@@ -127,7 +104,7 @@ export default {
         this.scene.add(maindrawer)
       }
 
-      if (type == 'shelf') {
+      if (id === 91) {
         var shelf_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var shelf_geometry = new Three.BoxGeometry(width, strength, depth)
         var shelf_mesh = new Three.Mesh(shelf_geometry, shelf_material)
@@ -135,7 +112,7 @@ export default {
         this.scene.add(shelf_mesh)
       }
 
-      if (type == 'meshbasket') {
+      if (id === 93) {
         var meshbasket_material = new Three.MeshPhongMaterial({ color: 0x4a4a4a })
         var meshbasket_leftwall_geometry = new Three.BoxGeometry(strength, 0.1, depth)
         var meshbasket_rightwall_geometry = new Three.BoxGeometry(strength, 0.1, depth)
@@ -164,57 +141,32 @@ export default {
         mainmeshbasket.position.set(position_x, position_y)
         this.scene.add(mainmeshbasket)
       }
-
-      /*
-      else {create placeholder}*/
-    },
-    removeObjectFromScene(obj) {
-      if (!obj) return
-      Object.values(obj).forEach(mesh => {
-        this.scene.remove(mesh)
-        mesh.geometry.dispose()
-        mesh.material.dispose()
-        mesh = undefined
-      })
-      obj = undefined
     },
     init() {
       let container = this.$refs.renderer
-      //console.log(container)
-
       this.camera = new Three.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
       this.camera.position.set(0, 0, 3)
 
-      /*const controls = new OrbitControls(this.camera, renderer.domElement)
-      controls.enableDamping = true
-      controls.dampingFactor = 0.25
-      controls.enableZoom = false*/
-
       this.scene = new Three.Scene()
 
-      //first of all, light settings:
-      //var ambientlight = new Three.AmbientLight(0xffffff) //0x222222
-      //this.scene.add(ambientlight)
-      var directionallight1 = new Three.DirectionalLight(0xffffff, 0.3)
+      var directionallight1 = new Three.DirectionalLight(0xffffff, 0.4)
       this.scene.add(directionallight1)
-      var directionallight2 = new Three.DirectionalLight(0xffffff, 0.3)
+      var directionallight2 = new Three.DirectionalLight(0xffffff, 0.4)
       this.scene.add(directionallight2)
-      var directionallight3 = new Three.DirectionalLight(0xffffff, 0.3)
+      var directionallight3 = new Three.DirectionalLight(0xffffff, 0.4)
       this.scene.add(directionallight3)
-      var directionallight4 = new Three.DirectionalLight(0xffffff, 0.3)
+      var directionallight4 = new Three.DirectionalLight(0xffffff, 0.4)
       this.scene.add(directionallight4)
       directionallight1.position.set(6, 6, 12)
       directionallight2.position.set(-6, 6, 12)
       directionallight3.position.set(6, -6, -12)
       directionallight4.position.set(-6, -6, -12)
 
-      //create standard Corpus
-      //this.createCorpus(2, 2.4, 0.5, 0.02)
       var axis = new Three.AxisHelper(75)
       this.scene.add(axis)
 
-      //renderer zeigt szene visuell an
-      this.renderer = new Three.WebGLRenderer({ antialias: true })
+      this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true })
+      this.renderer.setClearColor(0x000000, 0)
       this.renderer.setSize(container.clientWidth, container.clientHeight)
 
       container.appendChild(this.renderer.domElement)
@@ -230,29 +182,31 @@ export default {
       )
       if (exteriors.length === 0) return
 
-      //let number_exteriors = exteriors.length // gesamte Anzahl von Exteriors/frames wird gespeichert
+      for (let i = this.scene.children.length - 1; i >= 0; i--) {
+        if (this.scene.children[i].type === 'Mesh') {
+          this.scene.remove(this.scene.children[i])
+        }
+      }
 
       var strength = 0.02
 
-      var totalWidth = exteriors.reduce((accum, item) => accum + item.width, 0) // gesamte Breite aller Exteriors/frames zusammen wird gespeichert
+      var totalWidth = exteriors.reduce((accum, item) => accum + item.custom.width, 0)
 
       var höchsteHöhe = exteriors.reduce(function(prev, current) {
-        if (+current.height > +prev.height) {
+        if (+current.custom.height > +prev.custom.height) {
           return current
         } else {
           return prev
         }
-      }).height
-
-      console.log(höchsteHöhe)
+      }).custom.height
 
       var tiefsteTiefe = exteriors.reduce(function(prev, current) {
-        if (+current.depth > +prev.depth) {
+        if (+current.custom.depth > +prev.custom.depth) {
           return current
         } else {
           return prev
         }
-      }).depth
+      }).custom.depth
 
       var previousWidths = []
 
@@ -261,59 +215,48 @@ export default {
         for (var i = 0; i < previousWidths.length; i++) {
           sum += previousWidths[i]
         }
-        console.log(sum)
 
         this.createCorpus(
-          exterior.width / 100,
-          exterior.height / 100,
-          exterior.depth / 100,
+          exterior.custom.width / 100,
+          exterior.custom.height / 100,
+          exterior.custom.depth / 100,
           strength,
-          (-totalWidth / 2 + exterior.width / 2 + sum) / 100, // + breite der vorherigen exteriors in array summiert, //position_x
-          (exterior.height / 2 - höchsteHöhe / 2) / 100, //position_y
-          (exterior.depth / 2 - tiefsteTiefe / 2) / 100 //position_z
+          (-totalWidth / 2 + exterior.custom.width / 2 + sum) / 100,
+          (exterior.custom.height / 2 - höchsteHöhe / 2) / 100,
+          (exterior.custom.depth / 2 - tiefsteTiefe / 2) / 100
         )
-        console.log(previousWidths)
-        previousWidths.push(exterior.width)
+        previousWidths.push(exterior.custom.width)
 
-        if (exterior.customized == true) {
+        if (exterior.customizable == true) {
           var bottom_count = 0
-          console.log(bottom_count)
           var top_count = 0
-          console.log(top_count)
           exterior.interiors.forEach(interior => {
-            if (interior.type == 'clothesrail') {
-              this.createInteriors(
-                interior.type,
-                exterior.width / 100 - 0.02,
-                exterior.depth / 100 - 0.02,
-                0.02,
-                (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
-                (exterior.height - 10 - höchsteHöhe / 2) / 100 - top_count
-              )
-              top_count += 0.16
-            } else {
-              this.createInteriors(
-                interior.type,
-                exterior.width / 100 - 0.02,
-                exterior.depth / 100 - 0.02,
-                0.02,
-                (-totalWidth / 2 + exterior.width / 2 + sum) / 100,
-                -höchsteHöhe / 2 / 100 + 0.14 + bottom_count
-              )
-              bottom_count += 0.16
+            for (let i = 0; i < interior.quantity; i++) {
+              if (interior.id === 92) {
+                this.createInteriors(
+                  interior.id,
+                  exterior.custom.width / 100 - 0.02,
+                  exterior.custom.depth / 100 - 0.02,
+                  0.02,
+                  (-totalWidth / 2 + exterior.custom.width / 2 + sum) / 100,
+                  (exterior.custom.height - 10 - höchsteHöhe / 2) / 100 - top_count
+                )
+                top_count += 0.16
+              } else {
+                this.createInteriors(
+                  interior.id,
+                  exterior.custom.width / 100 - 0.02,
+                  exterior.custom.depth / 100 - 0.02,
+                  0.02,
+                  (-totalWidth / 2 + exterior.custom.width / 2 + sum) / 100,
+                  -höchsteHöhe / 2 / 100 + 0.14 + bottom_count
+                )
+                bottom_count += 0.16
+              }
             }
           })
-        } //tba unterschiedliche
+        }
       })
-
-      /*setInterval(
-      () => {this.createCorpus(
-         exteriors.exterior1.width/100,
-         exteriors.exterior1.height/100,
-         exteriors.exterior1.depth/100,
-         Math.floor(Math.random() * 0.05) + 0.01
-      )},5000
-    )*/
 
       this.myrequest = requestAnimationFrame(this.animate)
     }
@@ -334,6 +277,3 @@ export default {
   height: 100%;
 }
 </style>
-
-<!--Kommentar: die Schränke sind fiktiv unterteilt in Fächer mit jeweils einer Höhe von 20cm/0.2. Schubladen sind deshalb etwas unter 20 cm hoch und werden in der mitte der jeweiligen 20cm abschnitte platziert.
-Auch shelfs, körbe und kleiderstangen werden mittig in diesen Abschnitten platziert. y-position = if (kleiderstange) {wieght: top + vorhergehende stange}, else {weight: bottom + vorhergehendes element} (siehe exteriors -> dort wurde ähnlich iteriert)-->

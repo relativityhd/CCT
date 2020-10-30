@@ -26,32 +26,35 @@ router.get('/products/:id', (req, res) => {
       res.json(product)
       return res.end()
     }
-    get(`/catalogue/products/${req.params.id}/selectables`, (e, selectables) => {
-      product.exteriors = []
-      product.interiors = []
-      product.materials = []
-      product.accessories = []
-      selectables.forEach(selectable => {
-        switch (selectable.selectableCategory) {
-          case 'exterior':
-            product.exteriors.push(selectable)
-            break
-          case 'interior':
-            product.interiors.push(selectable)
-            break
-          case 'material':
-            product.materials.push(selectable)
-            break
-          case 'accessories':
-            product.accessories.push(selectable)
-            break
-          default:
-            break
-        }
-      })
-      res.json(product)
-      res.end()
-    })
+    get(
+      `/catalogue/products/${req.params.id}/selectables`,
+      (e, selectables) => {
+        product.exteriors = []
+        product.interiors = []
+        product.materials = []
+        product.accessories = []
+        selectables.forEach((selectable) => {
+          switch (selectable.selectableCategory) {
+            case 'exterior':
+              product.exteriors.push(selectable)
+              break
+            case 'interior':
+              product.interiors.push(selectable)
+              break
+            case 'material':
+              product.materials.push(selectable)
+              break
+            case 'accessories':
+              product.accessories.push(selectable)
+              break
+            default:
+              break
+          }
+        })
+        res.json(product)
+        res.end()
+      }
+    )
   })
 })
 

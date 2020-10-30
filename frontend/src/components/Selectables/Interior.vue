@@ -2,7 +2,7 @@
   <div :class="{ inactive: quantity === 0, active: quantity !== 0 }">
     <cv-tile :class="{ 'inactive-tile': quantity === 0 }" :value="`${interior.id}`">
       <div class="int-wrapper">
-        <img class="int-img" :src="interior.imageUrl" :alt="$t('Tool.altImg', { name: interior.name })" />
+        <img class="int-img" :src="interior.imageUrl" :alt="$t('altMsg', { name: interior.name })" />
 
         <div class="int-info">
           <h6>{{ interior.name }}</h6>
@@ -126,9 +126,13 @@ export default {
   grid-auto-flow: column;
 }
 
-.add-btn,
 .delete-btn {
   justify-self: center;
   align-self: end;
+}
+
+.add-btn {
+  align-self: end;
+  width: 220px;
 }
 </style>

@@ -20,12 +20,22 @@ export default {
       type: 'none'
     }
   },
+  watch: {
+    '$route.params.id': function(id) {
+      this.loadProduct(id)
+    }
+  },
   mounted() {
     const id = this.$route.params.id
-    Vue.axios.get(`/catalogue/products/${id}`).then(res => {
-      this.product = res.data
-      this.type = this.product.customizable ? 'custom' : 'product'
-    })
+    this.loadProduct(id)
+  },
+  methods: {
+    loadProduct(id) {
+      Vue.axios.get(`/catalogue/products/${id}`).then(res => {
+        this.product = res.data
+        this.type = this.product.customizable ? 'custom' : 'product'
+      })
+    }
   }
 }
 </script>

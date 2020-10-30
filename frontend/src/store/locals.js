@@ -9,6 +9,7 @@ export default {
   state: {
     lang: 'en',
     location: 'gb',
+    locationName: 'greatBritain',
     vatRate: 0.2,
     currency: '£',
     currenyIso: 'GBP',
@@ -18,7 +19,7 @@ export default {
       {
         isoCode: 'de',
         lang: 'de',
-        name: 'Deutschland',
+        name: 'germany',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-DE',
@@ -29,7 +30,7 @@ export default {
       {
         isoCode: 'gb',
         lang: 'en',
-        name: 'Great Britain',
+        name: 'greatBritain',
         currency: '£',
         currenyIso: 'GBP',
         numberFormat: 'en-GB',
@@ -40,7 +41,7 @@ export default {
       {
         isoCode: 'fr',
         lang: 'fr',
-        name: 'France',
+        name: 'france',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'fr-FR',
@@ -51,7 +52,7 @@ export default {
       {
         isoCode: 'it',
         lang: 'it',
-        name: 'Italia',
+        name: 'italy',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'it-IT',
@@ -62,7 +63,7 @@ export default {
       {
         isoCode: 'ch',
         lang: 'de',
-        name: 'Schweiz',
+        name: 'switzerland',
         currency: 'Fr.',
         currenyIso: 'CHF',
         numberFormat: 'de-CH',
@@ -73,7 +74,7 @@ export default {
       {
         isoCode: 'at',
         lang: 'de',
-        name: 'Österreich',
+        name: 'austria',
         currency: '€',
         currenyIso: 'EUR',
         numberFormat: 'de-AT',
@@ -84,7 +85,7 @@ export default {
       {
         isoCode: 'rw',
         lang: 'en',
-        name: 'Other Country',
+        name: 'otherCountry',
         currency: '$',
         currenyIso: 'USD',
         numberFormat: 'en-US',
@@ -113,9 +114,10 @@ export default {
         language.selected = language.isoCode === lang
       })
     },
-    setLocation({ state, dispatch }, location) {
+    setLocation({ state, commit, dispatch }, location) {
       const newLocation = state.locations.find(loc => loc.isoCode === location)
       state.location = newLocation.isoCode
+      state.locationName = newLocation.name
       state.vatRate = newLocation.vatRate
       state.currency = newLocation.currency
       state.currenyIso = newLocation.currenyIso
@@ -124,6 +126,7 @@ export default {
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
+      commit('customer/changeCountry', newLocation.isoCode)
       dispatch('basket/recalcPricesInBasket')
     }
   }

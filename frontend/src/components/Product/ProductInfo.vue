@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="product-image" :src="product.imageUrl" :alt="$t('Tool.altImg', { name: product.name })" />
+    <img class="product-image" :src="product.imageUrl" :alt="$t('altMsg', { name: product.name })" />
     <div class="product-body">
       <h3>{{ product.name }}</h3>
       <h6>{{ $store.getters.formatPrice(product.price) }}</h6>

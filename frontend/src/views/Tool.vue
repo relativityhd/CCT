@@ -21,7 +21,7 @@ export default {
     }
   },
   watch: {
-    '$route.params.id': function (id) {
+    '$route.params.id': function(id) {
       this.loadProduct(id)
     }
   },

@@ -126,9 +126,13 @@ export default {
   grid-auto-flow: column;
 }
 
-.add-btn,
 .delete-btn {
   justify-self: center;
   align-self: end;
+}
+
+.add-btn {
+  align-self: end;
+  width: 220px;
 }
 </style>

@@ -92,6 +92,8 @@ export default {
   width: 100%;
   max-width: 300px;
   height: 300px;
+  background: $interactive-01;
+  color: $text-04;
 }
 
 .btns a svg{

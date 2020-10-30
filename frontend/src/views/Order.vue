@@ -7,7 +7,7 @@
         {{ $t('Order.shop') }}
       </cv-button>
       <cv-button
-        :icon="PageLast16"
+        :icon="WirelessCheckout16"
         kind="primary"
         @click="toNext"
         :disabled="$store.state.customer.hasInvalids"
@@ -29,7 +29,7 @@
 <script>
 import Pricing from '../components/Order/Pricing'
 import Userdata from '../components/Order/Userdata'
-import PageLast16 from '@carbon/icons-vue/es/page--last/16'
+import WirelessCheckout16 from '@carbon/icons-vue/es/wireless-checkout/16'
 import ShoppingCart16 from '@carbon/icons-vue/es/shopping--cart/20'
 
 export default {
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      PageLast16,
+      WirelessCheckout16,
       ShoppingCart16
     }
   },
@@ -63,17 +63,27 @@ export default {
 <style lang="scss" scoped>
 .order-wrapper {
   width: 98%;
-  max-width: 1000px;
+  max-width: 790px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 806px) {
+  .order-wrapper {
+    width: 98%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
 }
 
 .btns {
   width: 100%;
-  max-width: 752px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .btns button {
-  margin: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 </style>

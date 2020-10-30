@@ -9,6 +9,7 @@ export default {
   state: {
     lang: 'en',
     location: 'gb',
+    locationName: 'greatBritain',
     vatRate: 0.2,
     currency: '£',
     currenyIso: 'GBP',
@@ -113,9 +114,10 @@ export default {
         language.selected = language.isoCode === lang
       })
     },
-    setLocation({ state, dispatch }, location) {
+    setLocation({ state, commit, dispatch }, location) {
       const newLocation = state.locations.find(loc => loc.isoCode === location)
       state.location = newLocation.isoCode
+      state.locationName = newLocation.name
       state.vatRate = newLocation.vatRate
       state.currency = newLocation.currency
       state.currenyIso = newLocation.currenyIso
@@ -124,6 +126,7 @@ export default {
       state.locations.forEach(loc => {
         loc.selected = loc.isoCode === location
       })
+      commit('customer/changeCountry', newLocation.isoCode)
       dispatch('basket/recalcPricesInBasket')
     }
   }

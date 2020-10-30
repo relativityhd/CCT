@@ -21,8 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .pricing-wrapper {
-  max-width: 500px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .pricing-info {

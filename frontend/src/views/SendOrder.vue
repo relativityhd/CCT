@@ -110,7 +110,7 @@ export default {
         .then(res => {
           this.orderId = res.data.orderId
           this.status = 'successful'
-          // this.$store.commit('basket/clearBasket')
+          this.$store.commit('basket/clearBasket')
         })
         .catch(() => {
           this.status = 'errored'

@@ -5,7 +5,13 @@
         <div id="CuppyBubble" v-bind:class="{ visible: showCuppy, invisible: !showCuppy }">
           <div class="CuppySpeak" @click.stop="">
             <CuppySpeak :showCuppyBubble="showCuppy">
-              <RouterHelper></RouterHelper>
+              <RouterHelper v-if="$router.currentRoute.name == 'Imprint'"></RouterHelper>
+              <NewConfigHelper v-if="true"></NewConfigHelper>
+              <RoomHeightHelper v-if="$router.currentRoute.name == 'Tool'"
+              :cupboardHeight="150"
+              :cupboardDepth="30"
+              ></RoomHeightHelper>
+              <ProductRecommendationHelper v-if="false"></ProductRecommendationHelper>
             </CuppySpeak>
           </div>
         </div>
@@ -17,11 +23,18 @@
 <script>
 import CuppySpeak from './CuppySpeak'
 import RouterHelper from './RouterHelper'
+import NewConfigHelper from './NewConfigHelper'
+import RoomHeightHelper from './RoomHeightHelper'
+import ProductRecommendationHelper from './ProductRecommendationHelper'
+
 const timeToCup = 30
 export default {
   components: {
     CuppySpeak,
-    RouterHelper
+    RouterHelper,
+    NewConfigHelper,
+    RoomHeightHelper,
+    ProductRecommendationHelper
   },
 
   methods: {
@@ -82,6 +95,8 @@ export default {
   width: 10rem;
   overflow: visible;
   transform: rotate(-10deg);
+}
+cuppy:not(:first-child){
   cursor: pointer;
 }
 .cuppy-hoveraround {

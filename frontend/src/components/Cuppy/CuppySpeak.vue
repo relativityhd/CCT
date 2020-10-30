@@ -1,9 +1,9 @@
 <template>
   <div id="speak" class="speech-bubble">
-    <h6 id="greet">
+    <h5 class="greet">
       {{ cuppyGreet }}
-    </h6>
-    <div id="bubblecontent">
+    </h5>
+    <div class="bubble-content">
       <slot>
       </slot>
     </div>
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     greetUser() {
-      const puns = this.$t('CuppySpeak.puns')
+      const puns = this.$t('Cuppy.puns')
       return puns[Math.floor(Math.random() * 4)]
     },
     
@@ -38,7 +38,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .speech-bubble {
   position: relative;
@@ -67,16 +66,12 @@ export default {
   height: max-content;
   width: min-content;
 }
-#buttoncontainer {
-  margin: 10px 10px 10px 10px;
-  display: flex;
-  flex-direction: column;
+
+.greet{
+  margin-bottom: .3rem;
 }
-button {
-  font-size: 1rem;
-  border: none;
-  width: max-content;
-  margin-top: 3px;
-  cursor: pointer;
+
+.bubble-content {
+  margin: 10px 10px 10px 10px;
 }
 </style>

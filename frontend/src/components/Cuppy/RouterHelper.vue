@@ -1,18 +1,21 @@
 <template>
 <div>
-  <div id="buttoncontainer">
-    <button @click="$root.$emit('openLoc')">
-      {{ $t('CuppySpeak.location') }}
-    </button>
-
-    <button @click="$root.$emit('openLang')">
-      {{ $t('CuppySpeak.language') }}
-    </button>
-
-    <button @click="toSite('/about')">
-      {{ $t('CuppySpeak.imprint') }}
-    </button>
+  <div class="helperText">
+    {{  }}
   </div>
+  <table id="buttoncontainer">
+    <tr><td><cv-button @click="$root.$emit('openLoc')">
+      {{ $t('Cuppy.location') }}
+    </cv-button></td></tr>
+
+    <tr><td><cv-button @click="$root.$emit('openLang')">
+      {{ $t('Cuppy.language') }}
+    </cv-button></td></tr>
+
+    <tr><td><cv-button @click="toSite('/about')">
+      {{ $t('Cuppy.imprint') }}
+    </cv-button></td></tr>
+  </table>
 </div>
 </template>
 <script>
@@ -26,15 +29,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 #buttoncontainer {
-  margin: 10px 10px 10px 10px;
-  display: flex;
-  flex-direction: column;
+  border: none;
 }
+
 button {
+  width: 100%;
   font-size: 1rem;
   border: none;
-  width: max-content;
-  margin-top: 3px;
+  margin: 5px 0 5px 0;
   cursor: pointer;
 }
 </style>

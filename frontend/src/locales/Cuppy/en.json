@@ -1,0 +1,28 @@
+{
+  "location": "I'm from somewhere else!",
+  "language": "I'm speaking a different Languge!",
+  "support": "I need some help!",
+  "imprint": "Who made this page?",
+  "puns": [
+    "CUPE DIEM",
+    "CUPOW! I’m here to help you",
+    "Im Cuppy from Cuptown and im coming to help you",
+    "Whats Cup, do you need any Help?"
+  ],
+  "configHelper": {
+    "helperText": "Wow this Configurator is pretty complex, why not start with a preset?",
+    "positive": "Sounds good",
+    "negative": "Maybe something else?"
+  },
+  "heightHelper": {
+    "helperText": "While you put up your closet after it's built it's higher than it's regular size. Just tell me how high your room is an I'll know if it fits!",
+    "fit": "It fits!",
+    "dontFit": "It doesn't fit try a smaller one!"
+  },
+  "recommendationHelper": {
+    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}", 
+    "positive": "Yikes",
+    "negative": "I need something else"
+
+  }
+}

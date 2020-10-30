@@ -2,7 +2,7 @@
   "services": {
     "clApiGateway": {
       "apiUrl": "//cupboard.eu-gb.cf.appdomain.cloud",
-      "apiKey": "qjCBw498FHZ8SEyhCsQ7H2wZgDkqnVQI"
+      "apiKey": ""
     }
   }
 }

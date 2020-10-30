@@ -3,7 +3,9 @@
   "userdata": "Customer information",
   "shop": "Shop",
   "order": "Buy now",
-  "back": "Back to",
+  "name": "Name",
+  "address": "Address",
+  "contact": "Contact information",
   "customer": {
     "firstname": "Firstname",
     "middlename": "Middlename",
@@ -26,14 +28,16 @@
     "phone": "Please enter a valid phone number!",
     "email": "Please enter a valid email address!"
   },
-  "waitForResponse": "Waiting for response",
-  "sendOrder": "Sending your order",
-  "failed": "Something went wrong",
-  "sucessfull": "Sucessfully ordered!",
-  "orderId": "Your Order ID is:",
-  "pricingInfo": "",
-  "backToShop": "Return to the shop",
-  "name": "Name",
-  "address": "Address",
-  "contact": "Contact information"
+  "pricingInfo": "Pricing information here...",
+  "validatingData": "Validating Data...",
+  "fillInformation": "Fill in your Data",
+  "invalidData": "Invalid Customer Data!",
+  "backtoShop": "Back to Shop",
+  "emptyBasket": "Your basket is empty!",
+  "sending": "Ordering items...",
+  "tryAgain": "Try to resend order",
+  "errored": "Something went wrong :(",
+  "successfulRedirect": "Back to Home",
+  "successful": "Ordered items!",
+  "orderId": "Your order ID is: {id}"
 }

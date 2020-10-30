@@ -1,14 +1,14 @@
 <template>
   <cv-tile
     kind="selectable"
-    :selected="selectable.selected"
+    :selected="selected"
     @click="select($event)"
     :value="`${selectable.id}`"
-    v-model="selectable.selected"
+    v-model="selected"
     class="selectable-tile"
   >
     <div class="inner-tile">
-      <img class="tile-image" :src="selectable.imageUrl" alt="Image of Selectable" />
+      <img class="tile-image" :src="selectable.imageUrl" :alt="$t('Tool.altImg', { name: selectable.name })" />
       <div class="tile-body">
         <h6>{{ selectable.name }}</h6>
         <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
@@ -17,21 +17,20 @@
           :label="$t('quantity')"
           :mobile="$store.state.mobile"
           :invalid-message="invalidMessage"
-          :value="selectable.quantity"
-          v-model="selectable.quantity"
+          :value="quantity"
+          v-model="quantity"
           @input="changeQuantity()"
         ></cv-number-input>
       </div>
       <div class="tile-custom">
-        <cv-accordion class="custom-container" v-if="selectable.customizable">
+        <cv-accordion class="custom-container" v-if="customizable">
           <cv-accordion-item>
             <template slot="title">{{ `${$t('customize')} ${selectable.name}` }}</template>
             <template slot="content">
-              <ProductCustomization :custom="selectable.custom" />
+              <ProductCustomization :custom="custom" />
             </template>
           </cv-accordion-item>
         </cv-accordion>
-        <p v-else>{{ $t('Product.notEditable') }}</p>
       </div>
     </div>
   </cv-tile>
@@ -41,34 +40,54 @@
 export default {
   name: 'Selectable',
   props: {
-    selectable: Object
+    selectable: Object,
+    customizable: Boolean
   },
   components: {
-    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ './ProductCustomization')
+    ProductCustomization: () => import(/* webpackChunkName: "ProductCustomization" */ '../Product/ProductCustomization')
   },
   data() {
     return {
-      invalidMessage: ''
+      invalidMessage: '',
+      selected: false,
+      quantity: 0,
+      custom: {
+        customized: true,
+        height: 160,
+        width: 200,
+        depth: 80
+      }
     }
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.selectable.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
+      if (!this.$validateNumber(this.quantity, 0, 10)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
         return
       }
       this.invalidMessage = ''
-      this.selectable.selected = parseInt(this.selectable.quantity) > 0
+      this.selected = parseInt(this.quantity) > 0
       this.$emit('select')
     },
     select: function(e) {
-      this.selectable.selected = e.target.checked
-      if (this.selectable.selected) {
-        this.selectable.quantity = this.selectable.quantity <= 0 ? 1 : this.selectable.quantity
+      this.selected = e.target.checked
+      if (this.selected) {
+        this.quantity = this.quantity <= 0 ? 1 : this.quantity
       } else {
-        this.selectable.quantity = 0
+        this.quantity = 0
       }
       this.$emit('select')
+    },
+    getInputs() {
+      return { selected: this.selected, quantity: this.quantity, custom: { ...this.custom } }
+    },
+    clearInputs() {
+      this.selected = false
+      this.quantity = 0
+      this.custom.customized = false
+      this.custom.width = 160
+      this.custom.height = 200
+      this.custom.depth = 80
     }
   }
 }
@@ -80,6 +99,7 @@ export default {
   max-width: 300px;
   margin: 5px;
   text-align: left;
+  border: 1px dashed $ui-04;
 }
 
 .inner-tile {

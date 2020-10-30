@@ -14,18 +14,18 @@
   "homepage": "https://cablecard-cct.eu-de.mybluemix.net",
   "workspaces": [
     "frontend",
-    "api"
+    "backend"
   ],
   "scripts": {
-    "api:start": "cd api && npm run start",
-    "api:serve": "cd api && npm run dev",
-    "api:install": "cd api && npm install",
+    "backend:start": "cd backend && npm run start",
+    "backend:serve": "cd backend && npm run dev",
+    "backend:install": "cd backend && npm install",
     "frontend:build": "cd frontend && npm run build",
     "frontend:serve": "cd frontend && npm run serve",
     "frontend:install": "cd frontend && npm install",
     "frontend:start": "cd frontend && npx serve -s dist",
-    "install": "npm run frontend:install && npm run api:install",
+    "install": "npm run frontend:install && npm run backend:install",
     "build": "npm run frontend:build",
-    "lint": "cd api && npm run lint; cd ../frontend && npm run lint --fix"
+    "lint": "cd backend && npm run lint; cd ../frontend && npm run lint --fix"
   }
 }

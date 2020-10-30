@@ -1,5 +1,5 @@
 <template>
-  <div class="order-wrapper" v-if="$store.state.basket.products.length !== 0">
+  <div class="order-wrapper" v-if="$store.state.basket.items.length">
     <keep-alive>
       <component ref="component" :is="currentComponent">
         <div class="button-wrapper">

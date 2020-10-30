@@ -24,7 +24,16 @@ const routes = [
     }
   },
   {
-    path: '/tool',
+    path: '/catalogue',
+    alias: ['/tool'],
+    name: 'Catalogue',
+    component: () => import(/* webpackCunkName: "Catalogue" */ '../views/Catalogue.vue'),
+    meta: {
+      title: 'Catalogue'
+    }
+  },
+  {
+    path: '/tool/:id',
     name: 'Tool',
     component: () => import(/* webpackChunkName: "Tool" */ '../views/Tool.vue')
   },
@@ -59,6 +68,11 @@ const routes = [
     meta: {
       title: 'Imprint'
     }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import(/* webpackCunkName: "Test" */ '../components/Visualization/Visualization.vue')
   },
   {
     path: '*',

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="product-image" :src="product.imageUrl" alt="Image of Product" />
+    <img class="product-image" :src="product.imageUrl" :alt="$t('Tool.altImg', { name: product.name })" />
     <div class="product-body">
       <h3>{{ product.name }}</h3>
       <h6>{{ $store.getters.formatPrice(product.price) }}</h6>
@@ -24,7 +24,7 @@ export default {
 }
 
 .product-image {
-  width: 100%;
+  width: 300px;
   height: 300px;
   object-fit: contain;
   background-color: $ui-background;

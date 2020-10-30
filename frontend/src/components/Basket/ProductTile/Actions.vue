@@ -5,8 +5,8 @@
       :label="$t('quantity')"
       :mobile="$store.state.mobile"
       :invalid-message="invalidMessage"
-      :value="product.quantity"
-      v-model="product.quantity"
+      :value="item.quantity"
+      v-model="item.quantity"
       @input="changeQuantity()"
     ></cv-number-input>
     <cv-icon-button
@@ -26,7 +26,7 @@ import TrashCan16 from '@carbon/icons-vue/es/trash-can/16'
 export default {
   name: 'ProductTileActions',
   props: {
-    product: Object
+    item: Object
   },
   data() {
     return {
@@ -36,23 +36,19 @@ export default {
   },
   methods: {
     changeQuantity() {
-      if (Number.isNaN(parseInt(this.product.quantity))) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
-        return
-      }
-      if (parseInt(this.product.quantity) <= 0) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 1000 })
+      if (!this.$validateNumber(this.item.quantity, 0, 10)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
         return
       }
       this.invalidMessage = ''
-      this.$store.dispatch('basket/setProduct', {
-        basketId: this.product.basketId,
-        quantity: parseInt(this.product.quantity)
+      this.$store.dispatch('basket/setItem', {
+        _uid: this.item._uid,
+        quantity: parseInt(this.item.quantity)
       })
-      this.$store.dispatch('basket/calcPricesInBasket', this.product.basketId)
+      this.$store.dispatch('basket/calcPricesInBasket', this.item._uid)
     },
     deleteItem() {
-      this.$store.dispatch('basket/removeProduct', this.product.basketId)
+      this.$store.dispatch('basket/removeItem', this.item._uid)
     }
   }
 }
@@ -60,7 +56,6 @@ export default {
 
 <style lang="scss">
 .actions-wrapper {
-  display: grid;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr auto;

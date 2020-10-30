@@ -13,23 +13,23 @@
 
       <template slot="data">
         <cv-data-table-row
-          v-for="item in products"
-          :key="`${item.basketId}`"
-          :value="`${item.basketId}`"
+          v-for="it in items"
+          :key="`${it._uid}`"
+          :value="`${it._uid}`"
           aria-label-expand-row="Go large"
           aria-label-collapse-row="Go small"
         >
-          <cv-data-table-cell>{{ item.info.name }}</cv-data-table-cell>
+          <cv-data-table-cell>{{ it.product.name }}</cv-data-table-cell>
           <cv-data-table-cell v-if="!$store.state.mobile">
-            {{ $store.getters.formatPrice(item.price.sum.net) }}
+            {{ $store.getters.formatPrice(it.price.sum.net) }}
           </cv-data-table-cell>
           <cv-data-table-cell v-if="!$store.state.mobile">
-            {{ $store.getters.formatPrice(item.price.sum.tax) }}
+            {{ $store.getters.formatPrice(it.price.sum.tax) }}
           </cv-data-table-cell>
-          <cv-data-table-cell>{{ $store.getters.formatPrice(item.price.sum.gross) }}</cv-data-table-cell>
+          <cv-data-table-cell>{{ $store.getters.formatPrice(it.price.sum.gross) }}</cv-data-table-cell>
 
           <template slot="expandedContent">
-            <ProductPricing :price="item.price" :single="false" />
+            <ProductPricing :price="it.price" :single="false" />
           </template>
         </cv-data-table-row>
 
@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      products: this.$store.state.basket.products,
+      items: this.$store.state.basket.items,
       prices: this.$store.state.basket.price
     }
   }

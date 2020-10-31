@@ -43,7 +43,7 @@ export default {
     },
 
     pushRoute(route) {
-      // Theese functions exist to be able to implement further logic if its needed
+      // These functions exist to be able to implement further logic if needed
       this.$router.push(route)
     },
     pushTool(action) {

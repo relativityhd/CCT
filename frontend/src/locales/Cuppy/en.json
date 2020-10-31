@@ -16,6 +16,10 @@
   },
   "heightHelper": {
     "helperText": "While you put up your closet after it's built it's higher than it's regular size. Just tell me how high your room is and what the Dimensions of your largest closet will be and we'll know if it fits",
+    "cm": "Use cm",
+    "deopth": "Your closets depth",
+    "height": "Your closets height",
+    "roomHeigh": "Your room height",
     "fit": "It fits!",
     "dontFit": "It doesn't fit try a smaller one!"
   },

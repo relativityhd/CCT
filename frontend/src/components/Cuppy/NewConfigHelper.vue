@@ -41,7 +41,6 @@ export default {
   data: () => {
     return {
       selected: ''
-      //presets: presets
     }
   },
   props: {

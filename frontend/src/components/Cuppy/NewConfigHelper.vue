@@ -4,45 +4,53 @@
       {{ $t('Cuppy.configHelper.helperText') }}
     </div>
     <div class="preset-recommendation">
-      <cv-dropdown
-      :placeholder="'Chose a preset'"
-      v-model="selected"
-      >
-        <cv-dropdown-item 
-          v-for="(preset, index) in getPresets('fridge')" 
-          :key="`${index}`" 
-          :value="`${index}`">
+      <cv-dropdown :placeholder="'Chose a preset'" v-model="selected">
+        <cv-dropdown-item v-for="(preset, index) in getPresets('fridge')" :key="`${index}`" :value="`${index}`">
           {{ preset.name }}
         </cv-dropdown-item>
       </cv-dropdown>
     </div>
     <table class="buttons">
-      <tr><td><cv-button @click="()=>{return pushConfiguration(selected)}">
-        {{ $t('Cuppy.configHelper.positive') }}
-      </cv-button></td></tr>
-      <tr><td><cv-button>
-        {{ $t('Cuppy.configHelper.negative') }}
-      </cv-button></td></tr>
+      <tr>
+        <td>
+          <cv-button
+            @click="
+              () => {
+                return pushConfiguration(selected)
+              }
+            "
+          >
+            {{ $t('Cuppy.configHelper.positive') }}
+          </cv-button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <cv-button>
+            {{ $t('Cuppy.configHelper.negative') }}
+          </cv-button>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
 <script>
-import {presets} from './configurations'
+import { presets } from './configurations'
 
 export default {
-  data: ()=> {
-    return{
-      selected: '',
+  data: () => {
+    return {
+      selected: ''
       //presets: presets
     }
   },
-  props:{
+  props: {
     category: {
       type: String,
       required: true
     }
   },
-  methods:{
+  methods: {
     pushConfiguration(id) {
       const preset = this.getPresets(this.category)[id]
       console.log(preset)
@@ -56,8 +64,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-button{
+button {
   width: 100%;
   font-size: 1rem;
   border: none;

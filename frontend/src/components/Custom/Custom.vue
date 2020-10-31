@@ -145,7 +145,7 @@ export default {
       if (mutation.type !== 'setLocation' || this.hasNoProduct) return
       this.calcSum()
     })
-    this.$root.$on('loadConfig', (id) => {
+    this.$root.$on('loadConfig', id => {
       this.loadConfig(preconfigs.find(c => c.id === id))
     })
   },

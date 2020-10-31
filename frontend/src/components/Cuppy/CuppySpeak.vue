@@ -4,8 +4,7 @@
       {{ cuppyGreet }}
     </h5>
     <div class="bubble-content">
-      <slot>
-      </slot>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -26,8 +25,7 @@ export default {
     greetUser() {
       const puns = this.$t('Cuppy.puns')
       return puns[Math.floor(Math.random() * 4)]
-    },
-    
+    }
   },
   watch: {
     showCuppyBubble: function(oldVal) {
@@ -67,8 +65,8 @@ export default {
   width: min-content;
 }
 
-.greet{
-  margin-bottom: .3rem;
+.greet {
+  margin-bottom: 0.3rem;
 }
 
 .bubble-content {

@@ -5,17 +5,18 @@
         <div id="CuppyBubble" v-bind:class="{ visible: showCuppy, invisible: !showCuppy }">
           <div class="CuppySpeak" @click.stop="">
             <CuppySpeak :showCuppyBubble="showCuppy">
-
               <NewConfigHelper
-               :category="'highboards'"
-               v-if="$router.currentRoute.name == 'Catalogue' && !onTour">
-               </NewConfigHelper>
-              <RoomHeightHelper v-else-if="$router.currentRoute.name == 'Tool' && !onTour"
-              :cupboardHeight="150"
-              :cupboardDepth="30"
+                :category="'highboards'"
+                v-if="$router.currentRoute.name == 'Catalogue' && !onTour"
+              ></NewConfigHelper>
+              <RoomHeightHelper
+                v-else-if="$router.currentRoute.name == 'Tool' && !onTour"
+                :cupboardHeight="150"
+                :cupboardDepth="30"
               ></RoomHeightHelper>
-              <WebsiteTourHelper v-else-if="$router.currentRoute.name == 'Hoempage' && !alreadyToured">
-              </WebsiteTourHelper>
+              <WebsiteTourHelper
+                v-else-if="$router.currentRoute.name == 'Hoempage' && !alreadyToured"
+              ></WebsiteTourHelper>
               <RouterHelper v-else></RouterHelper>
             </CuppySpeak>
           </div>
@@ -48,15 +49,13 @@ export default {
     summonCuppy() {
       this.showCuppy = true
     },
-    endTour(){
+    endTour() {
       this.onTour = false
       this.alreadyToured = true
-
     },
-    startTour(){
+    startTour() {
       this.onTour = true
     }
-    
   },
   data: () => {
     return {
@@ -72,7 +71,7 @@ export default {
       if (this.idleTime > timeToCup) {
         this.summonCuppy()
       }
-    },
+    }
   },
   created() {
     this.interval = setInterval(() => {
@@ -113,7 +112,7 @@ $cuppy-hidden: -100px;
   overflow: visible;
   transform: rotate(-10deg);
 }
-cuppy:not(:first-child){
+cuppy:not(:first-child) {
   cursor: pointer;
 }
 .cuppy-hoveraround {

@@ -102,6 +102,7 @@ import Visualization from '../Visualization/Visualization'
 import ProductPricing from '../Product/ProductPricing'
 import DeliveryTruck16 from '@carbon/icons-vue/es/delivery-truck/16'
 import Add20 from '@carbon/icons-vue/es/add/20'
+import preconfigs from '../../assets/preconfigs'
 
 export default {
   name: 'CustomProduct',
@@ -143,6 +144,9 @@ export default {
     this.unsubscribe = this.$store.subscribe(mutation => {
       if (mutation.type !== 'setLocation' || this.hasNoProduct) return
       this.calcSum()
+    })
+    this.$root.$on('loadConfig', (id) => {
+      this.loadConfig(preconfigs.find(c => c.id === id))
     })
   },
   methods: {

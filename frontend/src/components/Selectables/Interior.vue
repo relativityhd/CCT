@@ -62,7 +62,7 @@ export default {
       const maxHeight = this.ext.custom.height
       const otherItems = this.ext.interiors
         .filter(int => int.id !== this.interior.id)
-        .reduce((prev, int) => prev += itemHeight * int.quantity, 0)
+        .reduce((prev, int) => (prev += itemHeight * int.quantity), 0)
       return parseInt((maxHeight - otherItems) / itemHeight)
     },
     addItem() {

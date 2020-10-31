@@ -157,7 +157,7 @@ export default {
         const newExterior = { ...this.product.exteriors.find(e => e.id === cExterior.id) }
         newExterior._uid = uuidv4()
         newExterior.quantity = 1
-        newExterior.custom = {... cExterior.custom}
+        newExterior.custom = { ...cExterior.custom }
         newExterior.interiors = cExterior.interiors.reduce((prev, cInt) => {
           const newInterior = { ...this.product.interiors.find(i => i.id === cInt.id) }
           newInterior._uid = uuidv4()

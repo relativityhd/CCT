@@ -1,7 +1,30 @@
 {
-  "title": "Schrank-Konfigurations-Tool",
-  "basket": "Dein Einkaufswagen",
-  "modell": "Modell",
-  "priceStarting": "Fester Preis?",
-  "back": "Zurück"
+  "catalogue": "Produktkategorien",
+  "back": "Zurück",
+  "selfConfig": "Oder konfiguriere ihn selbst!",
+  "emptyMessage": "Konnte Produkt nicht finden :(",
+  "costCalculation": "Preisberechnung",
+  "chooseAnother": "Wähle ein anderes Produkt aus",
+  "addToCart": "Zum Einkaufswagen hinzufügen",
+  "order": "Zur Kasse gehen",
+  "item": "Produkt",
+  "startingAt": "Ab",
+  "ext": {
+    "title": "Exteriours",
+    "add": "Exteriours hinzufügen",
+    "addLabel": "Bitte wähle mindestens ein Exteriour für deinen Entwurf aus.",
+    "select": "Auswahl und bearbeiten",
+    "delete": "Lösche Exteriour",
+    "notEditable": "Exteriour ist nicht anpassbar"
+  },
+  "int": {
+    "title": "Interiours & Accessories",
+    "noExt": "Bitte wähle ein Exteriour, um ein Interiour hinzuzufügen.",
+    "add": "Füge {name} hinzu",
+    "delete": "Lösche Interiour"
+  },
+  "mat": {
+    "title": "Materialen",
+    "noExt": "Bitte wähle ein Exteriour, um ein Material hinzuzufügen."
+  }
 }

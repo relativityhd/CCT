@@ -16,12 +16,19 @@ export default {
   },
   methods: {
     createCorpus(width, height, depth, maindrawer, position_x, position_y, position_z, mat_id) {
-      
       var mat_color = 0xffffff
-      if (mat_id == 95) {mat_color = 0xffffff} //white
-      if (mat_id == 96) {mat_color = 0xc6945f} //maple
-      if (mat_id == 97) {mat_color = 0x834824} //walnut
-      if (mat_id == 98) {mat_color = 0xf8dfa1} //brich
+      if (mat_id == 95) {
+        mat_color = 0xffffff
+      } //white
+      if (mat_id == 96) {
+        mat_color = 0xc6945f
+      } //maple
+      if (mat_id == 97) {
+        mat_color = 0x834824
+      } //walnut
+      if (mat_id == 98) {
+        mat_color = 0xf8dfa1
+      } //brich
       const material = new Three.MeshPhongMaterial({
         color: mat_color
       })
@@ -207,7 +214,7 @@ export default {
 
       var totalWidth = exteriors.reduce((accum, item) => accum + item.custom.width, 0)
 
-      this.camera.position.z = totalWidth/100
+      this.camera.position.z = totalWidth / 100
 
       var höchsteHöhe = exteriors.reduce(function(prev, current) {
         if (+current.custom.height > +prev.custom.height) {

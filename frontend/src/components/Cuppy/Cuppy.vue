@@ -6,12 +6,11 @@
           <div class="CuppySpeak" @click.stop="">
             <CuppySpeak :showCuppyBubble="showCuppy">
               <RouterHelper v-if="$router.currentRoute.name == 'Imprint'"></RouterHelper>
-              <NewConfigHelper v-if="true"></NewConfigHelper>
-              <RoomHeightHelper v-if="$router.currentRoute.name == 'Tool'"
+              <NewConfigHelper v-if="true" :category="'fridge'"></NewConfigHelper>
+              <RoomHeightHelper v-if="false"
               :cupboardHeight="150"
               :cupboardDepth="30"
               ></RoomHeightHelper>
-              <ProductRecommendationHelper v-if="false"></ProductRecommendationHelper>
             </CuppySpeak>
           </div>
         </div>
@@ -25,7 +24,6 @@ import CuppySpeak from './CuppySpeak'
 import RouterHelper from './RouterHelper'
 import NewConfigHelper from './NewConfigHelper'
 import RoomHeightHelper from './RoomHeightHelper'
-import ProductRecommendationHelper from './ProductRecommendationHelper'
 
 const timeToCup = 30
 export default {
@@ -34,7 +32,6 @@ export default {
     RouterHelper,
     NewConfigHelper,
     RoomHeightHelper,
-    ProductRecommendationHelper
   },
 
   methods: {

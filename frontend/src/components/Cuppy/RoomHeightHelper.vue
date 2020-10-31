@@ -3,10 +3,18 @@
   <div class="height-text">
     {{ $t('Cuppy.heightHelper.helperText') }}
   </div>
-  <cv-number-input class="height-input"
+  <table class="inputs">
+  <tr>
+    <td><cv-number-input class="closet-height">
+      </cv-number-input></td>
+    <td><cv-number-input class="closet-depth">
+      </cv-number-input></td>
+  </tr>
+  <tr><td colspan="2"><cv-number-input class="room-height-input"
     :helperText="'Use cm'"
     v-model="userRoomHeight">
-  </cv-number-input>
+  </cv-number-input></td></tr>
+  </table>
   <div v-bind:class="{'fit-or-dont': true, 'fit': fitsInRoom, 'dont-fit': !fitsInRoom }">
     {{ fitsInRoom ? $t('Cuppy.heightHelper.fit') : $t('Cuppy.heightHelper.dontFit') }}
   </div>
@@ -37,8 +45,11 @@ export default {
 .roomHeightHelper{
   width: 10rem;
 }
-.height-input{
-  width: 3rem
+.closet-height {
+  width: 1vw
+}
+.room-height-input{
+  width: 100%;
 }
 .fit-or-dont{
   margin-top: 1rem;

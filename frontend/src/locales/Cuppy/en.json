@@ -1,0 +1,39 @@
+{
+  "location": "I'm from somewhere else!",
+  "language": "I'm speaking a different Language!",
+  "support": "I need some help!",
+  "imprint": "Who made this page?",
+  "puns": [
+    "CUPE DIEM",
+    "CUPOW! I’m here to help you",
+    "Im Cuppy from Cuptown and im coming to help you",
+    "Whats Cup, do you need any Help?"
+  ],
+  "configHelper": {
+    "helperText": "Our catalogue has a lot to offer so why don't you start with a pre made configuration",
+    "positive": "Sounds good!",
+    "negative": "Maybe something else?"
+  },
+  "heightHelper": {
+    "helperText": "While you put up your closet after it has been built it should be small enough for your room. Just tell me how high your room is in the first field and what the dimensions of your largest closet will be in the second field.Ill tell you wether it fits",
+    "fit": "It fits!",
+    "dontFit": "It doesn't fit try a smaller one!"
+  },
+  "recommendationHelper": {
+    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}", 
+    "positive": "Yikes",
+    "negative": "I need something else"
+  },
+  "tourHelper":{
+    "startTour": "Start the tour!",
+    "next": "Ok go on!",
+    "tourStart": "I'm your personal Cupboard Assistant and I'm the mascot of the Cyberspace-presence of Cupboard Lmtd. Why not join me on a tour of the Website?",
+    "tourLoc": "Great that you're coming with me. This is your location selector, if youre from somewhere else, than i assumed you can change this here.",
+    "tourLang": "¿No hablas ingles? No problem you can change select another language here and believe me I speak a lot of them",
+    "tourImprint": "Ah the Imprint it's boring but important. Here you find all the information about legal regulations. Like for example that we don't save any cookies, how cool is that?",
+    "tourAbout": "Uhh Berlin, this is where live and this is also where Cupboard Inc. has it's HQ. If you wan't to know more about us you can find that in the about section",
+    "tourCatalogue": "Here is the catalogue, you can find and buy a selection of our products here",
+    "tourTool": "Now to my favourite part: The customization tool, you can customize your Closet all by yourself and there's even a 3D-Model of it. ISN'T THAT AWESOME?",
+    "tourEnd": "Wowsers great that you took the Tour. Now have fun on our Website"
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "location": "Ich komm von woanders",
+    "language": "Ich spreche eine andere Sprache (Language)",
+    "support": "Ich brauch hilfe!",
+    "imprint": "Von wem ist die Seite?",
+    "puns": [
+      "CUPE DIEM",
+      "CUPOW! Ich bin hier, um dir zu helfen.",
+      "Ich bin Cuppy aus Cuptown aund ich eile dir zur Hilfe.",
+      "Whats Cup, Hilfe gefällig?"
+    ],
+    "configHelper": {
+      "helperText": "Unsere Produkpalette hat viel anzubiten. Starte doch einfach mit einer vorgefertigten Konfiguration!",
+      "positive": "Klingt gut!",
+      "negative": "Vielleicht etwas anderes?"
+    },
+    "heightHelper": {
+      "helperText": "Wenn du deinen Schrank nachdem er gebaut wurde aufstellen möchtest, darf er nicht zu hoch sein, damit man ihn noch an dei Wand stellen kann. Sag mir einfach im ersten Feld, wie hoch dein Raum ist und wie groß dein größter Korpus ist im zweiten Feld, und wir wissen, ob er passt!",
+      "fit": "Passt",
+      "dontFit": "Pass nicht, wähle einen kleineren."
+    },
+    "recommendationHelper": {
+      "helperText": "Sieht so aus., als wüsstest du nicht, was du machen sollst. Konfiguriere doch ein parr {item}", 
+      "positive": "Yikes",
+      "negative": "Ich brauch etwas anderes!"
+    },
+    "tourHelper":{
+      "startTour": "Tour starten",
+      "next": "Ok weiter geh's",
+      "tourStart": "Ich bin Ihr persönlicher Cupboard-Assistent und ich bin das Maskottchen der Cyber-Präsenz von Cupboard Lmtd. Warum begleitest du mich nicht auf eine Tour durch die Website?",
+      "tourLoc": "Schön, dass du mitkommst. Dies ist die Standortauswahl, falls du  woanders herkommen solltest, dann kannst du hier deinen Standort ändern.",
+      "tourLang": "¿No hablas ingles? Kein Problem du kannst hier eine andere Sprache (Language) auswählen. Und glaub mir, ich spreche viele Sprachen!",
+      "tourImprint": "Ah ein Impressum ist langweilig immer langweilig, aber trotzdem wichtig. Hier findest du alle Informationen zu den gesetzlichen Bestimmungen. Wie zum Beispiel, dass wir keine Cookies speichern, cool, oder?",
+      "tourAbout": "Uhh Berlin, da komm ich her! Und Außerdem ist da das Headquarter der Cuppboard Lmtd. Wenn du mehr über uns erfahren möchtest, findest dua lles Wichtige hier in der about Sektion.",
+      "tourCatalogue": "Hier ist unser Produktkatalog, wo du alle unsere Produkte finden und auswählen kannst!",
+      "tourTool": "Nun zu meinem Lieblingsteil: Das Konfigurationstool, du kannst hier einen Schrank ganz nach deinen Wünschen anpassen, und es gibt sogar eine 3D-Vorschaul von ihm. IST DAS NICHT FANTASTISCH?",
+      "tourEnd": "Wowsers wunderbar, dass du die Tour mitgemacht hast und nun viel Spaß auf unserer Website!"
+    }
+  }

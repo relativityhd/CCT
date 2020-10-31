@@ -44,25 +44,36 @@ import Add16 from '@carbon/icons-vue/es/add/16'
 export default {
   name: 'SingleInterior',
   props: {
-    interior: Object
+    interior: Object,
+    ext: Object
   },
   data() {
+    const intInExt = this.ext.interiors.find(int => int.id === this.interior.id)
     return {
       iconDelete: TrashCan16,
       iconAdd: Add16,
       invalidMessage: '',
-      quantity: 0
+      quantity: intInExt ? intInExt.quantity : 0
     }
   },
   methods: {
+    calcValidHeights() {
+      const itemHeight = 18
+      const maxHeight = this.ext.custom.height
+      const otherItems = this.ext.interiors
+        .filter(int => int.id !== this.interior.id)
+        .reduce((prev, int) => prev += itemHeight * int.quantity, 0)
+      return parseInt((maxHeight - otherItems) / itemHeight)
+    },
     addItem() {
       this.quantity = 1
       this.invalidMessage = ''
       this.$emit('add', this.interior.id)
     },
     changeQuantity() {
-      if (!this.$validateNumber(this.quantity, 0, 5)) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 5 })
+      const maxItems = this.calcValidHeights()
+      if (!this.$validateNumber(this.quantity, 0, maxItems)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: maxItems })
         return
       }
       this.invalidMessage = ''

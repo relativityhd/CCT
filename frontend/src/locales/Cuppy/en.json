@@ -1,6 +1,6 @@
 {
   "location": "I'm from somewhere else!",
-  "language": "I'm speaking a different Languge!",
+  "language": "I'm speaking a different Language!",
   "support": "I need some help!",
   "imprint": "Who made this page?",
   "puns": [
@@ -10,34 +10,30 @@
     "Whats Cup, do you need any Help?"
   ],
   "configHelper": {
-    "helperText": "Our catalogue has a lot to offer so why not start with a pre made configuration",
-    "positive": "Sounds good",
+    "helperText": "Our catalogue has a lot to offer, so why don't you start with a premade configuration",
+    "positive": "Sounds good!",
     "negative": "Maybe something else?"
   },
   "heightHelper": {
-    "helperText": "While you put up your closet after it's built it's higher than it's regular size. Just tell me how high your room is and what the Dimensions of your largest closet will be and we'll know if it fits",
-    "cm": "Use cm",
-    "deopth": "Your closets depth",
-    "height": "Your closets height",
-    "roomHeigh": "Your room height",
+    "helperText": "While you put up your closet after it has been built it should be small enough for your room. Just tell me how high your room is in the first field and what the dimensions of your largest closet will be in the second field. I'll tell you wether it fits",
     "fit": "It fits!",
     "dontFit": "It doesn't fit try a smaller one!"
   },
   "recommendationHelper": {
-    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}",
-    "positive": "Yikes",
+    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}", 
+    "positive": "Sounds good!",
     "negative": "I need something else"
   },
-  "tourHelper": {
+  "tourHelper":{
     "startTour": "Start the tour!",
     "next": "Ok go on!",
-    "tourStart": "I'm your personal Cupboard Assistant and I'm the mascot of the Cyberspace-presence of Cupboard Inc. Why not join me on a tour of the Website?",
-    "tourLoc": "Great that you're coming with me. This is your location selector, if youre from somewhere else, than i assumed you can change this here.",
-    "tourLang": "¿No hablas ingles? No problem you can change select another language here and believe me I speak a lot of them",
-    "tourImprint": "Ah the Imprint it's boring but important. Here you find all the information about legal regulations. Like for example that we don't save any cookies, how cool is that?",
-    "tourAbout": "Uhh Berlin, this is where live and this is also where Cupboard Inc. has it's HQ. If you wan't to know more about us you can find that in the about section",
+    "tourStart": "I'm your personal cupboard assistant and I'm the mascot of the cyberspace-presence of Cupboard Lmtd.. Why not join me on a tour of the website?",
+    "tourLoc": "Great that you're coming with me. This is your location selector, if you're from somewhere else, than I thought you can change this here.",
+    "tourLang": "¿No hablas ingles? No problem you can select another language here and believe me I speak a lot of them",
+    "tourImprint": "Ah the Imprint,  it's boring but important. Here you find all the information about legal regulations. Like for example that we don't save any cookies, how cool is that?",
+    "tourAbout": "Uhh Berlin, this is where I live and this is also where Cupboard Lmtd. has it's HQ. If you wan't to know more about us you can find it in the about section",
     "tourCatalogue": "Here is the catalogue, you can find and buy a selection of our products here",
-    "tourTool": "Now to my favourite part: The customization tool, you can customize your Closet all by yourself and there's even a 3D-Model of it. ISN'T THAT AWESOME?",
-    "tourEnd": "Wowsers great that you took the Tour. Now have fun on our Website"
+    "tourTool": "Now to my favourite part: The customization tool, you can customize your closet all by yourself and there's even a 3D-Model of it. ISN'T THAT AWESOME?",
+    "tourEnd": "Wowsers, great that you took the Tour. Now have fun on our website!"
   }
 }

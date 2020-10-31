@@ -9,7 +9,7 @@
     "update" : {
       "label" : "Nouvelle mise à jour disponible !",
       "title" : "Mise à jour",
-      "body" : "Voici l'explication... (TODO)",
+      "body" : "",
       "later" : "Mise à jour plus tard",
       "now" : "Recharger la page"
     },
@@ -24,3 +24,4 @@
       "otherCountry" : "Autre pays" 
     }
   }
+  

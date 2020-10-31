@@ -9,18 +9,19 @@
     "update": {
       "label": "Neues Update vefügbar",
       "title": "Update",
-      "body": "Here explaination... (TODO)",
+      "body": "",
       "later": "Später updaten",
       "now": "Seite neu laden"
     },
     "P404": "Diese Seite ist leider nicht verfügbar",
     "locations": {
-      "germany": "Deutschlabd",
+      "germany": "Deutschland",
       "greatBritain": "Vereinigtes Königreich",
       "france": "Frankreich",
       "italy": "Italien",
       "switzerland": "Schweiz",
-      "austria": "Österrecih",
+      "austria": "Österreich",
       "otherCountry": "Anderes Land"
     }
   }
+  

@@ -5,26 +5,26 @@
   "emptyMessage": "Konnte Produkt nicht finden :(",
   "costCalculation": "Preisberechnung",
   "chooseAnother": "Wähle ein anderes Produkt aus",
-  "addToCart": "Zum Einkaufswagen hinzufügen",
+  "addToCart": "Zum Einkaufswagen",
   "order": "Zur Kasse gehen",
   "item": "Produkt",
   "startingAt": "Ab",
   "ext": {
-    "title": "Exteriours",
-    "add": "Exteriours hinzufügen",
-    "addLabel": "Bitte wähle mindestens ein Exteriour für deinen Entwurf aus.",
-    "select": "Auswahl und bearbeiten",
-    "delete": "Lösche Exteriour",
-    "notEditable": "Exteriour ist nicht anpassbar"
+    "title": "Exterieurs",
+    "add": "Exterieurs hinzufügen",
+    "addLabel": "Bitte wähle mindestens ein Exterieur für deinen Entwurf aus.",
+    "select": "Auswahl und Bearbeitung",
+    "delete": "Lösche Exterieur",
+    "notEditable": "Exterieur ist nicht anpassbar"
   },
   "int": {
-    "title": "Interiours & Accessories",
-    "noExt": "Bitte wähle ein Exteriour, um ein Interiour hinzuzufügen.",
+    "title": "Interieurs & Accessories",
+    "noExt": "Bitte wähle ein Exterieur, um ein Interieur hinzuzufügen.",
     "add": "Füge {name} hinzu",
-    "delete": "Lösche Interiour"
+    "delete": "Lösche Interieur"
   },
   "mat": {
-    "title": "Materialen",
-    "noExt": "Bitte wähle ein Exteriour, um ein Material hinzuzufügen."
+    "title": "Materialien",
+    "noExt": "Bitte wähle ein Exterieur, um ein Material hinzuzufügen."
   }
 }

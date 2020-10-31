@@ -1,8 +1,20 @@
 <template>
-  {{ $t(`${currentTour.text}`) }}
-  <cv-button 
+<div class="tour-helper">
+  <div class="helperText">
+  {{ $t(`Cuppy.tourHelper.tour${currentTour.text}`) }}
+  </div>
+  <cv-button v-if="currentStep != 0"
   class="next-button"
-  @click="">
+  @click="nextStep">
+  {{ $t('Cuppy.tourHelper.next') }}
+  </cv-button>
+  <cv-button
+   v-else
+   @click="startTour">
+    {{ $t('Cuppy.tourHelper.startTour') }}
+  </cv-button>
+  
+</div>
 </template>
 
 <script>
@@ -11,14 +23,22 @@ export default {
   data() {
     return{
       currentStep: 0,
-      currentTour: tour[this.currentStep]
     }
   },
   methods: {
+    startTour(){
+      this.$parent.$parent.startTour()
+      this.nextStep()
+    },
     nextStep () {
       this.currentStep++
-      this.renderStep(currentTour)
+      if(this.currentStep >= tour.length){
+        this.$parent.$parent.endTour()
+        return
+      }
+      this.renderStep(this.currentTour)
     },
+
     renderStep(step) {
         if(step.site){
           this.pushRoute(step.site)
@@ -27,6 +47,7 @@ export default {
           this.pushTool(step.tool)
         }
       },
+
     pushRoute(route){
       // Theese functions exist to be able to implement further logic if its needed
       this.$router.push(route)
@@ -36,9 +57,24 @@ export default {
     }
   },
   computed:{
-    currentTour:function() {
+    currentTour: function() {
       return tour[this.currentStep]
-    }
+    },
+  },
+  destroyed(){
+    this.currentStep=0
+    this.$parent.$parent.endTour()
   }
 }
 </script>
+<style lang="scss" scoped>
+.helper-text{
+  font-size: 120%;
+}
+.tour-helper{
+  min-width: 10rem;
+}
+.next-button {
+  margin-top: 10px;
+}
+</style>

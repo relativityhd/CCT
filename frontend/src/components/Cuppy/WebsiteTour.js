@@ -1,22 +1,42 @@
 export const tour = [
   {
-    'step': 0,
     'site': '',
     'tool': '',
-    'text': ''
+    'text': 'Start'
   },
   {
     'site': '',
     'tool': 'openLoc',
-    'text': ''
+    'text': 'Loc'
   },
   {
     'site': '',
     'tool': 'openLang',
-    'text': ''
+    'text': 'Lang'
   },
   {
-    'site': 'imprint',
-    'tool':
+    'site': '/imprint',
+    'tool': '',
+    'text': 'Imprint'
+  },
+  {
+    'site': '/about',
+    'tool': '',
+    'text': 'About'
+  },
+  {
+    'site': '/catalogue',
+    'tool': '',
+    'text': 'Catalogue'
+  },
+  {
+    'site': '/tool/2',
+    'tool': '',
+    'text': 'Tool'
+  },
+  {
+    'site': '/',
+    'tool': '',
+    'text': 'End'
   }
 ]

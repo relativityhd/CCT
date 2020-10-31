@@ -5,7 +5,6 @@
     <div class="info-wrapper">
       <p class="pricing-info">{{ $t('Order.pricingInfo') }}</p>
     </div>
-    <slot></slot>
   </div>
 </template>
 
@@ -22,8 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .pricing-wrapper {
-  max-width: 500px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .pricing-info {

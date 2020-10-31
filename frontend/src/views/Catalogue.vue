@@ -2,13 +2,19 @@
   <div>
     <h1>{{ $t('Tool.catalogue') }}</h1>
     <div class="cat-container">
-      <div v-if="categories.length" class="tile-wrapper">
-        <cv-tile v-for="ct in categories" :key="ct.id" kind="clickable" class="tile" @click="selectCategory(ct.id)">
-          <img class="tile-image" :src="ct.imageUrl" alt="Image of Category" />
-          <div class="tile-body">
-            <h2>{{ ct.name }}</h2>
-          </div>
-        </cv-tile>
+      <div v-if="categories.length">
+        <div class="tile-wrapper">
+          <cv-tile v-for="ct in categories" :key="ct.id" kind="clickable" class="tile" @click="selectCategory(ct.id)">
+            <img class="tile-image" :src="ct.imageUrl" alt="Image of Category" />
+            <div class="tile-body">
+              <h2>{{ ct.name }}</h2>
+            </div>
+          </cv-tile>
+        </div>
+        <br />
+        <cv-button @click="$router.push('/tool/2')">
+          {{ $t('Tool.selfConfig') }}
+        </cv-button>
       </div>
 
       <div v-else-if="products.length" class="tile-wrapper">
@@ -62,7 +68,7 @@ export default {
       this.products = []
       this.categories = this.cachedCategories
       Vue.axios.get('/catalogue/categories').then(res => {
-        this.categories = res.data
+        this.categories = res.data.filter(c => c.id !== 2)
         this.cachedCategories = this.categories
       })
     },

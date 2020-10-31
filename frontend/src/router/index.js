@@ -6,10 +6,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Locations',
-    component: () => import(/* webpackChunkName: "Locations" */ '../views/Locations.vue'),
+    name: 'Hoempage',
+    component: () => import(/* webpackChunkName: "Homepage" */ '../views/Homepage.vue'),
     meta: {
-      title: 'Locations'
+      title: 'Home'
     }
   },
   {

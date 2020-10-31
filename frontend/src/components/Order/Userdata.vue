@@ -41,6 +41,20 @@
 
       <div class="userdata-container">
         <h6>{{ $t('Order.address') }}</h6>
+        <div class="usr-inp bx--form-item">
+          <label for="loc-dd" class="bx--label dd-label">{{ $t('Order.customer.country') }}</label>
+          <cv-dropdown
+            id="loc-dd"
+            class="dd-container"
+            :value="this.$store.state.locals.location"
+            @change="changeLocation"
+          >
+            <cv-dropdown-item v-for="location in locations" :key="location.isoCode" :value="location.isoCode">
+              {{ $t(`App.locations.${location.name}`) }}
+            </cv-dropdown-item>
+          </cv-dropdown>
+        </div>
+
         <cv-text-input
           class="usr-inp"
           :label="$t('Order.customer.address')"
@@ -74,17 +88,6 @@
             {{ $t('Order.invalid.city') }}
           </template>
         </cv-text-input>
-        <cv-text-input
-          class="usr-inp"
-          :label="$t('Order.customer.country')"
-          :placeholder="$t('Order.customer.country')"
-          v-model="customerData.country"
-          @input="change('country')"
-        >
-          <template v-if="invalids.country" slot="invalid-message">
-            {{ $t('Order.invalid.country') }}
-          </template>
-        </cv-text-input>
       </div>
 
       <div class="userdata-container">
@@ -113,9 +116,6 @@
         </cv-text-input>
       </div>
     </div>
-    <div class="btns">
-      <slot></slot>
-    </div>
   </div>
 </template>
 
@@ -125,12 +125,21 @@ export default {
   data() {
     return {
       customerData: this.$store.state.customer.customerData,
-      invalids: this.$store.state.customer.invalids
+      invalids: this.$store.state.customer.invalids,
+      countryIso: this.$store.state.locals.location,
+      locations: this.$store.state.locals.locations
     }
+  },
+  mounted() {
+    this.customerData.country = this.$store.state.locals.location
   },
   methods: {
     change(key) {
       this.$store.dispatch('customer/validateInput', key)
+    },
+    changeLocation(loc) {
+      this.$store.dispatch('setLocation', loc)
+      this.customerData.country = this.$store.state.locals.location
     }
   }
 }
@@ -146,24 +155,25 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
-  max-width: 792px;
+  gap: 20px;
   margin: 0 auto;
   justify-content: center;
 }
 
 .userdata-container {
-  margin: 30px 20px;
-  width: 224px;
+  width: 250px;
+}
+
+.dd-container {
+  width: 100%;
+}
+
+.dd-label {
+  font-weight: 500;
 }
 
 .usr-inp {
   margin-top: 15px;
   height: 84px;
-}
-
-.btns {
-  width: 100%;
-  max-width: 752px;
-  margin: 0 auto;
 }
 </style>

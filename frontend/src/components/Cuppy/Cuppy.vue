@@ -85,7 +85,7 @@ export default {
   animation: slide-in 1s ease-in-out;
 }
 #cuppy {
-  background-image: url('./../../assets/cuppy.svg');
+  background-image: url('./../../assets/images/cuppy/cuppy.svg');
   background-repeat: no-repeat;
   background-size: contain;
   height: 15rem;

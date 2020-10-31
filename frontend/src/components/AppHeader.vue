@@ -16,7 +16,7 @@
     </cv-header-nav>
 
     <div class="actions">
-      <cv-header-global-action aria-label="Shopping Cart" aria-controls="shopping-cart-panel">
+      <cv-header-global-action aria-label="Shopping Cart" aria-controls="shopping-cart-panel" ref="cartIcon">
         <ShoppingCart20 />
       </cv-header-global-action>
 
@@ -62,7 +62,7 @@
               href="javascript:void(0)"
               :selected="loc.selected"
             >
-              {{ loc.name }}
+              {{ $t(`App.locations.${loc.name}`) }}
             </cv-switcher-item-link>
           </cv-switcher-item>
         </cv-switcher>
@@ -86,8 +86,9 @@ export default {
   components: { Earth20, Translate20, ShoppingCart20, BasketPanel },
   data() {
     let links = [
-      { name: 'App.region', to: '/' },
-      { name: 'App.tool', to: '/tool' },
+      { name: 'App.home', to: '/' },
+      { name: 'App.tool', to: '/tool/2' },
+      { name: 'App.catalogue', to: '/catalogue' },
       { name: 'App.about', to: '/about' },
       { name: 'App.imprint', to: '/imprint' }
     ]
@@ -103,6 +104,9 @@ export default {
   mounted() {
     this.$router.afterEach(to => {
       this.switchPage(to)
+    })
+    this.$root.$on('openBasket', () => {
+      this.$refs.cartIcon.$el.click()
     })
     this.$root.$on('openLoc', () => {
       this.$refs.earthIcon.$el.click()

@@ -1,13 +1,11 @@
 <template>
   <div class="basket-wrapper">
     <ProductTile v-for="it in items" :key="it._uid" :item="it" />
-    <BasketPricing :prices="$store.state.basket.price" />
   </div>
 </template>
 
 <script>
 import ProductTile from './ProductTile/ProductTile'
-import BasketPricing from './BasketPricing'
 
 export default {
   name: 'Basket',
@@ -15,8 +13,7 @@ export default {
     items: Array
   },
   components: {
-    ProductTile,
-    BasketPricing
+    ProductTile
   }
 }
 </script>
@@ -24,8 +21,11 @@ export default {
 <style lang="scss" scoped>
 .basket-wrapper {
   width: 100%;
-  max-width: 400px;
-  display: grid;
-  gap: 20px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  justify-content: center;
 }
 </style>

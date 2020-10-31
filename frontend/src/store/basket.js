@@ -144,7 +144,7 @@ export default {
       state.items.forEach(it => {
         if (!it.isCustom) {
           products.push({
-            id: it.id,
+            id: it.product.id,
             quantity: it.quantity,
             customized: false,
             width: 0,
@@ -198,7 +198,7 @@ export default {
       return {
         currency: rootState.locals.currenyIso,
         netPrice: state.price.net,
-        taxPercentage: rootState.locals.vatRate * 100,
+        taxPercentage: rootState.locals.vatRate,
         taxAmount: state.price.tax,
         grossPrice: state.price.gross
       }

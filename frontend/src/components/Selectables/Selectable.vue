@@ -8,7 +8,7 @@
     class="selectable-tile"
   >
     <div class="inner-tile">
-      <img class="tile-image" :src="selectable.imageUrl" :alt="$t('Tool.altImg', { name: selectable.name })" />
+      <img class="tile-image" :src="selectable.imageUrl" :alt="$t('altMsg', { name: selectable.name })" />
       <div class="tile-body">
         <h6>{{ selectable.name }}</h6>
         <p>{{ $store.getters.formatPrice(selectable.price) }}</p>
@@ -54,15 +54,15 @@ export default {
       custom: {
         customized: true,
         height: 160,
-        width: 200,
+        width: 100,
         depth: 80
       }
     }
   },
   methods: {
     changeQuantity() {
-      if (!this.$validateNumber(this.quantity, 0, 10)) {
-        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: 10 })
+      if (!this.$validateNumber(this.quantity, 0, 5)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 1, max: 5 })
         return
       }
       this.invalidMessage = ''

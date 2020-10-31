@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div class="checkout-container">
-      <cv-button :icon="Tag16" kind="secondary" @click="showModal">
+  <div class="checkout-container">
+    <div class="checkout-item">
+      <cv-button :icon="Tag16" kind="ghost" @click="showModal">
         {{ $t('Basket.show') }}
       </cv-button>
     </div>
 
-    <div class="checkout-container">
+    <div class="checkout-item">
       <h6>{{ $store.getters.formatPrice(prices.gross) }}</h6>
       <cv-button :icon="DeliveryTruck16" kind="primary" @click="$router.push('/order')">
         {{ $t('Basket.checkout') }}
@@ -51,12 +51,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.checkout-container {
+.checkout-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   margin-top: 15px;
+  width: 100%;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .checkout-container h6 {

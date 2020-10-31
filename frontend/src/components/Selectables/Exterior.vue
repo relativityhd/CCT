@@ -2,7 +2,7 @@
   <div>
     <cv-tile :class="{ selected: selected }" kind="clickable" @click="$emit('select')" :value="`${exterior._uid}`">
       <div class="ext-wrapper">
-        <img class="ext-img" :src="exterior.imageUrl" :alt="$t('Tool.altImg', { name: exterior.name })" />
+        <img class="ext-img" :src="exterior.imageUrl" :alt="$t('altMsg', { name: exterior.name })" />
 
         <div class="ext-info">
           <h6>{{ exterior.name }}</h6>
@@ -15,7 +15,7 @@
           </cv-button>
           <cv-icon-button
             class="delete-btn"
-            kind="secondary"
+            kind="ghost"
             :icon="iconDelete"
             :label="$t('Tool.ext.delete')"
             tip-position="left"
@@ -29,7 +29,7 @@
             <cv-accordion-item>
               <template slot="title">{{ `${$t('customize')} ${exterior.name}` }}</template>
               <template slot="content">
-                <ProductCustomization :custom="exterior.custom" />
+                <ProductCustomization :custom="exterior.custom" v-on:change-custom="$emit('change-custom')" />
               </template>
             </cv-accordion-item>
           </cv-accordion>
@@ -90,6 +90,8 @@ export default {
   grid-area: actions;
   display: grid;
   grid-auto-flow: column;
+  justify-content: end;
+  gap: 5px;
 }
 
 .select-btn,

@@ -51,6 +51,9 @@ export default {
       Object.keys(state.customerData).forEach(key => {
         state.invalids[key] = false
       })
+    },
+    changeCountry(state, iso) {
+      state.customerData.country = iso
     }
   },
   actions: {

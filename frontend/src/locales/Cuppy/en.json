@@ -9,6 +9,9 @@
     "Im Cuppy from Cuptown and im coming to help you",
     "Whats Cup, do you need any Help?"
   ],
+  "routerHelper": {
+    "helperText": "These are some things I can help you with"
+  },
   "configHelper": {
     "helperText": "Our catalogue has a lot to offer so why not start with a pre made configuration",
     "positive": "Sounds good",

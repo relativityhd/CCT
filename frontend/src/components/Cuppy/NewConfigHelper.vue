@@ -5,7 +5,7 @@
     </div>
     <div class="preset-recommendation">
       <cv-dropdown :placeholder="'Chose a preset'" v-model="selected">
-        <cv-dropdown-item v-for="(preset, index) in getPresets('fridge')" :key="`${index}`" :value="`${index}`">
+        <cv-dropdown-item v-for="(preset, index) in getPresets(category)" :key="`${index}`" :value="`${preset.id}`">
           {{ preset.name }}
         </cv-dropdown-item>
       </cv-dropdown>
@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import { presets } from './configurations'
+import presets from '../../assets/preconfigs'
 
 export default {
   data: () => {
@@ -51,9 +51,8 @@ export default {
   },
   methods: {
     pushConfiguration(id) {
-      const preset = this.getPresets(this.category)[id]
-      console.log(preset)
-      this.$router.push(`/tool/2/${preset.uid}`)
+      console.log(id)
+      this.$root.$emit('loadConfig', id)
     },
     getPresets(category) {
       //Only configurations with selected category

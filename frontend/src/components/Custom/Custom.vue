@@ -94,6 +94,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
 import Exteriors from './Exteriors'
 import Interiors from './Interiors'
 import Materials from './Materials'
@@ -147,6 +148,34 @@ export default {
   methods: {
     openModal() {
       this.$refs.ext.openModal()
+    },
+    loadConfig(config) {
+      // Empty exteriors array without changing reference to array
+      this.exteriors.splice(0, this.exteriors.length)
+
+      config.exteriors.forEach(cExterior => {
+        const newExterior = { ...this.product.exteriors.find(e => e.id === cExterior.id) }
+        newExterior._uid = uuidv4()
+        newExterior.quantity = 1
+        newExterior.custom = {... cExterior.custom}
+        newExterior.interiors = cExterior.interiors.reduce((prev, cInt) => {
+          const newInterior = { ...this.product.interiors.find(i => i.id === cInt.id) }
+          newInterior._uid = uuidv4()
+          newInterior.quantity = cInt.quantity
+          prev.push(newInterior)
+          return prev
+        }, [])
+        newExterior.accessories = cExterior.accessories.reduce((prev, cAcc) => {
+          const newAccessory = { ...this.product.accessories.find(a => a.id === cAcc.id) }
+          newAccessory._uid = uuidv4()
+          newAccessory.quantity = cAcc.quantity
+          prev.push(newAccessory)
+          return prev
+        }, [])
+        newExterior.material = this.product.materials.find(m => m.id === cExterior.material.id)
+        this.exteriors.push(newExterior)
+      })
+      this.calcSum()
     },
     setExterior(_uid) {
       this.selectedExt = this.exteriors.find(ext => ext._uid === _uid) || {}

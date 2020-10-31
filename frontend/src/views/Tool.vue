@@ -1,12 +1,13 @@
 <template>
   <div class="product-container">
     <Product v-if="type === 'product'" :product="product" v-on:back="$router.push('/catalogue')" />
-    <Custom v-if="type === 'custom'" :product="product" v-on:back="$router.push('/catalogue')" />
+    <Custom v-if="type === 'custom'" ref="cost" :product="product" v-on:back="$router.push('/catalogue')" />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import preconfigs from '../assets/preconfigs'
 
 export default {
   name: 'Tool',
@@ -28,6 +29,10 @@ export default {
   mounted() {
     const id = this.$route.params.id
     this.loadProduct(id)
+    setTimeout(() => {
+      if (!this.$refs || !this.$refs.cost) return
+      this.$refs.cost.loadConfig(preconfigs.find(c => c.id === 0))
+    }, 3000)
   },
   methods: {
     loadProduct(id) {

@@ -67,7 +67,11 @@ export default {
     },
     addItem() {
       this.quantity = 1
-      this.invalidMessage = ''
+      const maxItems = this.calcValidHeights()
+      if (!this.$validateNumber(this.quantity, 0, maxItems)) {
+        this.invalidMessage = this.$t('invalidNumber', { min: 0, max: maxItems })
+        return
+      }
       this.$emit('add', this.interior.id)
     },
     changeQuantity() {

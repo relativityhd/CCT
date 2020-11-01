@@ -104,7 +104,6 @@ export default {
         price: this.$store.getters['basket/orderPrice'](),
         products: this.$store.getters['basket/orderItems']()
       }
-      console.log('--DEBUG : mounted -> postObject', postObject)
       Vue.axios
         .post('/order', postObject)
         .then(res => {

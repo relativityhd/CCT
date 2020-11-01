@@ -1,16 +1,15 @@
 {
-    "title" : "Qui nous sommes?",
-    "aboutUs" : "Nous sommes Cupboard Limited une start-up de Berlin, qui produit:",
-    "for0" : "Cupboards",
-    "for1" : "Sideboards",
-    "for2" : "Highboards",
-    "for3" : "Lowboards",
-    "ourVision" : "Notre vision",
-    "ourVisionText" : "Une production durable et de valeur d'armoires entièrement personnalisables",
-    "uspOpener" : "Nos étapes clés:",
-    "usp0" : "Collaboration avec les partenaires producteurs locaux et les fournisseurs de bois",
-    "usp1" : "Production avec 100% d'énergies renouvelables jusqu'en 2030",
-    "usp2" : "Alimentation électrique de nos magasins et bureaux avec des énergies 100% renouvelables",
-    "usp3" : "100% de bois certifié FSC"
-  }
-  
+  "title": "Qui nous sommes?",
+  "aboutUs": "Nous sommes Cupboard Limited une start-up de Berlin, qui produit:",
+  "for0": "Cupboards",
+  "for1": "Sideboards",
+  "for2": "Highboards",
+  "for3": "Lowboards",
+  "ourVision": "Notre vision",
+  "ourVisionText": "Une production durable et de valeur d'armoires entièrement personnalisables",
+  "uspOpener": "Nos étapes clés:",
+  "usp0": "Collaboration avec les partenaires producteurs locaux et les fournisseurs de bois",
+  "usp1": "Production avec 100% d'énergies renouvelables jusqu'en 2030",
+  "usp2": "Alimentation électrique de nos magasins et bureaux avec des énergies 100% renouvelables",
+  "usp3": "100% de bois certifié FSC"
+}

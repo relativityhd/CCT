@@ -1,6 +1,7 @@
 <template>
   <cv-modal
     ref="updateModal"
+    class="update-modale"
     :close-aria-label="$t('App.close')"
     size="xs"
     @primary-click="updateNow"
@@ -47,8 +48,15 @@ export default {
       this.$refs.updateModal.show()
       this.updateExists = false
       if (!this.registration || !this.registration.waiting) return
+      this.$storage.removeItem('cupboard-limited')
       this.registration.waiting.postMessage('skipWaiting')
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.update-modale {
+  text-align: left;
+}
+</style>

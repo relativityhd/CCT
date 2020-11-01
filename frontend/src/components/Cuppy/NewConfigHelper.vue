@@ -5,37 +5,26 @@
     </div>
     <div class="preset-recommendation">
       <cv-dropdown :placeholder="'Chose a preset'" v-model="selected">
-        <cv-dropdown-item v-for="(preset, index) in getPresets('fridge')" :key="`${index}`" :value="`${index}`">
+        <cv-dropdown-item v-for="(preset, index) in getPresets(category)" :key="`${index}`" :value="`${preset.id}`">
           {{ preset.name }}
         </cv-dropdown-item>
       </cv-dropdown>
     </div>
-    <table class="buttons">
-      <tr>
-        <td>
-          <cv-button
-            @click="
-              () => {
-                return pushConfiguration(selected)
-              }
-            "
-          >
-            {{ $t('Cuppy.configHelper.positive') }}
-          </cv-button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <cv-button>
-            {{ $t('Cuppy.configHelper.negative') }}
-          </cv-button>
-        </td>
-      </tr>
-    </table>
+    <div class="buttons">
+      <cv-button
+        @click="
+          () => {
+            return pushConfiguration(selected)
+          }
+        "
+      >
+        {{ $t('Cuppy.configHelper.positive') }}
+      </cv-button>
+    </div>
   </div>
 </template>
 <script>
-import { presets } from './configurations'
+import presets from '../../assets/preconfigs'
 
 export default {
   data: () => {
@@ -51,9 +40,8 @@ export default {
   },
   methods: {
     pushConfiguration(id) {
-      const preset = this.getPresets(this.category)[id]
-      console.log(preset)
-      this.$router.push(`/tool/2/${preset.uid}`)
+      this.$store.state.cuppy.pendingConfiguration = id
+      this.$router.push('/tool/2')
     },
     getPresets(category) {
       //Only configurations with selected category
@@ -65,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 button {
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.8rem;
   border: none;
   margin: 5px 0 5px 0;
   cursor: pointer;

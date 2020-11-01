@@ -15,7 +15,7 @@
                 :cupboardDepth="30"
               ></RoomHeightHelper>
               <WebsiteTourHelper
-                v-else-if="$router.currentRoute.name == 'Homepage' && !alreadyToured"
+                v-else-if="$router.currentRoute.name == 'Homepage' && !alreadyToured || onTour"
               ></WebsiteTourHelper>
               <RouterHelper v-else></RouterHelper>
             </CuppySpeak>
@@ -129,7 +129,6 @@ cuppy:not(:first-child) {
 }
 #CuppyBubble {
   transform: rotate(10deg);
-  //transition: opacity 0.5s ease;
   transition: visibility 1s, opacity 2s;
 }
 .CuppySpeak {

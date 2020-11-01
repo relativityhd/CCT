@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="helperText">
-      {{}}
+      {{ $t('Cuppy.routerHelper.helperText') }}
     </div>
     <table id="buttoncontainer">
       <tr>

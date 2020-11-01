@@ -9,12 +9,19 @@
     "Im Cuppy from Cuptown and im coming to help you",
     "Whats Cup, do you need any Help?"
   ],
+  "routerHelper": {
+    "helperText": "These are some things I can help you with"
+  },
   "configHelper": {
     "helperText": "Our catalogue has a lot to offer, so why don't you start with a premade configuration",
     "positive": "Sounds good!",
     "negative": "Maybe something else?"
   },
   "heightHelper": {
+    "cm": "Use cm",
+    "depth": "Your closets depth",
+    "height": "Your closets height",
+    "roomHeight": "Your room height",
     "helperText": "While you put up your closet after it has been built it should be small enough for your room. Just tell me how high your room is in the first field and what the dimensions of your largest closet will be in the second field. I'll tell you wether it fits",
     "fit": "It fits!",
     "dontFit": "It doesn't fit try a smaller one!"

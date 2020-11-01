@@ -3,7 +3,9 @@
   "userdata": "Kundeninformationen",
   "shop": "Shop",
   "order": "Jetzt kaufen",
-  "back": "Zurück zu",
+  "name": "Name",
+  "address": "Adresse",
+  "contact": "Kontaktinformationen",
   "customer": {
     "firstname": "Vorname",
     "middlename": "Zweitname",
@@ -26,14 +28,16 @@
     "phone": "Bitte gib eine gültige Telefonummer an!",
     "email": "Bitte gib eine gültige Mail Adresse an!"
   },
-  "waitForResponse": "Auf Antwort warten",
-  "sendOrder": "Sende deine Bestellung",
-  "failed": "Es ist etwas falschgelaufen",
-  "sucessfull": "Erfolgreich bestellt",
-  "orderId": "Deine Bestellnummer ist:",
-  "pricingInfo": "",
-  "backToShop": "Zurück zum Shop",
-  "name": "Name",
-  "address": "Adresse",
-  "contact": "Kontaktinformationen"
+  "pricingInfo": "Preisinformationen hier",
+  "validatingData": "Validiere Eingabe",
+  "fillInformation": "Gib deine Daten ein",
+  "invalidData": "Ungültige Kundendaten",
+  "backtoShop": "Zurück zum Shop",
+  "emptyBasket": "Dein Einkaufswagen ist leer!",
+  "sending": "Bestelle Produkte...",
+  "tryAgain": "Versuche Bestellung erneut zu senden!",
+  "errored": "Etwas ist falsch gelaufen",
+  "successfulRedirect": "Zurück zur Startseite",
+  "successful": "Gekaufte Artikel",
+  "orderId": "Deine Bestellnummer ist {id}"
 }

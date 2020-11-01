@@ -85,8 +85,8 @@ export default {
       this.selected = false
       this.quantity = 0
       this.custom.customized = false
-      this.custom.width = 160
-      this.custom.height = 200
+      this.custom.height = 160
+      this.custom.width = 100
       this.custom.depth = 80
     }
   }

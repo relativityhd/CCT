@@ -15,4 +15,3 @@ export const presets = [
     category: 'fridges'
   }
 ]
-

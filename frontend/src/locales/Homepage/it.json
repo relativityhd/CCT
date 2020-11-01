@@ -1,12 +1,11 @@
 {
-    "welcome": "Benvenuti al Cupbaord Ltd.-Shop",
-    "cuppyhelp": "Cuppy ti assalirà!",
-    "marketing": "Build your premium unique cupboard!",
-    "catalogueTitle": "Catalogo",
-    "catalogue": "Consulta il nostro catalogo",
-    "toolTitle": "Configuratore",
-    "tool": "Inizia a costruire il tuo armadio",
-    "or": "oppure",
-    "youcan": "Visualizza il nostro"
-  }
-  
+  "welcome": "Benvenuti al Cupbaord Ltd.-Shop",
+  "cuppyhelp": "Cuppy ti assalirà!",
+  "marketing": "Build your premium unique cupboard!",
+  "catalogueTitle": "Catalogo",
+  "catalogue": "Consulta il nostro catalogo",
+  "toolTitle": "Configuratore",
+  "tool": "Inizia a costruire il tuo armadio",
+  "or": "oppure",
+  "youcan": "Visualizza il nostro"
+}

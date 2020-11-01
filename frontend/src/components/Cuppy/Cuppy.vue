@@ -15,7 +15,7 @@
                 :cupboardDepth="30"
               ></RoomHeightHelper>
               <WebsiteTourHelper
-                v-else-if="$router.currentRoute.name == 'Homepage' && !alreadyToured || onTour"
+                v-else-if="($router.currentRoute.name == 'Homepage' && !alreadyToured) || onTour"
               ></WebsiteTourHelper>
               <RouterHelper v-else></RouterHelper>
             </CuppySpeak>
@@ -32,7 +32,7 @@ import RouterHelper from './RouterHelper'
 import NewConfigHelper from './NewConfigHelper'
 import RoomHeightHelper from './RoomHeightHelper'
 import WebsiteTourHelper from './WebsiteTourHelper'
-const timeToCup = 30
+const timeToCup = 120
 export default {
   components: {
     CuppySpeak,
@@ -111,6 +111,7 @@ $cuppy-hidden: -100px;
   width: 10rem;
   overflow: visible;
   transform: rotate(-10deg);
+  cursor: pointer;
 }
 cuppy:not(:first-child) {
   cursor: pointer;
@@ -133,6 +134,7 @@ cuppy:not(:first-child) {
 }
 .CuppySpeak {
   transform: translate(-80%, -100%);
+  cursor: initial;
 }
 @keyframes slide-in {
   from {

@@ -1,6 +1,7 @@
 <template>
   <cv-modal
     ref="updateModal"
+    class="update-modale"
     :close-aria-label="$t('App.close')"
     size="xs"
     @primary-click="updateNow"
@@ -53,3 +54,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.update-modale {
+  text-align: left;
+}
+</style>

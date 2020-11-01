@@ -9,15 +9,22 @@
       "Ich bin Cuppy aus Cuptown aund ich eile dir zur Hilfe.",
       "Whats Cup, Hilfe gefällig?"
     ],
+    "routerHelper": {
+      "helperText": "Da sind einige Dinge, bei denen ich dir helfen kann."
+    },
     "configHelper": {
       "helperText": "Unsere Produktpalette hat viel anzubieten. Starte doch einfach mit einer vorgefertigten Konfiguration!",
       "positive": "Klingt gut!",
       "negative": "Vielleicht etwas anderes?"
     },
     "heightHelper": {
+      "cm": "Benutze cm",
+      "depth": "Deine Schranktiefe",
+      "height": "Deine Schrankhöhe",
+      "roomHeight": "Deine Raumhöhe",
       "helperText": "Wenn du deinen Schrank nachdem er gebaut wurde aufstellen möchtest, darf er nicht zu hoch sein, damit man ihn noch an die Wand stellen kann. Sag mir einfach im ersten Feld, wie hoch dein Raum ist und im zweiten Feld wie groß dein größter Korpus ist.",
-      "fit": "Passt",
-      "dontFit": "Pass nicht, wähle einen kleineren."
+      "fit": "Es passt",
+      "dontFit": "Passt nicht, probiere einen kleineren Schrank!"
     },
     "recommendationHelper": {
       "helperText": "Sieht so aus, als wüsstest du nicht, was du machen sollst. Konfiguriere doch ein paar {item}", 

@@ -9,13 +9,20 @@
       "Im Cuppy di Cuptown e vengo ad aiutarti",
       "Whats Cup, hai bisogno di aiuto?"
     ],
+    "routerHelper": {
+      "helperText": "Queste sono alcune cose in cui posso aiutarvi"
+    },
     "configHelper": {
       "helperText": "Il nostro catalogo ha molto da offrire, quindi perché non iniziare con una configurazione pre-fatta",
       "positive": "Suona bene",
       "negative": "Forse qualcos'altro?"
     },
     "heightHelper": {
-      "helperText": "Mentre si mette l'armadio dopo che è stato costruito, è più alto della sua dimensione normale. Dimmi solo quanto è alta la tua stanza e quali saranno le dimensioni del tuo armadio più grande e sapremo se ci sta bene",
+      "cm": "Usa cm",
+      "profondità": "La profondità dei tuoi armadi",
+      "altezza": "L'altezza dei vostri armadi",
+      "roomHeight": "L'altezza della tua stanza",
+      "helperText": "Mentre si mette l'armadio dopo che è stato costruito, dovrebbe essere abbastanza piccolo per la vostra stanza. Dimmi solo quanto è alta la tua stanza nel primo campo e quali saranno le dimensioni del tuo armadio più grande nel secondo campo. Ti dirò se ci sta bene",
       "fit": "Si adatta!",
       "dontFit": "Non va bene, provane uno più piccolo!"
     },

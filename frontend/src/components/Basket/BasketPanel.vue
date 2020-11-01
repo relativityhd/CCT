@@ -5,7 +5,9 @@
     <div class="products-wrapper" v-if="this.$store.state.basket.items.length">
       <div class="product" v-for="it in this.$store.state.basket.items" :key="it._uid">
         <div class="product-info">
-          <h3>{{ it.quantity }}x</h3>
+          <h3 v-if="it.quantity < 1">1x</h3>
+          <h3 v-else-if="it.quantity > 10">10x</h3>
+          <h3 v-else>{{ it.quantity }}x</h3>
           <img class="product-image" :src="it.product.imageUrl" alt="Image of Product" />
           <div class="product-body">
             <h6>{{ it.product.name }}</h6>

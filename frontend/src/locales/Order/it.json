@@ -1,19 +1,21 @@
 {
-  "pricing": "Prezzi",
-  "userdata": "Informazioni per i clienti",
+  "price": "Prezzi",
+  "userdata": "Informazioni sul cliente",
   "shop": "Negozio",
-  "order": "Acquista ora",
-  "back": "Torna a",
+  "order": "Compra ora",
+  "name": "Nome",
+  "address": "Indirizzo",
+  "contact": "Informazioni di contatto",
   "customer": {
-    "firstname": "Nome",
-    "middlename": "Nome del sito",
+    "name": "Nome",
+    "middlename": "Middlename",
     "lastname": "Cognome",
-    "address": "Via",
+    "adress": "Via",
     "postalCode": "Codice postale",
     "city": "Città",
     "country": "Paese",
     "phone": "Telefono",
-    "email": "Email"
+    "email": "e-mail"
   },
   "invalid": {
     "firstname": "Inserisci il tuo nome!",
@@ -26,14 +28,16 @@
     "phone": "Inserisci il tuo un numero di telefono valido!",
     "email": "Inserisci un indirizzo e-mail valido!"
   },
-  "waitForResponse": "In attesa di risposta",
-  "sendOrder": "Invio dell'ordine",
-  "failed": "Qualcosa è andato storto",
-  "sucessfull": "Ordinato con successo!",
-  "orderId": "Il tuo ID ordine è:",
-  "pricingInfo": "",
-  "backToShop": "Ritorno al negozio",
-  "name": "Nome",
-  "address": "Indirizzo",
-  "contact": "Informazioni di contatto"
+  "pricingInfo": "Informazioni sui prezzi qui...",
+  "validatingData": "Convalida dati...",
+  "fillInformation": "Compila i tuoi dati",
+  "invalidData": "Dati cliente non validi!",
+  "backtoShop": "Torna al negozio",
+  "emptyBasket": "Il tuo cestino è vuoto!",
+  "sending": "Ordinare gli articoli...",
+  "tryAgain": "Prova a rispedire l'ordine",
+  "errored": "Qualcosa è andato storto :(",
+  "successfulRedirect": "Ritorno a casa",
+  "sucessful": "Articoli ordinati!",
+  "orderId": "L'ID dell'ordine è: {id}"
 }

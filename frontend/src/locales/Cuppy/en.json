@@ -27,11 +27,11 @@
     "dontFit": "It doesn't fit try a smaller one!"
   },
   "recommendationHelper": {
-    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}", 
+    "helperText": "Looks like you don't know what to do. Why not try do configure some {item}",
     "positive": "Sounds good!",
     "negative": "I need something else"
   },
-  "tourHelper":{
+  "tourHelper": {
     "startTour": "Start the tour!",
     "next": "Ok go on!",
     "tourStart": "I'm your personal cupboard assistant and I'm the mascot of the cyberspace-presence of Cupboard Lmtd.. Why not join me on a tour of the website?",

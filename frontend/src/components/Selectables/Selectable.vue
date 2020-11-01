@@ -54,7 +54,7 @@ export default {
       custom: {
         customized: true,
         height: 160,
-        width: 200,
+        width: 100,
         depth: 80
       }
     }

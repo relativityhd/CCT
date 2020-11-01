@@ -23,6 +23,7 @@ Vue.use(CarbonComponentsVue)
 Vue.config.productionTip = false
 
 Vue.mixin(globalsMixin)
+Vue.prototype.$storage = window.sessionStorage
 
 new Vue({
   router,

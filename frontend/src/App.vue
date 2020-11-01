@@ -65,7 +65,7 @@ export default {
 #app-view {
   margin-top: calc(48px + 24px);
   min-height: calc(100vh - 48px - 24px);
-  padding-bottom: 15px;
+  padding-bottom: 150px;
 }
 #theCuppy {
   position: fixed;

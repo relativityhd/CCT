@@ -1,27 +1,26 @@
 {
-    "skipto": "Salta al contenuto principale",
-    "home": "Home",
-    "tool": "Configuratore",
-    "about": "Circa",
-    "catalogo": "Catalogo",
-    "imprint": "Impronta",
-    "close": "Chiudere",
-    "update": {
-      "label": "Nuovo aggiornamento disponibile!",
-      "title": "Update",
-      "body": "Siate consapevoli che la ricarica ripristinerà tutte le impostazioni, ad es. gli articoli memorizzati nel carrello.",
-      "later": "Aggiorna più tardi",
-      "now": "Ricarica pagina"
-    },
-    "P404": "Spiacenti, questa pagina non è disponibile. :(",
-    "locations": {
-      "germany": "Germania",
-      "greatBritain": "Gran Bretagna",
-      "france": "France",
-      "italy" : "Italia",
-      "switzerland": "Svizzera",
-      "austria": "Austria",
-      "otherCountry": "Altro Paese"
-    }
+  "skipto": "Salta al contenuto principale",
+  "home": "Home",
+  "tool": "Configuratore",
+  "about": "Circa",
+  "catalogo": "Catalogo",
+  "imprint": "Impronta",
+  "close": "Chiudere",
+  "update": {
+    "label": "Nuovo aggiornamento disponibile!",
+    "title": "Update",
+    "body": "Siate consapevoli che la ricarica ripristinerà tutte le impostazioni, ad es. gli articoli memorizzati nel carrello.",
+    "later": "Aggiorna più tardi",
+    "now": "Ricarica pagina"
+  },
+  "P404": "Spiacenti, questa pagina non è disponibile. :(",
+  "locations": {
+    "germany": "Germania",
+    "greatBritain": "Gran Bretagna",
+    "france": "France",
+    "italy" : "Italia",
+    "switzerland": "Svizzera",
+    "austria": "Austria",
+    "otherCountry": "Altro Paese"
   }
-  
+}

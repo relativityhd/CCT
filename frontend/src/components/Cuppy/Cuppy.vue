@@ -4,7 +4,21 @@
       <div id="cuppy" @click="cuppyButton">
         <div id="CuppyBubble" v-bind:class="{ visible: showCuppy, invisible: !showCuppy }">
           <div class="CuppySpeak" @click.stop="">
-            <CuppySpeak :showCuppyBubble="showCuppy" />
+            <CuppySpeak :showCuppyBubble="showCuppy">
+              <NewConfigHelper
+                :category="'highboards'"
+                v-if="$router.currentRoute.name == 'Catalogue' && !onTour"
+              ></NewConfigHelper>
+              <RoomHeightHelper
+                v-else-if="$router.currentRoute.name == 'Tool' && !onTour"
+                :cupboardHeight="150"
+                :cupboardDepth="30"
+              ></RoomHeightHelper>
+              <WebsiteTourHelper
+                v-else-if="($router.currentRoute.name == 'Homepage' && !alreadyToured) || onTour"
+              ></WebsiteTourHelper>
+              <RouterHelper v-else></RouterHelper>
+            </CuppySpeak>
           </div>
         </div>
       </div>
@@ -14,10 +28,18 @@
 
 <script>
 import CuppySpeak from './CuppySpeak'
-const timeToCup = 30
+import RouterHelper from './RouterHelper'
+import NewConfigHelper from './NewConfigHelper'
+import RoomHeightHelper from './RoomHeightHelper'
+import WebsiteTourHelper from './WebsiteTourHelper'
+const timeToCup = 120
 export default {
   components: {
-    CuppySpeak
+    CuppySpeak,
+    RouterHelper,
+    NewConfigHelper,
+    RoomHeightHelper,
+    WebsiteTourHelper
   },
 
   methods: {
@@ -26,13 +48,22 @@ export default {
     },
     summonCuppy() {
       this.showCuppy = true
+    },
+    endTour() {
+      this.onTour = false
+      this.alreadyToured = true
+    },
+    startTour() {
+      this.onTour = true
     }
   },
   data: () => {
     return {
       showCuppy: false,
       idleTime: 0,
-      interval: Function
+      interval: Function,
+      onTour: false,
+      alreadyToured: false
     }
   },
   watch: {
@@ -60,9 +91,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$cuppy-hidden: -100px;
+
 .shy-cuppy {
   position: relative;
-  bottom: -60px;
+  bottom: $cuppy-hidden;
   animation: slide-out 1s ease-in-out;
 }
 .hello-cuppy {
@@ -80,6 +113,9 @@ export default {
   transform: rotate(-10deg);
   cursor: pointer;
 }
+cuppy:not(:first-child) {
+  cursor: pointer;
+}
 .cuppy-hoveraround {
   animation: hoveraround 15s ease-in-out 0s alternate;
   animation-iteration-count: infinite;
@@ -94,15 +130,15 @@ export default {
 }
 #CuppyBubble {
   transform: rotate(10deg);
-  //transition: opacity 0.5s ease;
   transition: visibility 1s, opacity 2s;
 }
 .CuppySpeak {
   transform: translate(-80%, -100%);
+  cursor: initial;
 }
 @keyframes slide-in {
   from {
-    bottom: -60px;
+    bottom: $cuppy-hidden;
   }
   to {
     bottom: 0;
@@ -113,7 +149,7 @@ export default {
     bottom: 0;
   }
   to {
-    bottom: -60px;
+    bottom: $cuppy-hidden;
   }
 }
 @keyframes hoveraround {
@@ -122,7 +158,7 @@ export default {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(2.5vh);
+    transform: translateY(1.5vh);
   }
 }
 </style>

@@ -4,6 +4,7 @@
 
 <script>
 import * as Three from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 export default {
   name: 'Visualization',
   data() {
@@ -192,6 +193,8 @@ export default {
       this.renderer.setSize(container.clientWidth, container.clientHeight)
 
       container.appendChild(this.renderer.domElement)
+
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     },
     animate: function() {
       this.renderer.render(this.scene, this.camera)
@@ -214,8 +217,6 @@ export default {
 
       var totalWidth = exteriors.reduce((accum, item) => accum + item.custom.width, 0)
 
-      this.camera.position.z = totalWidth / 100
-
       var höchsteHöhe = exteriors.reduce(function(prev, current) {
         if (+current.custom.height > +prev.custom.height) {
           return current
@@ -231,6 +232,8 @@ export default {
           return prev
         }
       }).custom.depth
+
+      this.camera.position.z = Math.max(totalWidth / 100, (höchsteHöhe * 1.1) / 100)
 
       var previousWidths = []
 

@@ -1,7 +1,31 @@
 {
-  "title": "Outil de configuration des armoires",
-  "basket": "Votre panier",
-  "modell": "Modèle",
-  "priceStarting": "Un prix fixe?",
-  "back": "Retour en arrière"
+  "catalogue": "Catalogue",
+  "back": "Retour en arrière",
+  "selfConfig": "Ou configurez-le vous-même!",
+  "emptyMessage": "Je n'ai pas trouvé de produit :(",
+  "costCalculation": "Calcul du prix",
+  "chooseAnother": "Choisissez une autre",
+  "addToCart": "Ajouter au panier",
+  "order": "Consultez le site",
+  "item": "Point",
+  "startingAt": "A partir de",
+  "ext": {
+    "title": "Extérieurss",
+    "add": "Ajouter les extérieurs",
+    "addLabel": "Veuillez sélectionner au moins un extérieur qui devrait être ajouté à votre construction.",
+    "select": "Sélectionner et éditer",
+    "delete": "Supprimer l'extérieur",
+    "notEditable": "L'extérieur n'est pas modifiable."
+  },
+  "int": {
+    "title": "Intérieurs et accessoires",
+    "noExt": "Veuillez sélectionner un Extérieur pour ajouter un Intérieur.",
+    "add": "Ajouter {name}",
+    "delete": "Supprimer l'intérieur"
+  },
+  "mat": {
+    "title": "Matériel",
+    "noExt": "Veuillez sélectionner un Extérieur pour choisir le Matériel."
+  }
 }
+

@@ -1,20 +1,10 @@
 <template>
   <div id="speak" class="speech-bubble">
-    <div id="bubblecontent">
-      <h6 id="greet">{{ cuppyGreet }}</h6>
-      <div id="buttoncontainer">
-        <button @click="$root.$emit('openLoc')">
-          {{ $t('CuppySpeak.location') }}
-        </button>
-
-        <button @click="$root.$emit('openLang')">
-          {{ $t('CuppySpeak.language') }}
-        </button>
-
-        <button @click="toSide('/about')">
-          {{ $t('CuppySpeak.imprint') }}
-        </button>
-      </div>
+    <h5 class="greet">
+      {{ cuppyGreet }}
+    </h5>
+    <div class="bubble-content">
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -33,11 +23,8 @@ export default {
   },
   methods: {
     greetUser() {
-      const puns = this.$t('CuppySpeak.puns')
+      const puns = this.$t('Cuppy.puns')
       return puns[Math.floor(Math.random() * 4)]
-    },
-    toSide(path) {
-      if (this.$route.path !== path) this.$router.push(path)
     }
   },
   watch: {
@@ -49,7 +36,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .speech-bubble {
   position: relative;
@@ -73,21 +59,18 @@ export default {
 }
 
 #speak {
+  box-shadow: 0px 0px 13px 0px rgba(50, 50, 50, 0.7);
   display: flex;
   flex-direction: column;
   height: max-content;
   width: min-content;
 }
-#buttoncontainer {
-  margin: 10px 10px 10px 10px;
-  display: flex;
-  flex-direction: column;
+
+.greet {
+  margin-bottom: 0.3rem;
 }
-button {
-  font-size: 1rem;
-  border: none;
-  width: max-content;
-  margin-top: 3px;
-  cursor: pointer;
+
+.bubble-content {
+  margin: 10px 10px 10px 10px;
 }
 </style>

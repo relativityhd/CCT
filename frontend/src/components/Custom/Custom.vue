@@ -145,9 +145,11 @@ export default {
       if (mutation.type !== 'setLocation' || this.hasNoProduct) return
       this.calcSum()
     })
-    this.$root.$on('loadConfig', (id) => {
-      this.loadConfig(preconfigs.find(c => c.id === id))
-    })
+    const configId = this.$store.state.cuppy.pendingConfiguration
+    if (configId != ""){
+      this.loadConfig(preconfigs.find(c => c.id === configId))
+      this.$store.state.cuppy.pendingConfiguration = ""
+    }
   },
   methods: {
     openModal() {
@@ -178,8 +180,8 @@ export default {
         }, [])
         newExterior.material = this.product.materials.find(m => m.id === cExterior.material.id)
         this.exteriors.push(newExterior)
-      })
-      this.calcSum()
+      }) 
+      this.$nextTick(()=>this.calcSum())
     },
     setExterior(_uid) {
       this.selectedExt = this.exteriors.find(ext => ext._uid === _uid) || {}

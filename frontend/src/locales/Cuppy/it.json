@@ -1,0 +1,48 @@
+{
+    "location": "Vengo da un altro posto!",
+    "language": "Parlo una lingua diversa!",
+    "support": "Ho bisogno di aiuto!",
+    "impronta": "Chi ha fatto questa pagina?",
+    "gimprint": [
+      "CUPE DIEM",
+      "CUPOW! Sono qui per aiutarti",
+      "Im Cuppy di Cuptown e vengo ad aiutarti",
+      "Whats Cup, hai bisogno di aiuto?"
+    ],
+    "routerHelper": {
+      "helperText": "Queste sono alcune cose in cui posso aiutarvi"
+    },
+    "configHelper": {
+      "helperText": "Il nostro catalogo ha molto da offrire, quindi perché non iniziare con una configurazione pre-fatta",
+      "positive": "Suona bene",
+      "negative": "Forse qualcos'altro?"
+    },
+    "heightHelper": {
+      "cm": "Usa cm",
+      "profondità": "La profondità dei tuoi armadi",
+      "altezza": "L'altezza dei vostri armadi",
+      "roomHeight": "L'altezza della tua stanza",
+      "helperText": "Mentre si mette l'armadio dopo che è stato costruito, dovrebbe essere abbastanza piccolo per la vostra stanza. Dimmi solo quanto è alta la tua stanza nel primo campo e quali saranno le dimensioni del tuo armadio più grande nel secondo campo. Ti dirò se ci sta bene",
+      "fit": "Si adatta!",
+      "dontFit": "Non va bene, provane uno più piccolo!"
+    },
+    "recommendationHelper": {
+      "helperText": "Sembra che non sappiate cosa fare. Perché non provare a configurare qualche {voce}", 
+      "positive": "Bleah",
+      "negative": "Ho bisogno di qualcos'altro"
+    },
+    "tourHelper":{
+      "startTour": "Inizia il tour!",
+      "next": "Ok, vai avanti!",
+      "tourStart":"Sono il vostro assistente personale di Armadio e sono la mascotte del Cyberspace-presence of Cupboard Lmtd. Perché non ti unisci a me in un tour del sito web?",
+      "tourLoc": "È fantastico che tu venga con me. Questo è il selettore della tua posizione, se vieni da qualche altra parte, che ho pensato che puoi cambiare qui",
+      "tourLang": "¿No hablas Italiano? Nessun problema, potete cambiare qui scegliete un'altra lingua e credetemi, ne parlo molte",
+      "tourImprint": "Ah l'Impronta è noiosa ma importante. Qui trovate tutte le informazioni sulle norme di legge. Come ad esempio il fatto che non salviamo i cookie, quanto è figo?",
+      "tourAbout": "Uhhh Berlino, qui è dove si vive e qui è anche il quartier generale di Cupboard Inc. Se non volete saperne di più su di noi potete trovarlo nella sezione dedicata",
+      "tourCatalogue": "Ecco il catalogo, qui potete trovare e acquistare una selezione dei nostri prodotti",
+      "tourTool": "Ora la mia parte preferita: Lo strumento di personalizzazione, puoi personalizzare il tuo armadio tutto da solo e c'è anche un modello 3D. NON È FANTASTICO?",
+      "tourEnd": "È fantastico che tu abbia fatto il Tour. Ora divertitevi sul nostro sito web"
+    }
+  }
+
+  

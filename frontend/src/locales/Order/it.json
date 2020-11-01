@@ -10,7 +10,7 @@
     "name": "Nome",
     "middlename": "Middlename",
     "lastname": "Cognome",
-    "adress": "Via",
+    "address": "Via",
     "postalCode": "Codice postale",
     "city": "Città",
     "country": "Paese",

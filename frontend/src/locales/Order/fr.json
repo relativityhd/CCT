@@ -1,21 +1,21 @@
 {
-  "pricing": "tarification",
-  "userdata": "informations sur les clients",
+  "pricing": "Tarification",
+  "userdata": "Informations sur les clients",
   "shop": "Boutique",
   "order": "Acheter maintenant",
-  "name": "nom",
+  "name": "Nom",
   "address": "Adresse",
-  "contact": "coordonnées",
+  "contact": "Coordonnées",
   "customer": {
     "firstname": "Prénom",
     "middlename": "Middlename",
     "lastname": "Nom de famille",
-    "address": "rue",
+    "address": "Rue",
     "postalCode": "Code postal",
     "city": "Ville",
     "country": "Pays",
-    "phone": "téléphone",
-    "email": "courrier électronique"
+    "phone": "Téléphone",
+    "email": "Courrier électronique"
   },
   "invalid": {
     "firstname": "Veuillez entrer votre prénom!",
@@ -28,7 +28,7 @@
     "phone": "Veuillez entrer un numéro de téléphone valide!",
     "email": "Veuillez entrer une adresse électronique valide!"
   },
-  "pricingInfo": "Pricing information here...",
+  "pricingInfo": "",
   "validatingData": "Validation des données...",
   "fillInformation": "Remplissez vos données",
   "invalidData": "Données clients invalides",

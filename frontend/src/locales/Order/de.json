@@ -28,7 +28,7 @@
     "phone": "Bitte gib eine gültige Telefonummer an!",
     "email": "Bitte gib eine gültige Mail Adresse an!"
   },
-  "pricingInfo": "Preisinformationen hier",
+  "pricingInfo": "",
   "validatingData": "Validiere Eingabe",
   "fillInformation": "Gib deine Daten ein",
   "invalidData": "Ungültige Kundendaten",

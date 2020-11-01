@@ -1,5 +1,5 @@
 {
-  "price": "Prezzi",
+  "pricing": "Prezzi",
   "userdata": "Informazioni sul cliente",
   "shop": "Negozio",
   "order": "Compra ora",
@@ -10,7 +10,7 @@
     "name": "Nome",
     "middlename": "Middlename",
     "lastname": "Cognome",
-    "adress": "Via",
+    "address": "Via",
     "postalCode": "Codice postale",
     "city": "Città",
     "country": "Paese",
@@ -28,7 +28,7 @@
     "phone": "Inserisci il tuo un numero di telefono valido!",
     "email": "Inserisci un indirizzo e-mail valido!"
   },
-  "pricingInfo": "Informazioni sui prezzi qui...",
+  "pricingInfo": "",
   "validatingData": "Convalida dati...",
   "fillInformation": "Compila i tuoi dati",
   "invalidData": "Dati cliente non validi!",

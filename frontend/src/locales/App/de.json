@@ -9,7 +9,7 @@
     "update": {
       "label": "Neues Update vefügbar",
       "title": "Update",
-      "body": "Achtung! Beim Neuladen der Seite werden sämtliche Einstellungen, sowie z.B. der Einkaufskorb, zurückgesetzt.",
+      "body": "",
       "later": "Später updaten",
       "now": "Seite neu laden"
     },

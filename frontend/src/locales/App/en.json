@@ -9,7 +9,7 @@
   "update": {
     "label": "New Update available!",
     "title": "Update",
-    "body": "Be aware that reloading the page will reset all settings, eg. the stored items in your basket.",
+    "body": "",
     "later": "Update later",
     "now": "Reload page"
   },

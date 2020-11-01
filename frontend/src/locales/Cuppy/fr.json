@@ -9,13 +9,20 @@
       "Im Cuppy de Cuptown et moi venons vous aider",
       "Quelle tasse, avez-vous besoin d'aide ?"
     ],
+    "routerHelper" : {
+      "helperText" : "Je peux vous aider pour certaines choses"
+    },
     "configHelper" : {
       "helperText" : "Notre catalogue a beaucoup à offrir, alors pourquoi ne pas commencer par une configuration pré-établie",
       "positive" : "sonne bien",
       "negative" : "Peut-être autre chose ?"
     },
     "heightHelper" : {
-      "helperText" : "Bien que vous installiez votre placard après sa construction, il est plus haut que sa taille normale. Dites-moi simplement quelle est la hauteur de votre pièce et quelles seront les dimensions de votre plus grande armoire et nous saurons si elle convient",
+      "cm" : "Utiliser cm",
+      "profondeur" : "La profondeur de vos placards",
+      "hauteur" : "La hauteur de vos placards",
+      "roomHeight" : "Votre hauteur de pièce",
+      "helperText" : "Pendant que vous installez votre placard après sa construction, il doit être assez petit pour votre chambre. Dites-moi simplement à quelle hauteur se trouve votre chambre dans le premier champ et quelles seront les dimensions de votre plus grande armoire dans le deuxième champ. Je vous dirai s'il convient",
       "fit" : "Ça colle !",
       "dontFit" : "Ça ne va pas, essayez-en un plus petit !"
     },

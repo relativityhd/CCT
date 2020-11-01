@@ -23,8 +23,8 @@
       "height": "Deine Schrankhöhe",
       "roomHeight": "Deine Raumhöhe",
       "helperText": "Wenn du deinen Schrank nachdem er gebaut wurde aufstellen möchtest, darf er nicht zu hoch sein, damit man ihn noch an die Wand stellen kann. Sag mir einfach im ersten Feld, wie hoch dein Raum ist und im zweiten Feld wie groß dein größter Korpus ist.",
-      "fit": "Es passst",
-      "dontFit": "Passt nicht, probiere einen kleinenren Schrank! "
+      "fit": "Es passt",
+      "dontFit": "Passt nicht, probiere einen kleineren Schrank!"
     },
     "recommendationHelper": {
       "helperText": "Sieht so aus, als wüsstest du nicht, was du machen sollst. Konfiguriere doch ein paar {item}", 

@@ -176,10 +176,6 @@ export default {
       this.myrequest = requestAnimationFrame(this.animate)
     },
     render(exteriors) {
-      console.log(
-        '--DEBUG : render -> exteriors',
-        exteriors.map(e => ({ ...e }))
-      )
       if (exteriors.length === 0) return
 
       for (let i = this.scene.children.length - 1; i >= 0; i--) {

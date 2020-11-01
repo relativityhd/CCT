@@ -9,7 +9,7 @@
   "update": {
     "label": "New Update available!",
     "title": "Update",
-    "body": "Here explaination... (TODO)",
+    "body": "",
     "later": "Update later",
     "now": "Reload page"
   },

@@ -47,6 +47,7 @@ export default {
       this.$refs.updateModal.show()
       this.updateExists = false
       if (!this.registration || !this.registration.waiting) return
+      this.$storage.removeItem('cupboard-limited')
       this.registration.waiting.postMessage('skipWaiting')
     }
   }

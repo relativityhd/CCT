@@ -32,7 +32,7 @@ import RouterHelper from './RouterHelper'
 import NewConfigHelper from './NewConfigHelper'
 import RoomHeightHelper from './RoomHeightHelper'
 import WebsiteTourHelper from './WebsiteTourHelper'
-const timeToCup = 30
+const timeToCup = 120
 export default {
   components: {
     CuppySpeak,

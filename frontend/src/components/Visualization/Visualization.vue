@@ -4,7 +4,7 @@
 
 <script>
 import * as Three from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 export default {
   name: 'Visualization',
   data() {
@@ -191,7 +191,7 @@ export default {
       this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true, shadowMapEnabled: true })
       this.renderer.setClearColor(0x012840, 0.0) //change alpha for transparent background
       this.renderer.setSize(container.clientWidth, container.clientHeight)
-      
+
       container.appendChild(this.renderer.domElement)
 
       this.controls = new OrbitControls(this.camera, this.renderer.domElement)
@@ -233,7 +233,7 @@ export default {
         }
       }).custom.depth
 
-      this.camera.position.z = Math.max(totalWidth/100, (höchsteHöhe*1.1)/100)
+      this.camera.position.z = Math.max(totalWidth / 100, (höchsteHöhe * 1.1) / 100)
 
       var previousWidths = []
 

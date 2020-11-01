@@ -1,6 +1,6 @@
 <template>
   <cv-header id="app-header" aria-label="Carbon header">
-    <cv-header-menu-button aria-label="Header menu" aria-controls="side-nav" />
+    <cv-header-menu-button aria-label="Header menu" aria-controls="side-nav" ref="menuBtn" />
     <cv-skip-to-content to="#main-content">
       {{ $t('App.skipto') }}
     </cv-skip-to-content>
@@ -30,7 +30,7 @@
     </div>
 
     <template v-slot:left-panels>
-      <cv-side-nav id="side-nav" fixed>
+      <cv-side-nav id="side-nav" ref="sideNav" fixed>
         <cv-side-nav-items>
           <cv-side-nav-link v-for="link in links" :key="link.to" :to="link.to" :active="link.active">
             {{ $t(link.name) }}
@@ -104,6 +104,9 @@ export default {
   mounted() {
     this.$router.afterEach(to => {
       this.switchPage(to)
+      if (!this.$refs.sideNav || !this.$refs.menuBtn) return
+      this.$refs.sideNav.dataExpanded = false
+      this.$refs.menuBtn.dataActive = false
     })
     this.$root.$on('openBasket', () => {
       this.$refs.cartIcon.$el.click()

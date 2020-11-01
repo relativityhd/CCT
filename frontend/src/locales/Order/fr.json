@@ -28,7 +28,7 @@
     "phone": "Veuillez entrer un numéro de téléphone valide!",
     "email": "Veuillez entrer une adresse électronique valide!"
   },
-  "pricingInfo": "Pricing information here...",
+  "pricingInfo": "",
   "validatingData": "Validation des données...",
   "fillInformation": "Remplissez vos données",
   "invalidData": "Données clients invalides",

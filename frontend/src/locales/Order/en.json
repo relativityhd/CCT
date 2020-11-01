@@ -28,7 +28,7 @@
     "phone": "Please enter a valid phone number!",
     "email": "Please enter a valid email address!"
   },
-  "pricingInfo": "Pricing information here...",
+  "pricingInfo": "",
   "validatingData": "Validating data...",
   "fillInformation": "Fill in your data",
   "invalidData": "Invalid customer data!",

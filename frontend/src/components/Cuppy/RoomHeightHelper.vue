@@ -28,7 +28,6 @@ export default {
   },
   computed: {
     fitsInRoom: function() {
-      console.log('Calculated!')
       const cupboardDiagonal = Math.sqrt(this.cupboardDepth ** 2 + this.cupboardHeight ** 2)
       return this.userRoomHeight > cupboardDiagonal + 2
     }

@@ -4,7 +4,7 @@ import VuexPersist from 'vuex-persist'
 import locals from './locals'
 import basket from './basket'
 import customer from './customer'
-import cuppy from'./cuppy'
+import cuppy from './cuppy'
 Vue.use(Vuex)
 
 const vuexPersist = new VuexPersist({

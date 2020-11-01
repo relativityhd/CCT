@@ -93,6 +93,7 @@ export default {
       this.$store.dispatch('basket/addItem', {
         product: this.product
       })
+      this.$root.$emit('openBasket')
     }
   },
   beforeDestroy() {

@@ -146,9 +146,9 @@ export default {
       this.calcSum()
     })
     const configId = this.$store.state.cuppy.pendingConfiguration
-    if (configId != ""){
+    if (configId != '') {
       this.loadConfig(preconfigs.find(c => c.id === configId))
-      this.$store.state.cuppy.pendingConfiguration = ""
+      this.$store.state.cuppy.pendingConfiguration = ''
     }
   },
   methods: {
@@ -180,8 +180,8 @@ export default {
         }, [])
         newExterior.material = this.product.materials.find(m => m.id === cExterior.material.id)
         this.exteriors.push(newExterior)
-      }) 
-      this.$nextTick(()=>this.calcSum())
+      })
+      this.$nextTick(() => this.calcSum())
     },
     setExterior(_uid) {
       this.selectedExt = this.exteriors.find(ext => ext._uid === _uid) || {}

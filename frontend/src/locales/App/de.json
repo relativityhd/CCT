@@ -1,27 +1,26 @@
 {
-    "skipto": "Springe zum Hauptpunkt",
-    "home": "Home",
-    "tool": "Konfigurator",
-    "about": "Über uns",
-    "catalogue": "Produkte",
-    "imprint": "Impressum",
-    "close": "Schließen",
-    "update": {
-      "label": "Neues Update vefügbar",
-      "title": "Update",
-      "body": "",
-      "later": "Später updaten",
-      "now": "Seite neu laden"
-    },
-    "P404": "Diese Seite ist leider nicht verfügbar",
-    "locations": {
-      "germany": "Deutschland",
-      "greatBritain": "Vereinigtes Königreich",
-      "france": "Frankreich",
-      "italy": "Italien",
-      "switzerland": "Schweiz",
-      "austria": "Österreich",
-      "otherCountry": "Anderes Land"
-    }
+  "skipto": "Springe zum Hauptpunkt",
+  "home": "Home",
+  "tool": "Konfigurator",
+  "about": "Über uns",
+  "catalogue": "Produkte",
+  "imprint": "Impressum",
+  "close": "Schließen",
+  "update": {
+    "label": "Neues Update vefügbar",
+    "title": "Update",
+    "body": "",
+    "later": "Später updaten",
+    "now": "Seite neu laden"
+  },
+  "P404": "Diese Seite ist leider nicht verfügbar",
+  "locations": {
+    "germany": "Deutschland",
+    "greatBritain": "Vereinigtes Königreich",
+    "france": "Frankreich",
+    "italy": "Italien",
+    "switzerland": "Schweiz",
+    "austria": "Österreich",
+    "otherCountry": "Anderes Land"
   }
-  
+}

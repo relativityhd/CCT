@@ -63,7 +63,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: max-content;
-  width: min-content;
+  width: 250px;
 }
 
 .greet {

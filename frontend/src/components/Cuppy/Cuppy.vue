@@ -15,7 +15,7 @@
                 :cupboardDepth="30"
               ></RoomHeightHelper>
               <WebsiteTourHelper
-                v-else-if="$router.currentRoute.name == 'Homepage' && !alreadyToured"
+                v-else-if="$router.currentRoute.name == 'Homepage' && !alreadyToured || onTour"
               ></WebsiteTourHelper>
               <RouterHelper v-else></RouterHelper>
             </CuppySpeak>

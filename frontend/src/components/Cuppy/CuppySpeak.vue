@@ -22,9 +22,9 @@ export default {
       return puns[Math.floor(Math.random() * 4)]
     }
   },
-  computed:{
-    cuppyGreet: function(){
-      if (this.showCuppyBubble){
+  computed: {
+    cuppyGreet: function() {
+      if (this.showCuppyBubble) {
         return this.greetUser()
       }
       return this.cuppyGreet

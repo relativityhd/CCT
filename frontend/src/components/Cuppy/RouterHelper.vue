@@ -43,7 +43,7 @@ export default {
 #buttoncontainer {
   border: none;
 }
-.router-helper{
+.router-helper {
   width: 13rem;
 }
 button {

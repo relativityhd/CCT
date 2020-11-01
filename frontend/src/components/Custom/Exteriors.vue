@@ -120,7 +120,7 @@ export default {
             const newExterior = { ...s }
             newExterior._uid = uuidv4()
             newExterior.quantity = 1
-            newExterior.custom = custom
+            newExterior.custom = { ...custom }
             newExterior.interiors = []
             newExterior.accessories = []
             newExterior.material = this.standardMat

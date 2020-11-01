@@ -1,6 +1,6 @@
 module.exports = [
   {
-    id: 0,
+    id: "1",
     name: 'Josef',
     category: 'highboards',
     exteriors: [
@@ -80,7 +80,7 @@ module.exports = [
   },
   {
     name: 'Karlson',
-    id: 1,
+    id: "2",
     category: 'highboards',
     exteriors: [
       {
@@ -140,7 +140,7 @@ module.exports = [
     ]
   },
   {
-    id: 101,
+    id: "101",
     name: 'Large',
     category: 'template',
     exteriors: [
@@ -189,7 +189,7 @@ module.exports = [
     ]
   },
   {
-    id: 1,
+    id: "102",
     name: 'Small',
     category: 'template',
     exteriors: [

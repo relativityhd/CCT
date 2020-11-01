@@ -9,7 +9,7 @@
     "update": {
       "label": "Nuovo aggiornamento disponibile!",
       "title": "Update",
-      "body": "",
+      "body": "Siate consapevoli che la ricarica ripristinerà tutte le impostazioni, ad es. gli articoli memorizzati nel carrello.",
       "later": "Aggiorna più tardi",
       "now": "Ricarica pagina"
     },

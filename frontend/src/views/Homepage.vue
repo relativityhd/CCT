@@ -22,10 +22,6 @@
         </cv-tile>
       </div>
     </div>
-
-    <div class="cuppyhint" v-if="!$store.state.mobile">
-      <h2>{{ $t('Homepage.cuppyhelp') }} &#8594;</h2>
-    </div>
   </div>
 </template>
 
@@ -52,7 +48,7 @@ export default {
 }
 
 .paralax-wrapper {
-  height: 50vh;
+  height: 30vh;
   width: 100%;
 }
 
@@ -100,9 +96,4 @@ export default {
   height: 32px;
 }
 
-.cuppyhint {
-  position: fixed;
-  right: 20vw;
-  bottom: 7vh;
-}
 </style>

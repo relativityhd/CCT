@@ -1,40 +1,46 @@
 {
-    "location" : "Je viens d'un autre endroit !",
-    "language" : "Je parle une autre langue (Language)!",
-    "support" : "J'ai besoin d'aide !",
-    "imprint" : "Qui a fait cette page ?",
-    "puns" : [
-      "CUPE DIEM",
-      "CUPOW ! Je suis là pour vous aider",
-      "Im Cuppy de Cuptown et moi venons vous aider",
-      "Quelle tasse, avez-vous besoin d'aide ?"
-    ],
-    "configHelper" : {
-      "helperText" : "Notre catalogue a beaucoup à offrir, alors pourquoi ne pas commencer par une configuration pré-établie",
-      "positive" : "sonne bien",
-      "negative" : "Peut-être autre chose ?"
-    },
-    "heightHelper" : {
-      "helperText" : "Bien que vous installiez votre placard après sa construction, il est plus haut que sa taille normale. Dites-moi simplement quelle est la hauteur de votre pièce et quelles seront les dimensions de votre plus grande armoire et nous saurons si elle convient",
-      "fit" : "Ça colle !",
-      "dontFit" : "Ça ne va pas, essayez-en un plus petit !"
-    },
-    "recommendationHelper" : {
-      "helperText" : "On dirait que vous ne savez pas quoi faire. Pourquoi ne pas essayer de configurer un {point}", 
-      "positive" : "Aïe",
-      "negative" : "J'ai besoin d'autre chose"
-    },
-    "tourHelper":{
-      "startTour" : "Commencez la visite !",
-      "next" : "Ok, continuez !",
-      "tourStart" : "Je suis votre assistant personnel de Cupboard et je suis la mascotte du Cyberespace - présence de Cupboard Lmtd. Pourquoi ne pas me rejoindre pour une visite du site ?",
-      "tourLoc" : "C'est super que vous veniez avec moi. C'est votre sélecteur de lieu, si vous venez d'ailleurs, alors je suppose que vous pouvez le changer ici.",
-      "tourLang" : "¿No hablas Francés? Pas de problème, vous pouvez choisir une autre langue (Language) ici et croyez-moi, j'en parle beaucoup.",
-      "tourImprint" : "Ah l'Imprint c'est ennuyeux mais important. Vous trouverez ici toutes les informations sur les réglementations légales. Comme par exemple le fait que nous ne sauvegardons pas de cookies, c'est cool!",
-      "tourAbout" : "Uhh Berlin, c'est ici que l'on vit et c'est aussi ici que le siège social de Cupboard Inc. se trouve. Si vous ne voulez pas en savoir plus sur nous, vous pouvez le faire dans la section À propos",
-      "tourCatalogue" : "Voici le catalogue, vous pouvez trouver et acheter une sélection de nos produits ici",
-      "tourTool" : "Passons maintenant à ma partie préférée : L'outil de personnalisation, vous pouvez personnaliser votre placard tout seul et il y a même un modèle 3D de celui-ci. N'EST-CE PAS GÉNIAL ?",
-      "tourEnd" : "C'est génial que vous ayez fait le Tour. Maintenant, amusez-vous bien sur notre site web."
-    }
+  "location": "Je viens d'un autre endroit !",
+  "language": "Je parle une autre langue (Language)!",
+  "support": "J'ai besoin d'aide !",
+  "imprint": "Qui a fait cette page ?",
+  "puns": [
+    "CUPE DIEM",
+    "CUPOW ! Je suis là pour vous aider",
+    "Im Cuppy de Cuptown et moi venons vous aider",
+    "Quelle tasse, avez-vous besoin d'aide ?"
+  ],
+  "routerHelper": {
+    "helperText": "Je peux vous aider pour certaines choses"
+  },
+  "configHelper": {
+    "helperText": "Notre catalogue a beaucoup à offrir, alors pourquoi ne pas commencer par une configuration pré-établie",
+    "positive": "sonne bien",
+    "negative": "Peut-être autre chose ?"
+  },
+  "heightHelper": {
+    "cm": "Utiliser cm",
+    "profondeur": "La profondeur de vos placards",
+    "hauteur": "La hauteur de vos placards",
+    "roomHeight": "Votre hauteur de pièce",
+    "helperText": "Pendant que vous installez votre placard après sa construction, il doit être assez petit pour votre chambre. Dites-moi simplement à quelle hauteur se trouve votre chambre dans le premier champ et quelles seront les dimensions de votre plus grande armoire dans le deuxième champ. Je vous dirai s'il convient",
+    "fit": "Ça colle !",
+    "dontFit": "Ça ne va pas, essayez-en un plus petit !"
+  },
+  "recommendationHelper": {
+    "helperText": "On dirait que vous ne savez pas quoi faire. Pourquoi ne pas essayer de configurer un {point}",
+    "positive": "Aïe",
+    "negative": "J'ai besoin d'autre chose"
+  },
+  "tourHelper": {
+    "startTour": "Commencez la visite !",
+    "next": "Ok, continuez !",
+    "tourStart": "Je suis votre assistant personnel de Cupboard et je suis la mascotte du Cyberespace - présence de Cupboard Lmtd. Pourquoi ne pas me rejoindre pour une visite du site ?",
+    "tourLoc": "C'est super que vous veniez avec moi. C'est votre sélecteur de lieu, si vous venez d'ailleurs, alors je suppose que vous pouvez le changer ici.",
+    "tourLang": "¿No hablas Francés? Pas de problème, vous pouvez choisir une autre langue (Language) ici et croyez-moi, j'en parle beaucoup.",
+    "tourImprint": "Ah l'Imprint c'est ennuyeux mais important. Vous trouverez ici toutes les informations sur les réglementations légales. Comme par exemple le fait que nous ne sauvegardons pas de cookies, c'est cool!",
+    "tourAbout": "Uhh Berlin, c'est ici que l'on vit et c'est aussi ici que le siège social de Cupboard Inc. se trouve. Si vous ne voulez pas en savoir plus sur nous, vous pouvez le faire dans la section À propos",
+    "tourCatalogue": "Voici le catalogue, vous pouvez trouver et acheter une sélection de nos produits ici",
+    "tourTool": "Passons maintenant à ma partie préférée : L'outil de personnalisation, vous pouvez personnaliser votre placard tout seul et il y a même un modèle 3D de celui-ci. N'EST-CE PAS GÉNIAL ?",
+    "tourEnd": "C'est génial que vous ayez fait le Tour. Maintenant, amusez-vous bien sur notre site web."
   }
-  
+}

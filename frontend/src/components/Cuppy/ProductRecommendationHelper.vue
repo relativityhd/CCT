@@ -1,6 +1,6 @@
-This component is not implemented 
+This component is not implemented
 <template>
-<!-- not implemented-->
+  <!-- not implemented-->
   <div class="Recommendation">
     <div class="recommendation-text">
       {{ $t('Cuppy.recommendationHelper.helperText', { item: categoryRecommendation.name }) }}

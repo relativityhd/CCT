@@ -1,27 +1,26 @@
 {
-    "skipto" : "Passer au contenu principal",
-    "home" : "Home",
-    "tool" : "Configurateur",
-    "about" : "A propos de",
-    "catalogue" : "Catalogue",
-    "imprint" : "Empreinte",
-    "close" : "Fermer",
-    "update" : {
-      "label" : "Nouvelle mise à jour disponible !",
-      "title" : "Mise à jour",
-      "body" : "",
-      "later" : "Mise à jour plus tard",
-      "now" : "Recharger la page"
-    },
-    "P404" : "Désolé que cette page ne soit pas disponible :(",
-    "locations" : {
-      "germany" : "Allemagne",
-      "greatBritain" : "Grande-Bretagne",
-      "france" : "France",
-      "italie" : "Italie",
-      "switzerland" : "Suisse",
-      "austria" : "Autriche",
-      "otherCountry" : "Autre pays" 
-    }
+  "skipto": "Passer au contenu principal",
+  "home": "Home",
+  "tool": "Configurateur",
+  "about": "A propos de",
+  "catalogue": "Catalogue",
+  "imprint": "Empreinte",
+  "close": "Fermer",
+  "update": {
+    "label": "Nouvelle mise à jour disponible !",
+    "title": "Mise à jour",
+    "body": "Sachez que le rechargement réinitialisera tous les paramètres, par exemple les articles stockés dans votre panier.",
+    "later": "Mise à jour plus tard",
+    "now": "Recharger la page"
+  },
+  "P404": "Désolé que cette page ne soit pas disponible :(",
+  "locations": {
+    "germany": "Allemagne",
+    "greatBritain": "Grande-Bretagne",
+    "france": "France",
+    "italie": "Italie",
+    "switzerland": "Suisse",
+    "austria": "Autriche",
+    "otherCountry": "Autre pays"
   }
-  
+}

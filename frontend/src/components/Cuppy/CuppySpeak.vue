@@ -11,11 +11,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      cuppyGreet: "Hi I'm Cuppy"
-    }
-  },
   props: {
     showCuppyBubble: {
       type: Boolean
@@ -27,11 +22,12 @@ export default {
       return puns[Math.floor(Math.random() * 4)]
     }
   },
-  watch: {
-    showCuppyBubble: function(oldVal) {
-      if (oldVal) {
-        this.cuppyGreet = this.greetUser()
+  computed:{
+    cuppyGreet: function(){
+      if (this.showCuppyBubble){
+        return this.greetUser()
       }
+      return this.cuppyGreet
     }
   }
 }
@@ -63,7 +59,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: max-content;
-  width: 250px;
+  min-width: 250px;
 }
 
 .greet {
@@ -72,5 +68,7 @@ export default {
 
 .bubble-content {
   margin: 10px 10px 10px 10px;
+  overflow-y: auto;
+  max-height: 320px;
 }
 </style>

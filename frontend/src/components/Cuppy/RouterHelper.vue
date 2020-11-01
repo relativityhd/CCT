@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="router-helper">
     <div class="helperText">
       {{ $t('Cuppy.routerHelper.helperText') }}
     </div>
@@ -43,7 +43,9 @@ export default {
 #buttoncontainer {
   border: none;
 }
-
+.router-helper{
+  width: 13rem;
+}
 button {
   width: 100%;
   font-size: 1rem;

@@ -15,7 +15,8 @@
   "configHelper": {
     "helperText": "Unsere Produktpalette hat viel anzubieten. Starte doch einfach mit einer vorgefertigten Konfiguration!",
     "positive": "Klingt gut!",
-    "negative": "Vielleicht etwas anderes?"
+    "negative": "Vielleicht etwas anderes?",
+    "placeholder": "Wähle eine Vorlage"
   },
   "heightHelper": {
     "cm": "Benutze cm",

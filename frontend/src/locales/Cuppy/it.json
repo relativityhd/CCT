@@ -15,7 +15,8 @@
   "configHelper": {
     "helperText": "Il nostro catalogo ha molto da offrire, quindi perché non iniziare con una configurazione pre-fatta",
     "positive": "Suona bene",
-    "negative": "Forse qualcos'altro?"
+    "negative": "Forse qualcos'altro?",
+    "placeholder": "Scegliere una preimpostazione"
   },
   "heightHelper": {
     "cm": "Usa cm",

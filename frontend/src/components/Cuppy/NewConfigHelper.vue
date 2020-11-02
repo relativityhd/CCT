@@ -4,7 +4,7 @@
       {{ $t('Cuppy.configHelper.helperText') }}
     </div>
     <div class="preset-recommendation">
-      <cv-dropdown :placeholder="'Chose a preset'" v-model="selected">
+      <cv-dropdown :placeholder="$t('Cuppy.configHelper.placeholder')" v-model="selected">
         <cv-dropdown-item v-for="(preset, index) in getPresets(category)" :key="`${index}`" :value="`${preset.id}`">
           {{ preset.name }}
         </cv-dropdown-item>

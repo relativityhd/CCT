@@ -15,7 +15,8 @@
   "configHelper": {
     "helperText": "Our catalogue has a lot to offer, so why don't you start with a premade configuration",
     "positive": "Sounds good!",
-    "negative": "Maybe something else?"
+    "negative": "Maybe something else?",
+    "placeholder": "Choose a preset"
   },
   "heightHelper": {
     "cm": "Use cm",

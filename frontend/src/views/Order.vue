@@ -20,7 +20,7 @@
     <h6>{{ $t('Basket.noItems') }}</h6>
     <br />
     <cv-button class="to-shop-btn" :icon="ShoppingCart16" @click="$router.push('/tool')">
-      {{ $t('Order.backToShop') }}
+      {{ $t('Order.shop') }}
     </cv-button>
   </div>
 </template>

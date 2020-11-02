@@ -7,15 +7,15 @@
             <CuppySpeak :showCuppyBubble="showCuppy">
               <NewConfigHelper
                 :category="'highboards'"
-                v-if="$router.currentRoute.name == 'Catalogue' && !onTour"
+                v-if="currentRoute === 'Catalogue' && !onTour"
               ></NewConfigHelper>
               <RoomHeightHelper
-                v-else-if="$router.currentRoute.name == 'Tool' && !onTour"
+                v-else-if="currentRoute === 'Tool' && !onTour"
                 :cupboardHeight="150"
                 :cupboardDepth="30"
               ></RoomHeightHelper>
               <WebsiteTourHelper
-                v-else-if="($router.currentRoute.name == 'Homepage' && !alreadyToured) || onTour"
+                v-else-if="(currentRoute === 'Homepage' && !alreadyToured) || onTour"
               ></WebsiteTourHelper>
               <RouterHelper v-else></RouterHelper>
             </CuppySpeak>
@@ -34,6 +34,7 @@ import RoomHeightHelper from './RoomHeightHelper'
 import WebsiteTourHelper from './WebsiteTourHelper'
 const timeToCup = 120
 export default {
+  name: 'MainCuppy',
   components: {
     CuppySpeak,
     RouterHelper,
@@ -63,7 +64,8 @@ export default {
       idleTime: 0,
       interval: Function,
       onTour: false,
-      alreadyToured: false
+      alreadyToured: false,
+      currentRoute: '/'
     }
   },
   watch: {
@@ -73,8 +75,12 @@ export default {
       }
     }
   },
-  created() {
-    this.interval = setInterval(() => {
+  mounted() {
+    this.currentRoute = this.$router.currentRoute.name
+    this.$router.afterEach(() => {
+      this.currentRoute = this.$router.currentRoute.name
+    })
+    this.myinterval = setInterval(() => {
       this.idleTime++
     }, 1000)
     document.body.addEventListener(
@@ -86,7 +92,7 @@ export default {
     )
   },
   beforeDestroy() {
-    clearInterval(this.interval)
+    clearInterval(this.myinterval)
   }
 }
 </script>

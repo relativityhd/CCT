@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  name: 'CuppyRoomHeightCalc',
   props: {},
   data() {
     return {

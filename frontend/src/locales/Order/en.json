@@ -38,6 +38,6 @@
   "tryAgain": "Try to resend order",
   "errored": "Something went wrong :(",
   "successfulRedirect": "Back to home",
-  "successful": "Ordered items!",
+  "successful": "Items ordered!",
   "orderId": "Your order ID is: {id}"
 }

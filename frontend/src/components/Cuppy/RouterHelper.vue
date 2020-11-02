@@ -32,6 +32,7 @@
 </template>
 <script>
 export default {
+  name: 'CuppyRouter',
   methods: {
     toSite(path) {
       if (this.$route.path !== path) this.$router.push(path)

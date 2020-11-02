@@ -27,6 +27,7 @@ This component is not implemented
 //not implemented
 import Vue from 'vue'
 export default {
+  name: 'CuppyRecommendation',
   data() {
     return {
       categoryRecommendation: {}

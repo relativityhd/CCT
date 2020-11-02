@@ -38,6 +38,6 @@
   "tryAgain": "Versuche Bestellung erneut zu senden!",
   "errored": "Etwas ist falsch gelaufen",
   "successfulRedirect": "Zurück zur Startseite",
-  "successful": "Gekaufte Artikel",
+  "successful": "Artikel bestellt!",
   "orderId": "Deine Bestellnummer ist {id}"
 }

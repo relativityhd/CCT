@@ -1,7 +1,7 @@
 <template>
   <div id="speak" class="speech-bubble">
     <h5 class="greet">
-      {{ cuppyGreet }}
+      {{ $t(`Cuppy.puns[${punNr}]`) }}
     </h5>
     <div class="bubble-content">
       <slot></slot>
@@ -11,23 +11,20 @@
 
 <script>
 export default {
+  name: 'CuppySpeak',
   props: {
     showCuppyBubble: {
       type: Boolean
     }
   },
-  methods: {
-    greetUser() {
-      const puns = this.$t('Cuppy.puns')
-      return puns[Math.floor(Math.random() * 4)]
+  data() {
+    return {
+      punNr: 0
     }
   },
-  computed: {
-    cuppyGreet: function() {
-      if (this.showCuppyBubble) {
-        return this.greetUser()
-      }
-      return this.cuppyGreet
+  watch: {
+    showCuppyBubble: function(oldVal) {
+      if (oldVal) this.punNr = Math.floor(Math.random() * 4)
     }
   }
 }

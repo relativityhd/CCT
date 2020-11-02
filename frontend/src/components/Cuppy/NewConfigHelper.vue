@@ -27,6 +27,7 @@
 import presets from '../../assets/preconfigs'
 
 export default {
+  name: 'CuppyConfigHelper',
   data: () => {
     return {
       selected: ''

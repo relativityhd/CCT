@@ -1,17 +1,9 @@
 const router = require('express').Router()
-const { axios, parseURL } = require('./axios')
+const { v4: uuidv4 } = require('uuid')
 
 router.post('/', (req, res) => {
-  axios
-    .post(parseURL('/order'), req.body)
-    .then(({ data }) => {
-      res.json(data)
-      res.end()
-    })
-    .catch((e) => {
-      console.log('--DEBUG : e', e)
-      res.end()
-    })
+  res.json({"orderId": uuidv4()})
+  res.status(200).end()
 })
 
 module.exports = router

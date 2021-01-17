@@ -33,7 +33,88 @@ router.get('/categories', (req, res) => {
   ])
   res.end()
 })
-
+[
+  {
+    "id": 90,
+    "name": "Frame",
+    "price": 120,
+    "selectableCategory": "exterior",
+    "customizable": true,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/korpus-weiss.jpg"
+  },
+  {
+    "id": 91,
+    "name": "Shelf",
+    "price": 20,
+    "selectableCategory": "interior",
+    "customizable": true,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/komplement-boden-weiss__0721164_PE733094_S5.JPG"
+  },
+  {
+    "id": 92,
+    "name": "Clothes rail",
+    "price": 10,
+    "selectableCategory": "interior",
+    "customizable": true,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/komplement-kleiderstange-weiss__0650342_PE706138_S5.JPG"
+  },
+  {
+    "id": 93,
+    "name": "Mesh basket",
+    "price": 20,
+    "selectableCategory": "interior",
+    "customizable": true,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/komplement-netzdrahtkorb-mit-auszugschiene-weiss__0643765_PE702093_S5.JPG"
+  },
+  {
+    "id": 94,
+    "name": "Drawer",
+    "price": 40,
+    "selectableCategory": "interior",
+    "customizable": true,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/komplement-schublade-weiss__0762194_PE751731_S5.JPG"
+  },
+  {
+    "id": 95,
+    "name": "White",
+    "price": 0,
+    "selectableCategory": "material",
+    "customizable": false,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/white.jpg"
+  },
+  {
+    "id": 96,
+    "name": "Maple",
+    "price": 40,
+    "selectableCategory": "material",
+    "customizable": false,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/ahorn.jpg"
+  },
+  {
+    "id": 97,
+    "name": "Walnut",
+    "price": 80,
+    "selectableCategory": "material",
+    "customizable": false,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/nussbaum.jpg"
+  },
+  {
+    "id": 98,
+    "name": "Brich",
+    "price": 40,
+    "selectableCategory": "material",
+    "customizable": false,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/birke.jpg"
+  },
+  {
+    "id": 99,
+    "name": "Lamp",
+    "price": 20,
+    "selectableCategory": "accessories",
+    "customizable": false,
+    "imageUrl": "https://s3.eu-gb.cloud-object-storage.appdomain.cloud/cupboardimages/lamp.jpg"
+  }
+]
 router.get('/categories/:id/products', (req, res) => {
   if (req.params.id === "0") {
     res.json([

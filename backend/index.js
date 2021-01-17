@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000
 
+app.use(express.static('public'))
+
 app.use(cors())
 app.use(bodyParser.json())
 
